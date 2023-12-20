@@ -16,12 +16,46 @@
         <div class="row">
             <div class="col-lg-6 offset-lg-3">
                 <div class="account-login-inner">
-                    <form action="#" class="ltn__form-box contact-form-box">
-                        <input type="text" name="firstname" placeholder="First Name"  [(ngModel)]="regObj.firstname">
-                        <input type="text" name="lastname" placeholder="Last Name"  [(ngModel)]="regObj.lastname">
-                        <input type="text" name="email" placeholder="Email*"  [(ngModel)]="regObj.email">
-                        <input type="password" name="password" placeholder="Password*"  [(ngModel)]="regObj.password">
-                        <input type="password" name="confirmpassword" placeholder="Confirm Password*">
+                    <form action="#" class="ltn__form-box contact-form-box" [formGroup]="registerForm">
+                        
+                        <div class="d-flex flex-row align-items-center mb-4">
+                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                            <div class="form-outline flex-fill mb-0">
+                            <input type="text" id="form3Example1c" class="form-control"  formControlName="firstName">
+                            <span style="color: red;" *ngIf="registerForm.controls['firstName'].hasError('required')">The First Name is required </span>
+                        </div>
+                        </div>
+                        <div class="d-flex flex-row align-items-center mb-4">
+                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                            <div class="form-outline flex-fill mb-0">
+                            <input type="text" placeholder="Last Name" class="form-control"  formControlName="lastName">
+                            <span style="color: red;" *ngIf="registerForm.controls['lastName'].hasError('required')">The Last Name is required </span>
+                        </div>
+                        </div>                        
+                        <div class="d-flex flex-row align-items-center mb-4">
+                            <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                            <div class="form-outline flex-fill mb-0">
+                            <input type="text" placeholder="Email*" class="form-control"  formControlName="email">
+                            <span style="color: red;" *ngIf="registerForm.controls['email'].hasError('required')">Email is required </span>
+                            <span style="color: red;" *ngIf="registerForm.controls['email'].hasError('email')">Please enter a valid email address </span>
+                        </div>
+                        </div>
+                        <div class="d-flex flex-row align-items-center mb-4">
+                            <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                            <div class="form-outline flex-fill mb-0">
+                            <input type="password" placeholder="Password*" class="form-control" formControlName="password">
+                            <span style="color: red;" *ngIf="registerForm.controls['password'].hasError('required')" >password is required </span>
+                            <span style="color: red;" *ngIf="registerForm.controls['password'].hasError('minlength')">Please enter a strong password </span>
+                        </div>
+                        </div>
+                        <div class="d-flex flex-row align-items-center mb-4">
+                            <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                            <div class="form-outline flex-fill mb-0">
+                            <input type="password" formControlName="confirmPassword" placeholder="Confirm Password*" (change)="MatchError()">
+                            <span style="color: red;" *ngIf="registerForm.controls['confirmPassword'].hasError('misMatch')">confirmPassword should match password value  </span>
+                        </div>
+                        </div>
+                        
                         <!-- <label class="checkbox-inline">
                             <input type="checkbox" value="">
                             I consent to Herboil processing my personal data in order to send personalized marketing material in accordance with the consent form and the privacy policy.
@@ -31,7 +65,7 @@
                             By clicking "create account", I consent to the privacy policy.
                         </label>
                         <div class="btn-wrapper text-center">
-                            <button  (click)="(Register())"class="theme-btn-1 btn reverse-color btn-block text-cente" type="submit">CREATE ACCOUNT</button>
+                            <button  (click)="(register())"class="theme-btn-1 btn reverse-color btn-block text-cente" type="submit">CREATE ACCOUNT</button>
                         </div>
                     </form>
                     <div class="by-agree text-center">
