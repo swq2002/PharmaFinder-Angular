@@ -6,6 +6,8 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 
+import{HttpClientModule}from  '@angular/common/http'
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -16,12 +18,16 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     RouterModule,
     SharedRoutingModule,
-    
+    MatButtonModule,
+    HttpClientModule
+
 
   ],
   exports: [
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    HttpClientModule
+
   ]
 
 })

@@ -10,7 +10,7 @@ import { ContactusComponent } from './contactus/contactus.component';
 import { SharedModule } from './shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TestimonialComponent } from './testimonial/testimonial.component';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -20,6 +20,7 @@ import { FormsModule } from '@angular/forms';
     AboutusComponent,
     ContactusComponent,
     TestimonialComponent,
+    
     
   ],
   imports: [
