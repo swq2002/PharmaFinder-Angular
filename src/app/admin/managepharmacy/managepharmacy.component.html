@@ -342,46 +342,46 @@
 
 <!-- table start -->
 
-              <div class="col-lg-12 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Pharmcy</h4>
-                    <p class="card-description"> Add class <code>.table</code>
-                    </p>
-                    <table class="table">
-                      <thead>
-                        <tr>
-                            <th>pharmacyid</th>
-                            <th>pharmacyname</th>
-                            <th>location</th>
-                            <th>address</th>
-                            <th>lng</th>
-                            <th>lat</th>
-                            <th>email</th>
-                            <th>phonenumber</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr *ngFor="let obj of  adminService.pharmacy ">
-                            <td>{{obj.pharmacyid}}</td>
-                            <td>{{obj.pharmacyname}}</td>
-                            <td>{{obj.location}}</td>
-                            <td>{{obj.address}}</td>
-                            <td>{{obj.lng}}</td>
-                            <td>{{obj.lat}}</td>
-                            <td>{{obj.email}}</td>
-                            <td>{{obj.phonenumber}}</td>
-                        </tr>
-                       
-                     
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
 
-
-
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Pharmcy</h4>
+      <p class="card-description"> Add class <code>.table-hover</code>
+      </p>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>pharmacyname</th>
+              <th>location</th>
+              <th>address</th>
+              <th>lng</th>
+              <th>lat</th>
+              <th>email</th>
+              <th>phonenumber</th>
+              <th>Action</th>  
+          </thead>
+          <tbody>
+            <tr *ngFor="let obj of  adminService.pharmacy ">
+              <td>{{obj.pharmacyname}}</td>
+              <td>{{obj.location}}</td>
+              <td>{{obj.address}}</td>
+              <td>{{obj.lng}}</td>
+              <td>{{obj.lat}}</td>
+              <td>{{obj.email}}</td>
+              <td>{{obj.phonenumber}}</td>
+              <td>
+                <button style="margin:5px ;" mat-raised-button color="primary">update</button>
+                <button  mat-raised-button color="warn"   (click)="DeletePharmcy(obj.pharmacyid)">delete</button>
+              </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 
               <!-- table end -->
             </div>
@@ -404,5 +404,18 @@
   </div>
   <!-- container-scroller -->
   <!-- plugins:js -->
+
+
+  
+<ng-template #callDeleteDailog>
+  <h1 mat-dialog-title>Delete Contact US</h1>
+<div mat-dialog-content>Are you sure want to delete this item ?</div>
+<div mat-dialog-actions>
+  <button type="button" mat-raised-button color="primary" mat-button mat-dialog-close="yes">yes</button>
+  <button  type="button" mat-button mat-dialog-close="no">no</button>
+
+</div>
+
+</ng-template>
 
 </body>

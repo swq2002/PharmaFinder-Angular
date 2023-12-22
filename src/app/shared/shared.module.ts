@@ -7,7 +7,11 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 
 import{HttpClientModule}from  '@angular/common/http'
+
 import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDividerModule} from '@angular/material/divider';
+
 
 @NgModule({
   declarations: [
@@ -19,14 +23,20 @@ import {MatButtonModule} from '@angular/material/button';
     RouterModule,
     SharedRoutingModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    MatIconModule,
+    MatDividerModule
 
 
   ],
   exports: [
     NavbarComponent,
     FooterComponent,
-    HttpClientModule
+    MatButtonModule,
+    HttpClientModule,
+    MatDividerModule,
+    MatIconModule,
+    MatButtonModule
 
   ]
 

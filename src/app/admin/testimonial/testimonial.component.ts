@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { AdminServicesService } from 'src/app/Services/admin-services.service';
 
 @Component({
@@ -7,13 +8,12 @@ import { AdminServicesService } from 'src/app/Services/admin-services.service';
   styleUrls: ['./testimonial.component.css']
 })
 export class TestimonialComponent {
-
+  @ViewChild ('callDeleteDailog') callDelete!:TemplateRef<any>
     
-  constructor(public adminService:AdminServicesService){
+  constructor(public adminService:AdminServicesService,public dialog: MatDialog){
     console.log(adminService.str);
       }
       ngOnInit(): void {
         this.adminService.GetAllTestimonial();
       }
-
 }

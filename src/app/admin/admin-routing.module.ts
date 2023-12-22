@@ -5,8 +5,14 @@ import { ManagepharmacyComponent } from './managepharmacy/managepharmacy.compone
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { TestimonialComponent } from './testimonial/testimonial.component';
 import { MedicineComponent } from './medicine/medicine.component';
+import { useAnimation } from '@angular/animations';
+import { UseraccountComponent } from './useraccount/useraccount.component';
 
 const routes: Routes = [
+  {
+    path:'useraccount',
+    component:UseraccountComponent
+  },
   {
     path:'dashboard',
     component:DashboardComponent
@@ -26,10 +32,9 @@ const routes: Routes = [
   {
     path:'Medicine',
     component:MedicineComponent
-
   }
  
-  
+ 
 ];
 
 @NgModule({

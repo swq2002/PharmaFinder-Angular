@@ -61,4 +61,41 @@ export class AdminServicesService {
       }
     );
   }
+
+  DeletePharmacyByID(id:number){
+    this.http.delete('https://localhost:7274/api/Pharmacy/DeletePharmacy/'+id).subscribe((resp)=>{
+      alert("deleted");
+    },
+    (err)=>{
+      alert("some think ronge");
+
+      console.log(err.message);
+      console.log(err.status);
+    })
+  }
+
+  DeleteContactUsByID(id:number){
+    this.http.delete('https://localhost:7274/api/ContactUs/DeleteContactUs/'+id).subscribe((resp)=>{
+      alert("deleted");
+    },
+    (err)=>{
+      alert("some think ronge");
+
+      console.log(err.message);
+      console.log(err.status);
+    })
+  }
+  DeleteMedicineByID(id:number){
+    this.http.delete('https://localhost:7274/api/Medicine/DeleteMedicine/'+id).subscribe((resp)=>{
+      alert("deleted");
+    },
+    (err)=>{
+      alert("some think ronge");
+
+      console.log(err.message);
+      console.log(err.status);
+    })
+  }
+
+
 }
