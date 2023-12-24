@@ -30,16 +30,34 @@ export class MapComponent implements OnInit {
           accessToken: 'your.mapbox.access.token',
         }
       ).addTo(map);
-            let icon = L.icon({iconUrl:'../assets/HomeAssets/bg/logo-3.png',iconSize:[100,100]});
-            L.marker([35,36],{icon:icon}).addTo(map);
+            // let icon = L.icon({iconUrl:'assets/HomeAssets/img/bg/pharmacy-svgrepo-com.svg',iconSize:[350,600]});
+            // L.marker([35,36],{icon:icon});
+            // console.log(icon);
+            let LeafIcon = L.Icon.extend({
+              options: {
+                  shadowUrl: 'assets/HomeAssets/img/bg/pharmacy-svgrepo-com.svg',
+                  iconSize:     [38, 95],
+                  shadowSize:   [50, 64],
+                  iconAnchor:   [22, 94],
+                  shadowAnchor: [4, 62],
+                  popupAnchor:  [-3, -76]
+              }
+
+          }).addTo(map);
       // let marker = L.marker(latLong).addTo(map);
       // let popup = L.popup()
       // .setLatLng(latLong)
-      // .setContent('البلدي واحد بس')
+      // .setContent('')
       // .openOn(map);
       
   });
 
+
+  
+
   }
+
+
+  
 
 }
