@@ -1,0 +1,31 @@
+/* CSS styles to enhance the contact address item */
+
+.ltn-contact-address-item {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ltn-contact-address-icon img {
+    width: 50px; /* Adjust icon size as needed */
+    height: auto;
+    margin-right: 20px;
+}
+
+.ltn-contact-address-info h3 {
+    margin-bottom: 8px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.ltn-contact-address-info p {
+    margin-bottom: 0;
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Additional styles for responsiveness or specific design preferences */

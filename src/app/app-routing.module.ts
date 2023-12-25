@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { AuthModule } from './auth/auth.module';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { OrderByPrescriptionComponent } from './order-by-prescription/order-by-prescription.component';
 
 const routes: Routes = [
 
@@ -32,6 +33,9 @@ const routes: Routes = [
   {
     path:'',
     component:HomeComponent
+  },  {
+    path:'upload-prescription',
+    component:OrderByPrescriptionComponent
   },
   {
     path:"security",

@@ -1,0 +1,22 @@
+.image-wrapper {
+    position: relative;
+    display: inline-block; /* Ensures the container wraps around the content */
+    max-width: 100%; 
+
+}
+
+.image-wrapper img {
+    display: block; /* Ensures the image takes up the container space */
+    width: 100%; /* Adjust the width as needed */
+    height: auto;
+     /* Keeps the aspect ratio of the image */
+}
+
+.image-button {
+    position: absolute;
+    top: 50%; /* Adjust top position */
+    left: 10%; /* Adjust left position */
+    transform: translateY(-10%); /* Center the button vertically */
+    padding: 10px 20px;
+    white-space: nowrap; 
+}
