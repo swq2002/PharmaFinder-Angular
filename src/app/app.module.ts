@@ -11,7 +11,8 @@ import { SharedModule } from './shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TestimonialComponent } from './testimonial/testimonial.component';
 import { FormsModule } from '@angular/forms';
-import { MapComponent } from './map/map.component'; 
+import { AdminModule } from './admin/admin.module';
+import { RegisterComponent } from './auth/register/register.component';
 
 
 @NgModule({
@@ -22,6 +23,9 @@ import { MapComponent } from './map/map.component';
     ContactusComponent,
     TestimonialComponent,
     MapComponent,
+    AdminModule,
+    RegisterComponent
+    
     
   ],
   imports: [

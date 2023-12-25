@@ -22,7 +22,11 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+
+              "src/assets/AdminAssets/images/favicon.png" 
+
+
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
@@ -31,12 +35,38 @@
               "src/assets/HomeAssets/css/font-icons.css",
               "src/assets/HomeAssets/css/plugins.css",
               "src/assets/HomeAssets/css/style.css",
-              "src/assets/HomeAssets/css/responsive.css"
-            ],
+              "src/assets/HomeAssets/css/responsive.css",
+
+
+              "src/assets/AdminAssets/vendors/mdi/css/materialdesignicons.min.css",
+              "src/assets/AdminAssets/vendors/flag-icon-css/css/flag-icon.min.css",
+              "src/assets/AdminAssets/vendors/css/vendor.bundle.base.css",
+              "src/assets/AdminAssets/vendors/font-awesome/css/font-awesome.min.css",
+              "src/assets/AdminAssets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css"
+              ,
+              "src/assets/AdminAssets/css/style.css"
+
+
+
+
+
+        
+                 
+              ],
             "scripts": [
               
               "src/assets/HomeAssets/js/plugins.js"
-            ,"src/assets/HomeAssets/js/main.js"]
+            ,"src/assets/HomeAssets/js/main.js",
+
+            "src/assets/AdminAssets/vendors/js/vendor.bundle.base.js",
+            "src/assets/AdminAssets/vendors/chart.js/Chart.min.js",
+            "src/assets/AdminAssets/vendors/jquery-circle-progress/js/circle-progress.min.js",
+            "src/assets/AdminAssets/js/off-canvas.js",
+            "src/assets/AdminAssets/js/hoverable-collapse.js",
+            "src/assets/AdminAssets/js/misc.js",
+            "src/assets/AdminAssets/js/dashboard.js"
+
+          ]
           },
           "configurations": {
             "production": {
