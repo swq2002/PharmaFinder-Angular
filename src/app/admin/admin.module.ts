@@ -19,6 +19,11 @@ import {MatDividerModule} from '@angular/material/divider';
 import { RouterModule } from '@angular/router';
 import {MatDialogModule} from '@angular/material/dialog';
 import { UseraccountComponent } from './useraccount/useraccount.component';
+import { UserComponent } from './user/user.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PharmacyComponent } from './pharmacy/pharmacy.component';
 
 
 @NgModule({
@@ -31,7 +36,10 @@ import { UseraccountComponent } from './useraccount/useraccount.component';
     MedicineComponent,
     FooterComponent,
     NavbarComponent,
-    UseraccountComponent
+    UseraccountComponent,
+    UserComponent,
+    PharmacyComponent,
+    
 
     
     
@@ -43,8 +51,11 @@ import { UseraccountComponent } from './useraccount/useraccount.component';
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
-    MatDialogModule
-
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    
     
   ]
 })

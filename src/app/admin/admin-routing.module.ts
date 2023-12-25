@@ -7,11 +7,17 @@ import { TestimonialComponent } from './testimonial/testimonial.component';
 import { MedicineComponent } from './medicine/medicine.component';
 import { useAnimation } from '@angular/animations';
 import { UseraccountComponent } from './useraccount/useraccount.component';
+import { UserComponent } from './user/user.component';
+import { PharmacyComponent } from './pharmacy/pharmacy.component';
 
 const routes: Routes = [
   {
     path:'useraccount',
     component:UseraccountComponent
+  },
+  {
+    path:'user',
+    component:UserComponent
   },
   {
     path:'dashboard',
@@ -20,6 +26,10 @@ const routes: Routes = [
   {
     path:'managepharmacy',
     component:ManagepharmacyComponent
+  },
+  {
+    path:'pharmacy',
+    component:PharmacyComponent
   },
   {
     path:'Contact',

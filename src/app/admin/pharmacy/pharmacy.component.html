@@ -1,0 +1,255 @@
+<body>
+    <div class="container-scroller">
+      <!-- partial:../../partials/_navbar.html -->
+  <app-navbar></app-navbar>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:../../partials/_sidebar.html -->
+  <app-sidebar></app-sidebar>
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="page-header">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <!-- <li class="breadcrumb-item"><a href="#">Tables</a></li> -->
+            <!-- <li class="breadcrumb-item active" aria-current="page">Basic tables</li> -->
+          </ol>
+        </nav>
+      </div>
+      <div class="row">
+  
+  
+  <!-- table start -->
+  
+  <div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">pharmacy Table</h4>
+        <button style="margin:5px ;" mat-raised-button color="primary" (click)="OpenCreateDialog()">Create pharmacy</button>
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Pharmacy Name</th>
+                <th>Location_ </th>
+                <th>Address_ </th>
+                <th>Medicine Description</th>
+                <th>Lng_</th>
+                <th>Lat  </th>
+                <th>Email </th>
+                <th>Phone Number</th>
+  
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let obj of  adminService.pharmacy ">
+                <td>{{obj.pharmacyname}}</td>
+                <td>{{obj.location}}</td>
+                <td>{{obj.address}}</td>
+                <td>{{obj.lng}}</td>
+                <td>{{obj.lat}}</td>
+                <td>{{obj.email}}</td>
+                <td>{{obj.phonenumber}}</td>
+  
+                <td>
+                  <button style="margin:5px ;" mat-raised-button color="primary"  (click)="openUpdateDailog(obj)" >update</button>
+                  <button  mat-raised-button color="warn" (click)="DeletePharmcy(obj.medicineid)" >delete</button>
+  
+                </td>
+                
+            </tr>
+           
+         
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  </div>
+  
+  
+        <!-- table end -->
+      </div>
+  </div>
+  <!-- content-wrapper ends -->
+  <!-- partial:../../partials/_footer.html -->
+  
+  
+  
+  <app-footer></app-footer>
+  
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  
+  
+  
+<ng-template #callDeleteDailog>
+    <h1 mat-dialog-title>Delete Contact US</h1>
+  <div mat-dialog-content>Are you sure want to delete this item ?</div>
+  <div mat-dialog-actions>
+    <button type="button" mat-raised-button color="primary" mat-button mat-dialog-close="yes">yes</button>
+    <button  type="button" mat-button mat-dialog-close="no">no</button>
+  
+  </div>
+  
+  </ng-template>
+  <ng-template #CreatePharmacDailog>
+    <h1 mat-dialog-title>Delete Contact US</h1>
+  <div mat-dialog-content>Are you sure want to delete this item ?</div>
+  <div mat-dialog-actions>
+    <button type="button" mat-raised-button color="primary" mat-button mat-dialog-close="yes">yes</button>
+    <button  type="button" mat-button mat-dialog-close="no">no</button>
+  
+  </div>
+  
+  </ng-template>
+  
+  
+  <ng-template #createPharmacDailog>
+    <h2 mat-dialog-title>Create pharmacy</h2>
+  <!-- <mat-dialog-content class="mat-typography">
+    
+    <form class="example-form" [formGroup]="CreatePharmacy">
+      <mat-form-field class="example-full-width">
+        <mat-label>name Medicne</mat-label>
+        <input type="text" matInput formControlName="Pharmacy_Name" >
+        <mat-error *ngIf="CreatePharmacy.controls['Pharmacy_Name'].hasError('required')">
+          medicne name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+  
+   <mat-form-field class="example-full-width">
+        <mat-label>Medicine Price</mat-label>
+        <input type="number" matInput formControlName="Location_" >
+        <mat-error *ngIf="CreatePharmacy.controls['Location_'].hasError('required')">
+          medicne name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="example-full-width">
+        <mat-label>Medicine Type</mat-label>
+        <input type="text" matInput formControlName="Address_" >
+        <mat-error *ngIf="CreatePharmacy.controls['Address_'].hasError('required')">
+          medicne name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="example-full-width">
+        <mat-label> Medicine Description</mat-label>
+        <input type="text" matInput formControlName="Lng_" >
+        <mat-error *ngIf="CreatePharmacy.controls['Lng_'].hasError('required')">
+          medicne name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="example-full-width">
+        <mat-label>Expire_Date</mat-label>
+        <input type="date" matInput formControlName="Lat_" >
+        <mat-error *ngIf="CreatePharmacy.controls['Lat_'].hasError('required')">
+          medicne name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="example-full-width">
+        <mat-label> Active_Substance</mat-label>
+        <input type="text" matInput formControlName="Email_" >
+        <mat-error *ngIf="CreatePharmacy.controls['Email_'].hasError('required')">
+          Active Substance is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label> Active_Substance</mat-label>
+        <input type="text" matInput formControlName="Phone_Number" >
+        <mat-error *ngIf="CreatePharmacy.controls['Phone_Number'].hasError('required')">
+          Active Substance is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </form>
+  
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close (click)="Cancel()">Cancel</button>
+    <button mat-button [mat-dialog-close]="true" (click)="Create()" cdkFocusInitial>Create</button>
+  </mat-dialog-actions> -->
+  </ng-template>
+  
+  
+  
+  
+  
+  <ng-template #updatePharmacDailog>
+    <h2 mat-dialog-title>update Medicne</h2>
+  <mat-dialog-content class="mat-typography">
+    
+    <form class="example-form" [formGroup]="CreatePharmacy">
+      <mat-form-field class="example-full-width">
+        <mat-label> Medicne name</mat-label>
+        <input type="text" matInput formControlName="Pharmacy_Name" [(ngModel)]="pData.medicinename">
+        <mat-error *ngIf="CreatePharmacy.controls['Pharmacy_Name'].hasError('required')">
+          medicne name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+  
+   <mat-form-field class="example-full-width">
+        <mat-label>Medicine Price</mat-label>
+        <input type="number" matInput formControlName="Location_" [(ngModel)]="pData.medicineprice" >
+        <mat-error *ngIf="CreatePharmacy.controls['Location_'].hasError('required')">
+          medicne name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="example-full-width">
+        <mat-label>Medicine Type</mat-label>
+        <input type="text" matInput formControlName="Address_"  [(ngModel)]="pData.medicinetype" >
+        <mat-error *ngIf="CreatePharmacy.controls['Address_'].hasError('required')">
+          medicne name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="example-full-width">
+        <mat-label> Medicine Description</mat-label>
+        <input type="text" matInput formControlName="Lng_"  [(ngModel)]="pData.medicinedescription">
+        <mat-error *ngIf="CreatePharmacy.controls['Lng_'].hasError('required')">
+          medicne name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="example-full-width">
+        <mat-label>Expire_Date</mat-label>
+        <input type="date" matInput formControlName="Phone_Number"  [(ngModel)]="pData.expiredate" >
+        <mat-error *ngIf="CreatePharmacy.controls['Phone_Number'].hasError('required')">
+          medicne name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+  
+  
+  
+    </form>
+  
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close (click)="Cancel()">Cancel</button>
+     <button mat-button [mat-dialog-close]="true" (click)="update()" cdkFocusInitial>update</button> 
+  </mat-dialog-actions>
+  </ng-template> 
+   
+  
+  
+  
+  
+  
+  </body>
+  
+  
+  
+  
+  
+  
+  
+  

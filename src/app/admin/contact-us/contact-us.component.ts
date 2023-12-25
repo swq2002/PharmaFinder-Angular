@@ -17,7 +17,6 @@ export class ContactUsComponent {
         this.adminService.GetAllContactUs();
       }
       DeleteContact(id:number){
-        debugger;
 
           const dialogRef =this.dialog.open(this.callDelete)
        

@@ -2,16 +2,20 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminServicesService } from 'src/app/Services/admin-services.service';
+import { ManagepharmacyComponent } from '../managepharmacy/managepharmacy.component';
 
 @Component({
-  selector: 'app-managepharmacy',
-  templateUrl: './managepharmacy.component.html',
-  styleUrls: ['./managepharmacy.component.css']
+  selector: 'app-pharmacy',
+  templateUrl: './pharmacy.component.html',
+  styleUrls: ['./pharmacy.component.css']
 })
-export class ManagepharmacyComponent implements OnInit {
-@ViewChild ('callDeleteDailog') callDelete!:TemplateRef<any>
+export class PharmacyComponent implements OnInit {
+  @ViewChild ('callDeleteDailog') callDelete!:TemplateRef<any>
 @ViewChild('CreatePharmacDailog') createPharmacDailog!:TemplateRef<any>
 @ViewChild('updatePharmacDailog') updatePharmacDailog!:TemplateRef<any>
+
+
+
 numberOfPharmac:number|undefined
 constructor(public adminService:AdminServicesService,public dialog: MatDialog){
 console.log(adminService.str);
@@ -36,13 +40,13 @@ console.log(adminService.str);
 
 
       CreatePharmacy:FormGroup=new FormGroup({
-        Pharmacy_Name:new FormControl('',Validators.required),
-        Location_:new FormControl('',Validators.required),
-        Address_:new FormControl('',Validators.required),
-        Lng_:new FormControl('',Validators.required),
-        Lat_:new FormControl('',Validators.required),
-        Email_ :new FormControl('',Validators.required),
-        Phone_Number :new FormControl('',Validators.required)     
+        pharmacyname:new FormControl('',Validators.required),
+        location:new FormControl('',Validators.required),
+        address:new FormControl('',Validators.required),
+        lng:new FormControl('',Validators.required),
+        lat:new FormControl('',Validators.required),
+        email :new FormControl('',Validators.required),
+        phonenumber :new FormControl('',Validators.required)     
       })
       UpdatePharmacy:FormGroup=new FormGroup({
         Pharmacy_ID:new FormControl('',Validators.required),
@@ -56,9 +60,9 @@ console.log(adminService.str);
         Phone_Number :new FormControl('',Validators.required)     
       })
       OpenCreateDialog (){
-        const dialogRef=this.dialog.open(this.createPharmacDailog);
-     }
-     CreatePharm(){
+        const dialogRef=this.dialog.open(ManagepharmacyComponent);
+      }
+      CreatePharm(){
         debugger;
         this.adminService.CreatedPharmicy(this.CreatePharmacy.value);
        }
@@ -83,4 +87,7 @@ console.log(adminService.str);
         const medicineId = this.UpdatePharmacy.value.medicineid;
           this.adminService.updateMedicine(this.UpdatePharmacy.value);
        }
+
+
+
 }

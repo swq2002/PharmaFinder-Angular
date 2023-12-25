@@ -11,6 +11,9 @@ import { SharedModule } from './shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TestimonialComponent } from './testimonial/testimonial.component';
 import { FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { NgxSpinnerModule } from "ngx-spinner";
+
 
 
 @NgModule({
@@ -29,7 +32,10 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     SharedModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule, 
+    ToastrModule.forRoot(),
+    NgxSpinnerModule
 
   ],
   
