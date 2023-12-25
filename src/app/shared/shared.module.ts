@@ -33,7 +33,8 @@ import {MatDividerModule} from '@angular/material/divider';
   ],
   exports: [
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    Navbar2Component
   ]
 
 })

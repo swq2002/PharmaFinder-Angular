@@ -10,6 +10,11 @@ import { ContactusComponent } from './contactus/contactus.component';
 import { SharedModule } from './shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TestimonialComponent } from './testimonial/testimonial.component';
+import { OrderByPrescriptionComponent } from './order-by-prescription/order-by-prescription.component';
+import { ToastrModule } from 'ngx-toastr';
+import { NgxSpinnerModule } from "ngx-spinner";
+ 
+ 
 import { FormsModule } from '@angular/forms'; 
 
 
