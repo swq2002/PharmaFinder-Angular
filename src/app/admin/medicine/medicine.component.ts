@@ -66,20 +66,19 @@ export class MedicineComponent implements OnInit{
         console.log('consal');
        }
 
-       
+       pData:any;
+
        openUpdateDailog(obj:any){
         debugger;
         this.pData=obj;
 
         this.UpdateMedicne.controls['medicineid'].setValue(this.pData.medicineid);
         console.log(this.pData);
-        const dialogRef=this.dialog.open(this.updateMedicine)
+        this.dialog.open(this.updateMedicine)
        }
-       pData:any;
-       update(){
+       updated(){
         debugger;
-
-        const medicineId = this.UpdateMedicne.value.medicineid;
+        console.log(this.pData);
           this.adminService.updateMedicine(this.UpdateMedicne.value);
        }
 

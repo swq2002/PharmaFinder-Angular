@@ -23,10 +23,10 @@ const routes: Routes = [
     path:'dashboard',
     component:DashboardComponent
   },
-  {
-    path:'managepharmacy',
-    component:ManagepharmacyComponent
-  },
+  // {
+  //   path:'managepharmacy',
+  //   component:ManagepharmacyComponent
+  // },
   {
     path:'pharmacy',
     component:PharmacyComponent

@@ -43,7 +43,7 @@
                         <label style="font-size: 18px;"  class="badge badge-warning">{{obj.status}}</label>
                       </ng-container>
                       <ng-template #accepted>
-                        <ng-container *ngIf="obj.status === 'Accept'; else Rejected">
+                        <ng-container *ngIf="obj.status === 'Accepted'; else Rejected">
                           <label style="font-size: 18px;"  class="badge badge-success">{{obj.status}}</label>
                         </ng-container>
                         <ng-template #Rejected>
@@ -53,8 +53,8 @@
                     </td>   <!-- <td>{{obj.status}}</td> -->
                       <td>{{obj.testimonialdate}}</td>
                     <td>
-                      <button style="margin:5px ;" mat-raised-button color="primary">Accept</button>
-                      <button  mat-raised-button color="warn">Reject</button>
+                      <button style="margin:5px ;" (click)="Accept(obj)" mat-raised-button color="primary">Accept</button>
+                      <button  mat-raised-button color="warn"  (click)="Reject(obj)" >Reject</button>
                     </td>
                   </tr>
                 </tbody>
@@ -83,6 +83,16 @@
 <!-- container-scroller -->
 <!-- plugins:js -->
 
+<ng-template #AcceptDailog>
+  <h1 mat-dialog-title> Testimonl</h1>
+<div mat-dialog-content>are you sure Accepted Testimonl ?</div>
+<div mat-dialog-actions>
+   <button type="button" mat-raised-button color="primary"  mat-button mat-dialog-close="yes" cli>yes</button> 
+  <button  type="button" mat-button mat-dialog-close="no">no</button>
+
+</div>
+
+</ng-template>
 </body>
 
 

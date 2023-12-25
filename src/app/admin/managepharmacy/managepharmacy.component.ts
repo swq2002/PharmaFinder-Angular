@@ -36,24 +36,23 @@ console.log(adminService.str);
 
 
       CreatePharmacy:FormGroup=new FormGroup({
-        Pharmacy_Name:new FormControl('',Validators.required),
-        Location_:new FormControl('',Validators.required),
-        Address_:new FormControl('',Validators.required),
-        Lng_:new FormControl('',Validators.required),
-        Lat_:new FormControl('',Validators.required),
-        Email_ :new FormControl('',Validators.required),
-        Phone_Number :new FormControl('',Validators.required)     
+        pharmacyname:new FormControl('',Validators.required),
+        location:new FormControl('',Validators.required),
+        address:new FormControl('',Validators.required),
+        lng:new FormControl('',Validators.required),
+        lat:new FormControl('',Validators.required),
+        email :new FormControl('',Validators.required),
+        phonenumber :new FormControl('',Validators.required)     
       })
       UpdatePharmacy:FormGroup=new FormGroup({
         Pharmacy_ID:new FormControl('',Validators.required),
-        Pharmacy_Name:new FormControl('',Validators.required),
-        Location_:new FormControl('',Validators.required),
-        Address_:new FormControl('',Validators.required),
-        Medicine_Description:new FormControl('',Validators.required),
-        Lng_:new FormControl('',Validators.required),
-        Lat_:new FormControl('',Validators.required),
-        Email_ :new FormControl('',Validators.required),
-        Phone_Number :new FormControl('',Validators.required)     
+        pharmacyname:new FormControl('',Validators.required),
+        location:new FormControl('',Validators.required),
+        address:new FormControl('',Validators.required),
+        lng:new FormControl('',Validators.required),
+        lat:new FormControl('',Validators.required),
+        email :new FormControl('',Validators.required),
+        phonenumber :new FormControl('',Validators.required)     
       })
       OpenCreateDialog (){
         const dialogRef=this.dialog.open(this.createPharmacDailog);

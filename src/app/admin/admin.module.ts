@@ -24,6 +24,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PharmacyComponent } from './pharmacy/pharmacy.component';
+import { AcceptComponent } from './accept/accept.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { PharmacyComponent } from './pharmacy/pharmacy.component';
     UseraccountComponent,
     UserComponent,
     PharmacyComponent,
+    AcceptComponent,
     
 
     

@@ -10,7 +10,7 @@ import { ManagepharmacyComponent } from '../managepharmacy/managepharmacy.compon
   styleUrls: ['./pharmacy.component.css']
 })
 export class PharmacyComponent implements OnInit {
-  @ViewChild ('callDeleteDailog') callDelete!:TemplateRef<any>
+  @ViewChild ('callDeletesDailog') callDelete!:TemplateRef<any>
 @ViewChild('CreatePharmacDailog') createPharmacDailog!:TemplateRef<any>
 @ViewChild('updatePharmacDailog') updatePharmacDailog!:TemplateRef<any>
 
@@ -50,14 +50,13 @@ console.log(adminService.str);
       })
       UpdatePharmacy:FormGroup=new FormGroup({
         Pharmacy_ID:new FormControl('',Validators.required),
-        Pharmacy_Name:new FormControl('',Validators.required),
-        Location_:new FormControl('',Validators.required),
-        Address_:new FormControl('',Validators.required),
-        Medicine_Description:new FormControl('',Validators.required),
-        Lng_:new FormControl('',Validators.required),
-        Lat_:new FormControl('',Validators.required),
-        Email_ :new FormControl('',Validators.required),
-        Phone_Number :new FormControl('',Validators.required)     
+        pharmacyname:new FormControl('',Validators.required),
+        location:new FormControl('',Validators.required),
+        address:new FormControl('',Validators.required),
+        lng:new FormControl('',Validators.required),
+        lat:new FormControl('',Validators.required),
+        email :new FormControl('',Validators.required),
+        phonenumber :new FormControl('',Validators.required)     
       })
       OpenCreateDialog (){
         const dialogRef=this.dialog.open(ManagepharmacyComponent);

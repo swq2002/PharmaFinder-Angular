@@ -7,55 +7,55 @@
   <form class="example-form" [formGroup]="CreatePharmacy">
     <mat-form-field class="example-full-width">
       <mat-label>Pharmacy_Name</mat-label>
-      <input type="text" matInput formControlName="Pharmacy_Name" >
-      <mat-error *ngIf="CreatePharmacy.controls['Pharmacy_Name'].hasError('required')">
+      <input type="text" matInput formControlName="pharmacyname" >
+      <mat-error *ngIf="CreatePharmacy.controls['pharmacyname'].hasError('required')">
         medicne name is <strong>required</strong>
       </mat-error>
     </mat-form-field>
 
  <mat-form-field class="example-full-width">
       <mat-label>Location_</mat-label>
-      <input type="text" matInput formControlName="Location_" >
-      <mat-error *ngIf="CreatePharmacy.controls['Location_'].hasError('required')">
+      <input type="text" matInput formControlName="location" >
+      <mat-error *ngIf="CreatePharmacy.controls['location'].hasError('required')">
         medicne name is <strong>required</strong>
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
       <mat-label>Address_Address</mat-label>
-      <input type="text" matInput formControlName="Address_" >
-      <mat-error *ngIf="CreatePharmacy.controls['Address_'].hasError('required')">
+      <input type="text" matInput formControlName="address" >
+      <mat-error *ngIf="CreatePharmacy.controls['address'].hasError('required')">
         medicne name is <strong>required</strong>
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
       <mat-label> Lng_</mat-label>
-      <input type="number" matInput formControlName="Lng_" >
-      <mat-error *ngIf="CreatePharmacy.controls['Lng_'].hasError('required')">
+      <input type="number" matInput formControlName="lng" >
+      <mat-error *ngIf="CreatePharmacy.controls['lng'].hasError('required')">
         medicne name is <strong>required</strong>
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
       <mat-label>Lat_</mat-label>
-      <input type="number" matInput formControlName="Lat_" >
-      <mat-error *ngIf="CreatePharmacy.controls['Lat_'].hasError('required')">
+      <input type="number" matInput formControlName="lat" >
+      <mat-error *ngIf="CreatePharmacy.controls['lat'].hasError('required')">
         medicne name is <strong>required</strong>
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
       <mat-label> Email_</mat-label>
-      <input type="text" matInput formControlName="Email_" >
-      <mat-error *ngIf="CreatePharmacy.controls['Email_'].hasError('required')">
+      <input type="text" matInput formControlName="email" >
+      <mat-error *ngIf="CreatePharmacy.controls['email'].hasError('required')">
         Active Substance is <strong>required</strong>
       </mat-error>
     </mat-form-field>
     <mat-form-field class="example-full-width">
       <mat-label> Active_Substance</mat-label>
-      <input type="text" matInput formControlName="Phone_Number" >
-      <mat-error *ngIf="CreatePharmacy.controls['Phone_Number'].hasError('required')">
+      <input type="text" matInput formControlName="phonenumber" >
+      <mat-error *ngIf="CreatePharmacy.controls['phonenumber'].hasError('required')">
         Active Substance is <strong>required</strong>
       </mat-error>
     </mat-form-field>

@@ -1,3 +1,4 @@
+import { state } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -51,7 +52,6 @@ export class AdminServicesService {
     this.http.get('https://localhost:7274/api/ContactUs/GetAllContactUs').subscribe(
       (resp) => {
         this.contact = resp;
-        this.toaster.success('Deleted')
       },
       (err) => {
         this.toaster.error('some think error ')
@@ -152,9 +152,39 @@ export class AdminServicesService {
       this.toaster.success('updated')
       this.spinner.hide()
     },err=>{
+      console.log(ErrorEvent) 
+
+
       this.toaster.error('something want wrong !!')
       this.spinner.hide()
     })
   }
+  AcceptTestimonial(body:any){
+    debugger;
+    this.spinner.show();
+    this.http.put('https://localhost:7274/api/UserTestimonial/AcceptOrRejectTestimonial',body).subscribe(()=>
+    {
+      this.toaster.success('Accepted')
+      this.spinner.hide()
+    },err=>{
+      console.log(ErrorEvent) 
+      this.toaster.error('something want wrong !!')
+      this.spinner.hide()
+    })
+  }
+  RejectTestimonial(body:any){
+    debugger;
+    this.spinner.show();
+    this.http.put('https://localhost:7274/api/UserTestimonial/AcceptOrRejectTestimonial',body).subscribe(()=>
+    {
+      this.toaster.success('Rejected')
+      this.spinner.hide()
+    },err=>{
+      console.log(ErrorEvent) 
+      this.toaster.error('something want wrong !!')
+      this.spinner.hide()
+    })
+  }
+
 
 }
