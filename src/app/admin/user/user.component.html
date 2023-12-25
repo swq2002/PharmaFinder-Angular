@@ -1,0 +1,183 @@
+<body>
+    <div class="container-scroller">
+      <!-- partial:../../partials/_navbar.html -->
+  <app-navbar></app-navbar>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:../../partials/_sidebar.html -->
+  <app-sidebar></app-sidebar>
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="page-header">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <!-- <li class="breadcrumb-item"><a href="#">Tables</a></li> -->
+            <!-- <li class="breadcrumb-item active" aria-current="page">Basic tables</li> -->
+          </ol>
+        </nav>
+      </div>
+      <div class="row">
+  
+  
+  <!-- table start -->
+  
+  <div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">User Account Table</h4>
+        <button style="margin:5px ;" mat-raised-button color="primary" (click)="OpenCreatedDialog()">Create Admin User</button>
+  
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>name</th>
+                <th>email</th>
+                <th>gender</th>
+                <th>registrationdate</th>
+                <th>dateofbirth</th>
+                <th>address</th>
+                <th>phonenumber</th>
+                <th>Action</th>
+  
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let obj of  adminService.userAccount ">
+                <td>{{obj.username}}</td>
+                <td>{{obj.email}}</td>
+                <td>{{obj.gender}}</td>
+                <td>{{obj.registrationdate}}</td>
+                <td>{{obj.dateofbirth}}</td>
+                <td>{{obj.address}}</td>
+                <td>{{obj.phonenumber}}</td>
+
+                <td>
+                  <button  mat-raised-button color="warn" (click)="DeleteUser(obj.userid)" >delete</button>
+  
+                </td>
+                
+            </tr>
+           
+         
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  </div>
+  
+  
+        <!-- table end -->
+      </div>
+  </div>
+  <!-- content-wrapper ends -->
+  <!-- partial:../../partials/_footer.html -->
+  
+  
+  
+  <app-footer></app-footer>
+  
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  
+  
+
+  
+  
+  <ng-template #CreateUserAccountDailog>
+    <h2 mat-dialog-title>Create Admin user</h2>
+  <mat-dialog-content class="mat-typography">
+    
+    <form class="example-form" [formGroup]="CreateAdminUser">
+      <mat-form-field class="example-full-width">
+        <mat-label>name Medicne</mat-label>
+        <input type="text" matInput formControlName="username" >
+        <mat-error *ngIf="CreateAdminUser.controls['username'].hasError('required')">
+          medicne name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+  
+   <mat-form-field class="example-full-width">
+        <mat-label>Medicine Price</mat-label>
+        <input type="number" matInput formControlName="password" >
+        <mat-error *ngIf="CreateAdminUser.controls['password'].hasError('required')">
+          medicne name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="example-full-width">
+        <mat-label>Medicine Type</mat-label>
+        <input type="text" matInput formControlName="gender" >
+        <mat-error *ngIf="CreateAdminUser.controls['gender'].hasError('required')">
+          medicne name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="example-full-width">
+        <mat-label> Medicine Description</mat-label>
+        <input type="text" matInput formControlName="dateofbirth" >
+        <mat-error *ngIf="CreateAdminUser.controls['dateofbirth'].hasError('required')">
+          medicne name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="example-full-width">
+        <mat-label>Expire_Date</mat-label>
+        <input type="date" matInput formControlName="address" >
+        <mat-error *ngIf="CreateAdminUser.controls['address'].hasError('required')">
+          medicne name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="example-full-width">
+        <mat-label> Active_Substance</mat-label>
+        <input type="text" matInput formControlName="phonenumber" >
+        <mat-error *ngIf="CreateAdminUser.controls['phonenumber'].hasError('required')">
+          Active Substance is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+  
+    </form>
+  
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close (click)="Cancel()">Cancel</button>
+    <button mat-button [mat-dialog-close]="true" (click)="Create()" cdkFocusInitial>Create</button>
+  </mat-dialog-actions>
+  </ng-template>
+  
+  
+  
+  <ng-template #callDeletesDailog>
+    <h1 mat-dialog-title>Delete Contact US</h1>
+  <div mat-dialog-content>Are you sure want to delete this item ?</div>
+  <div mat-dialog-actions>
+    <button type="button" mat-raised-button color="primary" mat-button mat-dialog-close="yes">yes</button>
+    <button  type="button" mat-button mat-dialog-close="no">no</button>
+  
+  </div>
+  
+  </ng-template>
+  
+  
+
+  
+  
+  
+  
+  </body>
+  
+  
+  
+  
+  
+  
+  
+   

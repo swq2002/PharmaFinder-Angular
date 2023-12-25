@@ -11,10 +11,7 @@ import { UserComponent } from './user/user.component';
 import { PharmacyComponent } from './pharmacy/pharmacy.component';
 
 const routes: Routes = [
-  {
-    path:'useraccount',
-    component:UseraccountComponent
-  },
+
   {
     path:'user',
     component:UserComponent
@@ -42,6 +39,10 @@ const routes: Routes = [
   {
     path:'Medicine',
     component:MedicineComponent
+  },
+  {
+    path:'userAccount',
+    component:UserComponent
   }
  
  

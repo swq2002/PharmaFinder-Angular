@@ -13,12 +13,25 @@ export class AdminServicesService {
   medicine: any = [{}];
   contact: any = [{}];
   testimonial: any = [{}];
+  userAccount:any=[{}];
 
   numberOfMedicine:number=0;
   str: string = "message";
 
   constructor(private http: HttpClient,private toaster:ToastrService,private spinner:NgxSpinnerService) {}
 
+  GetAllUserAccount() {
+    debugger;
+    this.http.get('https://localhost:7274/api/User/GetAllUsers').subscribe(
+      (resp) => {
+        this.userAccount = resp;
+      },
+      (err) => {
+        console.log(err.message);
+        console.log(err.status);
+      }
+    );
+  }
   GetAllPharmacy() {
     this.http.get('https://localhost:7274/api/Pharmacy/GetAllPharmacies').subscribe(
       (resp) => {
@@ -115,6 +128,34 @@ export class AdminServicesService {
       console.log(err.status);
     })
   }
+  DeleteUserAccountByID(id:number){
+    debugger;
+    this.spinner.show();
+    this.http.delete('https://localhost:7274/api/User/DeleteUser/'+id).subscribe((resp)=>{
+      this.toaster.success('Deleted');
+      this.spinner.hide();
+    },
+    (err)=>{
+      this.toaster.error('something want wrong !!');
+      this.spinner.hide();
+      console.log(err.message);
+      console.log(err.status);
+    })
+  }
+
+  CreateUserAccount(obj:any){
+    debugger;
+    this.spinner.show();
+  this.http.post('https://localhost:7274/api/User/CreateUser',obj).subscribe((resp)=>{
+    this.toaster.success('Created');
+    this.spinner.hide();
+  },err=>{
+    this.toaster.error('something want wrong !!');
+    this.spinner.hide();
+  })
+  window.location.reload();
+  }
+
 
   CreateMedine(obj:any){
     debugger;
@@ -161,11 +202,10 @@ export class AdminServicesService {
   }
   AcceptTestimonial(body:any){
     debugger;
-    this.spinner.show();
     this.http.put('https://localhost:7274/api/UserTestimonial/AcceptOrRejectTestimonial',body).subscribe(()=>
     {
       this.toaster.success('Accepted')
-      this.spinner.hide()
+      window.location.reload();
     },err=>{
       console.log(ErrorEvent) 
       this.toaster.error('something want wrong !!')
@@ -174,11 +214,11 @@ export class AdminServicesService {
   }
   RejectTestimonial(body:any){
     debugger;
-    this.spinner.show();
     this.http.put('https://localhost:7274/api/UserTestimonial/AcceptOrRejectTestimonial',body).subscribe(()=>
     {
       this.toaster.success('Rejected')
-      this.spinner.hide()
+      window.location.reload();
+
     },err=>{
       console.log(ErrorEvent) 
       this.toaster.error('something want wrong !!')
