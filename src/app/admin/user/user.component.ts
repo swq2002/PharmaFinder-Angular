@@ -39,7 +39,6 @@ export class UserComponent  implements OnInit{
         username:new FormControl('',Validators.required),
         password:new FormControl('',Validators.required),
         email:new FormControl('',Validators.required),
-        registrationdate:new FormControl('',Validators.required),
         gender:new FormControl('',Validators.required),
         dateofbirth:new FormControl('',Validators.required),
         address:new FormControl('',Validators.required),
@@ -47,6 +46,7 @@ export class UserComponent  implements OnInit{
        })
     
        OpenCreatedDialog (){
+        this.CreateAdminUser.controls['roleid'].setValue(1);
           const dialogRef=this.dialog.open(this.createUser);
        }
        Create(){

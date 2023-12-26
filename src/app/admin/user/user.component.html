@@ -97,7 +97,7 @@
     
     <form class="example-form" [formGroup]="CreateAdminUser">
       <mat-form-field class="example-full-width">
-        <mat-label>name Medicne</mat-label>
+        <mat-label>name </mat-label>
         <input type="text" matInput formControlName="username" >
         <mat-error *ngIf="CreateAdminUser.controls['username'].hasError('required')">
           medicne name is <strong>required</strong>
@@ -105,15 +105,24 @@
       </mat-form-field>
   
    <mat-form-field class="example-full-width">
-        <mat-label>Medicine Price</mat-label>
-        <input type="number" matInput formControlName="password" >
-        <mat-error *ngIf="CreateAdminUser.controls['password'].hasError('required')">
+        <mat-label> email</mat-label>
+        <input type="text" matInput formControlName="email" >
+        <mat-error *ngIf="CreateAdminUser.controls['email'].hasError('required')">
           medicne name is <strong>required</strong>
         </mat-error>
       </mat-form-field>
+
+        
+   <mat-form-field class="example-full-width">
+    <mat-label>passowrd</mat-label>
+    <input type="text" matInput formControlName="password" >
+    <mat-error *ngIf="CreateAdminUser.controls['password'].hasError('required')">
+      medicne name is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
   
       <mat-form-field class="example-full-width">
-        <mat-label>Medicine Type</mat-label>
+        <mat-label>gender</mat-label>
         <input type="text" matInput formControlName="gender" >
         <mat-error *ngIf="CreateAdminUser.controls['gender'].hasError('required')">
           medicne name is <strong>required</strong>
@@ -121,23 +130,23 @@
       </mat-form-field>
   
       <mat-form-field class="example-full-width">
-        <mat-label> Medicine Description</mat-label>
-        <input type="text" matInput formControlName="dateofbirth" >
+        <mat-label>dateofbirth</mat-label>
+        <input type="date" matInput formControlName="dateofbirth" >
         <mat-error *ngIf="CreateAdminUser.controls['dateofbirth'].hasError('required')">
           medicne name is <strong>required</strong>
         </mat-error>
       </mat-form-field>
   
       <mat-form-field class="example-full-width">
-        <mat-label>Expire_Date</mat-label>
-        <input type="date" matInput formControlName="address" >
+        <mat-label>addres</mat-label>
+        <input type="text" matInput formControlName="address" >
         <mat-error *ngIf="CreateAdminUser.controls['address'].hasError('required')">
           medicne name is <strong>required</strong>
         </mat-error>
       </mat-form-field>
   
       <mat-form-field class="example-full-width">
-        <mat-label> Active_Substance</mat-label>
+        <mat-label> phone number</mat-label>
         <input type="text" matInput formControlName="phonenumber" >
         <mat-error *ngIf="CreateAdminUser.controls['phonenumber'].hasError('required')">
           Active Substance is <strong>required</strong>
