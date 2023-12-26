@@ -10,13 +10,9 @@ import { ContactusComponent } from './contactus/contactus.component';
 import { SharedModule } from './shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TestimonialComponent } from './testimonial/testimonial.component';
-import { OrderByPrescriptionComponent } from './order-by-prescription/order-by-prescription.component';
+import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from "ngx-spinner";
- 
- 
-import { FormsModule } from '@angular/forms'; 
-
 
 @NgModule({
   declarations: [
@@ -25,7 +21,6 @@ import { FormsModule } from '@angular/forms';
     AboutusComponent,
     ContactusComponent,
     TestimonialComponent,
-    OrderByPrescriptionComponent,
     
     
   ],

@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { OrderByPrescriptionComponent } from './order-by-prescription/order-by-prescription.component';
+import { MapComponent } from './map/map.component';
 
 const routes: Routes = [
 
@@ -42,6 +43,10 @@ const routes: Routes = [
     loadChildren:() => AuthModule
   },
   {
+    path:"map",
+    component:MapComponent
+  }
+  ,{
     path:'admin', 
     loadChildren:()=>import('./admin/admin.module').then((m)=>m.AdminModule)
   },

@@ -7,7 +7,8 @@ import { AdminServicesService } from 'src/app/Services/admin-services.service';
 @Component({
   selector: 'app-medicine',
   templateUrl: './medicine.component.html',
-  styleUrls: ['./medicine.component.css']
+  styleUrls: ['./medicine.component.css'             
+]
 })
 export class MedicineComponent implements OnInit{
   @ViewChild ('callDeleteDailog') callDelete!:TemplateRef<any>

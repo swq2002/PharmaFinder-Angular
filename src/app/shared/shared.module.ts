@@ -8,7 +8,7 @@ import { Navbar2Component } from './navbar2/navbar2.component';
 
 import { RouterModule } from '@angular/router';
 
-import{HttpClientModule}from  '@angular/common/http'
+import{HttpClientModule}from '@angular/common/http'
 
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
