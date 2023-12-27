@@ -47,13 +47,13 @@ export class MedicineComponent implements OnInit{
        })
        
        UpdateMedicne:FormGroup=new FormGroup({
-        medicineid:new FormControl('',Validators.required),
-        medicinename:new FormControl('',Validators.required),
-        medicineprice:new FormControl('',Validators.required),
-        medicinetype:new FormControl('',Validators.required),
-        medicinedescription:new FormControl('',Validators.required),
-        expiredate:new FormControl('',Validators.required),
-        activesubstance:new FormControl('',Validators.required)
+        medicineid:new FormControl(),
+        medicinename:new FormControl(),
+        medicineprice:new FormControl(),
+        medicinetype:new FormControl(),
+        medicinedescription:new FormControl(),
+        expiredate:new FormControl(),
+        activesubstance:new FormControl()
        })
        OpenCreateDialog (){
           const dialogRef=this.dialog.open(this.createMedicine);

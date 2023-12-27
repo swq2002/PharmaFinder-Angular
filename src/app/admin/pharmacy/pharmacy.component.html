@@ -183,38 +183,38 @@
   
   
   
-  <ng-template #updatePharmacDailog>
+  <ng-template #up>
     <h2 mat-dialog-title>update Medicne</h2>
   <mat-dialog-content class="mat-typography">
     
     <form class="example-form" [formGroup]="CreatePharmacy">
       <mat-form-field class="example-full-width">
-        <mat-label> Medicne name</mat-label>
-        <input type="text" matInput formControlName="pharmacyname" [(ngModel)]="pData.medicinename">
+        <mat-label>pharmacy name</mat-label>
+        <input type="text" matInput formControlName="pharmacyname" [(ngModel)]="pData.pharmacyname">
         <mat-error *ngIf="CreatePharmacy.controls['pharmacyname'].hasError('required')">
           medicne name is <strong>required</strong>
         </mat-error>
       </mat-form-field>
   
    <mat-form-field class="example-full-width">
-        <mat-label>Medicine Price</mat-label>
-        <input type="number" matInput formControlName="location" [(ngModel)]="pData.medicineprice" >
+        <mat-label>location </mat-label>
+        <input type="text" matInput formControlName="location" [(ngModel)]="pData.location" >
         <mat-error *ngIf="CreatePharmacy.controls['location'].hasError('required')">
           medicne name is <strong>required</strong>
         </mat-error>
       </mat-form-field>
   
       <mat-form-field class="example-full-width">
-        <mat-label>Medicine Type</mat-label>
-        <input type="text" matInput formControlName="address"  [(ngModel)]="pData.medicinetype" >
+        <mat-label>address</mat-label>
+        <input type="text" matInput formControlName="address"  [(ngModel)]="pData.address" >
         <mat-error *ngIf="CreatePharmacy.controls['address'].hasError('required')">
           medicne name is <strong>required</strong>
         </mat-error>
       </mat-form-field>
   
       <mat-form-field class="example-full-width">
-        <mat-label> Medicine Description</mat-label>
-        <input type="text" matInput formControlName="lng"  [(ngModel)]="pData.medicinedescription">
+        <mat-label>lng</mat-label>
+        <input type="number" matInput formControlName="lng"  [(ngModel)]="pData.lng">
         <mat-error *ngIf="CreatePharmacy.controls['lng'].hasError('required')">
           medicne name is <strong>required</strong>
         </mat-error>
@@ -222,22 +222,22 @@
   
       <mat-form-field class="example-full-width">
         <mat-label>Expire_Date</mat-label>
-        <input type="date" matInput formControlName="lat"  [(ngModel)]="pData.expiredate" >
+        <input type="number" matInput formControlName="lat"  [(ngModel)]="pData.lat" >
         <mat-error *ngIf="CreatePharmacy.controls['lat'].hasError('required')">
           medicne name is <strong>required</strong>
         </mat-error>
       </mat-form-field>
   
       <mat-form-field class="example-full-width">
-        <mat-label>Expire_Date</mat-label>
-        <input type="date" matInput formControlName="email"  [(ngModel)]="pData.expiredate" >
+        <mat-label>email</mat-label>
+        <input type="text" matInput formControlName="email"  [(ngModel)]="pData.email" >
         <mat-error *ngIf="CreatePharmacy.controls['email'].hasError('required')">
           medicne name is <strong>required</strong>
         </mat-error>
       </mat-form-field>
       <mat-form-field class="example-full-width">
-        <mat-label>Expire_Date</mat-label>
-        <input type="date" matInput formControlName="phonenumber"  [(ngModel)]="pData.expiredate" >
+        <mat-label>phone number</mat-label>
+        <input type="date" matInput formControlName="phonenumber"  [(ngModel)]="pData.phonenumber" >
         <mat-error *ngIf="CreatePharmacy.controls['phonenumber'].hasError('required')">
           medicne name is <strong>required</strong>
         </mat-error>

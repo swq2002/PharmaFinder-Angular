@@ -12,7 +12,7 @@ import { ManagepharmacyComponent } from '../managepharmacy/managepharmacy.compon
 export class PharmacyComponent implements OnInit {
   @ViewChild ('callDeletesDailog') callDelete!:TemplateRef<any>
 @ViewChild('CreatePharmacDailog') createPharmacDailog!:TemplateRef<any>
-@ViewChild('updatePharmacDailog') updatePharmacDailog!:TemplateRef<any>
+@ViewChild('up') updatePharmacDailog!:TemplateRef<any>
 
 
 
