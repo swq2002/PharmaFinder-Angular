@@ -8,18 +8,19 @@ import { Navbar2Component } from './navbar2/navbar2.component';
 
 import { RouterModule } from '@angular/router';
 
-import{HttpClientModule}from '@angular/common/http'
-
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {MatDividerModule} from '@angular/material/divider';
-
+import { HttpClientModule } from '@angular/common/http';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { ToastrModule } from 'ngx-toastr';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
     FooterComponent,
     NavbarComponent,
-    Navbar2Component  ],
+    Navbar2Component
+  ],
   imports: [
     CommonModule,
     RouterModule,
@@ -27,15 +28,17 @@ import {MatDividerModule} from '@angular/material/divider';
     MatButtonModule,
     HttpClientModule,
     MatIconModule,
-    MatDividerModule
-
-
+    MatDividerModule,
+    NgxSpinnerModule.forRoot(), 
+    ToastrModule.forRoot() 
   ],
   exports: [
     NavbarComponent,
     FooterComponent,
-    Navbar2Component
+    Navbar2Component,
+    MatButtonModule,
+    MatIconModule,
+    MatDividerModule
   ]
-
 })
 export class SharedModule { }

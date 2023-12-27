@@ -13,6 +13,8 @@ import { TestimonialComponent } from './testimonial/testimonial.component';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { OrderByPrescriptionComponent } from './order-by-prescription/order-by-prescription.component';
+import { ProductResultComponent } from './product-result/product-result.component';
 
 @NgModule({
   declarations: [
@@ -21,19 +23,20 @@ import { NgxSpinnerModule } from "ngx-spinner";
     AboutusComponent,
     ContactusComponent,
     TestimonialComponent,
-    
-    
+    OrderByPrescriptionComponent,
+    ProductResultComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SharedModule,
     NgbModule,
     FormsModule,
     BrowserAnimationsModule, 
     ToastrModule.forRoot(),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    
+    SharedModule
 
   ],
   
