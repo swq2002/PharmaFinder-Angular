@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ManagepharmacyComponent } from './managepharmacy/managepharmacy.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { TestimonialComponent } from './testimonial/testimonial.component';
@@ -18,29 +17,30 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import { RouterModule } from '@angular/router';
 import {MatDialogModule} from '@angular/material/dialog';
-import { UseraccountComponent } from './useraccount/useraccount.component';
 import { UserComponent } from './user/user.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PharmacyComponent } from './pharmacy/pharmacy.component';
 import { AcceptComponent } from './accept/accept.component';
+import { OrderComponent } from './order/order.component';
+import { MedicinesInOrderComponent } from './medicines-in-order/medicines-in-order.component';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    ManagepharmacyComponent,
     SidebarComponent,
     ContactUsComponent,
     TestimonialComponent,
     MedicineComponent,
     FooterComponent,
     NavbarComponent,
-    UseraccountComponent,
     UserComponent,
     PharmacyComponent,
     AcceptComponent,
+    OrderComponent,
+    MedicinesInOrderComponent,
     
 
     
@@ -57,6 +57,7 @@ import { AcceptComponent } from './accept/accept.component';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
+    FormsModule
     
     
   ]

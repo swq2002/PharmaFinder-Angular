@@ -1,6 +1,7 @@
 import { state } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
@@ -14,12 +15,32 @@ export class AdminServicesService {
   contact: any = [{}];
   testimonial: any = [{}];
   userAccount:any=[{}];
+  order:any=[{}];
+  medicineInOrder:any=[{}];
+idNumber:any=[{}];
+  allIformationOrder:any=[{}];
 
   numberOfMedicine:number=0;
   str: string = "message";
 
-  constructor(private http: HttpClient,private toaster:ToastrService,private spinner:NgxSpinnerService) {}
-
+  constructor(private http: HttpClient,private toaster:ToastrService,private spinner:NgxSpinnerService,private router:Router) {}
+  GetAllInformationOrders(){
+    debugger;
+    this.http.get('https://localhost:7274/api/Orders/GetAllInformationOrders').subscribe((resp)=>{
+      this.allIformationOrder=resp;
+    },err=>{
+      console.log(err.message);
+      console.log(err.status);
+    });
+  }
+  GetAllOrders(){
+    this.http.get('https://localhost:7274/api/Orders/GetAllOrders').subscribe((resp)=>{
+      this.order=resp;
+    },err=>{
+      console.log(err.message);
+      console.log(err.status);
+    });
+  }
   GetAllUserAccount() {
     debugger;
     this.http.get('https://localhost:7274/api/User/GetAllUsers').subscribe(
@@ -88,6 +109,20 @@ export class AdminServicesService {
     );
   }
 
+  MedicineInOrder(id:number){
+    debugger;
+    this.http.get('https://localhost:7274/api/OrderMed/GetAllOrderMedByOrderID/'+id).subscribe((resp)=>{
+      debugger;
+      this.medicineInOrder=resp;
+      this.idNumber=id;
+this.router.navigate(['admin/medicineInOrder/'+id])
+    },
+    (err)=>{
+      this.toaster.error('something want wrong !!');
+      console.log(err.message);
+      console.log(err.status);
+    });
+  }
   DeletePharmacyByID(id:number){
     this.spinner.show();
     this.http.delete('https://localhost:7274/api/Pharmacy/DeletePharmacy/'+id).subscribe((resp)=>{
@@ -99,7 +134,7 @@ export class AdminServicesService {
       this.spinner.hide();
       console.log(err.message);
       console.log(err.status);
-    })
+    });
   }
 
   DeleteContactUsByID(id:number){
@@ -113,7 +148,7 @@ export class AdminServicesService {
       this.spinner.hide();
       console.log(err.message);
       console.log(err.status);
-    })
+    });
   }
   DeleteMedicineByID(id:number){
     this.spinner.show();
@@ -126,7 +161,7 @@ export class AdminServicesService {
       this.spinner.hide();
       console.log(err.message);
       console.log(err.status);
-    })
+    });
   }
   DeleteUserAccountByID(id:number){
     debugger;
@@ -143,7 +178,7 @@ export class AdminServicesService {
     })
   }
 
-  CreateUserAccount(obj:any){
+  CreateAdminAccount(obj:any){
     debugger;
     this.spinner.show();
   this.http.post('https://localhost:7274/api/User/CreateUser',obj).subscribe((resp)=>{
@@ -200,6 +235,21 @@ export class AdminServicesService {
       this.spinner.hide()
     })
   }
+  updatePharmacy(body:any){
+    debugger;
+    this.spinner.show();
+    this.http.put('https://localhost:7274/api/Pharmacy/UpdatePharmacy',body).subscribe(()=>
+    {
+      this.toaster.success('updated')
+      this.spinner.hide()
+    },err=>{
+      console.log(ErrorEvent) 
+
+
+      this.toaster.error('something want wrong !!')
+      this.spinner.hide()
+    })
+  }
   AcceptTestimonial(body:any){
     debugger;
     this.http.put('https://localhost:7274/api/UserTestimonial/AcceptOrRejectTestimonial',body).subscribe(()=>
@@ -225,6 +275,37 @@ export class AdminServicesService {
       this.spinner.hide()
     })
   }
+  RejectOrders(body:any){
+    debugger;
+    this.http.put('https://localhost:7274/api/Orders/AcceptOrRejectOrders',body).subscribe(()=>
+    {
+      this.toaster.success('Accepted')
+      window.location.reload();
 
+    },err=>{
+      console.log(ErrorEvent) 
+      this.toaster.error('something want wrong !!')
+      this.spinner.hide()
+    })
+  }
+  AcceptOrders(body:any){
+    debugger;
+    this.http.put('https://localhost:7274/api/Orders/AcceptOrRejectOrders',body).subscribe(()=>
+    {
+      this.toaster.success('Accepted')
+      window.location.reload();
+
+    },err=>{
+      console.log(ErrorEvent) 
+      this.toaster.error('something want wrong !!')
+      this.spinner.hide()
+    })
+  }
+uploadAttachment(file:FormData){
+  this.http.post('aa/',file).subscribe((resp)=>
+  {
+    
+  });
+}
 
 }

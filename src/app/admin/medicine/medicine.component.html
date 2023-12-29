@@ -52,7 +52,7 @@
               <td>{{obj.expiredate}}</td>
               <td>{{obj.activesubstance}}</td>
               <td>
-                <button style="margin:5px ;" mat-raised-button color="primary"  (click)="openUpdateDailog(obj)" >update</button>
+                <button style="margin:5px ;" mat-raised-button color="primary"   (click)="openUpdateDailog(obj)" >update</button>
                 <button  mat-raised-button color="warn" (click)="DeleteMedicine(obj.medicineid)" >delete</button>
 
               </td>
@@ -108,7 +108,7 @@
       <mat-label>Medicine Price</mat-label>
       <input type="number" matInput formControlName="medicineprice" >
       <mat-error *ngIf="CreateMedicne.controls['medicineprice'].hasError('required')">
-        medicne name is <strong>required</strong>
+        medicne price is <strong>required</strong>
       </mat-error>
     </mat-form-field>
 
@@ -116,7 +116,7 @@
       <mat-label>Medicine Type</mat-label>
       <input type="text" matInput formControlName="medicinetype" >
       <mat-error *ngIf="CreateMedicne.controls['medicinetype'].hasError('required')">
-        medicne name is <strong>required</strong>
+        medicine type is <strong>required</strong>
       </mat-error>
     </mat-form-field>
 
@@ -124,7 +124,7 @@
       <mat-label> Medicine Description</mat-label>
       <input type="text" matInput formControlName="medicinedescription" >
       <mat-error *ngIf="CreateMedicne.controls['medicinedescription'].hasError('required')">
-        medicne name is <strong>required</strong>
+        medicine description is <strong>required</strong>
       </mat-error>
     </mat-form-field>
 
@@ -132,7 +132,7 @@
       <mat-label>Expire_Date</mat-label>
       <input type="date" matInput formControlName="expiredate" >
       <mat-error *ngIf="CreateMedicne.controls['expiredate'].hasError('required')">
-        medicne name is <strong>required</strong>
+        expire date is <strong>required</strong>
       </mat-error>
     </mat-form-field>
 
@@ -149,7 +149,7 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close (click)="Cancel()">Cancel</button>
-  <button mat-button [mat-dialog-close]="true" (click)="Create()" cdkFocusInitial>Create</button>
+  <button mat-button [mat-dialog-close]="true" (click)="Create()" [disabled]="!CreateMedicne.valid" cdkFocusInitial>Create</button>
 </mat-dialog-actions>
 </ng-template>
 
@@ -172,11 +172,11 @@
   <h2 mat-dialog-title>update Medicne</h2>
 <mat-dialog-content class="mat-typography">
   
-  <form class="example-form" [formGroup]="CreateMedicne">
+  <form class="example-form" [formGroup]="UpdateMedicne">
     <mat-form-field class="example-full-width">
       <mat-label> Medicne name</mat-label>
       <input type="text" matInput formControlName="medicinename" [(ngModel)]="pData.medicinename">
-      <mat-error *ngIf="CreateMedicne.controls['medicinename'].hasError('required')">
+      <mat-error *ngIf="UpdateMedicne.controls['medicinename'].hasError('required')">
         medicne name is <strong>required</strong>
       </mat-error>
     </mat-form-field>
@@ -184,39 +184,39 @@
  <mat-form-field class="example-full-width">
       <mat-label>Medicine Price</mat-label>
       <input type="number" matInput formControlName="medicineprice" [(ngModel)]="pData.medicineprice" >
-      <mat-error *ngIf="CreateMedicne.controls['medicineprice'].hasError('required')">
-        medicne name is <strong>required</strong>
+      <mat-error *ngIf="UpdateMedicne.controls['medicineprice'].hasError('required')">
+        medicine price is <strong>required</strong>
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
       <mat-label>Medicine Type</mat-label>
       <input type="text" matInput formControlName="medicinetype"  [(ngModel)]="pData.medicinetype" >
-      <mat-error *ngIf="CreateMedicne.controls['medicinetype'].hasError('required')">
-        medicne name is <strong>required</strong>
+      <mat-error *ngIf="UpdateMedicne.controls['medicinetype'].hasError('required')">
+        medicine type is <strong>required</strong>
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
       <mat-label> Medicine Description</mat-label>
       <input type="text" matInput formControlName="medicinedescription"  [(ngModel)]="pData.medicinedescription">
-      <mat-error *ngIf="CreateMedicne.controls['medicinedescription'].hasError('required')">
-        medicne name is <strong>required</strong>
+      <mat-error *ngIf="UpdateMedicne.controls['medicinedescription'].hasError('required')">
+        medicine description is <strong>required</strong>
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
       <mat-label>Expire_Date</mat-label>
       <input type="date" matInput formControlName="expiredate"  [(ngModel)]="pData.expiredate" >
-      <mat-error *ngIf="CreateMedicne.controls['expiredate'].hasError('required')">
-        medicne name is <strong>required</strong>
+      <mat-error *ngIf="UpdateMedicne.controls['expiredate'].hasError('required')">
+        expire date is <strong>required</strong>
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
       <mat-label> Active_Substance</mat-label>
       <input type="text" matInput formControlName="activesubstance" [(ngModel)]="pData.activesubstance"  >
-      <mat-error *ngIf="CreateMedicne.controls['activesubstance'].hasError('required')"  >
+      <mat-error *ngIf="UpdateMedicne.controls['activesubstance'].hasError('required')"  >
         Active Substance is <strong>required</strong>
       </mat-error>
     </mat-form-field>
@@ -226,7 +226,7 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close (click)="Cancel()">Cancel</button>
-  <button mat-button [mat-dialog-close]="true" (click)="updated()" cdkFocusInitial>update</button>
+  <button mat-button [mat-dialog-close]="true" (click)="updated()" [disabled]="!UpdateMedicne.valid" cdkFocusInitial>update</button>
 </mat-dialog-actions>
 </ng-template>
 

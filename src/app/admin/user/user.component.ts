@@ -37,8 +37,9 @@ export class UserComponent  implements OnInit{
         roleid:new FormControl('',Validators.required),
         profileimage:new FormControl('',Validators.required),
         username:new FormControl('',Validators.required),
-        password:new FormControl('',Validators.required),
-        email:new FormControl('',Validators.required),
+        password:new FormControl('',[Validators.required,Validators.minLength(8)]),
+        confirmPassword:new FormControl(),
+        email:new FormControl('',[Validators.required,Validators.email]),
         gender:new FormControl('',Validators.required),
         dateofbirth:new FormControl('',Validators.required),
         address:new FormControl('',Validators.required),
@@ -51,7 +52,7 @@ export class UserComponent  implements OnInit{
        }
        Create(){
         debugger;
-        this.adminService.CreateUserAccount(this.CreateAdminUser.value);
+        this.adminService.CreateAdminAccount(this.CreateAdminUser.value);
        }
        Cancel(){
         console.log('consal');
@@ -59,6 +60,15 @@ export class UserComponent  implements OnInit{
 
        pData:any;
 
-       
+       repeatpasswordError(){
+        if(this.CreateAdminUser.controls['password'].value==this.CreateAdminUser.controls['confirmPassword'].value)
+       {
+        this.CreateAdminUser.controls['confirmPassword'].setErrors(null);
+       }
+       else{
+        this.CreateAdminUser.controls['confirmPassword'].setErrors({misMatch:true});
+       }
+
+       }
 
 }

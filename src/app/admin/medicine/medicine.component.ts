@@ -19,7 +19,7 @@ export class MedicineComponent implements OnInit{
     console.log(adminService.str);
       }
       ngOnInit(): void {
-
+        debugger;
         this.adminService.GetAllMedicine();
         this.numberOfMedicine;
       }

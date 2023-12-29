@@ -19,9 +19,7 @@ ngOnInit(): void {
 
   this.adminService.GetAllMedicine();
   console.log(this.numberOfMedicine);
+
 }
-
-
-
 
 }

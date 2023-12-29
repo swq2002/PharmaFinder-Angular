@@ -2,7 +2,6 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminServicesService } from 'src/app/Services/admin-services.service';
-import { ManagepharmacyComponent } from '../managepharmacy/managepharmacy.component';
 
 @Component({
   selector: 'app-pharmacy',
@@ -11,9 +10,8 @@ import { ManagepharmacyComponent } from '../managepharmacy/managepharmacy.compon
 })
 export class PharmacyComponent implements OnInit {
   @ViewChild ('callDeletesDailog') callDelete!:TemplateRef<any>
-@ViewChild('CreatePharmacDailog') createPharmacDailog!:TemplateRef<any>
+@ViewChild('createPharmacDailog') createPharmacDailog!:TemplateRef<any>
 @ViewChild('up') updatePharmacDailog!:TemplateRef<any>
-
 
 
 numberOfPharmac:number|undefined
@@ -48,8 +46,8 @@ console.log(adminService.str);
         email :new FormControl('',Validators.required),
         phonenumber :new FormControl('',Validators.required)     
       })
-      UpdatePharmacy:FormGroup=new FormGroup({
-        Pharmacy_ID:new FormControl('',Validators.required),
+      updatePharmacy:FormGroup=new FormGroup({
+        pharmacyid:new FormControl('',Validators.required),
         pharmacyname:new FormControl('',Validators.required),
         location:new FormControl('',Validators.required),
         address:new FormControl('',Validators.required),
@@ -59,7 +57,7 @@ console.log(adminService.str);
         phonenumber :new FormControl('',Validators.required)     
       })
       OpenCreateDialog (){
-        const dialogRef=this.dialog.open(ManagepharmacyComponent);
+        const dialogRef=this.dialog.open(this.createPharmacDailog);
       }
       CreatePharm(){
         debugger;
@@ -75,7 +73,7 @@ console.log(adminService.str);
         debugger;
         this.pData=obj;
 
-        this.UpdatePharmacy.controls['medicineid'].setValue(this.pData.medicineid);
+        this.updatePharmacy.controls['pharmacyid'].setValue(this.pData.pharmacyid);
         console.log(this.pData);
         const dialogRef=this.dialog.open(this.updatePharmacDailog)
        }
@@ -83,8 +81,7 @@ console.log(adminService.str);
        update(){
         debugger;
 
-        const medicineId = this.UpdatePharmacy.value.medicineid;
-          this.adminService.updateMedicine(this.UpdatePharmacy.value);
+          this.adminService.updatePharmacy(this.updatePharmacy.value);
        }
 
 

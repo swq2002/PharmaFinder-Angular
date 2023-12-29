@@ -1,17 +1,26 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ManagepharmacyComponent } from './managepharmacy/managepharmacy.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { TestimonialComponent } from './testimonial/testimonial.component';
 import { MedicineComponent } from './medicine/medicine.component';
 import { useAnimation } from '@angular/animations';
-import { UseraccountComponent } from './useraccount/useraccount.component';
 import { UserComponent } from './user/user.component';
 import { PharmacyComponent } from './pharmacy/pharmacy.component';
+import { OrderComponent } from './order/order.component';
+import { MedicinesInOrderComponent } from './medicines-in-order/medicines-in-order.component';
 
 const routes: Routes = [
 
+    
+  {
+    path:'medicineInOrder',
+    component:MedicinesInOrderComponent
+  },
+  {
+    path:'order',
+    component:OrderComponent
+  },
   {
     path:'user',
     component:UserComponent
@@ -20,10 +29,7 @@ const routes: Routes = [
     path:'dashboard',
     component:DashboardComponent
   },
-  // {
-  //   path:'managepharmacy',
-  //   component:ManagepharmacyComponent
-  // },
+
   {
     path:'pharmacy',
     component:PharmacyComponent

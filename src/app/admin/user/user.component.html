@@ -100,7 +100,7 @@
         <mat-label>name </mat-label>
         <input type="text" matInput formControlName="username" >
         <mat-error *ngIf="CreateAdminUser.controls['username'].hasError('required')">
-          medicne name is <strong>required</strong>
+           name is <strong>required</strong>
         </mat-error>
       </mat-form-field>
   
@@ -108,24 +108,39 @@
         <mat-label> email</mat-label>
         <input type="text" matInput formControlName="email" >
         <mat-error *ngIf="CreateAdminUser.controls['email'].hasError('required')">
-          medicne name is <strong>required</strong>
+          email is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="CreateAdminUser.controls['email'].hasError('email')">
+          pleasc enter a valid email address 
         </mat-error>
       </mat-form-field>
-
-        
    <mat-form-field class="example-full-width">
     <mat-label>passowrd</mat-label>
-    <input type="text" matInput formControlName="password" >
+    <input type="password" matInput formControlName="password" (change)="repeatpasswordError()" >
     <mat-error *ngIf="CreateAdminUser.controls['password'].hasError('required')">
-      medicne name is <strong>required</strong>
+     password  is <strong>required</strong>
     </mat-error>
+    <mat-error *ngIf="CreateAdminUser.controls['password'].hasError('minLength')">
+     plesce enter astrong password<strong>required</strong>
+     </mat-error>
+     <mat-error *ngIf="CreateAdminUser.controls['password'].hasError('misMatch')">
+      confirm password should match with password
+      </mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Repeat your passowrd </mat-label>
+    <input type="password" matInput formControlName="confirmPassword" (change)="repeatpasswordError()" >
+    <mat-error *ngIf="CreateAdminUser.controls['confirmPassword'].hasError('misMatch')">
+    confirm password should match with password
+    </mat-error>
+
   </mat-form-field>
   
       <mat-form-field class="example-full-width">
         <mat-label>gender</mat-label>
         <input type="text" matInput formControlName="gender" >
         <mat-error *ngIf="CreateAdminUser.controls['gender'].hasError('required')">
-          medicne name is <strong>required</strong>
+          Ginder <strong>required</strong>
         </mat-error>
       </mat-form-field>
   
@@ -133,7 +148,7 @@
         <mat-label>dateofbirth</mat-label>
         <input type="date" matInput formControlName="dateofbirth" >
         <mat-error *ngIf="CreateAdminUser.controls['dateofbirth'].hasError('required')">
-          medicne name is <strong>required</strong>
+          birth of day is <strong>required</strong>
         </mat-error>
       </mat-form-field>
   
@@ -141,7 +156,7 @@
         <mat-label>addres</mat-label>
         <input type="text" matInput formControlName="address" >
         <mat-error *ngIf="CreateAdminUser.controls['address'].hasError('required')">
-          medicne name is <strong>required</strong>
+          address is <strong>required</strong>
         </mat-error>
       </mat-form-field>
   
@@ -149,7 +164,7 @@
         <mat-label> phone number</mat-label>
         <input type="text" matInput formControlName="phonenumber" >
         <mat-error *ngIf="CreateAdminUser.controls['phonenumber'].hasError('required')">
-          Active Substance is <strong>required</strong>
+          phone number is <strong>required</strong>
         </mat-error>
       </mat-form-field>
   
@@ -158,7 +173,7 @@
   </mat-dialog-content>
   <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close (click)="Cancel()">Cancel</button>
-    <button mat-button [mat-dialog-close]="true" (click)="Create()" cdkFocusInitial>Create</button>
+    <button mat-button [mat-dialog-close]="true" [disabled]="!CreateAdminUser.valid" (click)="Create()" cdkFocusInitial>Create</button>
   </mat-dialog-actions>
   </ng-template>
   
