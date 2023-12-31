@@ -3,6 +3,12 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminServicesService } from 'src/app/Services/admin-services.service';
 
+
+
+import {MatButtonModule} from '@angular/material/button';
+import { Router } from '@angular/router';
+import { query } from '@angular/animations';
+
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
@@ -11,9 +17,12 @@ import { AdminServicesService } from 'src/app/Services/admin-services.service';
 export class OrderComponent implements OnInit{
   @ViewChild ('AcceptDailog') callAcceptDialog!:TemplateRef<any>
   @ViewChild('RejectDailog') callRejectDialog!: TemplateRef<any>
+  @ViewChild('MedicinInOrder') MedInOrder!: TemplateRef<any>
 
- constructor(public adminService:AdminServicesService,public dialog: MatDialog){
+ constructor(public adminService:AdminServicesService,public dialog: MatDialog ,private router:Router){
  }
+
+
 
 
   ngOnInit(): void {
@@ -24,8 +33,8 @@ export class OrderComponent implements OnInit{
 
   orders: FormGroup = new FormGroup({
     orderid: new FormControl(),
-    userid: new FormControl(),
-    pharmacyid: new FormControl(),
+    username: new FormControl(),
+    pharmacyname: new FormControl(),
     approval: new FormControl(),
     orderprice: new FormControl(),
     status: new FormControl(),
@@ -38,12 +47,7 @@ export class OrderComponent implements OnInit{
     debugger;
     this.pData = obj;
     this.orders.controls['orderid'].setValue(this.pData.orderid);
-    this.orders.controls['userid'].setValue(this.pData.userid);
-    this.orders.controls['pharmacyid'].setValue(this.pData.pharmacyid);
     this.orders.controls['approval'].setValue("Accepted");
-    this.orders.controls['orderprice'].setValue("orderprice");
-    this.orders.controls['status'].setValue(this.pData.status);
-    this.orders.controls['orderdate'].setValue("orderdate");
 
     const dialogRef = this.dialog.open(this.callAcceptDialog);
     dialogRef.afterClosed().subscribe((result) => {
@@ -61,12 +65,7 @@ export class OrderComponent implements OnInit{
     debugger;
     this.pData = obj;
     this.orders.controls['orderid'].setValue(this.pData.orderid);
-    this.orders.controls['userid'].setValue(this.pData.userid);
-    this.orders.controls['pharmacyid'].setValue(this.pData.pharmacyid);
     this.orders.controls['approval'].setValue("Rejected");
-    this.orders.controls['orderprice'].setValue("orderprice");
-    this.orders.controls['status'].setValue(this.pData.status);
-    this.orders.controls['orderdate'].setValue("orderdate");
 
     const dialogRef = this.dialog.open(this.callRejectDialog);
     dialogRef.afterClosed().subscribe((result) => {
@@ -81,7 +80,7 @@ export class OrderComponent implements OnInit{
   }
   MedicineinOrder(id:number){
     debugger;
-    this.adminService.MedicineInOrder(id);
-  }
-
+    this.router.navigate(['admin/medicineInOrder'], { queryParams: { id } });  }
+  // this.route.queryParams.subscribe(params => {
+  //   this.id = params['id'];
 }

@@ -25,6 +25,7 @@ import { PharmacyComponent } from './pharmacy/pharmacy.component';
 import { AcceptComponent } from './accept/accept.component';
 import { OrderComponent } from './order/order.component';
 import { MedicinesInOrderComponent } from './medicines-in-order/medicines-in-order.component';
+import { TestComponent } from './test/test.component';
 
 
 @NgModule({
@@ -41,6 +42,8 @@ import { MedicinesInOrderComponent } from './medicines-in-order/medicines-in-ord
     AcceptComponent,
     OrderComponent,
     MedicinesInOrderComponent,
+    TestComponent,
+    
     
 
     
@@ -57,7 +60,8 @@ import { MedicinesInOrderComponent } from './medicines-in-order/medicines-in-ord
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    
     
     
   ]

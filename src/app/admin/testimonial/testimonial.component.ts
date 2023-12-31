@@ -35,9 +35,6 @@ export class TestimonialComponent implements OnInit {
     debugger;
     this.pData = obj;
     this.AcceptTestimonial.controls['utestimonialid'].setValue(this.pData.utestimonialid);
-    this.AcceptTestimonial.controls['userid'].setValue(this.pData.userid);
-    this.AcceptTestimonial.controls['testimonialtext'].setValue(this.pData.testimonialtext);
-    this.AcceptTestimonial.controls['testimonialdate'].setValue(this.pData.testimonialdate);
 
     this.AcceptTestimonial.controls['status'].setValue("Accepted");
 
@@ -57,9 +54,6 @@ export class TestimonialComponent implements OnInit {
     debugger;
     this.pData = obj;
     this.AcceptTestimonial.controls['utestimonialid'].setValue(this.pData.utestimonialid);
-    this.AcceptTestimonial.controls['userid'].setValue(this.pData.userid);
-    this.AcceptTestimonial.controls['testimonialtext'].setValue(this.pData.testimonialtext);
-    this.AcceptTestimonial.controls['testimonialdate'].setValue(this.pData.testimonialdate);
 
     this.AcceptTestimonial.controls['status'].setValue("Rejected");
 

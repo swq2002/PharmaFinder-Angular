@@ -65,12 +65,11 @@ idNumber:any=[{}];
     );
   }
 
-  GetAllMedicine1(): Observable<any> {
-    return this.http.get('https://localhost:7274/api/Medicine/GetAllMedicines');
-  }
+
   GetAllMedicine() {
     this.http.get('https://localhost:7274/api/Medicine/GetAllMedicines').subscribe(
       (resp) => {
+        debugger;
         this.medicine = resp;
         debugger;
         this.numberOfMedicine=this.medicine.length;
@@ -109,13 +108,18 @@ idNumber:any=[{}];
     );
   }
 
+  // MedicineInOrder(id: number): Observable<any> {
+  //   return this.http.get('https://localhost:7274/api/OrderMed/GetAllOrderMedByOrderID/' + id);
+  // }
+
+
   MedicineInOrder(id:number){
     debugger;
     this.http.get('https://localhost:7274/api/OrderMed/GetAllOrderMedByOrderID/'+id).subscribe((resp)=>{
       debugger;
       this.medicineInOrder=resp;
-      this.idNumber=id;
-this.router.navigate(['admin/medicineInOrder/'+id])
+      console.log(this.medicineInOrder);
+      // this.idNumber=id;
     },
     (err)=>{
       this.toaster.error('something want wrong !!');
@@ -195,6 +199,8 @@ this.router.navigate(['admin/medicineInOrder/'+id])
   CreateMedine(obj:any){
     debugger;
     this.spinner.show();
+    obj.imagename=this.display_image;
+    
   this.http.post('https://localhost:7274/api/Medicine/CreateMedicine',obj).subscribe((resp)=>{
     this.toaster.success('Created');
     this.spinner.hide();
@@ -223,6 +229,7 @@ this.router.navigate(['admin/medicineInOrder/'+id])
   updateMedicine(body:any){
     debugger;
     this.spinner.show();
+    body.imagename=this.display_image;
     this.http.put('https://localhost:7274/api/Medicine/UpdateMedicine/',body).subscribe(()=>
     {
       this.toaster.success('updated')
@@ -252,9 +259,13 @@ this.router.navigate(['admin/medicineInOrder/'+id])
   }
   AcceptTestimonial(body:any){
     debugger;
+    this.spinner.show();
+
     this.http.put('https://localhost:7274/api/UserTestimonial/AcceptOrRejectTestimonial',body).subscribe(()=>
     {
       this.toaster.success('Accepted')
+      this.spinner.hide()
+
       window.location.reload();
     },err=>{
       console.log(ErrorEvent) 
@@ -264,48 +275,83 @@ this.router.navigate(['admin/medicineInOrder/'+id])
   }
   RejectTestimonial(body:any){
     debugger;
+    this.spinner.show();
     this.http.put('https://localhost:7274/api/UserTestimonial/AcceptOrRejectTestimonial',body).subscribe(()=>
     {
       this.toaster.success('Rejected')
       window.location.reload();
-
+      this.spinner.hide()
     },err=>{
       console.log(ErrorEvent) 
       this.toaster.error('something want wrong !!')
       this.spinner.hide()
+      window.location.reload();
+
     })
   }
   RejectOrders(body:any){
     debugger;
+    this.spinner.show();
+
     this.http.put('https://localhost:7274/api/Orders/AcceptOrRejectOrders',body).subscribe(()=>
     {
       this.toaster.success('Accepted')
+      this.spinner.hide();
       window.location.reload();
 
     },err=>{
       console.log(ErrorEvent) 
       this.toaster.error('something want wrong !!')
       this.spinner.hide()
+      window.location.reload();
     })
   }
   AcceptOrders(body:any){
     debugger;
+
+    this.spinner.show();
     this.http.put('https://localhost:7274/api/Orders/AcceptOrRejectOrders',body).subscribe(()=>
     {
       this.toaster.success('Accepted')
       window.location.reload();
+      this.spinner.hide()
 
     },err=>{
       console.log(ErrorEvent) 
       this.toaster.error('something want wrong !!')
       this.spinner.hide()
+      window.location.reload();
+
     })
   }
+  display_image:any;
 uploadAttachment(file:FormData){
-  this.http.post('aa/',file).subscribe((resp)=>
+  this.spinner.show();
+
+  this.http.post('https://localhost:7274/api/Medicine/uploadImage',file).subscribe((resp:any)=>
   {
-    
+    this.display_image=resp.imagename;
+    this.spinner.hide()
+
+  },err=>{
+    this.toaster.error('something want wrong !!')
+    this.spinner.hide()
   });
 }
+display_image_user:any;
+uploadAttachmentUser(file:FormData){
+  this.spinner.show();
+debugger;
+  this.http.post('https://localhost:7274/api/User/uploadImage',file).subscribe((resp:any)=>
+  {
+    debugger;
+    this.display_image=resp.profileimage;
+    this.spinner.hide()
+  },err=>{
+    this.toaster.error('something want wrong !!')
+    this.spinner.hide()
+  });
+}
+
 
 }

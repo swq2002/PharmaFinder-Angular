@@ -35,13 +35,13 @@
                   </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let obj of  adminService.medicineInOrder ">
+                    <tr *ngFor="let obj of medinInOrder">
                       <td>{{obj.medicinename}}</td>
                       <td>{{obj.medicineprice}}</td>
                       <td>{{obj.quantity}}</td>
                       <td>{{obj.medicinetype}}</td>
                       <td>{{obj.medicinedescription}}</td>
-                      <td>{{obj.expiredate}}</td>
+                      <td>{{obj.expiredate|date}}</td>
                       <td>{{obj.activesubstance}}</td>
                     </tr>
                   </tbody>

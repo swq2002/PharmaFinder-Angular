@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { AdminServicesService } from 'src/app/Services/admin-services.service';
 
 @Component({
@@ -7,14 +8,21 @@ import { AdminServicesService } from 'src/app/Services/admin-services.service';
   templateUrl: './medicines-in-order.component.html',
   styleUrls: ['./medicines-in-order.component.css']
 })
-export class MedicinesInOrderComponent implements OnInit{
-  constructor(public adminService:AdminServicesService){}
-  ngOnInit(): void {
+export class MedicinesInOrderComponent {
+
+  constructor(public adminService:AdminServicesService,public route:ActivatedRoute){}
+  Id:number=0;
+  medinInOrder:any;
+  
+  async ngOnInit() {
     debugger;
-     this.adminService.medicineInOrder(this.adminService.idNumber);
+    
+     this.route.queryParams.subscribe(params => {this.Id = params['id'] } );
+     await this.adminService.MedicineInOrder(this.Id);
+     this.medinInOrder=await this.adminService.medicineInOrder;
+     
   }
-
-
+  
 
 
 

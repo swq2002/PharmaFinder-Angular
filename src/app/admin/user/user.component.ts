@@ -35,7 +35,7 @@ export class UserComponent  implements OnInit{
        }
        CreateAdminUser:FormGroup=new FormGroup({
         roleid:new FormControl('',Validators.required),
-        profileimage:new FormControl('',Validators.required),
+        profileimage:new FormControl(),
         username:new FormControl('',Validators.required),
         password:new FormControl('',[Validators.required,Validators.minLength(8)]),
         confirmPassword:new FormControl(),
@@ -70,5 +70,15 @@ export class UserComponent  implements OnInit{
        }
 
        }
+       upleadImage(file:any){
+        if(file.length==0)return;
+        let fileToUpload=<File> file[0];
+        const formData=new FormData();
+        debugger;
+        formData.append('file',fileToUpload,fileToUpload.name);
+        debugger;
+        this.adminService.uploadAttachmentUser(formData)
+       }
+
 
 }

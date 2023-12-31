@@ -8,18 +8,20 @@ import { AdminModule } from '../admin.module';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  numberOfMedicine: number;
+  numberOfMedicine: number=0;
   
 constructor(public adminService:AdminServicesService){
-  this.numberOfMedicine = adminService.numberOfMedicine;
-  console.log(this.numberOfMedicine);
+ 
 }
-
-ngOnInit(): void {
+async numberOfMed(){
 
   this.adminService.GetAllMedicine();
   console.log(this.numberOfMedicine);
+   this.numberOfMedicine = await this.adminService.numberOfMedicine;
 
+}
+ ngOnInit(): void {
+this.numberOfMed();
 }
 
 }

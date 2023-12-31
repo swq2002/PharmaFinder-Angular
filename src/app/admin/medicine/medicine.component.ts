@@ -40,6 +40,7 @@ export class MedicineComponent implements OnInit{
        CreateMedicne:FormGroup=new FormGroup({
         medicinename:new FormControl('',Validators.required),
         medicineprice:new FormControl('',Validators.required),
+        imagename:new FormControl(),
         medicinetype:new FormControl('',Validators.required),
         medicinedescription:new FormControl('',Validators.required),
         expiredate:new FormControl('',Validators.required),
@@ -53,6 +54,7 @@ export class MedicineComponent implements OnInit{
         medicinetype:new FormControl(),
         medicinedescription:new FormControl(),
         expiredate:new FormControl(),
+        imagename:new FormControl(),
         activesubstance:new FormControl()
        })
        OpenCreateDialog (){
@@ -81,5 +83,14 @@ export class MedicineComponent implements OnInit{
         console.log(this.pData);
           this.adminService.updateMedicine(this.UpdateMedicne.value);
        }
+       upleadImage(file:any){
+        if(file.length==0)return;
+        let fileToUpload=<File> file[0];
+        const formData=new FormData();
+        formData.append('file',fileToUpload,fileToUpload.name);
+        this.adminService.uploadAttachment(formData)
+       }
+
+
 
 }

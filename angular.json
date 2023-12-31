@@ -23,8 +23,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-
               "src/assets/AdminAssets/images/favicon.png" 
+
 
 
             ],
@@ -38,6 +38,7 @@
               "src/assets/HomeAssets/css/responsive.css",
               "node_modules/ngx-toastr/toastr.css" ,
               "node_modules/ngx-spinner/animations/ball-spin-fade.css",
+
 
 
               "src/assets/AdminAssets/vendors/mdi/css/materialdesignicons.min.css",
@@ -59,6 +60,10 @@
               
               "src/assets/HomeAssets/js/plugins.js"
             ,"src/assets/HomeAssets/js/main.js",
+
+        
+
+
 
             "src/assets/AdminAssets/vendors/js/vendor.bundle.base.js",
             "src/assets/AdminAssets/vendors/chart.js/Chart.min.js",

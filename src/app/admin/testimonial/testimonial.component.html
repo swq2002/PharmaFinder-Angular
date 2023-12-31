@@ -49,7 +49,7 @@
                         </ng-template>
                       </ng-template>
                     </td>   <!-- <td>{{obj.status}}</td> -->
-                      <td>{{obj.testimonialdate}}</td>
+                      <td>{{obj.testimonialdate|date}}</td>
                     <td>
                       <button style="margin:5px ;" (click)="Accept(obj)" mat-raised-button color="primary">Accept</button>
                       <button  mat-raised-button color="warn"  (click)="Reject(obj)" >Reject</button>
