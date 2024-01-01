@@ -13,6 +13,7 @@ import { TestimonialComponent } from './testimonial/testimonial.component';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { MohammadComponent } from './mohammad/mohammad.component';
 
 
 
@@ -23,6 +24,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     AboutusComponent,
     ContactusComponent,
     TestimonialComponent,
+    MohammadComponent,
     
     
   ],
@@ -38,6 +40,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     NgxSpinnerModule
 
   ],
+  
   
   providers: [],
   bootstrap: [AppComponent]

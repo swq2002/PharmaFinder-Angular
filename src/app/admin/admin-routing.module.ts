@@ -19,10 +19,10 @@ const routes: Routes = [
     component:TestComponent
   },
     
-  {
-    path:'medicineInOrder/:id',
-    component:MedicinesInOrderComponent
-  },
+  // {
+  //   path:'medicineInOrder/:id',
+  //   component:MedicinesInOrderComponent
+  // },
     
   {
     path:'medicineInOrder',

@@ -20,10 +20,31 @@ export class AdminServicesService {
 idNumber:any=[{}];
   allIformationOrder:any=[{}];
 
+
   numberOfMedicine:number=0;
   str: string = "message";
-
+  salesOfOrder:any=[{}];
+  PharmacyCount:any=[{}];
   constructor(private http: HttpClient,private toaster:ToastrService,private spinner:NgxSpinnerService,private router:Router) {}
+  
+  GetPharmacyCount(){
+    debugger;
+     this.http.get('https://localhost:7274/api/Pharmacy/GetPharmacyCount').subscribe((resp)=>{
+      this.PharmacyCount=resp;
+    },err=>{
+      console.log(err.message);
+      console.log(err.status);
+    });
+  }
+  CalculateTotalOrderPrice(){
+    debugger;
+     this.http.get('https://localhost:7274/api/Orders/CalculateTotalOrderPrice').subscribe((resp)=>{
+      this.salesOfOrder=resp;
+    },err=>{
+      console.log(err.message);
+      console.log(err.status);
+    });
+  }
   GetAllInformationOrders(){
     debugger;
     this.http.get('https://localhost:7274/api/Orders/GetAllInformationOrders').subscribe((resp)=>{
@@ -291,7 +312,6 @@ idNumber:any=[{}];
   }
   RejectOrders(body:any){
     debugger;
-    this.spinner.show();
 
     this.http.put('https://localhost:7274/api/Orders/AcceptOrRejectOrders',body).subscribe(()=>
     {
@@ -309,7 +329,6 @@ idNumber:any=[{}];
   AcceptOrders(body:any){
     debugger;
 
-    this.spinner.show();
     this.http.put('https://localhost:7274/api/Orders/AcceptOrRejectOrders',body).subscribe(()=>
     {
       this.toaster.success('Accepted')
