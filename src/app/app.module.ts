@@ -15,6 +15,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { OrderByPrescriptionComponent } from './order-by-prescription/order-by-prescription.component';
 import { ProductResultComponent } from './product-result/product-result.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ProductResultComponent } from './product-result/product-result.componen
     ContactusComponent,
     TestimonialComponent,
     OrderByPrescriptionComponent,
-    ProductResultComponent
+    ProductResultComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

@@ -143,7 +143,10 @@ export class AdminServicesService {
     this.spinner.hide();
     })
   }
-
+  GetAllPharmacyformap() {
+    return this.http.get<any>('https://localhost:7274/api/Pharmacy/GetAllPharmacies');
+     
+   }
   updateMedicine(body:any){
     debugger;
     this.spinner.show();
@@ -152,7 +155,7 @@ export class AdminServicesService {
       this.toaster.success('updated')
       this.spinner.hide()
     },err=>{
-      this.toaster.error('something want wrong !!')
+      this.toaster.error('something went wrong !!')
       this.spinner.hide()
     })
   }

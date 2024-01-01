@@ -19,12 +19,12 @@ export class PrescriptionService {
           (resp: any) => {
             this.toaster.success('The file has been uploaded successfully');
             this.spinner.hide();
-            resolve(resp); // Resolve the Promise with the response
+            resolve(resp); 
           },
           (err) => {
             this.toaster.error('Something went wrong!');
             this.spinner.hide();
-            reject(err); // Reject the Promise with the error
+            reject(err); 
           }
         );
     });

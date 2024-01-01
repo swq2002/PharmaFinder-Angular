@@ -7,6 +7,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { Navbar2Component } from './navbar2/navbar2.component';
 
 import { RouterModule } from '@angular/router';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 
 import { HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -14,14 +15,18 @@ import { ToastrModule } from 'ngx-toastr';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MapComponent } from '../map/map.component';
 
 @NgModule({
   declarations: [
     FooterComponent,
     NavbarComponent,
-    Navbar2Component
+    Navbar2Component,
+    MapComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     CommonModule,
     RouterModule,
     SharedRoutingModule,
@@ -30,15 +35,17 @@ import { MatDividerModule } from '@angular/material/divider';
     MatIconModule,
     MatDividerModule,
     NgxSpinnerModule.forRoot(), 
-    ToastrModule.forRoot() 
-  ],
+    ToastrModule.forRoot(),
+    MatDialogModule
+    ],
   exports: [
     NavbarComponent,
     FooterComponent,
     Navbar2Component,
     MatButtonModule,
     MatIconModule,
-    MatDividerModule
+    MatDividerModule,
+    MapComponent
   ]
 })
 export class SharedModule { }

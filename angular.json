@@ -39,7 +39,8 @@
               "node_modules/ngx-toastr/toastr.css" ,
               "node_modules/ngx-spinner/animations/ball-spin-fade.css"
 
-           
+
+         
 
 
 
@@ -125,6 +126,6 @@
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": "b94a609d-271e-4faf-82c7-ce00ac3cb175"
   }
 }

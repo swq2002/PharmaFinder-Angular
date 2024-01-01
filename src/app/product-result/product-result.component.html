@@ -1,1 +1,163 @@
-<p>product-result works!</p>
+<div class="pb-100">
+    <app-navbar2></app-navbar2>
+</div>
+<div class="pb-100">
+
+<app-map></app-map>
+</div>
+<div class="ltn__product-area ltn__product-gutter mb-120">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="tab-content">
+                    <div class="tab-pane fade active show" id="liton_product_grid">
+                        <div class="ltn__product-tab-content-inner ltn__product-grid-view">
+                            <div class="row">
+                                <div class="col-xl-3 col-lg-4 col-sm-6 col-6" *ngFor="let medicine of medicines">
+                                    <div class="ltn__product-item ltn__product-item-3 text-center">
+                                        <div class="product-img">
+                                            <a href="product-details.html"><img [src]="medicine.imagename" alt="#"></a>
+
+                                            <div class="product-hover-action">
+                                                <ul>
+                                                    <li>
+                                                        <a href="#" (click)="ItemDialog(medicine)" title="Quick View" data-bs-toggle="modal"
+                                                            data-bs-target="#quick_view_modal">
+                                                            <i class="far fa-eye"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#"  (click)="AddToCart(medicine)" title="Add to Cart" data-bs-toggle="modal"
+                                                            data-bs-target="#add_to_cart_modal">
+                                                            <i class="fas fa-shopping-cart"></i>
+                                                        </a>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="product-info">
+
+                                            <h2 class="product-title"><a
+                                                    href="product-details.html">{{medicine.medicinename}}</a>
+                                            </h2>
+                                            <h2 class="product-title"><a
+                                                href="product-details.html">{{medicine.pharmacyname}}</a>
+                                        </h2>
+                                            <div class="product-price">
+                                                <span>${{medicine.medicineprice}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <ng-template  #callItemDailog let-data>
+
+                                        <div mat-dialog-content>
+                                            <div class="modal-content">
+                                                <div class="modal-header" mat-dialog-actions>
+                                               
+
+                                                    <button type="button" class="close" cdkFocusInitial>
+                                                        <span mat-dialog-close aria-hidden="true">×</span>
+                                                    </button>
+
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="ltn__quick-view-modal-inner">
+                                                        <div class="modal-product-item">
+                                                            <div class="row">
+                                                                <div class="col-lg-6 col-12">
+                                                                    <div class="modal-product-img">
+                                                                        <img [src]="data.medicine?.imagename" alt="#">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6 col-12">
+                                                                    <div class="modal-product-info">
+                                                                      
+                                                                        <h3 class="animated fadeIn">{{data.medicine.medicinename}}
+                                                                        </h3>
+                                                                        <div class="product-price">
+                                                                            <span>${{data.medicine.medicineprice}}</span>
+                                                                        </div>
+                                                                        <div
+                                                                            class="modal-product-meta ltn__product-details-menu-1">
+                                                                            <ul>
+                                                                                <li>
+                                                                                    <strong>Categories:</strong>
+                                                                                    <span>
+                                                                                        <a href="#">Parts</a>
+                                                                                        <!-- Add more category links here -->
+                                                                                    </span>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                        <div class="ltn__product-details-menu-2">
+                                                                            <ul>
+                                                                                <li>
+                                                                                    <div class="cart-plus-minus">
+                                                                                        <div class="dec qtybutton">-
+                                                                                        </div>
+                                                                                        <input type="text" value="02"
+                                                                                            name="qtybutton"
+                                                                                            class="cart-plus-minus-box">
+                                                                                        <div class="inc qtybutton">+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <button mat-raised-button
+                                                                                        color="primary"
+                                                                                        mat-dialog-close>Add to
+                                                                                        Cart</button>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                        <div class="ltn__product-details-menu-3">
+                                                                            <ul>
+                                                                                <li>
+                                                                                    <button mat-icon-button
+                                                                                        title="Add to Wishlist"
+                                                                                        mat-dialog-close>
+                                                                                        <mat-icon
+                                                                                            aria-label="Add to Wishlist">favorite_border</mat-icon>
+                                                                                    </button>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <button mat-icon-button
+                                                                                        title="Compare"
+                                                                                        mat-dialog-close>
+                                                                                        <mat-icon
+                                                                                            aria-label="Compare">compare_arrows</mat-icon>
+                                                                                    </button>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                        <hr>
+                                                                     
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+
+                                    </ng-template>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="pt-200">
+    <app-footer></app-footer>
+
+</div>

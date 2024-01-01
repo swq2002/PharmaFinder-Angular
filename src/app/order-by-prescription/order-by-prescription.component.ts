@@ -1,23 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PrescriptionService } from '../Services/prescription.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+import { MapService } from '../Services/map.service';
 
 @Component({
   selector: 'app-order-by-prescription',
   templateUrl: './order-by-prescription.component.html',
   styleUrls: ['./order-by-prescription.component.css']
 })
-export class OrderByPrescriptionComponent {
+export class OrderByPrescriptionComponent implements OnInit{
+  userLoc:any;
   constructor(
     public preService: PrescriptionService,
+    public mapService: MapService,
+
     private spinner: NgxSpinnerService,
-    private toaster: ToastrService
+    private toaster: ToastrService,
+    private router:Router
   ) { }
 
-  medicines: any;
 
-  async search(file: any) {
+  async ngOnInit() {
+    try {
+      this.userLoc = await this.mapService.getCurrentLocation();
+    } catch (error) {
+      console.error('Error getting user location:', error);
+    }
+  }
+  medicines: any;
+  nearestMedicines:any;
+  async upload(file: any) {
     try {
       if (file.length === 0) {
         return;
@@ -42,4 +56,21 @@ export class OrderByPrescriptionComponent {
       console.error('File upload error:', error);
     }
   }
+
+  async search() {
+    try {
+      if (!this.userLoc) {
+        console.error('User location not available.');
+        return;
+      }
+
+      this.nearestMedicines = this.mapService.findNearestPharmacies(this.userLoc, this.medicines);
+      this.router.navigate(['/product-result'], {
+        queryParams: { medicines: JSON.stringify(this.nearestMedicines) }
+      });
+    } catch (error) {
+      console.error('Error searching for nearest pharmacies:', error);
+    }
+  }
+
 }

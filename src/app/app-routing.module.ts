@@ -8,9 +8,16 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { OrderByPrescriptionComponent } from './order-by-prescription/order-by-prescription.component';
 import { MapComponent } from './map/map.component';
+import { ProductResultComponent } from './product-result/product-result.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
+  {
+    path: 'product-result', 
+    component: ProductResultComponent,
 
+
+  },
   {
     path: 'about', 
     component: AboutusComponent,
@@ -45,11 +52,12 @@ const routes: Routes = [
   {
     path:"map",
     component:MapComponent
-  }
-  ,{
-    path:'admin', 
-    loadChildren:()=>import('./admin/admin.module').then((m)=>m.AdminModule)
   },
+  
+  {
+    path:"cart",
+    component:CartComponent
+  }
 
 ];
 

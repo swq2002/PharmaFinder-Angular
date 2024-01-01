@@ -8,7 +8,6 @@
 
 
 
-  <title>Chefoo App</title>
 </head>
 
 <body>
@@ -24,7 +23,7 @@
 
           <div class="mb-3">
             <label for="prescription" class="form-label">Upload Prescription Of The Product You Need</label>
-            <input type="file" #file (change)="search(file.files)" class="form-control" id="prescription">
+            <input type="file" #file (change)="upload(file.files)" class="form-control" id="prescription">
           </div>
         
           <div class="mb-3">
@@ -32,7 +31,7 @@
             <input type="text" class="form-control" id="order" placeholder="Ex. Panadol">
           </div>
 
-          <div class="text-center"> <button type="submit"  class="btn btn-success">Search</button>
+          <div class="text-center"> <button type="submit" (click)="search()" class="btn btn-success">Search</button>
           </div>
         </form>
       </div>
