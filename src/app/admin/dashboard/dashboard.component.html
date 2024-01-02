@@ -1,0 +1,83 @@
+<body>
+  <div class="container-scroller">
+    <!-- partial:../../partials/_navbar.html -->
+<app-navbar></app-navbar>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:../../partials/_sidebar.html -->
+<app-sidebar></app-sidebar>
+
+<h1>{{numberOfMedicine}}</h1>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="page-header">
+            <h3 class="page-title"> Basic Tables </h3>
+
+          </div>
+          <div class="row">
+
+<!-- table start -->
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Pharmcy</h4>
+              <h1>{{numberOfUsersRegistered}}</h1>       
+              <h1>{{adminService.salesOfOrder}}</h1>   
+              <h1>{{adminService.PharmacyCount}}</h1>           
+                  <p class="card-description"> Add class <code>.table</code>
+                  </p>
+                  <!-- <table class="table">
+                    <thead>
+                      <tr>
+                          <th>Name</th>
+                          <th>Email</th>
+                          <th>Subject</th>
+                          <th>Message</th>
+                         
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let obj of  adminService.contact ">
+                          <td>{{obj.name}}</td>
+                          <td>{{obj.email}}</td>
+                          <td>{{obj.subject}}</td>
+                          <td>{{obj.message}}</td>
+                      </tr>
+                     
+                   
+                    </tbody>
+                  </table> -->
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <!-- table end -->
+          </div>
+      </div>
+      <!-- content-wrapper ends -->
+      <!-- partial:../../partials/_footer.html -->
+
+
+<app-footer></app-footer>
+
+      <!-- partial -->
+    </div>
+    <!-- main-panel ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
+<!-- plugins:js -->
+
+</body>
+
+
+<!-- <app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+<app-footer></app-footer>
+<!--  -->
+ -->

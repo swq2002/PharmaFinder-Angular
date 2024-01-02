@@ -1,0 +1,214 @@
+<body>
+    <div class="container-scroller">
+      <!-- partial:../../partials/_navbar.html -->
+  <app-navbar></app-navbar>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:../../partials/_sidebar.html -->
+  <app-sidebar></app-sidebar>
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="page-header">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <!-- <li class="breadcrumb-item"><a href="#">Tables</a></li> -->
+            <!-- <li class="breadcrumb-item active" aria-current="page">Basic tables</li> -->
+          </ol>
+        </nav>
+      </div>
+      <div class="row">
+  
+  
+  <!-- table start -->
+  
+  <div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">User Account Table</h4>
+        <button style="margin:5px ;" mat-raised-button color="primary" (click)="OpenCreatedDialog()">Create Admin User</button>
+  
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>name</th>
+                <!-- <th>picture</th> -->
+                <th>email</th>
+                <th>gender</th>
+                <th>registrationdate</th>
+                <th>dateofbirth</th>
+                <th>address</th>
+                <th>phonenumber</th>
+                <th>Action</th>
+  
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let obj of  adminService.userAccount ">
+                <td>{{obj.username}}</td>
+                <!-- <td>{{obj.profileimage}}</td>
+
+                <td><img src="../../../assets//Images/{{obj.profileimage}}"></td> -->
+                <td>{{obj.email}}</td>
+                <td>{{obj.gender}}</td>
+                <td>{{obj.registrationdate}}</td>
+                <td>{{obj.dateofbirth}}</td>
+                <td>{{obj.address}}</td>
+                <td>{{obj.phonenumber}}</td>
+
+                <td>
+                  <button  mat-raised-button color="warn" (click)="DeleteUser(obj.userid)" >delete</button>
+  
+                </td>
+                
+            </tr>
+           
+         
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  </div>
+  
+  
+        <!-- table end -->
+      </div>
+  </div>
+  <!-- content-wrapper ends -->
+  <!-- partial:../../partials/_footer.html -->
+  
+  
+  
+  <app-footer></app-footer>
+  
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  
+  
+
+  
+  
+  <ng-template #CreateUserAccountDailog>
+    <h2 mat-dialog-title>Create Admin user</h2>
+  <mat-dialog-content class="mat-typography">
+    
+    <form class="example-form" [formGroup]="CreateAdminUser">
+      <mat-form-field class="example-full-width">
+        <mat-label>name </mat-label>
+        <input type="text" matInput formControlName="username" >
+        <mat-error *ngIf="CreateAdminUser.controls['username'].hasError('required')">
+           name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+  
+   <mat-form-field class="example-full-width">
+        <mat-label> email</mat-label>
+        <input type="text" matInput formControlName="email" >
+        <mat-error *ngIf="CreateAdminUser.controls['email'].hasError('required')">
+          email is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="CreateAdminUser.controls['email'].hasError('email')">
+          pleasc enter a valid email address 
+        </mat-error>
+      </mat-form-field>
+   <mat-form-field class="example-full-width">
+    <mat-label>passowrd</mat-label>
+    <input type="password" matInput formControlName="password" (change)="repeatpasswordError()" >
+    <mat-error *ngIf="CreateAdminUser.controls['password'].hasError('required')">
+     password  is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="CreateAdminUser.controls['password'].hasError('minLength')">
+     plesce enter astrong password<strong>required</strong>
+     </mat-error>
+     <mat-error *ngIf="CreateAdminUser.controls['password'].hasError('misMatch')">
+      confirm password should match with password
+      </mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Repeat your passowrd </mat-label>
+    <input type="password" matInput formControlName="confirmPassword" (change)="repeatpasswordError()" >
+    <mat-error *ngIf="CreateAdminUser.controls['confirmPassword'].hasError('misMatch')">
+    confirm password should match with password
+    </mat-error>
+
+  </mat-form-field>
+  
+      <mat-form-field class="example-full-width">
+        <mat-label>gender</mat-label>
+        <input type="text" matInput formControlName="gender" >
+        <mat-error *ngIf="CreateAdminUser.controls['gender'].hasError('required')">
+          Ginder <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="example-full-width">
+        <mat-label>dateofbirth</mat-label>
+        <input type="date" matInput formControlName="dateofbirth" >
+        <mat-error *ngIf="CreateAdminUser.controls['dateofbirth'].hasError('required')">
+          birth of day is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="example-full-width">
+        <mat-label>addres</mat-label>
+        <input type="text" matInput formControlName="address" >
+        <mat-error *ngIf="CreateAdminUser.controls['address'].hasError('required')">
+          address is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="example-full-width">
+        <mat-label> phone number</mat-label>
+        <input type="text" matInput formControlName="phonenumber" >
+        <mat-error *ngIf="CreateAdminUser.controls['phonenumber'].hasError('required')">
+          phone number is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <div>
+        <input type="file" #file (change)="upleadImage(file.files)"  formControlName="profileimage"  >
+      </div>
+  
+    </form>
+  
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close (click)="Cancel()">Cancel</button>
+    <button mat-button [mat-dialog-close]="true" [disabled]="!CreateAdminUser.valid" (click)="Create()" cdkFocusInitial>Create</button>
+  </mat-dialog-actions>
+  </ng-template>
+  
+  
+  
+  <ng-template #callDeletesDailog>
+    <h1 mat-dialog-title>Delete Contact US</h1>
+  <div mat-dialog-content>Are you sure want to delete this item ?</div>
+  <div mat-dialog-actions>
+    <button type="button" mat-raised-button color="primary" mat-button mat-dialog-close="yes">yes</button>
+    <button  type="button" mat-button mat-dialog-close="no">no</button>
+  
+  </div>
+  
+  </ng-template>
+  
+  
+
+  
+  
+  
+  
+  </body>
+  
+  
+  
+  
+  
+  
+  
+   

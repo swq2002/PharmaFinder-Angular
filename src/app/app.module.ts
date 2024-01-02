@@ -16,6 +16,9 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { OrderByPrescriptionComponent } from './order-by-prescription/order-by-prescription.component';
 import { ProductResultComponent } from './product-result/product-result.component';
 import { CartComponent } from './cart/cart.component';
+import { MohammadComponent } from './mohammad/mohammad.component';
+
+
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { CartComponent } from './cart/cart.component';
     TestimonialComponent,
     OrderByPrescriptionComponent,
     ProductResultComponent,
-    CartComponent
+    CartComponent,
+    MohammadComponent,
+    
+    
   ],
   imports: [
     BrowserModule,
@@ -41,6 +47,7 @@ import { CartComponent } from './cart/cart.component';
     SharedModule
 
   ],
+  
   
   providers: [],
   bootstrap: [AppComponent]

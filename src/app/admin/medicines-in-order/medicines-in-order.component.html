@@ -1,0 +1,61 @@
+<h2 mat-dialog-title>Order Details</h2>
+<div mat-dialog-content>
+  <!-- Display the detailed information here using data.medicineDetails -->
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Medicine Name</th>
+      <th>Medicine Price</th>
+      <th>Medicine Type</th>
+      <th>Medicine Description</th>
+      <th>Expire Date</th>
+      <th>Quantity</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let obj of data.orderDetails">
+      <td id="medicineName">{{obj.medicinename}}</td>
+      <td id="medicinePrice">{{obj.medicineprice}} </td>
+      <td id="medicineType">{{obj.medicinetype}}</td>
+      <td id="medicineDescription">{{obj.medicinedescription}}</td>
+      <td id="expireDate">{{obj.expiredate}}</td>
+      <td id="quantity">{{obj.quantity}}</td>
+  </tr>
+  </tbody>
+  <tfoot>
+    <th>Price order</th>
+    <td>{{data.medicineDetails.orderprice}}</td>
+  </tfoot>
+</table>
+
+
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="true">Close</button>
+</div>
+
+
+<!-- <table>
+  <tr>
+      <th>Medicine Name</th>
+      <th>Medicine Price</th>
+      <th>Medicine Type</th>
+      <th>Medicine Description</th>
+      <th>Expire Date</th>
+      <th>Quantity</th>
+      <th>Order Price</th>
+  </tr>
+  <tr *ngFor="let obj of data.orderDetails">
+      <td id="medicineName">{{obj.medicinename}}</td>
+      <td id="medicinePrice">{{obj.medicineprice}} </td>
+      <td id="medicineType">{{obj.medicinetype}}</td>
+      <td id="medicineDescription">{{obj.medicinedescription}}</td>
+      <td id="expireDate">{{obj.expiredate}}</td>
+      <td id="quantity">{{obj.quantity}}</td>
+      <td id="orderPrice">{{data.orderDetails.quantity}}</td>
+  </tr>
+</table> -->
