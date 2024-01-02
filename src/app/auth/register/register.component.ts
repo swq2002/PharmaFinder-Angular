@@ -1,33 +1,43 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { Component, Directive, ElementRef, HostListener, Renderer2 } from '@angular/core';
+import { FormBuilder,FormControl, FormGroup, Validators } from '@angular/forms';
+import { HomeService } from 'src/app/Services/home.service';
+import { HttpClient } from '@angular/common/http';
+import { formatDate } from '@angular/common';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+
 export class RegisterComponent {
-  // 
   registerForm : FormGroup = new FormGroup({
-    firstName : new FormControl('firstname', Validators.required), 
-    lastName : new FormControl('lastname', Validators.required), 
+    userName : new FormControl('User Name', Validators.required), 
     email : new FormControl('ex@example.com', [Validators.required, Validators.email]), 
     password :new FormControl('********', [Validators.required, Validators.minLength(8)]), //1-8
-    confirmPassword:new FormControl('********')//null
-  })
-  
-// constructor() {
-// }
-// user_New:any =[]
-// Register(){
+    confirmPassword:new FormControl('********',Validators.required),
+    dateOfBirth:new FormControl(''),
+    phoneNumber: new FormControl('0123457890',[Validators.required,Validators.pattern(/^[0-9]{10,10}$/)]),
+    phoneNumber1: new FormControl('',Validators.pattern(/^[6-9]\d{9}$/)),
+    gender: new FormControl('',Validators.required),
+    address: new FormControl('',Validators.required),
+    Profileimage: new FormControl()
+  });
 
-//   this.user_New = JSON.parse(localStorage.getItem("users")!) || [];
-//   this.user_New.push(this.regObj);
-//  localStorage.setItem('users', JSON.stringify(this.user_New));
-// }
-register(){
-  console.log(this.registerForm.value);
+  regObj:any ={
+    username:'User Name',
+    email:'ex@example.com',
+    password:'********'
   }
+constructor(public home:HomeService ,private fb: FormBuilder, private http: HttpClient, private el: ElementRef, private renderer: Renderer2, private router:Router) {
+}
+
+goToLogin(){
+    this.router.navigate(['security/login']);
+  }
+
+
+
   MatchError(){
     if(this.registerForm.controls['password'].value==
     this.registerForm.controls['confirmPassword'].value)
@@ -36,6 +46,36 @@ register(){
   
     this.registerForm.controls['confirmPassword'].setErrors({misMatch:true})
   
-  
   }
+  clearInput(controlName: string): void {
+    this.registerForm.get(controlName)?.setValue('');
+  }
+
+  Register() {
+    const registrationData = {
+      userName: this.regObj.username,
+      email: this.regObj.email,
+      password: this.regObj.password,
+    confirmPassword: this.regObj.confirmPassword,
+    birthDate: this.regObj.birthDate,
+    phoneNumber: this.regObj.phoneNumber,
+    gender: this.regObj.gender,
+    address: this.regObj.adderss,
+    Profileimage: this.regObj.Profileimage
+  };
+  
+}
+
+Submit(){
+  debugger;
+  this.home.createUser(this.registerForm.value);
+}
+UploadImage(file:any){
+  debugger;
+  if(file.length==0) return;
+  let fileToUpload=<File> file[0];
+  const formData = new FormData();
+  formData.append('file',fileToUpload,fileToUpload.name);
+  this.home.uploadAttachment(formData);
+}
 }

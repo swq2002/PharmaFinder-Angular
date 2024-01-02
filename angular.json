@@ -35,8 +35,8 @@
             ],
             "scripts": [
               
-              "src/assets/HomeAssets/js/plugins.js"
-            ,"src/assets/HomeAssets/js/main.js"]
+              "src/assets/HomeAssets/js/plugins.js",
+              "src/assets/HomeAssets/js/main.js"]
           },
           "configurations": {
             "production": {

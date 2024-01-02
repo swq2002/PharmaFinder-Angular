@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { AuthModule } from './auth/auth.module';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { authorizationGuard } from './authorization.guard';
 
 const routes: Routes = [
 
@@ -23,6 +24,7 @@ const routes: Routes = [
   {
     path:'security',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    //,canActivate:[authorizationGuard]
     
   },
   {

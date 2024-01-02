@@ -6,7 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatButtonModule} from '@angular/material/button';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 
 @NgModule({
@@ -19,16 +19,14 @@ import {MatButtonModule} from '@angular/material/button';
     RouterModule,
     SharedRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
-    MatButtonModule,
+    ReactiveFormsModule
 
   ],
   exports: [
     NavbarComponent,
     FooterComponent,
     FormsModule,
-    ReactiveFormsModule,
-    MatButtonModule,
+    ReactiveFormsModule
   ]
 
 })

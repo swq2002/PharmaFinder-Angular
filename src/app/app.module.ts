@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,7 +12,9 @@ import { SharedModule } from './shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TestimonialComponent } from './testimonial/testimonial.component';
 import { FormsModule } from '@angular/forms'; 
-
+import { AuthModule } from './auth/auth.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from 'src/interceptor/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -19,20 +22,27 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     AboutusComponent,
     ContactusComponent,
-    TestimonialComponent,
+    TestimonialComponent
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     SharedModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    AuthModule
+
 
   ],
   
-  providers: [],
+  providers: [{
+    provide:HTTP_INTERCEPTORS, 
+    useClass:TokenInterceptor, 
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
