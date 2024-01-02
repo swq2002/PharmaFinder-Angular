@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Inject } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-product-result',
   templateUrl: './product-result.component.html',
@@ -10,9 +11,10 @@ import { Inject } from '@angular/core';
 })
 export class ProductResultComponent {
   medicines: any;
+  
   @ViewChild('callItemDailog') callItemDailog!: TemplateRef<any>
 
-  constructor(private route: ActivatedRoute ,public dialog:MatDialog) {
+  constructor(private route: ActivatedRoute ,public dialog:MatDialog,private toaster:ToastrService) {
     this.route.queryParams.subscribe(params => {
       if (params['medicines']) {
         this.medicines = JSON.parse(params['medicines']);
@@ -28,7 +30,8 @@ export class ProductResultComponent {
   }
   AddToCart(medicinee: any) {
     let cart: any[] = JSON.parse(localStorage.getItem('cart') || '[]');
-  
+    this.toaster.success('Added to cart');
+
     const existingMedicineIndex = cart.findIndex(
       (item: any) => item.medicineid === medicinee.medicineid
     );
@@ -40,5 +43,6 @@ export class ProductResultComponent {
     }
   
     localStorage.setItem('cart', JSON.stringify(cart));
+    window.location.reload();
   }
 }

@@ -19,7 +19,7 @@
                             </thead> -->
                             <tbody>
                                 <tr *ngFor="let item of cartItems">
-                                    <td class="cart-product-remove">x</td>
+                                    <td (click)="deleteCartItem(item)" class="cart-product-remove">x</td>
                                     <td class="cart-product-image">
                                         <a href="product-details.html"><img [src]="item.imagename" alt="#"></a>
                                     </td>
@@ -28,10 +28,12 @@
                                     </td>
                                     <td class="cart-product-price">${{item.medicineprice}}</td>
                                     <td class="cart-product-quantity">
-                                        <div class="cart-plus-minus">
-                                            <input type="text" value="{{item.quantity}}" name="qtybutton" class="cart-plus-minus-box">
+                                        <div class="">
+                                          <button class="dec qtybutton" (click)="decrement(item)">-</button>
+                                          <input type="text" [value]="item.quantity" name="qtybutton" class="cart-plus-minus-box">
+                                          <button class="inc qtybutton" (click)="increment(item)">+</button>
                                         </div>
-                                    </td>
+                                      </td>
                                     <td class="cart-product-subtotal">${{item.medicineprice*item.quantity}}</td>
                                 </tr>
                           
@@ -44,24 +46,18 @@
                             <tbody>
                                 <tr>
                                     <td>Cart Subtotal</td>
-                                    <td>$618.00</td>
+                                    <td>${{cartTotalPrice}}</td>
                                 </tr>
-                                <tr>
-                                    <td>Shipping and Handing</td>
-                                    <td>$15.00</td>
-                                </tr>
-                                <tr>
-                                    <td>Vat</td>
-                                    <td>$00.00</td>
-                                </tr>
+                             
+                            
                                 <tr>
                                     <td><strong>Order Total</strong></td>
-                                    <td><strong>$633.00</strong></td>
+                                    <td><strong>${{cartTotalPrice}}</strong></td>
                                 </tr>
                             </tbody>
                         </table>
                         <div class="btn-wrapper text-right">
-                            <a href="checkout.html" class="theme-btn-1 btn btn-effect-1">Proceed to checkout</a>
+                            <a href="checkout" class="theme-btn-1 btn btn-effect-1">Proceed to checkout</a>
                         </div>
                     </div>
                 </div>

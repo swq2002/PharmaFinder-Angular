@@ -63,6 +63,7 @@
             Utilize Function 
         ----------------------------------- */
         (function () {
+        
             var $ltn__utilizeToggle = $('.ltn__utilize-toggle'),
                 $ltn__utilize = $('.ltn__utilize'),
                 $ltn__utilizeOverlay = $('.ltn__utilize-overlay'),
@@ -2070,6 +2071,8 @@
 
     });
 
-
+    
   
-})(jQuery);
+}
+)
+(jQuery);

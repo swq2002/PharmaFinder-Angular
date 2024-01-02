@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, TemplateRef, ViewChild, numberAttribute } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminServicesService } from 'src/app/Services/admin-services.service';
@@ -8,7 +8,6 @@ import { AdminServicesService } from 'src/app/Services/admin-services.service';
 import {MatButtonModule} from '@angular/material/button';
 import { Router } from '@angular/router';
 import { query } from '@angular/animations';
-import { MedicinesInOrderComponent } from '../medicines-in-order/medicines-in-order.component';
 
 @Component({
   selector: 'app-order',
@@ -16,33 +15,12 @@ import { MedicinesInOrderComponent } from '../medicines-in-order/medicines-in-or
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit{
-  
   @ViewChild ('AcceptDailog') callAcceptDialog!:TemplateRef<any>
   @ViewChild('RejectDailog') callRejectDialog!: TemplateRef<any>
   @ViewChild('MedicinInOrder') MedInOrder!: TemplateRef<any>
-  dataMedcinInOrder:any;
+
  constructor(public adminService:AdminServicesService,public dialog: MatDialog ,private router:Router){
  }
- orderId:number=1;
- orderDetails:any=[{}];
-
-a:string="aaa"
- 
- openMedicineDialog(obj: any): void {
-  this.orderId = obj.orderid; // Store the obj.orderid
-   this.adminService.MedicineInOrder(this.orderId);
-  debugger
-  this.orderDetails=this.adminService.medicineInOrder;
-  const dialogRef = this.dialog.open(MedicinesInOrderComponent, {
-    width: '1000px',
-    data: { medicineDetails: obj,orderDetails:this.orderDetails }
-  });
-
-  dialogRef.afterClosed().subscribe(result => {
-    console.log('The dialog was closed');
-  });
-}
-
 
 
 

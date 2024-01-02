@@ -16,7 +16,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { OrderByPrescriptionComponent } from './order-by-prescription/order-by-prescription.component';
 import { ProductResultComponent } from './product-result/product-result.component';
 import { CartComponent } from './cart/cart.component';
-import { MohammadComponent } from './mohammad/mohammad.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { NearestPharmacyMapComponent } from './nearest-pharmacy-map/nearest-pharmacy-map.component';
 
 
 
@@ -30,7 +31,7 @@ import { MohammadComponent } from './mohammad/mohammad.component';
     OrderByPrescriptionComponent,
     ProductResultComponent,
     CartComponent,
-    MohammadComponent,
+    CheckoutComponent
     
     
   ],

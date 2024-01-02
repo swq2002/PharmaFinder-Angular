@@ -1,4 +1,5 @@
 <!-- HEADER AREA START (header-3) -->
+
 <header class="ltn__header-area ltn__header-3">
     <!-- ltn__header-top-area start -->
 
@@ -76,18 +77,21 @@
                                 </div>
                             </li>
                             <li>
+
                                 <!-- mini-cart 2 -->
                                 <div class="mini-cart-icon mini-cart-icon-2">
-                                    <a href="#ltn__utilize-cart-menu" class="ltn__utilize-toggle">
+                                    <a (click)="toggleCart($event)" href="#" class="ltn__utilize-toggle">
                                         <span class="mini-cart-icon">
-                                            <i class="icon-shopping-cart"></i>
+
+                                        <i class="icon-shopping-cart"></i>
                                             <sup>{{cartItems.length}}</sup>
                                         </span>
-                                        <h6><span>Your Cart</span> <span class="ltn__secondary-color">$89.25</span></h6>
+                                        <h6><span>Your Cart</span> <span class="ltn__secondary-color">${{cartTotalPrice}}</span></h6>
                                     </a>
 
                                     
                                 </div>
+
                             </li>
                         </ul>
                     </div>
@@ -159,14 +163,16 @@
     <div class="ltn__utilize-menu-inner ltn__scrollbar">
         <div class="ltn__utilize-menu-head">
             <span class="ltn__utilize-menu-title">Cart</span>
-            <button class="ltn__utilize-close">×</button>
+            <button (click)="closeCart($event)" class="ltn__utilize-close">×</button>
         </div>
         <div class="mini-cart-product-area ltn__scrollbar">
-            <div class="mini-cart-item clearfix" *ngFor="let item of cartItems">
+            <div class="mini-cart-item clearfix" *ngFor="let item of cartItems; let i = index">
                 <div class="mini-cart-img">
                     <a href="#"><img [src]="item.imagename" alt="Image"></a>
-                    <span class="mini-cart-item-delete"><i class="icon-cancel"></i></span>
-                </div>
+                    <span class="mini-cart-item-delete" (click)="deleteCartItem(i)">
+                        <i class="icon-cancel"></i>
+                    </span>
+                                </div>
                 <div class="mini-cart-info">
                     <h6><a href="#">{{item.medicinename}}</a></h6>
                     <span class="mini-cart-quantity">{{item.quantity}} x ${{item.medicineprice}}</span>
@@ -176,7 +182,7 @@
         </div>
         <div class="mini-cart-footer">
             <div class="mini-cart-sub-total">
-                <h5>Subtotal: <span>$310.00</span></h5>
+                <h5>Subtotal: <span>${{cartTotalPrice}}</span></h5>
             </div>
             <div class="btn-wrapper">
                 <a href="cart" class="theme-btn-1 btn btn-effect-1">View Cart</a>

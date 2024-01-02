@@ -1,5 +1,4 @@
 <body>
-
     <div class="container-scroller">
       <!-- partial:../../partials/_navbar.html -->
   <app-navbar></app-navbar>
@@ -68,9 +67,8 @@
                         <button  mat-raised-button color="warn"  (click)="Reject(obj)" >Reject</button>
                       </td>
                       <td>
-                        <button   mat-raised-button color="primary"  (click)="openMedicineDialog(obj)">Order details</button>
-                        <!-- (click)="MedicineinOrder(obj.orderid) -->
-                      </td>
+                        <button   mat-raised-button color="primary" (click)="MedicineinOrder(obj.orderid)" >medicine In Order</button>
+                     </td>
                     </tr>
                   </tbody>
                 </table>

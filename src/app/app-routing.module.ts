@@ -10,6 +10,7 @@ import { OrderByPrescriptionComponent } from './order-by-prescription/order-by-p
 import { MapComponent } from './map/map.component';
 import { ProductResultComponent } from './product-result/product-result.component';
 import { CartComponent } from './cart/cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const routes: Routes = [
   {
@@ -57,6 +58,16 @@ const routes: Routes = [
   {
     path:"cart",
     component:CartComponent
+  },
+  
+  {
+    path:"checkout",
+    component:CheckoutComponent
+  },
+
+  {
+    path:'admin', 
+    loadChildren:()=>import('./admin/admin.module').then((m)=>m.AdminModule)
   }
 
 ];

@@ -1,61 +1,76 @@
-<h2 mat-dialog-title>Order Details</h2>
-<div mat-dialog-content>
-  <!-- Display the detailed information here using data.medicineDetails -->
+<body>
+    <div class="container-scroller">
+      <!-- partial:../../partials/_navbar.html -->
+  <app-navbar></app-navbar>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:../../partials/_sidebar.html -->
+  <app-sidebar></app-sidebar>
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="page-header">
+  
+      </div>
+      <div class="row">
+  
+  <!-- table start -->
+        <!-- table end -->
+  
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Order Table</h4>
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>medicine name </th>
+                      <th>medicine price</th>
+                      <th>quantity</th>
+                     <th>medicine type</th>
+                     <th>medicin description</th>   
+                     <th>expiredate</th> 
+                     <th>activesubstance</th>
 
-
-
-<table>
-  <thead>
-    <tr>
-      <th>Medicine Name</th>
-      <th>Medicine Price</th>
-      <th>Medicine Type</th>
-      <th>Medicine Description</th>
-      <th>Expire Date</th>
-      <th>Quantity</th>
-  </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let obj of data.orderDetails">
-      <td id="medicineName">{{obj.medicinename}}</td>
-      <td id="medicinePrice">{{obj.medicineprice}} </td>
-      <td id="medicineType">{{obj.medicinetype}}</td>
-      <td id="medicineDescription">{{obj.medicinedescription}}</td>
-      <td id="expireDate">{{obj.expiredate}}</td>
-      <td id="quantity">{{obj.quantity}}</td>
-  </tr>
-  </tbody>
-  <tfoot>
-    <th>Price order</th>
-    <td>{{data.medicineDetails.orderprice}}</td>
-  </tfoot>
-</table>
-
-
-
-</div>
-<div mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="true">Close</button>
-</div>
-
-
-<!-- <table>
-  <tr>
-      <th>Medicine Name</th>
-      <th>Medicine Price</th>
-      <th>Medicine Type</th>
-      <th>Medicine Description</th>
-      <th>Expire Date</th>
-      <th>Quantity</th>
-      <th>Order Price</th>
-  </tr>
-  <tr *ngFor="let obj of data.orderDetails">
-      <td id="medicineName">{{obj.medicinename}}</td>
-      <td id="medicinePrice">{{obj.medicineprice}} </td>
-      <td id="medicineType">{{obj.medicinetype}}</td>
-      <td id="medicineDescription">{{obj.medicinedescription}}</td>
-      <td id="expireDate">{{obj.expiredate}}</td>
-      <td id="quantity">{{obj.quantity}}</td>
-      <td id="orderPrice">{{data.orderDetails.quantity}}</td>
-  </tr>
-</table> -->
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let obj of medinInOrder">
+                      <td>{{obj.medicinename}}</td>
+                      <td>{{obj.medicineprice}}</td>
+                      <td>{{obj.quantity}}</td>
+                      <td>{{obj.medicinetype}}</td>
+                      <td>{{obj.medicinedescription}}</td>
+                      <td>{{obj.expiredate|date}}</td>
+                      <td>{{obj.activesubstance}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+  
+      </div>
+  </div>
+  <!-- content-wrapper ends -->
+  <!-- partial:../../partials/_footer.html -->
+  
+  <app-footer></app-footer>
+  
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  </body>
+  
+  
+  
+  
+  
+  

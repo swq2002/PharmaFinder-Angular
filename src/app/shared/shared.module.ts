@@ -17,13 +17,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MapComponent } from '../map/map.component';
+import { NearestPharmacyMapComponent } from '../nearest-pharmacy-map/nearest-pharmacy-map.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     FooterComponent,
     NavbarComponent,
     Navbar2Component,
-    MapComponent
+    MapComponent,
+    NearestPharmacyMapComponent
+    
   ],
   imports: [
     BrowserAnimationsModule,
@@ -36,7 +40,10 @@ import { MapComponent } from '../map/map.component';
     MatDividerModule,
     NgxSpinnerModule.forRoot(), 
     ToastrModule.forRoot(),
-    MatDialogModule
+    MatDialogModule,
+    CommonModule,
+    FormsModule
+    
     ],
   exports: [
     NavbarComponent,
@@ -45,7 +52,8 @@ import { MapComponent } from '../map/map.component';
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
-    MapComponent
+    MapComponent,
+    NearestPharmacyMapComponent
   ]
 })
 export class SharedModule { }

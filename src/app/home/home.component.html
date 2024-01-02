@@ -1,38 +1,24 @@
-<!doctype html>
-<html class="no-js" lang="zxx">
-
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>PharmaFinder</title>
-    <meta name="robots" content="noindex, follow" />
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-   
-</head>
 
 
 
 <body>
     <app-navbar></app-navbar>
 
-<div class="body-wrapper">    
+<div class="body-wrapper" id="homeSection">    
 
     <div class="ltn__slider-area ltn__slider-3  section-bg-1">
         <div class="ltn__slide-one-active slick-slide-arrow-1 slick-slide-dots-1">
 
-            <div class="ltn__slide-item ltn__slide-item-2  bg-image bg-overlay-theme-30 " data-bs-bg="assets/HomeAssets/img/slider/71.jpg" >
+            <div class="ltn__slide-item ltn__slide-item-2  bg-image bg-overlay-theme-30 " [attr.data-bs-bg]="'assets/Images/' + homeData.image1" >
                 <div class=" text-left"> 
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-12 align-self-center">
                                 <div class="slide-item-info">
                                     <div class="slide-item-info-inner ltn__slide-animation">
-                                        <h1 class="slide-title animated ">Start Your Pharmaceutical Shopping Journey Here at PharmaFinder!</h1>
+                                        <h1 class="slide-title animated ">{{homeData.heading1}}</h1>
                                         <div class="slide-brief animated">
-                                            <p>Discover a vast selection of pharmaceutical products at PharmaFinder – Your Premier Online Destination!</p>
+                                            <p>{{homeData.content1}}</p>
                                         </div>
                                         <div class="btn-wrapper animated">
                                             <a href="shop.html" class="theme-btn-1 btn btn-effect-1">Shop Now</a>
@@ -55,12 +41,18 @@
         <img src="assets/HomeAssets/img/pres_en (2).png" alt="Image">
         <a href="upload-prescription" class="image-button theme-btn-1 btn btn-effect-1">Order Now</a>
     </div>
-<app-aboutus id="about"></app-aboutus>
-    <app-contactus></app-contactus>
-    <app-testimonial></app-testimonial>
+    <div id="aboutUsSection">
+        <app-aboutus ></app-aboutus>
+    </div>
+    <div id="contactUsSection">
+        <app-contactus></app-contactus>
+    </div>
+    
+    <div id="testimonialsSection">
+        <app-testimonial></app-testimonial>
+    </div>
 
     <app-footer></app-footer>
     </body> 
 
   
-    </html>

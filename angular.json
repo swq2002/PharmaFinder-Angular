@@ -46,9 +46,9 @@
               "src/assets/AdminAssets/vendors/flag-icon-css/css/flag-icon.min.css",
               "src/assets/AdminAssets/vendors/css/vendor.bundle.base.css",
               "src/assets/AdminAssets/vendors/font-awesome/css/font-awesome.min.css",
-              "src/assets/AdminAssets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css"
-              ,
-              "src/assets/AdminAssets/css/style.css"
+              "src/assets/AdminAssets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css",
+              "src/assets/AdminAssets/scss/style2.scss"
+
 
 
 
@@ -59,8 +59,7 @@
               ],
             "scripts": [
               
-              "src/assets/HomeAssets/js/plugins.js"
-            ,"src/assets/HomeAssets/js/main.js",
+            "src/assets/HomeAssets/js/main.js",
 
  
         
