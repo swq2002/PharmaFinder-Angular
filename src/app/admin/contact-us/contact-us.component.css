@@ -4,3 +4,12 @@
     margin-left: 8px;
     min-width: 120px;
   }
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }

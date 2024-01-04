@@ -28,6 +28,7 @@ export class TestimonialComponent implements OnInit {
   ngOnInit(): void {
    this.home.GetAllUsertestimonials();
    this.home.GetAllUsers();
+   console.log(this.home.testimonials);
 
 }
 

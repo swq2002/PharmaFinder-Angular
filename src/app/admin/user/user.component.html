@@ -1,4 +1,5 @@
-<body>
+<body class="admin-body">
+  <body>
     <div class="container-scroller">
       <!-- partial:../../partials/_navbar.html -->
   <app-navbar></app-navbar>
@@ -32,7 +33,7 @@
             <thead>
             <tr>
                 <th>name</th>
-                <th>picture</th>
+                <!-- <th>picture</th> -->
                 <th>email</th>
                 <th>gender</th>
                 <th>registrationdate</th>
@@ -46,13 +47,13 @@
           <tbody>
             <tr *ngFor="let obj of  adminService.userAccount ">
                 <td>{{obj.username}}</td>
-                <td>{{obj.profileimage}}</td>
+                <!-- <td>{{obj.profileimage}}</td>
 
-                <td><img src="../../../assets//Images/{{obj.profileimage}}"></td>
+                <td><img src="../../../assets//Images/{{obj.profileimage}}"></td> -->
                 <td>{{obj.email}}</td>
                 <td>{{obj.gender}}</td>
-                <td>{{obj.registrationdate}}</td>
-                <td>{{obj.dateofbirth}}</td>
+                <td>{{obj.registrationdate|date}}</td>
+                <td>{{obj.dateofbirth|date}}</td>
                 <td>{{obj.address}}</td>
                 <td>{{obj.phonenumber}}</td>
 
@@ -140,13 +141,18 @@
 
   </mat-form-field>
   
-      <mat-form-field class="example-full-width">
-        <mat-label>gender</mat-label>
-        <input type="text" matInput formControlName="gender" >
-        <mat-error *ngIf="CreateAdminUser.controls['gender'].hasError('required')">
-          Ginder <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Gender</mat-label>
+    <mat-select formControlName="gender">
+      <mat-option value="male">Male</mat-option>
+      <mat-option value="female">Female</mat-option>
+      <!-- Add more options if needed -->
+    </mat-select>
+    <mat-error *ngIf="CreateAdminUser.controls['gender'].hasError('required')">
+      Gender is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  
   
       <mat-form-field class="example-full-width">
         <mat-label>dateofbirth</mat-label>
@@ -156,9 +162,22 @@
         </mat-error>
       </mat-form-field>
   
+
+
       <mat-form-field class="example-full-width">
-        <mat-label>addres</mat-label>
-        <input type="text" matInput formControlName="address" >
+        <mat-label>address</mat-label>
+        <mat-select formControlName="address">
+          <mat-option value="Amman">Amman</mat-option>
+          <mat-option value="Irbid">Irbid</mat-option>
+          <mat-option value="Zarqa">Zarqa</mat-option>
+          <mat-option value="Aqaba">Aqaba</mat-option>
+          <mat-option value="as-Salt">as-Salt</mat-option>
+          <mat-option value="Madaba">Madaba</mat-option>
+          <mat-option value="al-Mafraq">al-Mafraq</mat-option>
+          <mat-option value="Ma'an">Ma'an</mat-option>
+          <mat-option value="at-Tafila">at-Tafila</mat-option>
+          <mat-option value="al-Karak">Karak</mat-option>
+        </mat-select>
         <mat-error *ngIf="CreateAdminUser.controls['address'].hasError('required')">
           address is <strong>required</strong>
         </mat-error>
@@ -180,7 +199,7 @@
   </mat-dialog-content>
   <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close (click)="Cancel()">Cancel</button>
-    <button mat-button [mat-dialog-close]="true" [disabled]="!CreateAdminUser.valid" (click)="Create()" cdkFocusInitial>Create</button>
+    <button mat-button [mat-dialog-close]="true" [disabled]="!CreateAdminUser.valid" mat-raised-button color="primary"  (click)="Create()" cdkFocusInitial>Create</button>
   </mat-dialog-actions>
   </ng-template>
   
@@ -204,6 +223,14 @@
   
   
   </body>
+  
+  
+  
+  
+  
+  
+  
+   
   
   
   

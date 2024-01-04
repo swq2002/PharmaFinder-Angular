@@ -7,7 +7,30 @@ import { AcceptComponent } from '../accept/accept.component';
 @Component({
   selector: 'app-testimonial',
   templateUrl: './testimonial.component.html',
-  styleUrls: ['./testimonial.component.css']
+  styleUrls: ['./testimonial.component.css'],
+  styles: [`
+  table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+  h2 {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+
+`]
 })
 export class TestimonialComponent implements OnInit {
   @ViewChild('callDeleteDailog') callDelete!: TemplateRef<any>

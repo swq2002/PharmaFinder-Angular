@@ -17,6 +17,7 @@ export class MapComponent implements OnInit {
   pharmacy: any[] = []; 
   map:any;
   searchValue: string = ''
+  nearestPharmacies:any;
   async ngOnInit() {
 
     const position: any = await this.mapService.getCurrentLocation();
@@ -62,6 +63,7 @@ export class MapComponent implements OnInit {
 
     this.adminService.GetAllPharmacyformap().subscribe(resp => {
       this.pharmacy = resp;
+      this.nearestPharmacies=this.mapService.findNearestPharmacies(position,this.pharmacy)
       resp?.forEach((pharmacy: any) => {
         const pharmacyLatLng = [pharmacy.lat, pharmacy.lng];
 

@@ -1648,8 +1648,15 @@ ul {
 .bg-overlay-theme-05,
 .bg-overlay-theme-10,
 .bg-overlay-theme-20,
-.bg-overlay-theme-30,
-.bg-overlay-theme-40,
+.bg-overlay-theme-30 {
+  z-index: 9;
+  position: relative;
+  background-image: url('../../Images/71.jpg'); /* Adjust the path as needed */
+  /* Additional properties for background image */
+  background-size: cover; /* Adjust how the background image is sized */
+  background-position: center; /* Adjust the position of the background image */
+  /* You can add more styles as required */
+}.bg-overlay-theme-40,
 .bg-overlay-theme-50,
 .bg-overlay-theme-60,
 .bg-overlay-theme-70,

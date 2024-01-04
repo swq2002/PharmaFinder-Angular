@@ -6,12 +6,40 @@ import { AdminServicesService } from 'src/app/Services/admin-services.service';
 @Component({
   selector: 'app-pharmacy',
   templateUrl: './pharmacy.component.html',
-  styleUrls: ['./pharmacy.component.css']
+  styleUrls: ['./pharmacy.component.css'],
+  styles: [`
+
+table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+  h2 {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+
+  button {
+    background-color: #4285f4;
+    color: white;
+  }
+`]
 })
 export class PharmacyComponent implements OnInit {
   @ViewChild ('callDeletesDailog') callDelete!:TemplateRef<any>
 @ViewChild('createPharmacDailog') createPharmacDailog!:TemplateRef<any>
 @ViewChild('up') updatePharmacDailog!:TemplateRef<any>
+pharmacyName:string='';
 
 
 numberOfPharmac:number|undefined

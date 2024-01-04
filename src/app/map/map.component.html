@@ -1,11 +1,69 @@
+<!-- Your HTML template -->
 <div class="pb-100">
     <app-navbar2></app-navbar2>
+  </div>
+  <div class="SearchPharma position-relative">
+  <div class="00 d-flex justify-content-center align-items-center position-absloute">
+    <input type="text" placeholder="Pharmacy Name....." class="w-50" [(ngModel)]="searchValue" > 
+    <button class="button orange medium btn-block" (click)="search()">Search</button>
+    </div>
+    <div id="map"></div>    
 </div>
-
-<input type="text" [(ngModel)]="searchValue" > 
-<button (click)="search()">Search</button>
-<div id="map"></div>
-<div class="pt-200">
-    <app-footer></app-footer>
-
+<div class="container">
+  <h1 class="text-align-center">Find My Pharmacy Network</h1>
+<div id="card0" class="list-group-item" style="margin-bottom: 0" *ngFor="let pharmacy of pharmacy">
+  <h2 class="mb-1 typo20"><b>{{pharmacy.pharmacyname}}</b><br></h2>
+  <div class="d-flex w-100 justify-content-between mapTableContainer">
+    <table class="mapTable">
+      <tbody>
+      <tr>
+        <th style="color: #00008f">ADDRESS</th>
+        <td>{{ pharmacy.address }}</td>
+      </tr>
+      <tr>
+        <th style="color: #00008f">TEL</th>
+        
+        <td><a href="tel:0842200911"> {{ pharmacy.phonenumber }}</a></td>
+      </tr>   
+      <tr>
+        <th style="color: #00008f">Email</th>
+        <td> {{ pharmacy.email }}</td>
+      </tr>
+      <tr>
+        <th style="color: #00008f">Distance</th>
+        <td> {{ pharmacy.distance }} km</td>
+      </tr>
+    </tbody></table>
+  </div>
 </div>
+</div>
+    <!-- <div class="row mt-4">
+      <div class="col-md-6">
+        <div id="map" style="height: 400px;"></div>
+      </div>
+      <div class="col-md-6">
+        <h1>Find My Pharmacy Network</h1>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Address</th>
+              <th>Phone Number</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let pharmacy of pharmacy">
+              <td>{{ pharmacy.pharmacyname }}</td>
+              <td>{{ pharmacy.address }}</td>
+              <td>{{ pharmacy.phonenumber }}</td>
+              <td>{{ pharmacy.email }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div> -->
+    <div class="pt-200">
+        <app-footer></app-footer>
+    
+    </div>

@@ -32,7 +32,7 @@
                             <th>Email</th>
                             <th>Subject</th>
                             <th>Message</th>
-                            <th>Action</th>        
+                            <th>Action</th> 
                         </thead>
                         <tbody>
                           <tr *ngFor="let obj of  adminService.contact ">
@@ -40,11 +40,10 @@
                             <td>{{obj.email}}</td>
                             <td>{{obj.subject}}</td>
                             <td>{{obj.message}}</td>
-                            <td>
-                              <button style="margin:5px ;" mat-raised-button color="primary">update</button>
+                            <td><button mat-raised-button color="primary"  style="margin: 10px;" (click)="ReplayEmail(obj.email)">replay email</button>
                               <button  mat-raised-button color="warn" (click)="DeleteContact(obj.contactusid)">delete</button>
-        
                             </td>
+
                         </tr>
                         </tbody>
                       </table>
@@ -90,5 +89,92 @@
 </div>
 <!-- container-scroller -->
 <!-- plugins:js -->
+
+
+
+
+<ng-template #ReplayEmaill>
+  <h2 mat-dialog-title>Reply Email</h2>
+  <div mat-dialog-content>
+
+  <mat-dialog-content class="mat-typography">
+    <form class="example-form" [formGroup]="sendEmail">
+      <mat-form-field class="example-full-width">
+        <mat-label>Recipient Email</mat-label>
+        <div>{{ pData }}</div>
+        <input style="width: 300px;" type="text" matInput formControlName="to" hidden >
+        <mat-error *ngIf="sendEmail.controls['to'].hasError('required')">
+          Recipient email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Subject</mat-label>
+        <input type="text" matInput formControlName="subject" placeholder="Enter the subject">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Message</mat-label>
+        
+        <textarea matInput formControlName="plainText" rows="5" placeholder="Type your message here"></textarea>
+        <mat-error *ngIf="sendEmail.controls['plainText'].hasError('required')">
+          Message is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button type="button" mat-button mat-dialog-close="no">Cancel</button>
+    <button mat-button [mat-dialog-close]="true" (click)="sendEmailContact()"  mat-raised-button color="primary"  [disabled]="!sendEmail.valid" cdkFocusInitial>
+      Send Email
+    </button>
+  </mat-dialog-actions>
+</div>
+
+</ng-template>
+
+
+
+
+<!-- 
+<ng-template #ReplayEmaill>
+  <h2 mat-dialog-title>Replay Email</h2>
+  <mat-dialog-content class="mat-typography">
+    <form class="example-form" [formGroup]="sendEmail">
+      <mat-form-field class="example-full-width">
+        <mat-label>Recipient Email</mat-label>
+        <div>{{ pData }}</div>
+        <input type="text" matInput formControlName="to" hidden>
+        <mat-error *ngIf="sendEmail.controls['to'].hasError('required')">
+          Recipient email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Subject</mat-label>
+        <input type="text" matInput formControlName="subject">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Message</mat-label>
+        <textarea matInput formControlName="plainText" rows="5"></textarea>
+        <mat-error *ngIf="sendEmail.controls['plainText'].hasError('required')">
+          Message is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close (click)="Cancel()">Cancel</button>
+    <button mat-button [mat-dialog-close]="true" (click)="sendEmailContact()" [disabled]="!sendEmail.valid" cdkFocusInitial>
+      Send Email
+    </button>
+  </mat-dialog-actions>
+</ng-template>
+ -->
+
+
+
+
 
 </body>

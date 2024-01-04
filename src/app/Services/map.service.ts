@@ -57,26 +57,25 @@ export class MapService {
 
   findNearestPharmacies(userLocation: any, pharmacies: any[]): any[] {
     debugger;
-    pharmacies.sort((pharmacyA, pharmacyB) => {
-      const distanceA = this.calculateDistance(
+    pharmacies.forEach((pharmacy) => {
+      pharmacy.distance = this.calculateDistance(
         userLocation.lat,
         userLocation.lng,
-        pharmacyA.lat,
-        pharmacyA.lng
+        pharmacy.lat,
+        pharmacy.lng
       );
-      
-      const distanceB = this.calculateDistance(
-        userLocation.lat,
-        userLocation.lng,
-        pharmacyB.lat,
-        pharmacyB.lng
-      );
+      pharmacy.distance = parseFloat(pharmacy.distance.toFixed(2));
+      // Converting distance from kilometers to meters (if necessary)
+      // pharmacy.distance *= 1000; // Uncomment this line if the distance is in meters
+    });
   
-      return distanceA - distanceB;
+    pharmacies.sort((pharmacyA, pharmacyB) => {
+      return pharmacyA.distance - pharmacyB.distance;
     });
   
     return pharmacies;
   }
+  
   
   }
 

@@ -12,6 +12,8 @@ import { ProductResultComponent } from './product-result/product-result.componen
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { authorizationGuard } from './authorization.guard';
+import { ShopComponent } from './shop/shop.component';
+import { AccountDashboardComponent } from './account-dashboard/account-dashboard.component';
 
 const routes: Routes = [
   {
@@ -27,12 +29,15 @@ const routes: Routes = [
 
   },
   {
-    path:'login',
-    component:LoginComponent,
-    
+    path: 'services', 
+    component: ShopComponent,
+
+
   },
+
   {
     path:'security',
+    // loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
     //,canActivate:[authorizationGuard]
     
@@ -47,6 +52,10 @@ const routes: Routes = [
   },  {
     path:'upload-prescription',
     component:OrderByPrescriptionComponent
+  },
+  {
+    path:'account',
+    component:AccountDashboardComponent
   },
   {
     path:"security",

@@ -46,7 +46,7 @@ export class HomeService {
      
 
     testimonials:any=[{}];
-    GetAllUsertestimonials(){
+    GetAllUsertestimonials():void{
       this.http.get('https://localhost:7274/api/UserTestimonial/GetAllUsertestimonials').subscribe((resp)=>{
       this.testimonials = resp;
     },err=>{ 

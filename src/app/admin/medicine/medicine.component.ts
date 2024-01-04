@@ -7,13 +7,41 @@ import { AdminServicesService } from 'src/app/Services/admin-services.service';
 @Component({
   selector: 'app-medicine',
   templateUrl: './medicine.component.html',
-  styleUrls: ['./medicine.component.css']
+  styleUrls: ['./medicine.component.css'],
+  styles: [`
+
+table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+  h2 {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+
+  button {
+    background-color: #4285f4;
+    color: white;
+  }
+`]
 })
 export class MedicineComponent implements OnInit{
   @ViewChild ('callDeleteDailog') callDelete!:TemplateRef<any>
   @ViewChild('CreateMedicineDailog') createMedicine!:TemplateRef<any>
   @ViewChild('updateMedicineDailog') updateMedicine!:TemplateRef<any>
-
+filterMedicineName:string='';
    numberOfMedicine:number|undefined;
   constructor(public adminService:AdminServicesService,public dialog: MatDialog){
     console.log(adminService.str);
@@ -49,13 +77,13 @@ export class MedicineComponent implements OnInit{
        
        UpdateMedicne:FormGroup=new FormGroup({
         medicineid:new FormControl(),
-        medicinename:new FormControl(),
-        medicineprice:new FormControl(),
-        medicinetype:new FormControl(),
-        medicinedescription:new FormControl(),
-        expiredate:new FormControl(),
-        imagename:new FormControl(),
-        activesubstance:new FormControl()
+        medicinename:new FormControl('',Validators.required),
+        medicineprice:new FormControl('',Validators.required),
+        medicinetype:new FormControl('',Validators.required),
+        medicinedescription:new FormControl('',Validators.required),
+        expiredate:new FormControl('',Validators.required),
+        imagename:new FormControl('',Validators.required),
+        activesubstance:new FormControl('',Validators.required)
        })
        OpenCreateDialog (){
           const dialogRef=this.dialog.open(this.createMedicine);

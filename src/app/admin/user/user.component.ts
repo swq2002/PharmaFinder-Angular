@@ -6,7 +6,35 @@ import { AdminServicesService } from 'src/app/Services/admin-services.service';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  styleUrls: ['./user.component.css'],
+  styles: [`
+
+table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+    
+  h2 {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+
+  button {
+    background-color: #4285f4;
+    color: white;
+  }
+`]
 })
 export class UserComponent  implements OnInit{
   @ViewChild ('callDeletesDailog') callDelete!:TemplateRef<any>

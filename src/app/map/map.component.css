@@ -1,5 +1,26 @@
 #map {
-    height: 100%!important;  
-    width: 100%!important;
-    margin-top: 6%!important;
+    height: 600px; 
+    width: 100%; 
+    margin: 0 auto; 
+  }
+button{
+  margin: 7px; 
+    /* margin-left: 3628px; */ 
+    margin-bottom: 36px;
+    border: 1px solid;
+    width: 158px;
+    height: 65px;
+    background-color: var(--ltn__secondary-color);
+    color: white;
+    font-size: 25px;
+}
+
+.card0{
+  margin-top: 50px;
+}
+
+h1{
+  text-align: center;
+    margin-top: 25px;
+    font-size: 40px;
 }

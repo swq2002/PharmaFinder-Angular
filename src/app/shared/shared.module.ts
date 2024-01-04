@@ -5,6 +5,7 @@ import { SharedRoutingModule } from './shared-routing.module';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { Navbar2Component } from './navbar2/navbar2.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { RouterModule } from '@angular/router';
 import { MatDialogModule} from '@angular/material/dialog';
@@ -30,7 +31,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     
   ],
   imports: [
-    BrowserAnimationsModule,
+  
     CommonModule,
     RouterModule,
     SharedRoutingModule,
@@ -43,9 +44,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatDialogModule,
     CommonModule,
     FormsModule,
+    FontAwesomeModule
     
     ],
   exports: [
+    CommonModule,
     NavbarComponent,
     FooterComponent,
     Navbar2Component,
@@ -56,7 +59,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NearestPharmacyMapComponent,
     FormsModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    HttpClientModule,
+    FontAwesomeModule
 
   ]
 })
