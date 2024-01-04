@@ -7,7 +7,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { Navbar2Component } from './navbar2/navbar2.component';
 
 import { RouterModule } from '@angular/router';
-import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule} from '@angular/material/dialog';
 
 import { HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -18,7 +18,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MapComponent } from '../map/map.component';
 import { NearestPharmacyMapComponent } from '../nearest-pharmacy-map/nearest-pharmacy-map.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,7 @@ import { FormsModule } from '@angular/forms';
     ToastrModule.forRoot(),
     MatDialogModule,
     CommonModule,
-    FormsModule
+    FormsModule,
     
     ],
   exports: [
@@ -53,7 +53,11 @@ import { FormsModule } from '@angular/forms';
     MatIconModule,
     MatDividerModule,
     MapComponent,
-    NearestPharmacyMapComponent
+    NearestPharmacyMapComponent,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDialogModule
+
   ]
 })
 export class SharedModule { }

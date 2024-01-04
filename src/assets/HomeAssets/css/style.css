@@ -79,6 +79,18 @@ font-family: 'Nunito', sans-serif;
 /* ====================================================
     Gutter Code 
 ==================================================== */
+
+/* Add your custom styles */
+.carousel-inner {
+  display: flex;
+}
+
+.carousel-item {
+  flex: 0 0 auto;
+}
+
+
+
 .container,
 .container-fluid {
   padding-right: 15px;

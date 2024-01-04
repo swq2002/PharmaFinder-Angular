@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,15 +11,7 @@ import { ContactusComponent } from './contactus/contactus.component';
 import { SharedModule } from './shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TestimonialComponent } from './testimonial/testimonial.component';
-import { FormsModule } from '@angular/forms';
-import { ToastrModule } from 'ngx-toastr';
-import { NgxSpinnerModule } from "ngx-spinner";
-import { OrderByPrescriptionComponent } from './order-by-prescription/order-by-prescription.component';
-import { ProductResultComponent } from './product-result/product-result.component';
-import { CartComponent } from './cart/cart.component';
-import { CheckoutComponent } from './checkout/checkout.component';
-import { NearestPharmacyMapComponent } from './nearest-pharmacy-map/nearest-pharmacy-map.component';
-
+import { FormsModule } from '@angular/forms'; 
 
 
 @NgModule({
@@ -28,29 +21,24 @@ import { NearestPharmacyMapComponent } from './nearest-pharmacy-map/nearest-phar
     AboutusComponent,
     ContactusComponent,
     TestimonialComponent,
-    OrderByPrescriptionComponent,
-    ProductResultComponent,
-    CartComponent,
-    CheckoutComponent
-    
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     NgbModule,
-    FormsModule,
-    BrowserAnimationsModule, 
-    ToastrModule.forRoot(),
-    NgxSpinnerModule,
-    
-    SharedModule
+    FormsModule
 
   ],
   
   
-  providers: [],
+  providers: [{
+    provide:HTTP_INTERCEPTORS, 
+    useClass:TokenInterceptor, 
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

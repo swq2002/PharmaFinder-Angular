@@ -11,6 +11,7 @@ import { MapComponent } from './map/map.component';
 import { ProductResultComponent } from './product-result/product-result.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { authorizationGuard } from './authorization.guard';
 
 const routes: Routes = [
   {
@@ -33,6 +34,7 @@ const routes: Routes = [
   {
     path:'security',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    //,canActivate:[authorizationGuard]
     
   },
   {

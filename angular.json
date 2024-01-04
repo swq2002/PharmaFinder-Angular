@@ -59,22 +59,8 @@
               ],
             "scripts": [
               
-            "src/assets/HomeAssets/js/main.js",
-
- 
-        
-
-
-
-            "src/assets/AdminAssets/vendors/js/vendor.bundle.base.js",
-            "src/assets/AdminAssets/vendors/chart.js/Chart.min.js",
-            "src/assets/AdminAssets/vendors/jquery-circle-progress/js/circle-progress.min.js",
-            "src/assets/AdminAssets/js/off-canvas.js",
-            "src/assets/AdminAssets/js/hoverable-collapse.js",
-            "src/assets/AdminAssets/js/misc.js",
-            "src/assets/AdminAssets/js/dashboard.js"
-
-          ]
+              "src/assets/HomeAssets/js/plugins.js",
+              "src/assets/HomeAssets/js/main.js"]
           },
           "configurations": {
             "production": {
