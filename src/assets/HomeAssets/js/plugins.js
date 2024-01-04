@@ -10996,8 +10996,14 @@ jQuery.easing.jswing = jQuery.easing.swing;
 jQuery.extend(jQuery.easing, {
   def: "easeOutQuad",
   swing: function(e, f, a, h, g) {
-      return jQuery.easing[jQuery.easing.def](e, f, a, h, g)
-  },
+    var defEasing = jQuery.easing[jQuery.easing.def];
+    if (typeof defEasing === "function") {
+        return defEasing(e, f, a, h, g);
+    } else {
+        // Handle the case where the easing function associated with `def` is not found.
+        // You might want to provide a default behavior or a fallback here.
+        return e;
+    }  },
   easeInQuad: function(e, f, a, h, g) {
       return h * (f /= g) * f + a
   },

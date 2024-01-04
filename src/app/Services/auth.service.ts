@@ -2,19 +2,31 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+
+  private loginErrorSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
+  get loginError$(): Observable<boolean> {
+    return this.loginErrorSubject.asObservable();
+  }
+
   constructor(private http :HttpClient, private router: Router) { }
+  private setLoginError(value: boolean): void {
+    this.loginErrorSubject.next(value);
+  }
 
   body:any;
-  login(username:any, password:any){
+  login(email:any, password:any){
     debugger
     this.body={
-      username:username.toString(),
+      email:email.toString(),
       password:password.toString()
      }
  
@@ -27,8 +39,12 @@ export class AuthService {
       headers: new HttpHeaders(headerDir)
     }
 
-// debugger;
-    this.http.post('https://localhost:7274/api/JWT/', this.body, requestOptions).subscribe((resp:any)=>{
+    this.http.post('https://localhost:7274/api/JWT/', this.body, requestOptions).pipe(
+      catchError((error) => {
+        this.setLoginError(true);
+        return throwError(error);
+      })
+    ).subscribe((resp:any)=>{
       console.log('Welcome');
       console.log(resp);
 
@@ -44,7 +60,7 @@ export class AuthService {
         this.router.navigate([''])
       }
       else
-      this.router.navigate(['security/register']);
+      this.router.navigate(['admin']);
       //this.toastr.success('Welcome');
       //this.spinner.hide();
     },err=>{

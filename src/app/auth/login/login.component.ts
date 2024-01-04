@@ -10,27 +10,28 @@ import { AuthService } from 'src/app/Services/auth.service';
 })
 
 export class LoginComponent {
-//
+
+loginError: boolean = false;
   loginObj: any = {
-    username: '',
+    email: '',
     password: ''
   };
   rememberMe: boolean = false;
   users: any = []
-//
+
   constructor(public home:HomeService, private auth: AuthService) {
-    //
+
     const usersFromLocalStorage = localStorage.getItem('users');
     const savedUsers = usersFromLocalStorage ? JSON.parse(usersFromLocalStorage) : [];
 
     if (savedUsers.length > 0) {
       const lastUser = savedUsers[savedUsers.length - 1];
-      this.loginObj.username = lastUser.username || '';
+      this.loginObj.email = lastUser.email || '';
     }
-    //
   }
+  loginError$ = this.auth.loginError$; 
 
-  username: FormControl = new FormControl('',Validators.required);
+  email: FormControl = new FormControl('',Validators.required);
   password: FormControl = new FormControl('',Validators.required);
     
 
@@ -42,7 +43,13 @@ export class LoginComponent {
       }
     }
 
-    submit(){
-      this.auth.login(this.username.value, this.password.value)
+    submit() {
+      debugger;
+      if (this.email.valid && this.password.valid) {
+        this.auth.login(this.email.value, this.password.value);
+      }
+      else{
+        this.loginError=true;
+      }
     }
   }
