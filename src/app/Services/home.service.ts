@@ -28,7 +28,7 @@ export class HomeService {
                 console.log('User created successfully!', resp);
               },
               error => {
-                console.error('Error creating user:', error);
+                console.error('Error creating user:', error.message);
               }
             );
       }
