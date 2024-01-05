@@ -8,7 +8,9 @@ import { ToastrService } from 'ngx-toastr';
   providedIn: 'root'
 })
 export class HomeService {
-  constructor(private http: HttpClient,private spinner:NgxSpinnerService) { }
+  private apiUrl = 'https://localhost:7274/api/Orders'; // Replace with your actual API URL
+
+  constructor(private http: HttpClient,private spinner:NgxSpinnerService,private toastr: ToastrService) { }
   GetHome() {
     return this.http.get('https://localhost:7274/api/Home/GetHomeById/' + 1);
   }
@@ -17,7 +19,9 @@ export class HomeService {
   }
 
 
-
+     createOrder(orderData: any) {
+    return this.http.post(`${this.apiUrl}/CreateOrder`, orderData);
+  }
 
 
     createUser(body: any){
@@ -65,6 +69,9 @@ export class HomeService {
         console.log(err.status);
       })
     }
+
+
+
 
   //   CreateTestimonial(body: any){
 
