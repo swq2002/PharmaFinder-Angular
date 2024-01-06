@@ -1,9 +1,10 @@
 
 
+  
 import { Component, OnInit } from '@angular/core';
 import { AdminServicesService } from 'src/app/Services/admin-services.service';
 import { MapService } from '../Services/map.service';
-
+import { ToastrService } from 'ngx-toastr';
 declare const L: any;
 
 @Component({
@@ -13,7 +14,8 @@ declare const L: any;
 })
 export class MapComponent implements OnInit {
 
-  constructor(private adminService: AdminServicesService ,private mapService: MapService) { }
+  constructor(private adminService: AdminServicesService ,private mapService: MapService, private toaster: ToastrService,
+    ) { }
   pharmacy: any[] = []; 
   map:any;
   searchValue: string = ''
@@ -106,7 +108,8 @@ console.log(foundPharmacy);
    
     this.map.flyTo(pharmacyLatLng,13); 
   } else {
-    console.log('Pharmacy not found');
+
+    this.toaster.warning("There is no pharmacy with this name");
   }
 
 

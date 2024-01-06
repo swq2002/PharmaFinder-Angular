@@ -17,7 +17,7 @@ export class AdminServicesService {
   userAccount:any=[{}];
   order:any=[{}];
   medicineInOrder:any=[{}];
-idNumber:any=[{}];
+  idNumber:any=[{}];
   allIformationOrder:any=[{}];
 
 

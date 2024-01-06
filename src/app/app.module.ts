@@ -4,7 +4,6 @@ import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from 'src/interceptor/token.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
-
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
@@ -22,6 +21,8 @@ import { FiltarByPharmacyNamePipe } from './pipes/filtar-by-pharmacy-name.pipe';
 import { FiltarByMedcineNamePipe } from './pipes/filtar-by-medcine-name.pipe';
 import { ShopComponent } from './shop/shop.component';
 import { AccountDashboardComponent } from './account-dashboard/account-dashboard.component';
+import { PaymentComponent } from './payment/payment.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 
 @NgModule({
@@ -37,6 +38,8 @@ import { AccountDashboardComponent } from './account-dashboard/account-dashboard
     CartComponent,
     ShopComponent,
     AccountDashboardComponent,
+    PaymentComponent,
+    ConfirmationComponent,
 
   ],
   imports: [

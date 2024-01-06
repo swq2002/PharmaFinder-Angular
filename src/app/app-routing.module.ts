@@ -14,6 +14,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { authorizationGuard } from './authorization.guard';
 import { ShopComponent } from './shop/shop.component';
 import { AccountDashboardComponent } from './account-dashboard/account-dashboard.component';
+import { PaymentComponent } from './payment/payment.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 const routes: Routes = [
   {
@@ -79,8 +81,16 @@ const routes: Routes = [
   {
     path:'admin', 
     loadChildren:()=>import('./admin/admin.module').then((m)=>m.AdminModule)
-  }
+  },
 
+  {
+    path:"payment",
+    component:PaymentComponent
+  },
+  {
+    path:"confirm",
+    component:ConfirmationComponent
+  }
 ];
 
 @NgModule({

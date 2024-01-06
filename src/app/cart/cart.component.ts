@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HomeService } from '../Services/home.service';
 
 @Component({
   selector: 'app-cart',
@@ -8,8 +9,13 @@ import { Component, OnInit } from '@angular/core';
 export class CartComponent implements OnInit {
   cartItems: any;
   cartTotalPrice:number=0;
-
+  constructor(public home:HomeService){}
   ngOnInit(): void {
+    this.loadCart();
+
+  }
+
+  loadCart(): void {
     this.cartItems = JSON.parse(localStorage.getItem('cart') || '[]');
     this.calculateTotalPrice();
   }
@@ -30,6 +36,8 @@ export class CartComponent implements OnInit {
     }
   }
 
+
+
   updateCart(): void {
     localStorage.setItem('cart', JSON.stringify(this.cartItems));
   }
@@ -48,4 +56,53 @@ export class CartComponent implements OnInit {
       return total + (item.medicineprice * item.quantity);
     }, 0); 
   }
+
+
+ 
+//   proceedToCheckout(): void {
+//     const orderData = {
+//       items: this.cartItems,
+//       totalPrice: this.cartTotalPrice
+//     };
+
+//     this.home.createOrder(orderData).subscribe(
+//       (response) => {
+//         console.log('Order created:', response);
+//         localStorage.removeItem('cart');
+//         this.cartItems = [];
+//         this.cartTotalPrice = 0;
+//       },
+//       (error) => {
+//         console.error('Failed to create order:', error);
+//       }
+//     );
+
+
+// }
+
+proceedToCheckout(): void {
+  this.loadCart(); 
+
+  if (this.cartItems && this.cartItems.length > 0) {
+    const orderData = {
+      items: this.cartItems,
+      totalPrice: this.cartTotalPrice
+    };
+
+    this.home.createOrder(orderData).subscribe(
+      (response) => {
+        console.log('Order created:', response);
+        localStorage.removeItem('cart');
+        this.cartItems = [];
+        this.cartTotalPrice = 0;
+      },
+      (error) => {
+        console.error('Failed to create order:', error);
+      }
+    );
+  } else {
+    console.error('Cart is empty. Cannot proceed with checkout.');
+  }
+}
+
 }
