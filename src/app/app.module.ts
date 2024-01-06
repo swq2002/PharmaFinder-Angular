@@ -21,7 +21,7 @@ import { CartComponent } from './cart/cart.component';
 import { FiltarByPharmacyNamePipe } from './pipes/filtar-by-pharmacy-name.pipe';
 import { FiltarByMedcineNamePipe } from './pipes/filtar-by-medcine-name.pipe';
 import { ShopComponent } from './shop/shop.component';
-import { AccountDashboardComponent } from './account-dashboard/account-dashboard.component';
+import { AccountDashboardComponent } from './user-dashboard/account-dashboard/account-dashboard.component';
 
 
 @NgModule({

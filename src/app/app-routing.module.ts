@@ -13,7 +13,7 @@ import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { authorizationGuard } from './authorization.guard';
 import { ShopComponent } from './shop/shop.component';
-import { AccountDashboardComponent } from './account-dashboard/account-dashboard.component';
+import { AccountDashboardComponent } from './user-dashboard/account-dashboard/account-dashboard.component';
 
 const routes: Routes = [
   {
