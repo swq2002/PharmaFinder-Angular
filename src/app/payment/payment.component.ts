@@ -52,17 +52,21 @@ declare var paypal: any; // Declare PayPal variable
 })
 export class PaymentComponent implements OnInit {
   amount = 0;
+  cartItems: any[] = [];
+
   @ViewChild('paymentRef', { static: true }) paymentRef!: ElementRef;
 
   constructor(private router: Router, public adminService: AdminServicesService, public payment:PaymentService) { }
 
-  ngOnInit(): void {
+   ngOnInit() {
 
-     const storedAmount = localStorage.getItem('cartTotalPrice');
-    if (storedAmount) {
-      this.amount = parseFloat(storedAmount); // Parse the amount as a float or integer based on your scenario
+     const storedAmount = localStorage.getItem('OrderTotal');
+ 
+   this.cartItems = JSON.parse(localStorage.getItem('cart') || '[]');
+
+      if (storedAmount) {
+      this.amount = parseFloat(storedAmount); 
     } else {
-      // Set default amount or handle the scenario where amount isn't stored
       this.amount = 0;
     }
 
@@ -83,8 +87,8 @@ export class PaymentComponent implements OnInit {
           }]
         });
       },
-      onApprove: (data: any, actions: any) => {
-        return actions.order.capture().then((details: any) => {
+      onApprove: async (data: any, actions: any) => {
+        return actions.order.capture().then(async (details: any) => {
           // Handle successful payment
           console.log('Payment completed:', details);
           
@@ -92,9 +96,13 @@ export class PaymentComponent implements OnInit {
           if (details.status === 'COMPLETED') {
             this.payment.transactionID = details.id; // Accessing transaction ID from PayPal response
             console.log('Transaction ID:', this.payment.transactionID );
-            // Use the transactionID as needed
+            const order = {
+              orderprice: storedAmount,
+              userid: 3
+          };
+          const orderId = await this.payment.CreateOrder(order);
+          await this.payment.CreateOrderMed(orderId, this.cartItems);
 
-            // Redirect after successful payment
             this.router.navigate(['confirm']);
           }
         });
