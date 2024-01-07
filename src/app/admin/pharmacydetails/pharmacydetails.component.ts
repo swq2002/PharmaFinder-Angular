@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output, TemplateRef, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { AdminServicesService } from 'src/app/Services/admin-services.service';
@@ -15,11 +15,14 @@ export class PharmacydetailsComponent {
   @ViewChild ('AcceptDailog') callAcceptDialog!:TemplateRef<any>
   @ViewChild('RejectDailog') callRejectDialog!: TemplateRef<any>
   @ViewChild('MedicinInOrder') MedInOrder!: TemplateRef<any>
+  @ViewChild ('callDeleteMedcineDailog') callDeleteMedcine!:TemplateRef<any>
+  @ViewChild('CreateMedicineDailog') createMedicine!:TemplateRef<any>
+  @ViewChild('updateMedicineDailog') updateMedicine!:TemplateRef<any>
   constructor(private route: ActivatedRoute, public adminService: AdminServicesService, public dialog: MatDialog) {}
 
   itemId: number = 0;
   filterMedicine:string='';
-
+  test:any;
   ngOnInit() {
     this.route.queryParams.subscribe(
       queryParams => this.itemId = Number(queryParams['id'])
@@ -100,6 +103,77 @@ export class PharmacydetailsComponent {
     });
   }
 
+
+
+  
+    DeleteMedicine(id:number){
+    debugger;
+    const dialogRef=this.dialog.open(this.callDeleteMedcine);
+    dialogRef.afterClosed().subscribe((result)=>{
+     if(result=="yes"){
+       this.adminService.DeleteMedicineByID(id);
+     }
+     else{
+       console.log('cansele delete');
+     }
+    })
+     
+   }
+   CreateMedicne:FormGroup=new FormGroup({
+    medicinename:new FormControl('',Validators.required),
+    medicineprice:new FormControl('',Validators.required),
+    imagename:new FormControl(),
+    medicinetype:new FormControl('',Validators.required),
+    medicinedescription:new FormControl('',Validators.required),
+    expiredate:new FormControl('',Validators.required),
+    activesubstance:new FormControl('',Validators.required)
+   })
+   
+   UpdateMedicne:FormGroup=new FormGroup({
+    medicineid:new FormControl(),
+    medicinename:new FormControl('',Validators.required),
+    medicineprice:new FormControl('',Validators.required),
+    medicinetype:new FormControl('',Validators.required),
+    medicinedescription:new FormControl('',Validators.required),
+    expiredate:new FormControl('',Validators.required),
+    imagename:new FormControl('',Validators.required),
+    activesubstance:new FormControl('',Validators.required)
+   })
+   OpenCreateDialog (){
+      const dialogRef=this.dialog.open(this.createMedicine);
+   }
+   Create(){
+    debugger;
+    this.adminService.CreateMedine(this.CreateMedicne.value);
+    
+   }
+   Cancel(){
+    console.log('consal');
+   }
+
+   pDataMedcine:any;
+
+   openUpdateDailog(obj:any){
+    debugger;
+    this.pData=obj;
+
+    this.UpdateMedicne.controls['medicineid'].setValue(this.pData.medicineid);
+    this.adminService.display_image=this.pData.imagename
+    console.log(this.pData);
+    this.dialog.open(this.updateMedicine)
+   }
+   updated(){
+    debugger;
+    console.log(this.pData);
+      this.adminService.updateMedicine(this.UpdateMedicne.value);
+   }
+   upleadImage(file:any){
+    if(file.length==0)return;
+    let fileToUpload=<File> file[0];
+    const formData=new FormData();
+    formData.append('file',fileToUpload,fileToUpload.name);
+    this.adminService.uploadAttachment(formData)
+   }
 
 
 }

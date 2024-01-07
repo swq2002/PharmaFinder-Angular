@@ -444,7 +444,7 @@ GetAllOrdersInPharmmacy(id:number){
     console.log(err.status);
   });
 }
-medicineNumberInPharamacy:any=[{}];
+medicineNumberInPharamacy:any={};
 GetMedicineCountInPharmacy(id:number){
   this.spinner.show();
   debugger;
@@ -496,7 +496,7 @@ GetAllOrderMedsByOrderIdInPharmacy(obj:any){
   this.http.post('https://localhost:7274/api/Pharmacy/GetAllOrderMedsByOrderIdInPharmacy',obj).subscribe((resp)=>{
   this.spinner.hide();
 },err=>{
-  this.toaster.error('something want wrong !!');
+  // this.toaster.error('something want wrong !!');
   this.spinner.hide();
   })
 }

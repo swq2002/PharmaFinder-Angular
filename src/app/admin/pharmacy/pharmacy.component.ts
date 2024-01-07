@@ -144,7 +144,7 @@ console.log(adminService.str);
        pharmacydetlis(id:number)
        {
         debugger;
-          this.router.navigate(['admin/pharmacydetails'], { queryParams: { id } } )
+          this.router.navigate(['admin/pharmacydetails'], { queryParams: { id }} )
 
           // this.pharmacyDetals.emit();
        }

@@ -136,8 +136,8 @@
                   <div class="card">
                     <div class="card-body text-center">
                       <h5 class="mb-2 text-dark font-weight-normal">number of medcine</h5>
-                      <h2 class="mb-4 text-dark font-weight-bold">{{adminService.medicineNumberInPharamacy}}</h2>
-                      <div class="dashboard-progress dashboard-progress-1 d-flex align-items-center justify-content-center item-parent"><i class="mdi mdi-lightbulb icon-md absolute-center text-dark"></i></div>
+                      <h2  class="mb-4 text-dark font-weight-bold">{{adminService.medicineNumberInPharamacy}}</h2>
+                      <!-- <div class="dashboard-progress dashboard-progress-1 d-flex align-items-center justify-content-center item-parent"><i class="mdi mdi-lightbulb icon-md absolute-center text-dark"></i></div> -->
                       <!-- <p class="mt-4 mb-0">Completed</p>
                       <h3 class="mb-0 font-weight-bold mt-2 text-dark">5443</h3> -->
                     </div>
@@ -148,7 +148,7 @@
                     <div class="card-body text-center">
                       <h5 class="mb-2 text-dark font-weight-normal">Sales of Order</h5>
                       <h2 class="mb-4 text-dark font-weight-bold">{{adminService.salesPharmacy}}</h2>
-                      <div class="dashboard-progress dashboard-progress-2 d-flex align-items-center justify-content-center item-parent"><i class="mdi mdi-account-circle icon-md absolute-center text-dark"></i></div>
+                      <!-- <div class="dashboard-progress dashboard-progress-2 d-flex align-items-center justify-content-center item-parent"><i class="mdi mdi-account-circle icon-md absolute-center text-dark"></i></div> -->
                       <!-- <p class="mt-4 mb-0">Increased since yesterday</p>
                       <h3 class="mb-0 font-weight-bold mt-2 text-dark">50%</h3> -->
                     </div>
@@ -207,7 +207,6 @@
                   </td>
                   <td>
                     <button   mat-raised-button color="primary"  (click)="openMedicineDialog(obj)">Order details</button>
-                    <!-- (click)="MedicineinOrder(obj.orderid) -->
                   </td>
               </tr>
             </tbody>
@@ -234,6 +233,7 @@
               <h4 class="card-title">medcine </h4>
               
               <div class="table-responsive">
+                <button style="margin-right:250px ;" mat-raised-button color="primary" (click)="OpenCreateDialog()">Create Medicine</button>
                 <div class="input-group">
                     <div class="input-group-prepend bg-transparent">
                       <i class="input-group-text border-0 mdi mdi-magnify" style="height: 59px;"></i>
@@ -259,20 +259,25 @@
         <th>Expire Date</th>
         <th>activesubstance</th>
         <th>Quantity</th>
+        <th>Action</th>
 
     </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let obj of adminService.medicineInPharmacy"|filtarByMedcineName:filterMedicine>
+      <tr *ngFor="let obj of adminService.medicineInPharmacy">
+        <td id="medicineName">{{obj.medicineid}}</td>
         <td id="medicineName">{{obj.medicinename}}</td>
-        <td id="imagename">{{obj.medicineprice}}</td>
+        <td><img src="../../../assets/Images/{{obj.imagename}}"></td>
         <td id="medicinePrice">{{obj.medicinetype}} </td>
         <td id="medicineType">{{obj.medicinedescription}}</td>
-        <td id="medicineDescription">{{obj.imagename}}</td>
         <td id="expireDate">{{obj.expiredate}}</td>
         <td id="activesubstance">{{obj.activesubstance}}</td>
         <td id="quantity">{{obj.quantity}}</td>
-        
+        <td>
+          <button style="margin:5px ;" mat-raised-button color="primary"   (click)="openUpdateDailog(obj)" >update</button>
+          <button  mat-raised-button color="warn" (click)="DeleteMedicine(obj.medicineid)" >delete</button>
+
+        </td>
     </tr>
     </tbody>
  
@@ -331,4 +336,161 @@
         <button  type="button" mat-button mat-dialog-close="no">no</button>
       </div>
       </ng-template>
+
+      
+<ng-template #CreateMedicineDailog>
+  <h2 mat-dialog-title>Create Medicne</h2>
+<mat-dialog-content class="mat-typography">
+  
+  <form class="example-form" [formGroup]="CreateMedicne">
+    <mat-form-field class="example-full-width">
+      <mat-label>name Medicne</mat-label>
+      <input type="text" matInput formControlName="medicinename" >
+      <mat-error *ngIf="CreateMedicne.controls['medicinename'].hasError('required')">
+        medicne name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+ <mat-form-field class="example-full-width">
+      <mat-label>Medicine Price</mat-label>
+      <input type="number" matInput formControlName="medicineprice" >
+      <mat-error *ngIf="CreateMedicne.controls['medicineprice'].hasError('required')">
+        medicne price is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Medicine Type</mat-label>
+      <input type="text" matInput formControlName="medicinetype" >
+      <mat-error *ngIf="CreateMedicne.controls['medicinetype'].hasError('required')">
+        medicine type is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label> Medicine Description</mat-label>
+      <input type="text" matInput formControlName="medicinedescription" >
+      <mat-error *ngIf="CreateMedicne.controls['medicinedescription'].hasError('required')">
+        medicine description is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Expire_Date</mat-label>
+      <input type="date" matInput  [matDatepicker]="pickerFrom"   formControlName="expiredate" >
+      <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+      <mat-datepicker #pickerFrom></mat-datepicker>
+   <mat-error *ngIf="CreateMedicne.controls['expiredate'].hasError('required')">
+        expire date is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    
+
+    <mat-form-field class="example-full-width">
+      <mat-label> Active_Substance</mat-label>
+      <input type="text" matInput formControlName="activesubstance" >
+      <mat-error *ngIf="CreateMedicne.controls['activesubstance'].hasError('required')">
+        Active Substance is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <div>
+      <input type="file" #file (change)="upleadImage(file.files)"  formControlName="imagename"  >
+    </div>
+  </form>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close (click)="Cancel()">Cancel</button>
+  <button mat-button [mat-dialog-close]="true" (click)="Create()"  mat-raised-button color="primary" [disabled]="!CreateMedicne.valid" cdkFocusInitial>Create</button>
+</mat-dialog-actions>
+</ng-template>
+
+
+
+
+
+<ng-template #callDeleteMedcineDailog>
+  <h1 mat-dialog-title>Delete Contact US</h1>
+<div mat-dialog-content>Are you sure want to delete this item ?</div>
+<div mat-dialog-actions>
+  <button type="button" mat-raised-button color="primary" mat-button mat-dialog-close="yes">yes</button>
+  <button  type="button" mat-button mat-dialog-close="no">no</button>
+
+</div>
+
+</ng-template>
+
+
+
+<ng-template #updateMedicineDailog>
+  <h2 mat-dialog-title>update Medicne</h2>
+<mat-dialog-content class="mat-typography">
+  
+  <form class="example-form" [formGroup]="UpdateMedicne">
+    <mat-form-field class="example-full-width">
+      <mat-label> Medicne name</mat-label>
+      <input type="text" matInput formControlName="medicinename" [(ngModel)]="pData.medicinename">
+      <mat-error *ngIf="UpdateMedicne.controls['medicinename'].hasError('required')">
+        medicne name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+ <mat-form-field class="example-full-width">
+      <mat-label>Medicine Price</mat-label>
+      <input type="number" matInput formControlName="medicineprice" [(ngModel)]="pData.medicineprice" >
+      <mat-error *ngIf="UpdateMedicne.controls['medicineprice'].hasError('required')">
+        medicine price is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Medicine Type</mat-label>
+      <input type="text" matInput formControlName="medicinetype"  [(ngModel)]="pData.medicinetype" >
+      <mat-error *ngIf="UpdateMedicne.controls['medicinetype'].hasError('required')">
+        medicine type is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label> Medicine Description</mat-label>
+      <input type="text" matInput formControlName="medicinedescription"  [(ngModel)]="pData.medicinedescription">
+      <mat-error *ngIf="UpdateMedicne.controls['medicinedescription'].hasError('required')">
+        medicine description is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Expire_Date</mat-label>
+      <input type="date" matInput formControlName="expiredate"   [matDatepicker]="pickerFrom"   [(ngModel)]="pData.expiredate" >
+      <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+      <mat-datepicker #pickerFrom></mat-datepicker>
+  
+      <mat-error *ngIf="UpdateMedicne.controls['expiredate'].hasError('required')">
+        expire date is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label> Active_Substance</mat-label>
+      <input type="text" matInput formControlName="activesubstance" [(ngModel)]="pData.activesubstance"  >
+      <mat-error *ngIf="UpdateMedicne.controls['activesubstance'].hasError('required')"  >
+        Active Substance is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <div>
+      <input type="file" #file (change)="upleadImage(file.files)"  formControlName="imagename"   [(ngModel)]="pData.imagename"  >
+    </div>
+
+
+  </form>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close (click)="Cancel()">Cancel</button>
+  <button mat-button [mat-dialog-close]="true" (click)="updated()"  mat-raised-button color="primary" [disabled]="!UpdateMedicne.valid" cdkFocusInitial>update</button>
+</mat-dialog-actions>
+</ng-template>
+
+
+
 </body>
