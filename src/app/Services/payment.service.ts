@@ -11,9 +11,8 @@ export class PaymentService {
   transactionID = "";
    orderId:number=0;
   constructor(private http: HttpClient,private toaster:ToastrService,private spinner:NgxSpinnerService) { 
-
   }
-  CreateOrder(order: any): Promise<number> {
+  CreateOrder(order: any): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.post('https://localhost:7274/api/Orders/CreateOrder', order).subscribe(
         (resp: any) => {

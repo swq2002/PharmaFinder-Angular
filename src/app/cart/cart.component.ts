@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../Services/home.service';
+import { PaymentService } from '../Services/payment.service';
 
 @Component({
   selector: 'app-cart',
@@ -9,7 +10,7 @@ import { HomeService } from '../Services/home.service';
 export class CartComponent implements OnInit {
   cartItems: any;
   cartTotalPrice:number=0;
-  constructor(public home:HomeService){}
+  constructor(public home:HomeService, public payment:PaymentService){}
   ngOnInit(): void {
     this.loadCart();
 

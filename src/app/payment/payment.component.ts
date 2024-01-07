@@ -87,6 +87,7 @@ export class PaymentComponent implements OnInit {
           }]
         });
       },
+      
       onApprove: async (data: any, actions: any) => {
         return actions.order.capture().then(async (details: any) => {
           // Handle successful payment
