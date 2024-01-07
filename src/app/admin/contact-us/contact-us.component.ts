@@ -64,7 +64,7 @@ export class ContactUsComponent {
         sendEmail:FormGroup=new FormGroup({
           to:new FormControl(),
           subject:new FormControl(),
-          plainText:new FormControl(), })
+          plainText:new FormControl('',Validators.required), })
 
                pData:any;
                ReplayEmail(email:any){

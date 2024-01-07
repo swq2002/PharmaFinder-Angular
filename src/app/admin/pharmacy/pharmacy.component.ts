@@ -1,7 +1,9 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { AdminServicesService } from 'src/app/Services/admin-services.service';
+import { GetAllMedcineInPharmacyComponent } from '../get-all-medcine-in-pharmacy/get-all-medcine-in-pharmacy.component';
 
 @Component({
   selector: 'app-pharmacy',
@@ -39,11 +41,37 @@ export class PharmacyComponent implements OnInit {
   @ViewChild ('callDeletesDailog') callDelete!:TemplateRef<any>
 @ViewChild('createPharmacDailog') createPharmacDailog!:TemplateRef<any>
 @ViewChild('up') updatePharmacDailog!:TemplateRef<any>
+@Output() pharmacyDetals =new EventEmitter
+
 pharmacyName:string='';
+PharmacyDetails:any=[{}];
+pharmacyId:number=1;
+
+
+openMedicineDialog(obj: any): void {
+  debugger;
+  this.pharmacyId = obj.pharmacyid; // Store the obj.orderid
+   this.adminService.GetAllMedcineInPharmmacy(this.pharmacyId);
+  debugger
+  this.PharmacyDetails=this.adminService.medicineInPharmacy;
+  console.log()
+  const dialogRef = this.dialog.open(GetAllMedcineInPharmacyComponent, {
+    width: '1000px',
+    
+    data: {PharmacyDetails:this.PharmacyDetails}
+    
+  });
+debugger;
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+  });
+}
+
+
 
 
 numberOfPharmac:number|undefined
-constructor(public adminService:AdminServicesService,public dialog: MatDialog){
+constructor(public adminService:AdminServicesService,public dialog: MatDialog,private router:Router){
 console.log(adminService.str);
   }
   ngOnInit(): void {
@@ -113,5 +141,18 @@ console.log(adminService.str);
        }
 
 
+       pharmacydetlis(id:number)
+       {
+        debugger;
+          this.router.navigate(['admin/pharmacydetails'], { queryParams: { id } } )
 
+          // this.pharmacyDetals.emit();
+       }
+
+
+
+       MedicineinOrder(id:number){
+        debugger;
+        this.router.navigate(['admin/medicineInOrder'], { queryParams: { id } });  
+      }
 }

@@ -1,0 +1,44 @@
+<body class="admin-body">
+    <h2 mat-dialog-title>Order Details</h2>
+  <div mat-dialog-content>
+    <!-- Display the detailed information here using data.medicineDetails -->
+  
+  
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Medicine Name</th>
+        <th>image</th>
+        <th>Medicine Price</th>
+        <th>Medicine Type</th>
+        <th>Medicine Description</th>
+        <th>Expire Date</th>
+        <th>activesubstance</th>
+        <th>Quantity</th>
+
+    </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let obj of data.PharmacyDetails">
+        <td id="medicineName">{{obj.medicinename}}</td>
+        <td id="imagename">{{obj.medicineprice}}</td>
+        <td id="medicinePrice">{{obj.medicinetype}} </td>
+        <td id="medicineType">{{obj.medicinedescription}}</td>
+        <td id="medicineDescription">{{obj.imagename}}</td>
+        <td id="expireDate">{{obj.expiredate}}</td>
+        <td id="activesubstance">{{obj.activesubstance}}</td>
+        <td id="quantity">{{obj.quantity}}</td>
+        
+    </tr>
+    </tbody>
+ 
+  </table>
+  
+  
+  
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="true">Close</button>
+  </div>
+  </body>

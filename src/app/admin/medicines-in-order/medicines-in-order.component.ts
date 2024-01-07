@@ -44,7 +44,8 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class MedicinesInOrderComponent {
   @Input() item :any; 
   constructor(public adminService:AdminServicesService,public route:ActivatedRoute,@Inject(MAT_DIALOG_DATA) public data: any){
-   console.log('ahmad');
+  debugger;
+    console.log('ahmad');
     console.log(data);  // Check what data you are receiving
     console.log(data.orderDetails);  // Check the orderDetails array
   

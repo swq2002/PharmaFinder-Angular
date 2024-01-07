@@ -103,6 +103,7 @@ filterMedicineName:string='';
         this.pData=obj;
 
         this.UpdateMedicne.controls['medicineid'].setValue(this.pData.medicineid);
+        this.adminService.display_image=this.pData.imagename
         console.log(this.pData);
         this.dialog.open(this.updateMedicine)
        }

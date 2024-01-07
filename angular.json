@@ -47,8 +47,9 @@
               "src/assets/AdminAssets/vendors/css/vendor.bundle.base.css",
               "src/assets/AdminAssets/vendors/font-awesome/css/font-awesome.min.css",
               "src/assets/AdminAssets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css",
-              "src/assets/AdminAssets/scss/style2.scss"
+              "src/assets/AdminAssets/scss/style2.scss",
 
+              "src/assets/AdminPharmacy/scss/style.scss"
 
 
 
@@ -67,8 +68,16 @@
               "src/assets/AdminAssets/js/off-canvas.js",
               "src/assets/AdminAssets/js/hoverable-collapse.js",
               "src/assets/AdminAssets/js/misc.js",
-              "src/assets/AdminAssets/js/dashboard.js"
-            
+              "src/assets/AdminAssets/js/dashboard.js",
+
+
+              "src/assets/AdminPharmacy/plugins/popper.min.js",
+              "src/assets/AdminPharmacy/plugins/bootstrap/js/bootstrap.min.js"
+              ,"src/assets/AdminPharmacy/plugins/chart.js/chart.min.js",
+              "src/assets/AdminPharmacy/js/app.js",
+              "src/assets/AdminPharmacy/js/index-charts.js"
+
+ 
             ]
           },
           "configurations": {

@@ -22,6 +22,12 @@ import { FiltarByPharmacyNamePipe } from './pipes/filtar-by-pharmacy-name.pipe';
 import { FiltarByMedcineNamePipe } from './pipes/filtar-by-medcine-name.pipe';
 import { ShopComponent } from './shop/shop.component';
 import { AccountDashboardComponent } from './account-dashboard/account-dashboard.component';
+import { SidebaradminComponent } from './sidebaradmin/sidebaradmin.component';
+
+
+
+
+
 
 
 @NgModule({
@@ -37,6 +43,7 @@ import { AccountDashboardComponent } from './account-dashboard/account-dashboard
     CartComponent,
     ShopComponent,
     AccountDashboardComponent,
+    SidebaradminComponent,
 
   ],
   imports: [
@@ -45,7 +52,8 @@ import { AccountDashboardComponent } from './account-dashboard/account-dashboard
     BrowserAnimationsModule,
     NgbModule,
     SharedModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+
   ],
   
   

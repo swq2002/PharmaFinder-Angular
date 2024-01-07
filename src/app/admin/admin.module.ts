@@ -30,7 +30,15 @@ import { MedicinesInOrderComponent } from './medicines-in-order/medicines-in-ord
 import { TestComponent } from './test/test.component';
 import { FiltarByPharmacyNamePipe } from '../pipes/filtar-by-pharmacy-name.pipe';
 
+
 import { FiltarByMedcineNamePipe } from '../pipes/filtar-by-medcine-name.pipe';
+import { SearchsalesComponent } from './searchsales/searchsales.component';
+
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { SComponent } from './s/s.component';
+import { GetAllMedcineInPharmacyComponent } from './get-all-medcine-in-pharmacy/get-all-medcine-in-pharmacy.component';
+import { PharmacydetailsComponent } from './pharmacydetails/pharmacydetails.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +56,11 @@ import { FiltarByMedcineNamePipe } from '../pipes/filtar-by-medcine-name.pipe';
     MedicinesInOrderComponent,
     TestComponent,
     FiltarByPharmacyNamePipe,
-    FiltarByMedcineNamePipe
+    FiltarByMedcineNamePipe,
+    SearchsalesComponent,
+    SComponent,
+    GetAllMedcineInPharmacyComponent,
+    PharmacydetailsComponent
     
 
     
@@ -67,8 +79,9 @@ import { FiltarByMedcineNamePipe } from '../pipes/filtar-by-medcine-name.pipe';
     ReactiveFormsModule,
     FormsModule,
     MatSelectModule,
+    MatDatepickerModule
+    ,MatNativeDateModule
 
-    
     
   ]
 })

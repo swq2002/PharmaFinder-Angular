@@ -1,0 +1,334 @@
+
+<body class="admin-body">
+    <div class="container-scroller">
+      <!-- partial:../../partials/_navbar.html -->
+  <app-navbar></app-navbar>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:../../partials/_sidebar.html -->
+  
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+          <ul class="nav">
+            <li class="nav-item nav-category">Main</li>
+            <li class="nav-item">
+              <a class="nav-link"routerLink="/admin/dashboard">
+                <span class="icon-bg"><i class="mdi mdi-cube menu-icon"></i></span>
+                <span class="menu-title">Dashboard</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                <span class="icon-bg"><i class="mdi mdi-crosshairs-gps menu-icon"></i></span>
+                <span class="menu-title">manage</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="ui-basic">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" routerLink="/admin/user">UserAccount</a></li>
+                    <li class="nav-item"> <a class="nav-link" routerLink="/admin/Medicine">Medicine</a></li>
+                    <li class="nav-item"> <a class="nav-link" routerLink="/admin/pharmacy">Pharmacy</a></li>
+                    <li class="nav-item"> <a class="nav-link" routerLink="/admin/order">order</a></li>
+                    <li class="nav-item"> <a class="nav-link" routerLink="/admin/Contact">Contact Us</a></li>
+                    <li class="nav-item"> <a class="nav-link" routerLink="/admin/Testimonial">testimonial</a></li>
+                    <li class="nav-item"> <a class="nav-link" routerLink="/admin/searchsales">Search Sales</a></li>
+                    <li class="nav-item"> <a class="nav-link" routerLink="C:\Users\Ahmad\PharmaFinder-Angular-1\src\app\admin\searchsales">Search Sales</a></li>
+        
+        </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../pages/icons/mdi.html">
+                <span class="icon-bg"><i class="mdi mdi-contacts menu-icon"></i></span>
+                <span class="menu-title">Icons</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../pages/forms/basic_elements.html">
+                <span class="icon-bg"><i class="mdi mdi-format-list-bulleted menu-icon"></i></span>
+                <span class="menu-title">Forms</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../pages/charts/chartjs.html">
+                <span class="icon-bg"><i class="mdi mdi-chart-bar menu-icon"></i></span>
+                <span class="menu-title">Charts</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../pages/tables/basic-table.html">
+                <span class="icon-bg"><i class="mdi mdi-table-large menu-icon"></i></span>
+                <span class="menu-title">Tables</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                <span class="icon-bg"><i class="mdi mdi-lock menu-icon"></i></span>
+                <span class="menu-title">User Pages</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="auth">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="../../pages/samples/blank-page.html"> Blank Page </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="../../pages/samples/login.html"> Login </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="../../pages/samples/register.html"> Register </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="../../pages/samples/error-404.html"> 404 </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="../../pages/samples/error-500.html"> 500 </a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item documentation-link">
+              <a class="nav-link" href="http://www.bootstrapdash.com/demo/connect-plus-free/jquery/documentation/documentation.html" target="_blank">
+                <span class="icon-bg">
+                  <i class="mdi mdi-file-document-box menu-icon"></i>
+                </span>
+                <span class="menu-title">Documentation</span>
+              </a>
+            </li>
+            <li class="nav-item sidebar-user-actions">
+              <div class="user-details">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div>
+                    <div class="d-flex align-items-center">
+                      <div class="sidebar-profile-img">
+                        <img src="assets/AdminAssets/images/faces/face28.png" alt="image">
+                      </div>
+                      <div class="sidebar-profile-text">
+                        <p class="mb-1">Henry Klein</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="badge badge-danger">3</div>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item sidebar-user-actions">
+              <div class="sidebar-user-menu">
+                <a href="#" class="nav-link"><i class="mdi mdi-settings menu-icon"></i>
+                  <span class="menu-title">Settings</span>
+                </a>
+              </div>
+            </li>
+            <li class="nav-item sidebar-user-actions">
+              <div class="sidebar-user-menu">
+                <a href="#" class="nav-link"><i class="mdi mdi-speedometer menu-icon"></i>
+                  <span class="menu-title">Take Tour</span></a>
+              </div>
+            </li>
+            <li class="nav-item sidebar-user-actions">
+              <div class="sidebar-user-menu">
+                <a href="#" class="nav-link"><i class="mdi mdi-logout menu-icon"></i>
+                  <span class="menu-title">Log Out</span></a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+  
+        <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="page-header">
+  
+      </div>
+      <div class="row">
+        <div class="tab-content tab-transparent-content">
+            <div class="tab-pane fade show active" id="business-1" role="tabpanel" aria-labelledby="business-tab">
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-sm-6 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body text-center">
+                      <h5 class="mb-2 text-dark font-weight-normal">number of medcine</h5>
+                      <h2 class="mb-4 text-dark font-weight-bold">{{adminService.medicineNumberInPharamacy}}</h2>
+                      <div class="dashboard-progress dashboard-progress-1 d-flex align-items-center justify-content-center item-parent"><i class="mdi mdi-lightbulb icon-md absolute-center text-dark"></i></div>
+                      <!-- <p class="mt-4 mb-0">Completed</p>
+                      <h3 class="mb-0 font-weight-bold mt-2 text-dark">5443</h3> -->
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-sm-6 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body text-center">
+                      <h5 class="mb-2 text-dark font-weight-normal">Sales of Order</h5>
+                      <h2 class="mb-4 text-dark font-weight-bold">{{adminService.salesPharmacy}}</h2>
+                      <div class="dashboard-progress dashboard-progress-2 d-flex align-items-center justify-content-center item-parent"><i class="mdi mdi-account-circle icon-md absolute-center text-dark"></i></div>
+                      <!-- <p class="mt-4 mb-0">Increased since yesterday</p>
+                      <h3 class="mb-0 font-weight-bold mt-2 text-dark">50%</h3> -->
+                    </div>
+                  </div>
+
+              </div>
+
+            </div>
+          </div>
+  <!-- table start -->
+  
+
+
+  <div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Order Table</h4>
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>order ID</th>
+                <th>approval</th>
+               <th>orderdate</th>
+               <th>orderprice</th>   
+               <th>Status</th>   
+               <th>Action</th> 
+               <th>Medicine in Order</th>
+
+            </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let obj of  adminService.OrderInPharmacy ">
+                <td>{{obj.orderid}}</td>
+                
+                <td>{{obj.orderprice}}</td>
+                <td>{{obj.status}}</td>
+                <td>
+                  <ng-container *ngIf="obj.approval === 'pending'; else accepted">
+                    <label style="font-size: 18px;"  class="badge badge-warning">{{obj.approval}}</label>
+                  </ng-container>
+                  <ng-template #accepted>
+                    <ng-container *ngIf="obj.approval === 'Accepted'; else Rejected">
+                      <label style="font-size: 18px;"  class="badge badge-success">{{obj.approval}}</label>
+                    </ng-container>
+                    <ng-template #Rejected>
+                      <label style="font-size: 18px;" class="badge badge-danger" >{{obj.approval}}</label>
+                    </ng-template>
+                  </ng-template>
+                </td>   
+                  <td>{{obj.orderdate|date:'short'}}</td>
+
+                  <td>
+                    <button style="margin:5px ;" (click)="Accept(obj)" mat-raised-button color="primary">Accept</button>
+                    <button  mat-raised-button color="warn"  (click)="Reject(obj)" >Reject</button>
+                  </td>
+                  <td>
+                    <button   mat-raised-button color="primary"  (click)="openMedicineDialog(obj)">Order details</button>
+                    <!-- (click)="MedicineinOrder(obj.orderid) -->
+                  </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  
+  
+        <!-- table end -->
+  
+
+
+        
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+                
+              <h4 class="card-title">medcine </h4>
+              
+              <div class="table-responsive">
+                <div class="input-group">
+                    <div class="input-group-prepend bg-transparent">
+                      <i class="input-group-text border-0 mdi mdi-magnify" style="height: 59px;"></i>
+                    </div>
+                    <mat-form-field class="example-form-field" style="flex-grow: 1;">
+                      <mat-label>Sarech medicne Name</mat-label>
+                      <input matInput type="text" [(ngModel)]="filterMedicine">
+                      <button *ngIf="filterMedicine" matSuffix mat-icon-button aria-label="Clear" (click)="filterMedicine=''">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                    </mat-form-field>
+                  </div>
+                <table class="table table-hover">
+                    
+  <table>
+    <thead>
+      <tr>
+        <th>Medicine Name</th>
+        <th>image</th>
+        <th>Medicine Price</th>
+        <th>Medicine Type</th>
+        <th>Medicine Description</th>
+        <th>Expire Date</th>
+        <th>activesubstance</th>
+        <th>Quantity</th>
+
+    </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let obj of adminService.medicineInPharmacy"|filtarByMedcineName:filterMedicine>
+        <td id="medicineName">{{obj.medicinename}}</td>
+        <td id="imagename">{{obj.medicineprice}}</td>
+        <td id="medicinePrice">{{obj.medicinetype}} </td>
+        <td id="medicineType">{{obj.medicinedescription}}</td>
+        <td id="medicineDescription">{{obj.imagename}}</td>
+        <td id="expireDate">{{obj.expiredate}}</td>
+        <td id="activesubstance">{{obj.activesubstance}}</td>
+        <td id="quantity">{{obj.quantity}}</td>
+        
+    </tr>
+    </tbody>
+ 
+  </table>
+  
+  
+  
+</table>
+
+
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+</div>
+</div>
+<!-- content-wrapper ends -->
+<!-- partial:../../partials/_footer.html -->
+
+
+
+
+<app-footer></app-footer>
+
+<!-- partial -->
+</div>
+<!-- main-panel ends -->
+</div>
+<!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
+<!-- plugins:js -->
+    </div>
+
+
+    <ng-template #AcceptDailog>
+        <h1 mat-dialog-title> Order</h1>
+      <div mat-dialog-content>are you sure Accept Order ?</div>
+      <div mat-dialog-actions>
+         <button type="button" mat-raised-button color="primary"  mat-button mat-dialog-close="yes" cli>yes</button> 
+        <button  type="button" mat-button mat-dialog-close="no">no</button>
+      </div>
+      </ng-template>
+      <ng-template #RejectDailog>
+        <h1 mat-dialog-title> Order</h1>
+      <div mat-dialog-content>are you sure Reject Order ?</div>
+      <div mat-dialog-actions>
+         <button type="button" mat-raised-button color="primary"  mat-button mat-dialog-close="yes" cli>yes</button> 
+        <button  type="button" mat-button mat-dialog-close="no">no</button>
+      </div>
+      </ng-template>
+</body>
