@@ -9,9 +9,7 @@ import { UserComponent } from './user/user.component';
 import { PharmacyComponent } from './pharmacy/pharmacy.component';
 import { OrderComponent } from './order/order.component';
 import { MedicinesInOrderComponent } from './medicines-in-order/medicines-in-order.component';
-import { TestComponent } from './test/test.component';
 import { SearchsalesComponent } from './searchsales/searchsales.component';
-import { SComponent } from './s/s.component';
 import { PharmacydetailsComponent } from './pharmacydetails/pharmacydetails.component';
 
 const routes: Routes = [
@@ -24,11 +22,7 @@ const routes: Routes = [
     path:'SearchInOrder',
     component:SearchsalesComponent
   },
-  {
-    path:'s',
-    component:SComponent
-  },
-    
+
   {
     path:'medicineInOrder/:id',
     component:MedicinesInOrderComponent

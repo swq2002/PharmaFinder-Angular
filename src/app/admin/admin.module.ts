@@ -27,7 +27,8 @@ import { PharmacyComponent } from './pharmacy/pharmacy.component';
 import { AcceptComponent } from './accept/accept.component';
 import { OrderComponent } from './order/order.component';
 import { MedicinesInOrderComponent } from './medicines-in-order/medicines-in-order.component';
-import { TestComponent } from './test/test.component';
+
+
 import { FiltarByPharmacyNamePipe } from '../pipes/filtar-by-pharmacy-name.pipe';
 
 
@@ -36,7 +37,6 @@ import { SearchsalesComponent } from './searchsales/searchsales.component';
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { SComponent } from './s/s.component';
 import { GetAllMedcineInPharmacyComponent } from './get-all-medcine-in-pharmacy/get-all-medcine-in-pharmacy.component';
 import { PharmacydetailsComponent } from './pharmacydetails/pharmacydetails.component';
 
@@ -54,11 +54,9 @@ import { PharmacydetailsComponent } from './pharmacydetails/pharmacydetails.comp
     AcceptComponent,
     OrderComponent,
     MedicinesInOrderComponent,
-    TestComponent,
     FiltarByPharmacyNamePipe,
     FiltarByMedcineNamePipe,
     SearchsalesComponent,
-    SComponent,
     GetAllMedcineInPharmacyComponent,
     PharmacydetailsComponent
     
