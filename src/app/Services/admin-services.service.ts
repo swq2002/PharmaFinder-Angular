@@ -207,6 +207,7 @@ idNumber:any=[{}];
   CreateAdminAccount(obj:any){
     debugger;
     this.spinner.show();
+    obj.imagename=this.display_image;
   this.http.post('https://localhost:7274/api/User/CreateUser',obj).subscribe((resp)=>{
     this.toaster.success('Created');
     this.spinner.hide();
