@@ -48,7 +48,8 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
     BrowserAnimationsModule,
     NgbModule,
     SharedModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+
   ],
   
   

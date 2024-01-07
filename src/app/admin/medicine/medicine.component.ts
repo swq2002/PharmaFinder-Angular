@@ -41,7 +41,7 @@ export class MedicineComponent implements OnInit{
   @ViewChild ('callDeleteDailog') callDelete!:TemplateRef<any>
   @ViewChild('CreateMedicineDailog') createMedicine!:TemplateRef<any>
   @ViewChild('updateMedicineDailog') updateMedicine!:TemplateRef<any>
-filterMedicineName:string='';
+  filterMedicineName:string='';
    numberOfMedicine:number|undefined;
   constructor(public adminService:AdminServicesService,public dialog: MatDialog){
     console.log(adminService.str);
@@ -103,6 +103,7 @@ filterMedicineName:string='';
         this.pData=obj;
 
         this.UpdateMedicne.controls['medicineid'].setValue(this.pData.medicineid);
+        this.adminService.display_image=this.pData.imagename
         console.log(this.pData);
         this.dialog.open(this.updateMedicine)
        }

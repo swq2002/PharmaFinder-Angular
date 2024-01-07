@@ -131,5 +131,5 @@ a:string="aaa"
     debugger;
     this.router.navigate(['admin/medicineInOrder'], { queryParams: { id } });  }
   // this.route.queryParams.subscribe(params => {
-  //   this.id = params['id'];
+  //   this.id = params['id'];}
 }

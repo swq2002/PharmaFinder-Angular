@@ -19,6 +19,7 @@ export class AdminServicesService {
   medicineInOrder:any=[{}];
   idNumber:any=[{}];
   allIformationOrder:any=[{}];
+  search:any=[{}];
 
 
   numberOfMedicine:number=0;
@@ -206,6 +207,7 @@ export class AdminServicesService {
   CreateAdminAccount(obj:any){
     debugger;
     this.spinner.show();
+    obj.imagename=this.display_image;
   this.http.post('https://localhost:7274/api/User/CreateUser',obj).subscribe((resp)=>{
     this.toaster.success('Created');
     this.spinner.hide();
@@ -388,5 +390,123 @@ this.http.post('https://localhost:7274/api/Email',obj).subscribe((resp)=>{
 })
 window.location.reload();
 }
+
+
+SearchSales(obj: any): Observable<any> {
+  debugger;
+  return this.http.post('https://localhost:7274/api/Orders/SalesSearch2', obj);
+}
+// SearchSales(obj:any){
+//   debugger;
+//   this.spinner.show();  
+// this.http.post('https://localhost:7274/api/Orders/SalesSearch2',obj).subscribe((resp)=>{
+//   this.SearchSales=resp;
+//   this.spinner.hide();
+// },err=>{
+//   this.spinner.hide();
+// })
+// window.location.reload();
+// }
+
+
+medicineInPharmacy:any=[{}];
+
+ GetAllMedcineInPharmmacy(id:number){
+  this.spinner.show();
+  debugger;
+  this.http.get('https://localhost:7274/api/Pharmacy/GetAllMedcineInPharmmacy/'+id).subscribe((resp)=>{
+    this.medicineInPharmacy=  resp;
+    debugger;
+    // this.router.navigate(['admin/GetAllMedcineInPharmmacy'], { queryParams: { resp } });  
+
+    this.spinner.hide();
+  },
+  (err)=>{
+    this.toaster.error('something want wrong !!');
+    this.spinner.hide();
+    console.log(err.message);
+    console.log(err.status);
+  });
+}
+
+OrderInPharmacy:any=[{}];
+GetAllOrdersInPharmmacy(id:number){
+  this.spinner.show();
+  debugger;
+  this.http.get('https://localhost:7274/api/Pharmacy/GetAllOrdersInPharmmacy/'+id).subscribe((resp)=>{
+    this.OrderInPharmacy=resp;
+    this.spinner.hide();
+  },
+  (err)=>{
+    this.toaster.error('something want wrong !!');
+    this.spinner.hide();
+    console.log(err.message);
+    console.log(err.status);
+  });
+}
+medicineNumberInPharamacy:any={};
+GetMedicineCountInPharmacy(id:number){
+  this.spinner.show();
+  debugger;
+  this.http.get('https://localhost:7274/api/Pharmacy/GetMedicineCountInPharmacy/'+id).subscribe((resp)=>{
+    debugger;
+    this.medicineNumberInPharamacy=resp
+    this.spinner.hide();
+  },
+  (err)=>{
+    this.toaster.error('something want wrong !!');
+    this.spinner.hide();
+    console.log(err.message);
+    console.log(err.status);
+  });
+}  
+salesPharmacy:any=[{}];
+
+SalesPharmacy(id:number){
+  this.spinner.show();
+  debugger;
+  this.http.get('https://localhost:7274/api/Pharmacy/SalesPharmacy/'+id).subscribe((resp)=>{
+    this.salesPharmacy=resp;
+    this.spinner.hide();
+  },
+  (err)=>{
+    this.toaster.error('something want wrong !!');
+    this.spinner.hide();
+    console.log(err.message);
+    console.log(err.status);
+  });
+}
+
+
+SalesSearch(obj:any){
+  debugger;
+  this.spinner.show();
+  this.http.post('https://localhost:7274/api/Pharmacy/SalesSearch',obj).subscribe((resp)=>{
+    
+  this.spinner.hide();
+},err=>{
+  this.toaster.error('something want wrong !!');
+  this.spinner.hide();
+  })
+}
+
+GetAllOrderMedsByOrderIdInPharmacy(obj:any){
+  debugger;
+  this.spinner.show();
+  this.http.post('https://localhost:7274/api/Pharmacy/GetAllOrderMedsByOrderIdInPharmacy',obj).subscribe((resp)=>{
+  this.spinner.hide();
+},err=>{
+  // this.toaster.error('something want wrong !!');
+  this.spinner.hide();
+  })
+}
+
+
+
+
+
+
+
+
 
 }

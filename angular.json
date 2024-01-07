@@ -68,7 +68,8 @@
               "src/assets/AdminAssets/js/hoverable-collapse.js",
               "src/assets/AdminAssets/js/misc.js",
               "src/assets/AdminAssets/js/dashboard.js"
-            
+
+ 
             ]
           },
           "configurations": {
