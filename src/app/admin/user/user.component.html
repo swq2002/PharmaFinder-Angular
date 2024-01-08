@@ -30,8 +30,7 @@
                     <li class="nav-item"> <a class="nav-link" routerLink="/admin/order">order</a></li>
                     <li class="nav-item"> <a class="nav-link" routerLink="/admin/Contact">Contact Us</a></li>
                     <li class="nav-item"> <a class="nav-link" routerLink="/admin/Testimonial">testimonial</a></li>
-                    <li class="nav-item"> <a class="nav-link" routerLink="/admin/searchsales">Search Sales</a></li>
-                    <li class="nav-item"> <a class="nav-link" routerLink="C:\Users\Ahmad\PharmaFinder-Angular-1\src\app\admin\searchsales">Search Sales</a></li>
+                    <li class="nav-item"> <a class="nav-link" routerLink="/admin/SearchInOrder">Search Sales</a></li>
         
         </ul>
               </div>
@@ -160,21 +159,14 @@
           <tbody>
             <tr *ngFor="let obj of  adminService.userAccount ">
                 <td>{{obj.username}}</td>
-                <!-- <td>{{obj.profileimage}}</td> -->
-              <td><img src="../../../assets/Images/{{obj.profileimage}}"></td>
-
-                <!-- <td><img src="../../../assets//Images/{{obj.profileimage}}"></td> --> 
+                <td>{{obj.profileimage}}</td>
+                <td><img src="../../../assets//Images/{{obj.profileimage}}"></td> 
                 <td>{{obj.email}}</td>
                 <td>{{obj.gender}}</td>
                 <td>{{obj.registrationdate|date}}</td>
                 <td>{{obj.dateofbirth|date}}</td>
                 <td>{{obj.address}}</td>
                 <td>{{obj.phonenumber}}</td>
-
-                <td>
-                  <button  mat-raised-button color="warn" (click)="DeleteUser(obj.userid)" >delete</button>
-  
-                </td>
                 
             </tr>
            

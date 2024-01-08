@@ -29,8 +29,7 @@
                   <li class="nav-item"> <a class="nav-link" routerLink="/admin/order">order</a></li>
                   <li class="nav-item"> <a class="nav-link" routerLink="/admin/Contact">Contact Us</a></li>
                   <li class="nav-item"> <a class="nav-link" routerLink="/admin/Testimonial">testimonial</a></li>
-                  <li class="nav-item"> <a class="nav-link" routerLink="/admin/searchsales">Search Sales</a></li>
-                  <li class="nav-item"> <a class="nav-link" routerLink="C:\Users\Ahmad\PharmaFinder-Angular-1\src\app\admin\searchsales">Search Sales</a></li>
+                  <li class="nav-item"> <a class="nav-link" routerLink="/admin/SearchInOrder">Search Sales</a></li>
       
       </ul>
             </div>
@@ -143,7 +142,8 @@
 
       <h4 class="card-title">Medicine Table</h4>
         <div style="margin-top: 15px;" class="navbar-menu-wrapper d-flex align-items-stretch">
-          <button style="margin-right:250px ;" mat-raised-button color="primary" (click)="OpenCreateDialog()">Create Medicine</button>
+          <!-- <button style="margin-right:250px ;" mat-raised-button color="primary" (click)="OpenCreateDialog()">Create Medicine</button> -->
+
           <div class="search-field d-none d-xl-block">
               <div class="input-group">
                 <div class="input-group-prepend bg-transparent">
@@ -159,13 +159,6 @@
               </div>
           </div>
         </div>
-        <!-- <mat-form-field class="example-form-field" style="flex-grow: 1;">
-          <mat-label>Sarech medicne Name</mat-label>
-          <input matInput type="text" [(ngModel)]="filterMedicineName">
-          <button *ngIf="filterMedicineName" matSuffix mat-icon-button aria-label="Clear" (click)="filterMedicineName=''">
-            <mat-icon>close</mat-icon>
-          </button>
-        </mat-form-field> -->
       <div class="table-responsive">
         <table class="table table-hover">
           <thead>
@@ -177,21 +170,29 @@
               <th>medicine description</th>
               <th>expiredate</th>
               <th>active substance</th>
+              <th>quantity</th>
+              <th>pharmacy name</th>
               <th>Action</th>
+              
 
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let obj of  adminService.medicine |filtarByMedcineName:filterMedicineName">
               <td>{{obj.medicinename}}</td>
-              <td><img src="../../../assets/Images/{{obj.imagename}}"></td>
               <td>{{obj.medicineprice}}</td>
               <td>{{obj.medicinetype}}</td>
               <td>{{obj.medicinedescription}}</td>
-              <td>{{obj.expiredate|date}}</td>
+              <td>{{obj.expiredate|date:'shortDate'}}</td>
               <td>{{obj.activesubstance}}</td>
+              <td>{{obj.quantity}}</td>
+              <td>{{obj.pharmacyname}}</td>
+
+              <!-- Assuming pharmacyid is a property of obj -->
+              <td><a [routerLink]="['/admin/pharmacydetails', obj.pharmacyid]" >{{obj.pharmacyname}}</a></td>
+
               <td>
-                <button style="margin:5px ;" mat-raised-button color="primary"   (click)="openUpdateDailog(obj)" >update</button>
+                <!-- <button style="margin:5px ;" mat-raised-button color="primary"   (click)="openUpdateDailog(obj)" >update</button> -->
                 <button  mat-raised-button color="warn" (click)="DeleteMedicine(obj.medicineid)" >delete</button>
 
               </td>

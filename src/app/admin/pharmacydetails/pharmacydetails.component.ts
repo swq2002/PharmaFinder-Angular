@@ -24,8 +24,19 @@ export class PharmacydetailsComponent {
   filterMedicine:string='';
   test:any;
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      const pharmacyId = params['pharmacyId'];
+      console.log('pharmacyId:', pharmacyId);
+      // Use pharmacyId as needed in your component logic
+    });
+    this.route.params.subscribe(params => {
+      const pharmacyId = params['pharmacyId'];
+      console.log('pharmacyId:', pharmacyId);
+      // Use pharmacyId as needed in your component logic
+    });
     this.route.queryParams.subscribe(
-      queryParams => this.itemId = Number(queryParams['id'])
+      queryParams => 
+      this.itemId = Number(queryParams['id'])
     );
     debugger;
     this.adminService.GetAllMedcineInPharmmacy(this.itemId);
@@ -33,6 +44,7 @@ export class PharmacydetailsComponent {
     this.adminService.GetMedicineCountInPharmacy(this.itemId);
     this.adminService.SalesPharmacy(this.itemId);
     this.adminService.GetAllOrderMedsByOrderIdInPharmacy(this.itemId);
+    this.adminService.pharmcyId=(this.itemId);
   }
   orderId:number=1;
   orderDetails:any=[{}];
@@ -119,34 +131,47 @@ export class PharmacydetailsComponent {
     })
      
    }
-   CreateMedicne:FormGroup=new FormGroup({
+
+
+   CreateMedicneInPharmacy:FormGroup=new FormGroup({
+    pharmacyid:new FormControl('',Validators.required),
     medicinename:new FormControl('',Validators.required),
     medicineprice:new FormControl('',Validators.required),
-    imagename:new FormControl(),
     medicinetype:new FormControl('',Validators.required),
     medicinedescription:new FormControl('',Validators.required),
+    imagename:new FormControl('',Validators.required),
+    quantity:new FormControl('',Validators.required),
     expiredate:new FormControl('',Validators.required),
     activesubstance:new FormControl('',Validators.required)
    })
    
    UpdateMedicne:FormGroup=new FormGroup({
+    pharmacyid:new FormControl(),
+    phmedid:new FormControl(),
     medicineid:new FormControl(),
-    medicinename:new FormControl('',Validators.required),
+    medicinename:new FormControl(),
     medicineprice:new FormControl('',Validators.required),
     medicinetype:new FormControl('',Validators.required),
     medicinedescription:new FormControl('',Validators.required),
-    expiredate:new FormControl('',Validators.required),
     imagename:new FormControl('',Validators.required),
+    quantity:new FormControl('',Validators.required),
+    expiredate:new FormControl('',Validators.required),
     activesubstance:new FormControl('',Validators.required)
-   })
+ 
+  })
+
+
    OpenCreateDialog (){
+    this.CreateMedicneInPharmacy.controls['pharmacyid'].setValue(this.itemId);
       const dialogRef=this.dialog.open(this.createMedicine);
    }
-   Create(){
-    debugger;
-    this.adminService.CreateMedine(this.CreateMedicne.value);
-    
-   }
+
+   Create() {
+      this.adminService.CreateMedine(this.CreateMedicneInPharmacy.value);
+  }
+  
+ 
+
    Cancel(){
     console.log('consal');
    }
@@ -158,7 +183,12 @@ export class PharmacydetailsComponent {
     this.pData=obj;
 
     this.UpdateMedicne.controls['medicineid'].setValue(this.pData.medicineid);
-    this.adminService.display_image=this.pData.imagename
+    this.UpdateMedicne.controls['phmedid'].setValue(this.pData.phmedid);
+    this.UpdateMedicne.controls['pharmacyid'].setValue(this.itemId);
+    this.adminService.display_image=this.pData.imagename;
+
+  //  this.UpdateMedicne.controls['imagename'].setValue(this.adminService.display_image);
+    debugger;
     console.log(this.pData);
     this.dialog.open(this.updateMedicine)
    }

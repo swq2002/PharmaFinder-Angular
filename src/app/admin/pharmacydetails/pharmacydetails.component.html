@@ -30,8 +30,7 @@
                     <li class="nav-item"> <a class="nav-link" routerLink="/admin/order">order</a></li>
                     <li class="nav-item"> <a class="nav-link" routerLink="/admin/Contact">Contact Us</a></li>
                     <li class="nav-item"> <a class="nav-link" routerLink="/admin/Testimonial">testimonial</a></li>
-                    <li class="nav-item"> <a class="nav-link" routerLink="/admin/searchsales">Search Sales</a></li>
-                    <li class="nav-item"> <a class="nav-link" routerLink="C:\Users\Ahmad\PharmaFinder-Angular-1\src\app\admin\searchsales">Search Sales</a></li>
+                    <li class="nav-item"> <a class="nav-link" routerLink="/admin/SearchInOrder">Search Sales</a></li>
         
         </ul>
               </div>
@@ -238,13 +237,13 @@
                     <div class="input-group-prepend bg-transparent">
                       <i class="input-group-text border-0 mdi mdi-magnify" style="height: 59px;"></i>
                     </div>
-                    <mat-form-field class="example-form-field" style="flex-grow: 1;">
+                    <!-- <mat-form-field class="example-form-field" style="flex-grow: 1;">
                       <mat-label>Sarech medicne Name</mat-label>
                       <input matInput type="text" [(ngModel)]="filterMedicine">
                       <button *ngIf="filterMedicine" matSuffix mat-icon-button aria-label="Clear" (click)="filterMedicine=''">
                         <mat-icon>close</mat-icon>
                       </button>
-                    </mat-form-field>
+                    </mat-form-field> -->
                   </div>
                 <table class="table table-hover">
                     
@@ -265,18 +264,17 @@
     </thead>
     <tbody>
       <tr *ngFor="let obj of adminService.medicineInPharmacy">
-        <td id="medicineName">{{obj.medicineid}}</td>
         <td id="medicineName">{{obj.medicinename}}</td>
         <td><img src="../../../assets/Images/{{obj.imagename}}"></td>
+        <td id="quantity">{{obj.medicineprice}}</td>
         <td id="medicinePrice">{{obj.medicinetype}} </td>
         <td id="medicineType">{{obj.medicinedescription}}</td>
-        <td id="expireDate">{{obj.expiredate}}</td>
+        <td id="expireDate">{{obj.expiredate|date:'shortDate'}}</td>
         <td id="activesubstance">{{obj.activesubstance}}</td>
         <td id="quantity">{{obj.quantity}}</td>
         <td>
           <button style="margin:5px ;" mat-raised-button color="primary"   (click)="openUpdateDailog(obj)" >update</button>
           <button  mat-raised-button color="warn" (click)="DeleteMedicine(obj.medicineid)" >delete</button>
-
         </td>
     </tr>
     </tbody>
@@ -342,11 +340,11 @@
   <h2 mat-dialog-title>Create Medicne</h2>
 <mat-dialog-content class="mat-typography">
   
-  <form class="example-form" [formGroup]="CreateMedicne">
+  <form class="example-form" [formGroup]="CreateMedicneInPharmacy">
     <mat-form-field class="example-full-width">
       <mat-label>name Medicne</mat-label>
       <input type="text" matInput formControlName="medicinename" >
-      <mat-error *ngIf="CreateMedicne.controls['medicinename'].hasError('required')">
+      <mat-error *ngIf="CreateMedicneInPharmacy.controls['medicinename'].hasError('required')">
         medicne name is <strong>required</strong>
       </mat-error>
     </mat-form-field>
@@ -354,7 +352,7 @@
  <mat-form-field class="example-full-width">
       <mat-label>Medicine Price</mat-label>
       <input type="number" matInput formControlName="medicineprice" >
-      <mat-error *ngIf="CreateMedicne.controls['medicineprice'].hasError('required')">
+      <mat-error *ngIf="CreateMedicneInPharmacy.controls['medicineprice'].hasError('required')">
         medicne price is <strong>required</strong>
       </mat-error>
     </mat-form-field>
@@ -362,7 +360,7 @@
     <mat-form-field class="example-full-width">
       <mat-label>Medicine Type</mat-label>
       <input type="text" matInput formControlName="medicinetype" >
-      <mat-error *ngIf="CreateMedicne.controls['medicinetype'].hasError('required')">
+      <mat-error *ngIf="CreateMedicneInPharmacy.controls['medicinetype'].hasError('required')">
         medicine type is <strong>required</strong>
       </mat-error>
     </mat-form-field>
@@ -370,7 +368,7 @@
     <mat-form-field class="example-full-width">
       <mat-label> Medicine Description</mat-label>
       <input type="text" matInput formControlName="medicinedescription" >
-      <mat-error *ngIf="CreateMedicne.controls['medicinedescription'].hasError('required')">
+      <mat-error *ngIf="CreateMedicneInPharmacy.controls['medicinedescription'].hasError('required')">
         medicine description is <strong>required</strong>
       </mat-error>
     </mat-form-field>
@@ -380,7 +378,7 @@
       <input type="date" matInput  [matDatepicker]="pickerFrom"   formControlName="expiredate" >
       <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
       <mat-datepicker #pickerFrom></mat-datepicker>
-   <mat-error *ngIf="CreateMedicne.controls['expiredate'].hasError('required')">
+   <mat-error *ngIf="CreateMedicneInPharmacy.controls['expiredate'].hasError('required')">
         expire date is <strong>required</strong>
       </mat-error>
     </mat-form-field>
@@ -389,21 +387,35 @@
     <mat-form-field class="example-full-width">
       <mat-label> Active_Substance</mat-label>
       <input type="text" matInput formControlName="activesubstance" >
-      <mat-error *ngIf="CreateMedicne.controls['activesubstance'].hasError('required')">
+      <mat-error *ngIf="CreateMedicneInPharmacy.controls['activesubstance'].hasError('required')">
         Active Substance is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label> quantity</mat-label>
+      <input type="number" matInput formControlName="quantity" >
+      <mat-error *ngIf="CreateMedicneInPharmacy.controls['quantity'].hasError('required')">
+        quantity is <strong>required</strong>
       </mat-error>
     </mat-form-field>
     <div>
       <input type="file" #file (change)="upleadImage(file.files)"  formControlName="imagename"  >
     </div>
+    
   </form>
 
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close (click)="Cancel()">Cancel</button>
-  <button mat-button [mat-dialog-close]="true" (click)="Create()"  mat-raised-button color="primary" [disabled]="!CreateMedicne.valid" cdkFocusInitial>Create</button>
+  <button mat-button [mat-dialog-close]="true" (click)="Create()"  mat-raised-button color="primary" [disabled]="!CreateMedicneInPharmacy.valid" cdkFocusInitial>Create</button>
 </mat-dialog-actions>
 </ng-template>
+
+
+
+      
+
+
 
 
 
@@ -475,6 +487,13 @@
       <input type="text" matInput formControlName="activesubstance" [(ngModel)]="pData.activesubstance"  >
       <mat-error *ngIf="UpdateMedicne.controls['activesubstance'].hasError('required')"  >
         Active Substance is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label> quantity</mat-label>
+      <input type="number" matInput formControlName="quantity" [(ngModel)]="pData.quantity" >
+      <mat-error *ngIf="CreateMedicneInPharmacy.controls['quantity'].hasError('required')">
+        quantity is <strong>required</strong>
       </mat-error>
     </mat-form-field>
     <div>

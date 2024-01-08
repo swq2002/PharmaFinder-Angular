@@ -1,6 +1,7 @@
 import { state } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -26,7 +27,7 @@ idNumber:any=[{}];
   str: string = "message";
   salesOfOrder:any=[{}];
   PharmacyCount:any=[{}];
-  constructor(private http: HttpClient,private toaster:ToastrService,private spinner:NgxSpinnerService,private router:Router) {}
+  constructor(private http: HttpClient,private toaster:ToastrService,private spinner:NgxSpinnerService,private router:Router,private fb: FormBuilder) {}
   
   GetPharmacyCount(){
     debugger;
@@ -89,7 +90,7 @@ idNumber:any=[{}];
 
 
   GetAllMedicine() {
-    this.http.get('https://localhost:7274/api/Medicine/GetAllMedicines').subscribe(
+    this.http.get('https://localhost:7274/api/Medicine/GetAllMedicinesDetals').subscribe(
       (resp) => {
         debugger;
         this.medicine = resp;
@@ -154,6 +155,8 @@ idNumber:any=[{}];
     this.http.delete('https://localhost:7274/api/Pharmacy/DeletePharmacy/'+id).subscribe((resp)=>{
       this.toaster.success('Deleted');
       this.spinner.hide();
+  window.location.reload();
+
     },
     (err)=>{
       this.toaster.error('something want wrong !!');
@@ -168,6 +171,7 @@ idNumber:any=[{}];
     this.http.delete('https://localhost:7274/api/ContactUs/DeleteContactUs/'+id).subscribe((resp)=>{
       this.toaster.success('Deleted');  
       this.spinner.hide();
+  window.location.reload();
     },
     (err)=>{
       this.toaster.error('something want wrong !!');
@@ -181,6 +185,8 @@ idNumber:any=[{}];
     this.http.delete('https://localhost:7274/api/Medicine/DeleteMedicine/'+id).subscribe((resp)=>{
       this.toaster.success('Deleted');
       this.spinner.hide();
+  window.location.reload();
+
     },
     (err)=>{
       this.toaster.error('something want wrong !!');
@@ -195,6 +201,8 @@ idNumber:any=[{}];
     this.http.delete('https://localhost:7274/api/User/DeleteUser/'+id).subscribe((resp)=>{
       this.toaster.success('Deleted');
       this.spinner.hide();
+  window.location.reload();
+
     },
     (err)=>{
       this.toaster.error('something want wrong !!');
@@ -211,20 +219,22 @@ idNumber:any=[{}];
   this.http.post('https://localhost:7274/api/User/CreateUser',obj).subscribe((resp)=>{
     this.toaster.success('Created');
     this.spinner.hide();
+    window.location.reload();
   },err=>{
     this.toaster.error('something want wrong !!');
     this.spinner.hide();
-  })
   window.location.reload();
+  })
   }
 
-
+medcineId:number=0;
+pharmcyId:number=0;
   CreateMedine(obj:any){
     debugger;
     this.spinner.show();
     obj.imagename=this.display_image;
-    
-  this.http.post('https://localhost:7274/api/Medicine/CreateMedicine',obj).subscribe((resp)=>{
+    this.medcineId=obj.medicineid
+  this.http.post('https://localhost:7274/api/Pharmacy/createMedcineInPharmacy',obj).subscribe((resp)=>{
     this.toaster.success('Created');
     this.spinner.hide();
 
@@ -232,7 +242,20 @@ idNumber:any=[{}];
     this.toaster.error('something want wrong !!');
     this.spinner.hide();
   })
-  window.location.reload();
+  }
+
+  CreatePhMed(obj:any){
+    debugger;
+    obj.pharmacyid=this.pharmcyId
+    this.spinner.show();
+    obj.imagename=this.display_image;
+  this.http.post('https://localhost:7274/api/PhMed/createPhMed',obj).subscribe((resp)=>{
+    this.toaster.success('Created');
+    this.spinner.hide();
+  },err=>{
+    this.toaster.error('something want wrong !!');
+    this.spinner.hide();
+  })
   }
 
   CreatedPharmicy(obj:any){
@@ -256,17 +279,18 @@ idNumber:any=[{}];
     debugger;
     this.spinner.show();
     body.imagename=this.display_image;
-    this.http.put('https://localhost:7274/api/Medicine/UpdateMedicine/',body).subscribe(()=>
+    this.http.put('https://localhost:7274/api/Pharmacy/updateMedcineInPharmacy/',body).subscribe(()=>
     {
       this.toaster.success('updated')
       this.spinner.hide()
+  window.location.reload();
     },err=>{
       this.toaster.error('something went wrong !!')
       console.log(ErrorEvent) 
 
 
-      this.toaster.error('something want wrong !!')
-      this.spinner.hide()
+      this.toaster.error('something want wrong !!');
+      this.spinner.hide();
     })
   }
   updatePharmacy(body:any){
@@ -275,7 +299,9 @@ idNumber:any=[{}];
     this.http.put('https://localhost:7274/api/Pharmacy/UpdatePharmacy',body).subscribe(()=>
     {
       this.toaster.success('updated')
-      this.spinner.hide()
+      this.spinner.hide();
+  window.location.reload();
+
     },err=>{
       console.log(ErrorEvent) 
 
@@ -370,7 +396,7 @@ debugger;
   this.http.post('https://localhost:7274/api/User/uploadImage',file).subscribe((resp:any)=>
   {
     debugger;
-    this.display_image=resp.profileimage;
+    this.display_image_user=resp.profileimage;
     this.spinner.hide()
   },err=>{
     this.toaster.error('something want wrong !!')
