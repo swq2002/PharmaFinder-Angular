@@ -1,15 +1,16 @@
 import { state } from '@angular/animations';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
+import { Observable, catchError, of, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminServicesService {
+
   pharmacy: any = [{}];
   medicine: any = [{}];
   contact: any = [{}];
@@ -17,7 +18,7 @@ export class AdminServicesService {
   userAccount:any=[{}];
   order:any=[{}];
   medicineInOrder:any=[{}];
-idNumber:any=[{}];
+  idNumber:any=[{}];
   allIformationOrder:any=[{}];
 
 
@@ -387,6 +388,43 @@ this.http.post('https://localhost:7274/api/Email',obj).subscribe((resp)=>{
   this.spinner.hide();
 })
 window.location.reload();
+}
+
+
+
+getAllSalesByMonthReport(month: number, year: number): Observable<any> {
+  const urlWithParams = `https://localhost:7274/api/Orders/AllSalesByMonthReport?month=${month}&year=${year}`;
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+  });
+
+  return this.http.post(urlWithParams, null, { headers })
+    .pipe(
+      catchError(error => {
+        console.error('API Error:', error);
+        return throwError(error);
+      })
+    );
+}
+
+getSalesByYearReport(year: number): Observable<any> {
+  const urlWithParams = `https://localhost:7274/api/Orders/AllSalesByYearReport?year=${year}`;
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+  });
+
+  return this.http.post(urlWithParams, null, { headers })
+    .pipe(
+      catchError(error => {
+        console.error('API Error:', error);
+        return throwError(error);
+      })
+    );
+}
+
+
+searchSales(search: { DateFrom: Date; DateTo: Date }): Observable<any[]> {
+  return this.http.post<any[]>('https://localhost:7274/api/Orders/SalesSearch', search);
 }
 
 }

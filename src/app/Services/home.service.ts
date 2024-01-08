@@ -16,10 +16,6 @@ export class HomeService {
     return this.http.get('https://localhost:7274/api/About/GetAboutById/' + 1);
   }
 
-
-
-
-
     createUser(body: any){
       debugger;
       body.Profileimage=this.display_image;
@@ -66,30 +62,28 @@ export class HomeService {
       })
     }
 
-  //   CreateTestimonial(body: any){
+    CreateTestimonial(body: any){
+      //body.userid=2;
+    this.http.post('https://localhost:7274/api/UserTestimonial/CreateUsertestimonial',body).subscribe((resp) =>{
+      alert('Created')
+    },
+    err=>
+    alert('something want wrong'))
+  window.location.reload();
 
-  //   this.http.post('https://localhost:7274/api/UserTestimonial/CreateUsertestimonial',body).subscribe((resp) =>{
-  //     alert('Created')
-  //   },
-  //   err=>
-  //   alert('something want wrong'))
-  // window.location.reload();
+    }
 
-  //   }
-
-  //   UpdateTestimonial(body:any){
-  //       this.spinner.show();
-  //       this.http.put('https://localhost:7274/api/UserTestimonial/UpdateUsertestimonial',body).subscribe((resp) =>{
-  //         this.testimonials = resp;
-  //           this.toastr.success('Updated');
-  //           this.spinner.hide();
+    orders:any=[{}];
+    GetAllInformationOrders(){
+      this.http.get('https://localhost:7274/api/Orders/GetAllInformationOrders').subscribe((resp)=>{
+        this.orders=resp;
+      },err=>{
+        console.log(err.message);
+        console.log(err.status);
+      });
+    }
     
-  //       },
-  //       err=>{
-  //       this.toastr.error('Error occurred');
-  //           this.spinner.hide();
-  //     }
-  //       );
-  //   }
-    
+   
 }
+
+

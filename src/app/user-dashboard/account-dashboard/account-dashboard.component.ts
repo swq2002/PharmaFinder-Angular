@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { HomeService } from 'src/app/Services/home.service';
+import { authorizationGuard } from 'src/app/authorization.guard';
 
 @Component({
   selector: 'app-account-dashboard',
@@ -6,5 +8,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./account-dashboard.component.css']
 })
 export class AccountDashboardComponent {
-
+  constructor(public home:HomeService){}
+  ngOnInit(): void {
+    this.home.GetAllInformationOrders();
+  }
 }

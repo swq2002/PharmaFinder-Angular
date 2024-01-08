@@ -1,0 +1,76 @@
+
+<div class="pb-50">
+    <app-navbar2></app-navbar2>
+    </div>
+
+<div class="liton__wishlist-area pb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- PRODUCT TAB AREA START -->
+                <div class="ltn__product-tab-area">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="ltn__tab-menu-list mb-50">
+                                    <div class="nav">
+                                        <a class="active show" href="userdashboard/account">Dashboard <i class="fas fa-home"></i></a>
+                                        <a data-bs-toggle="tab" href="#liton_tab_1_2">Orders <i class="fas fa-file-alt"></i></a>
+                                        <a data-bs-toggle="tab" href="#liton_tab_1_3">Downloads <i class="fas fa-arrow-down"></i></a>
+                                        <a data-bs-toggle="tab" href="#liton_tab_1_4">address <i class="fas fa-map-marker-alt"></i></a>
+                                        <a data-bs-toggle="tab" href="#liton_tab_1_5">Account Details <i class="fas fa-user"></i></a>
+                                        <a href="userdashboard/userTestimonial">Testimonial <i class="fas fa-user"></i></a>
+
+                                        <a href="login.html">Logout <i class="fas fa-sign-out-alt"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="tab-content">
+                                    
+
+                                    <div class="col-lg-6 d-flex align-items-stretch" style="width: 100%; font-size: 15px;margin-left: 30px;overflow-x: hidden;">
+                                        <div class="card">
+                                          <div class="card-body p-4">
+                                            <h3 class="card-title fw-semibold mb-4" style="text-align: center; align-content: center; font-size: xx-large;">Your Orders History</h3>
+                                            <br>
+                                            <div class="table-responsive">
+                                              <table class="table text-wrap mb-0 align-middle" id="table-data">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Order Date</th>
+                                                        <th>Order Value</th>
+                                                        <th>Payment Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                  <tr *ngFor="let obj of home.orders">
+                                                    <ng-container *ngIf="obj.username == 'Sami' && obj.status=='IP'">
+                                                        <td>
+                                                            {{obj.orderdate | date}}
+                                                        </td>
+                                                        <td>
+                                                            ${{obj.orderprice}}
+                                                        </td>
+                                                        <td class="border-bottom-6" style=" font-size: 20px;">
+                                                                <ng-container *ngIf="obj.approval=='Accepted'">
+                                                                    <button routerLink="/checkout" class="badge bg-primary rounded-3 fw-semibold" style="padding: 8px 20px 8px 20px;" title="Pay your Order">Pay</button>
+                                                                </ng-container>
+                                                                <ng-container *ngIf="obj.approval=='IP'">
+                                                                      <button class="badge bg-danger rounded-3 fw-semibold" style="padding: 8px 10px 8px 10px;" [disabled]="obj.approval == 'IP'" title="Order approval in progress">Pending</button>
+                                                                  </ng-container>
+                                                        </td>
+                                                  </ng-container>
+                                                </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                          </div>
+                                        </div>
+                                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

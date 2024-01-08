@@ -12,7 +12,6 @@ export class AuthService {
 
 
   private loginErrorSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
   get loginError$(): Observable<boolean> {
     return this.loginErrorSubject.asObservable();
   }
@@ -54,7 +53,6 @@ export class AuthService {
       localStorage.setItem('token', responce.token);
       let data: any = jwtDecode(responce.token);
       localStorage.setItem('user',JSON.stringify(data));
-
       if(data.roleid=='1')
       {
         this.router.navigate([''])
@@ -69,5 +67,14 @@ export class AuthService {
       console.log('Error');
     });
   }
+  getCurrentUser(): any {
+    const userString = localStorage.getItem('user');
+    if (userString) {
+      return JSON.parse(userString);
+    }
+    return null;
+  }
+
+
 
 }

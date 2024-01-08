@@ -1,1 +1,24 @@
-<p>create-testimonial works!</p>
+<div class="pb-50">
+    </div>
+
+    <h2 mat-dialog-title>Write your feedback! </h2>
+    <mat-dialog-content class="mat-typography">
+        <form class="example-form" [formGroup]="createTestimonial">
+            <mat-form-field class="example-full-width">
+            <mat-label>Testimonial Text</mat-label>
+            <input type="text" matInput formControlName="testimonialtext" placeholder="Write...">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-error *ngIf="createTestimonial.controls['testimonialtext'].hasError('required')">
+                 <strong>required</strong>
+            </mat-error>
+            </mat-form-field>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button (click)="Save()" mat-button [mat-dialog-close]="true" cdkFocusInitial>Save</button>
+    </mat-dialog-actions>
+                                    
+
+
+  
