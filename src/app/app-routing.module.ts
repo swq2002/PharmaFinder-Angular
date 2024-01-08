@@ -11,8 +11,8 @@ import { MapComponent } from './map/map.component';
 import { ProductResultComponent } from './product-result/product-result.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
-import { authorizationGuard } from './authorization.guard';
 import { ShopComponent } from './shop/shop.component';
+import { authorizationGuard } from './authorization.guard';
 
 const routes: Routes = [
   {
@@ -36,9 +36,7 @@ const routes: Routes = [
 
   {
     path:'security',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
-    //,canActivate:[authorizationGuard]
-    
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)    
   },
   {
     path:'contact',
@@ -78,6 +76,7 @@ const routes: Routes = [
   {
     path:'admin', 
     loadChildren:()=>import('./admin/admin.module').then((m)=>m.AdminModule)
+    ,canActivate:[authorizationGuard]
   }, 
   {
     path:'userdashboard', 

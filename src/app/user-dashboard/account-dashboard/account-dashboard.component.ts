@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { HomeService } from 'src/app/Services/home.service';
-import { authorizationGuard } from 'src/app/authorization.guard';
 
 @Component({
   selector: 'app-account-dashboard',
@@ -8,8 +8,13 @@ import { authorizationGuard } from 'src/app/authorization.guard';
   styleUrls: ['./account-dashboard.component.css']
 })
 export class AccountDashboardComponent {
-  constructor(public home:HomeService){}
+  constructor(public home:HomeService, private router: Router){}
   ngOnInit(): void {
     this.home.GetAllInformationOrders();
+  }
+
+  logout(){
+    localStorage.clear();
+    this.router.navigate(['security/login']);
   }
 }
