@@ -1,26 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { PrescriptionService } from '../Services/prescription.service';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { ToastrService } from 'ngx-toastr';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { MapService } from '../Services/map.service';
+import { PrescriptionService } from '../Services/prescription.service';
 
 @Component({
   selector: 'app-order-by-prescription',
   templateUrl: './order-by-prescription.component.html',
   styleUrls: ['./order-by-prescription.component.css']
 })
-export class OrderByPrescriptionComponent implements OnInit{
-  userLoc:any;
+export class OrderByPrescriptionComponent implements OnInit {
+  @ViewChild('fileInput') fileInput!: ElementRef;
+  @ViewChild('orderInput') orderInput!: ElementRef;
+  userLoc: any;
+  txtInput: FormControl = new FormControl('');
+
   constructor(
     public preService: PrescriptionService,
     public mapService: MapService,
-
     private spinner: NgxSpinnerService,
     private toaster: ToastrService,
-    private router:Router
-  ) { }
-
+    private router: Router
+  ) {}
 
   async ngOnInit() {
     try {
@@ -29,11 +32,16 @@ export class OrderByPrescriptionComponent implements OnInit{
       console.error('Error getting user location:', error);
     }
   }
+
   medicines: any;
-  nearestMedicines:any;
+  nearestMedicines: any;
+
   async upload(file: any) {
     try {
       if (file.length === 0) {
+        // Resetting medicines and disabling inputs if no file is selected
+        this.medicines = null;
+        this.disableInputs(true);
         return;
       }
 
@@ -46,6 +54,7 @@ export class OrderByPrescriptionComponent implements OnInit{
         .then((resp: any) => {
           this.medicines = resp;
           this.spinner.hide();
+          this.disableUpload();
         })
         .catch((err) => {
           this.toaster.error('Something went wrong!');
@@ -57,20 +66,64 @@ export class OrderByPrescriptionComponent implements OnInit{
     }
   }
 
+  disableUpload() {
+    if (this.txtInput.value) {
+      this.disableInputs(false);
+    } else {
+      this.disableInputs(true);
+    }
+  }
+
   async search() {
     try {
+      this.spinner.show();
       if (!this.userLoc) {
         console.error('User location not available.');
         return;
       }
 
-      this.nearestMedicines = this.mapService.findNearestPharmacies(this.userLoc, this.medicines);
-      this.router.navigate(['/product-result'], {
-        queryParams: { medicines: JSON.stringify(this.nearestMedicines) }
-      });
+      if (this.medicines) {
+        this.nearestMedicines = this.mapService.findNearestPharmacies(this.userLoc, this.medicines);
+        this.spinner.hide();
+        this.router.navigate(['/product-result']);
+
+      } else if (this.txtInput.value) {
+        debugger;
+        await this.preService.prescriptionTxtSearch(this.txtInput.value)
+          .then(async (resp: any) => {
+            this.medicines = await resp;
+            this.spinner.hide();
+            if (this.medicines) {
+              this.nearestMedicines = await this.mapService.findNearestPharmacies(this.userLoc, this.medicines);
+              this.spinner.hide();
+              this.router.navigate(['/product-result']);
+
+            } else {
+              this.router.navigate(['']);
+            }
+            this.disableInputs(true);
+          })
+          .catch((err) => {
+            this.toaster.error('Something went wrong!');
+            console.log(err);
+            this.spinner.hide();
+          });
+      } else {
+        this.router.navigate(['']);
+      }
+
     } catch (error) {
       console.error('Error searching for nearest pharmacies:', error);
     }
   }
 
+  disableInputs(isFileUploaded: boolean) {
+    if (isFileUploaded) {
+      this.orderInput.nativeElement.disabled = true;
+      this.fileInput.nativeElement.disabled = false;
+    } else {
+      this.orderInput.nativeElement.disabled = false;
+      this.fileInput.nativeElement.disabled = true;
+    }
+  }
 }

@@ -3,14 +3,49 @@
 </div>
 <div class="pb-100">
 
-<app-nearest-pharmacy-map></app-nearest-pharmacy-map>
+    <div id="map"></div>
 </div>
 <div class="ltn__product-area ltn__product-gutter mb-120">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-
-                <div class="tab-content">
+        <div class="row justify-content-center">
+            <div class="col-lg-9 ">
+                <div class="widget ltn__top-rated-product-widget ">
+                    <h4 class="ltn__widget-title ltn__widget-title-border">Medicines from nearest pharmacy</h4>
+                    <table class="table">
+                        <!-- <thead>
+                            <tr>
+                                <th class="cart-product-image">Image</th>
+                                <th class="cart-product-info">Title</th>
+                                <th class="cart-product-price">Price</th>
+                                <th class="cart-product-stock">Stock</th>
+                                <th class="cart-product-add-cart">Add to Cart</th>
+                            </tr>
+                        </thead> -->
+                        <tbody class="text-center">
+                            <tr class="text-center" *ngFor="let medicine of medicines">
+                                <br>
+                                <td class="cart-product-info text-center align-middle">
+                                    <h4> <a  href="javascript:void(0);" (click)="flyToPharmacy(medicine)">{{medicine.pharmacyname}} Pharmacy</a></h4><br>
+                                    <h5>Distance: {{medicine.distance}}km</h5>
+                                </td>
+                                <td class="cart-product-image text-center align-middle">
+                                    <img [src]="medicine.imagename" alt="#">
+                                </td>
+                                <td class="cart-product-info text-center align-middle">
+                                    <h4>{{medicine.medicinename}}</h4>
+                                </td>
+                                <td class="cart-product-price text-center align-middle">${{medicine.medicineprice}}</td>
+                                <td class="cart-product-stock text-center align-middle text-success">In Stock</td>
+                                <td class="cart-product-add-cart text-center align-middle">
+                                    <a class="submit-button-1 text-center align-middle" href="#" (click)="AddToCart(medicine)" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#add_to_cart_modal">Add to Cart</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                
+                <!-- <div class="tab-content">
                     <div class="tab-pane fade active show" id="liton_product_grid">
                         <div class="ltn__product-tab-content-inner ltn__product-grid-view">
                             <div class="row">
@@ -40,13 +75,14 @@
                                         <div class="product-info">
 
                                             <h2 class="product-title"><a
-                                                    href="product-details.html">{{medicine.medicinename}}</a>
+                                                    href="product-details.html">[src]="medicine.imagename"</a>
                                             </h2>
-                                            <h2 class="product-title"><a
+                                            <h2 class="product-title text-primary position-absolute bottom-0 end-0"><a
                                                 href="product-details.html">{{medicine.pharmacyname}}</a>
                                         </h2>
-                                        <h2 class="product-title"><a
-                                            href="product-details.html">{{medicine.distance}}</a>
+                                        <br>
+                                        <h2 class="product-title text-success position-absolute bottom-0 start-2">
+                                            {{medicine.distance}}
                                     </h2>
                                             <div class="product-price">
                                                 <span>${{medicine.medicineprice}}</span>
@@ -90,7 +126,6 @@
                                                                                     <strong>Categories:</strong>
                                                                                     <span>
                                                                                         <a href="#">Parts</a>
-                                                                                        <!-- Add more category links here -->
                                                                                     </span>
                                                                                 </li>
                                                                             </ul>
@@ -148,18 +183,18 @@
                                         </div>
                                     
 
-                                    </ng-template>
+                                    </ng-template> -->
                                 </div>
 
                             </div>
                         </div>
                     </div>
 
-                </div>
+                <!-- </div>
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <div class="pt-200">
     <app-footer></app-footer>
 

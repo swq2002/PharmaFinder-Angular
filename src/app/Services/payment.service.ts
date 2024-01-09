@@ -43,5 +43,24 @@ export class PaymentService {
 
 
 }
+SendInvoice(emailDto: any, items: any,InvoiceDto:any): Promise<any> {
+  return new Promise((resolve, reject) => {
+const data={
+  emailDto:emailDto,
+  items:items,
+  invoiceDto:InvoiceDto
 
+}
+
+    this.http.post(`https://localhost:7274/api/Email/SendInvoice`, data).subscribe(
+      (respOrderMed: any) => {
+        resolve(respOrderMed);
+      },
+      errOrderMed => {
+        console.error(errOrderMed);
+        reject(errOrderMed);
+      }
+    );
+  });
+}
 }

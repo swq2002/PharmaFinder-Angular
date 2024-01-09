@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PaymentService } from '../Services/payment.service';
 
 @Component({
   selector: 'app-checkout',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class CheckoutComponent implements OnInit {
   cartItems: any[] = [];
   cartTotalPrice: number = 0;
-
+constructor(public payment:PaymentService){}
   ngOnInit(): void {
     this.cartItems = JSON.parse(localStorage.getItem('cart') || '[]');
     this.calculateTotalPrice();
@@ -34,8 +35,5 @@ export class CheckoutComponent implements OnInit {
   }
 
 
-// addOrder(){
-//   https://localhost:7274/api/Orders/CreateOrder
 
-// }
 }

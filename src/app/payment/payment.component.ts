@@ -1,43 +1,3 @@
-// import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-// import { Router } from '@angular/router';
-// import { AdminServicesService } from '../Services/admin-services.service';
-
-// @Component({
-//   selector: 'app-payment',
-//   templateUrl: './payment.component.html',
-//   styleUrls: ['./payment.component.css']
-// })
-// export class PaymentComponent implements OnInit {
-//   amount = 0;
-//   @ViewChild('paymentRef', { static: true }) paymentRef!: ElementRef;
-//   constructor(private router: Router, public adminService: AdminServicesService) { }
-//   ngOnInit(): void {
-//     this.amount = this.adminService.salesOfOrder;
-//     window.paypal.Buttons(
-//       {
-//         style: {
-//           layout: 'horizontal',
-//           color: 'blue',
-//           shape: 'rect',
-//           label: 'paypal',
-//         }
-//       },
-
-//       createOrder: (data:any, actions: any) => {
-
-//       }
-
-//     ).render(this.paymentRef.nativeElement);
-
-//   }
-
-
-//   cancel() {
-//     this.router.navigate(['cart'])
-//   }
-// }
-
-
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminServicesService } from '../Services/admin-services.service';
@@ -96,12 +56,7 @@ export class PaymentComponent implements OnInit {
           if (details.status === 'COMPLETED') {
             this.payment.transactionID = details.id; // Accessing transaction ID from PayPal response
             console.log('Transaction ID:', this.payment.transactionID );
-            const order = {
-              orderprice: storedAmount,
-              userid: 3
-          };
-          const orderId = await this.payment.CreateOrder(order);
-          await this.payment.CreateOrderMed(orderId, this.cartItems);
+       
 
             this.router.navigate(['confirm']);
           }
