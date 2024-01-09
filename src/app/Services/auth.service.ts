@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,7 @@ export class AuthService {
     return this.loginErrorSubject.asObservable();
   }
 
-  constructor(private http :HttpClient, private router: Router) { }
+  constructor(private http :HttpClient, private router: Router,private toastr:ToastrService,private spinner:NgxSpinnerService) { }
   private setLoginError(value: boolean): void {
     this.loginErrorSubject.next(value);
   }
@@ -54,20 +56,28 @@ export class AuthService {
       localStorage.setItem('token', responce.token);
       let data: any = jwtDecode(responce.token);
       localStorage.setItem('user',JSON.stringify(data));
-
       if(data.roleid=='1')
       {
-        this.router.navigate([''])
+        this.router.navigate(['admin/dashboard']);
       }
       else
-      this.router.navigate(['admin']);
-      //this.toastr.success('Welcome');
-      //this.spinner.hide();
+      this.router.navigate([''])
+      this.toastr.success('Welcome');
+      this.spinner.hide();
     },err=>{
-      //this.toastr.error('Error');
-      //this.spinner.hide();
+      this.toastr.error('Error');
+      this.spinner.hide();
       console.log('Error');
     });
   }
+  getCurrentUser(): any {
+    const userString = localStorage.getItem('user');
+    if (userString) {
+      return JSON.parse(userString);
+    }
+    return null;
+  }
+
+
 
 }

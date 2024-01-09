@@ -10,7 +10,6 @@ import { HomeComponent } from './home/home.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { SharedModule } from './shared/shared.module';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TestimonialComponent } from './testimonial/testimonial.component';
 import { FormsModule } from '@angular/forms'; 
 import { ProductResultComponent } from './product-result/product-result.component';
@@ -37,9 +36,6 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
     CheckoutComponent,
     CartComponent,
     ShopComponent,
-    AccountDashboardComponent,
-    PaymentComponent,
-    ConfirmationComponent,
 
   ],
   imports: [
@@ -49,6 +45,7 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
     NgbModule,
     SharedModule,
     NgxSpinnerModule,
+    AccountDashboardComponent
 
   ],
   
@@ -57,7 +54,7 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
     provide:HTTP_INTERCEPTORS, 
     useClass:TokenInterceptor, 
     multi:true
-  }],
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

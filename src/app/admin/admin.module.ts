@@ -32,13 +32,7 @@ import { FiltarByPharmacyNamePipe } from '../pipes/filtar-by-pharmacy-name.pipe'
 
 
 import { FiltarByMedcineNamePipe } from '../pipes/filtar-by-medcine-name.pipe';
-import { SearchsalesComponent } from './searchsales/searchsales.component';
-
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import { GetAllMedcineInPharmacyComponent } from './get-all-medcine-in-pharmacy/get-all-medcine-in-pharmacy.component';
-import { PharmacydetailsComponent } from './pharmacydetails/pharmacydetails.component';
-import { NgChartsModule } from 'ng2-charts';
+import { ReportComponent } from './report/report.component';
 
 @NgModule({
   declarations: [
@@ -56,9 +50,7 @@ import { NgChartsModule } from 'ng2-charts';
     MedicinesInOrderComponent,
     FiltarByPharmacyNamePipe,
     FiltarByMedcineNamePipe,
-    SearchsalesComponent,
-    GetAllMedcineInPharmacyComponent,
-    PharmacydetailsComponent
+    ReportComponent
     
 
     

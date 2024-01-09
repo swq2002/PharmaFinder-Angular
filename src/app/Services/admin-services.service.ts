@@ -1,15 +1,16 @@
 import { state } from '@angular/animations';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
+import { Observable, catchError, of, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminServicesService {
+
   pharmacy: any = [{}];
   medicine: any = [{}];
   contact: any = [{}];
@@ -382,121 +383,40 @@ window.location.reload();
 }
 
 
-SearchSales(obj: any): Observable<any> {
-  debugger;
-  return this.http.post('https://localhost:7274/api/Orders/SalesSearch2', obj);
-}
-// SearchSales(obj:any){
-//   debugger;
-//   this.spinner.show();  
-// this.http.post('https://localhost:7274/api/Orders/SalesSearch2',obj).subscribe((resp)=>{
-//   this.SearchSales=resp;
-//   this.spinner.hide();
-// },err=>{
-//   this.spinner.hide();
-// })
-// window.location.reload();
-// }
 
-
-medicineInPharmacy:any=[{}];
-
- GetAllMedcineInPharmmacy(id:number){
-  this.spinner.show();
-  debugger;
-  this.http.get('https://localhost:7274/api/Pharmacy/GetAllMedcineInPharmmacy/'+id).subscribe((resp)=>{
-    this.medicineInPharmacy=  resp;
-    debugger;
-    // this.router.navigate(['admin/GetAllMedcineInPharmmacy'], { queryParams: { resp } });  
-
-    this.spinner.hide();
-  },
-  (err)=>{
-    this.toaster.error('something want wrong !!');
-    this.spinner.hide();
-    console.log(err.message);
-    console.log(err.status);
+getAllSalesByMonthReport(month: number, year: number): Observable<any> {
+  const urlWithParams = `https://localhost:7274/api/Orders/AllSalesByMonthReport?month=${month}&year=${year}`;
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
   });
+
+  return this.http.post(urlWithParams, null, { headers })
+    .pipe(
+      catchError(error => {
+        console.error('API Error:', error);
+        return throwError(error);
+      })
+    );
 }
 
-OrderInPharmacy:any=[{}];
-GetAllOrdersInPharmmacy(id:number){
-  this.spinner.show();
-  debugger;
-  this.http.get('https://localhost:7274/api/Pharmacy/GetAllOrdersInPharmmacy/'+id).subscribe((resp)=>{
-    this.OrderInPharmacy=resp;
-    this.spinner.hide();
-  },
-  (err)=>{
-    this.toaster.error('something want wrong !!');
-    this.spinner.hide();
-    console.log(err.message);
-    console.log(err.status);
+getSalesByYearReport(year: number): Observable<any> {
+  const urlWithParams = `https://localhost:7274/api/Orders/AllSalesByYearReport?year=${year}`;
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
   });
-}
-medicineNumberInPharamacy:any={};
-GetMedicineCountInPharmacy(id:number){
-  this.spinner.show();
-  debugger;
-  this.http.get('https://localhost:7274/api/Pharmacy/GetMedicineCountInPharmacy/'+id).subscribe((resp)=>{
-    debugger;
-    this.medicineNumberInPharamacy=resp
-    this.spinner.hide();
-  },
-  (err)=>{
-    this.toaster.error('something want wrong !!');
-    this.spinner.hide();
-    console.log(err.message);
-    console.log(err.status);
-  });
-}  
-salesPharmacy:any=[{}];
 
-SalesPharmacy(id:number){
-  this.spinner.show();
-  debugger;
-  this.http.get('https://localhost:7274/api/Pharmacy/SalesPharmacy/'+id).subscribe((resp)=>{
-    this.salesPharmacy=resp;
-    this.spinner.hide();
-  },
-  (err)=>{
-    this.toaster.error('something want wrong !!');
-    this.spinner.hide();
-    console.log(err.message);
-    console.log(err.status);
-  });
+  return this.http.post(urlWithParams, null, { headers })
+    .pipe(
+      catchError(error => {
+        console.error('API Error:', error);
+        return throwError(error);
+      })
+    );
 }
 
 
-SalesSearch(obj:any){
-  debugger;
-  this.spinner.show();
-  this.http.post('https://localhost:7274/api/Pharmacy/SalesSearch',obj).subscribe((resp)=>{
-    
-  this.spinner.hide();
-},err=>{
-  this.toaster.error('something want wrong !!');
-  this.spinner.hide();
-  })
+searchSales(search: { DateFrom: Date; DateTo: Date }): Observable<any[]> {
+  return this.http.post<any[]>('https://localhost:7274/api/Orders/SalesSearch', search);
 }
-
-GetAllOrderMedsByOrderIdInPharmacy(obj:any){
-  debugger;
-  this.spinner.show();
-  this.http.post('https://localhost:7274/api/Pharmacy/GetAllOrderMedsByOrderIdInPharmacy',obj).subscribe((resp)=>{
-  this.spinner.hide();
-},err=>{
-  // this.toaster.error('something want wrong !!');
-  this.spinner.hide();
-  })
-}
-
-
-
-
-
-
-
-
 
 }
