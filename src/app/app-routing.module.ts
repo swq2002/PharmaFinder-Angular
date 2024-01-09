@@ -40,8 +40,8 @@ const routes: Routes = [
   {
     path:'security',
     // loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
-    //,canActivate:[authorizationGuard]
+    loadChildren:()=>import('./admin/admin.module').then((m)=>m.AdminModule)
+    // ,canActivate:[authorizationGuard]
     
   },
   {

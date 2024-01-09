@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminServicesService } from 'src/app/Services/admin-services.service';
 
-
 @Component({
   selector: 'app-medicine',
   templateUrl: './medicine.component.html',
@@ -46,10 +45,15 @@ export class MedicineComponent implements OnInit{
   constructor(public adminService:AdminServicesService,public dialog: MatDialog){
     console.log(adminService.str);
       }
+
+      dtOptions: DataTables.Settings = {};
       ngOnInit(): void {
         debugger;
         this.adminService.GetAllMedicine();
         this.numberOfMedicine;
+        this.dtOptions = {
+          pagingType: 'full_numbers'
+        };
       }
 
       DeleteMedicine(id:number){

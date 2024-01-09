@@ -29,7 +29,6 @@ export class AdminServicesService {
   constructor(private http: HttpClient,private toaster:ToastrService,private spinner:NgxSpinnerService,private router:Router) {}
   
   GetPharmacyCount(){
-    debugger;
      this.http.get('https://localhost:7274/api/Pharmacy/GetPharmacyCount').subscribe((resp)=>{
       this.PharmacyCount=resp;
     },err=>{
@@ -38,7 +37,6 @@ export class AdminServicesService {
     });
   }
   CalculateTotalOrderPrice(){
-    debugger;
      this.http.get('https://localhost:7274/api/Orders/CalculateTotalOrderPrice').subscribe((resp)=>{
       this.salesOfOrder=resp;
     },err=>{
@@ -47,7 +45,6 @@ export class AdminServicesService {
     });
   }
   GetAllInformationOrders(){
-    debugger;
     this.http.get('https://localhost:7274/api/Orders/GetAllInformationOrders').subscribe((resp)=>{
       this.allIformationOrder=resp;
     },err=>{
@@ -64,7 +61,6 @@ export class AdminServicesService {
     });
   }
   GetAllUserAccount() {
-    debugger;
     this.http.get('https://localhost:7274/api/User/GetAllUsers').subscribe(
       (resp) => {
         this.userAccount = resp;
@@ -136,7 +132,6 @@ export class AdminServicesService {
 
 
   MedicineInOrder(id:number){
-    debugger;
     this.http.get('https://localhost:7274/api/OrderMed/GetAllOrderMedByOrderID/'+id).subscribe((resp)=>{
       debugger;
       this.medicineInOrder=resp;
@@ -205,7 +200,6 @@ export class AdminServicesService {
   }
 
   CreateAdminAccount(obj:any){
-    debugger;
     this.spinner.show();
     obj.imagename=this.display_image;
   this.http.post('https://localhost:7274/api/User/CreateUser',obj).subscribe((resp)=>{
@@ -220,7 +214,6 @@ export class AdminServicesService {
 
 
   CreateMedine(obj:any){
-    debugger;
     this.spinner.show();
     obj.imagename=this.display_image;
     
@@ -236,7 +229,6 @@ export class AdminServicesService {
   }
 
   CreatedPharmicy(obj:any){
-    debugger;
     this.spinner.show();
     this.http.post('https://localhost:7274/api/Pharmacy/CreatePharmacy/',obj).subscribe((resp)=>{
     this.toaster.success('Created')
@@ -253,7 +245,6 @@ export class AdminServicesService {
      
    }
   updateMedicine(body:any){
-    debugger;
     this.spinner.show();
     body.imagename=this.display_image;
     this.http.put('https://localhost:7274/api/Medicine/UpdateMedicine/',body).subscribe(()=>
@@ -270,7 +261,6 @@ export class AdminServicesService {
     })
   }
   updatePharmacy(body:any){
-    debugger;
     this.spinner.show();
     this.http.put('https://localhost:7274/api/Pharmacy/UpdatePharmacy',body).subscribe(()=>
     {
@@ -285,7 +275,7 @@ export class AdminServicesService {
     })
   }
   AcceptTestimonial(body:any){
-    debugger;
+    
     this.spinner.show();
 
     this.http.put('https://localhost:7274/api/UserTestimonial/AcceptOrRejectTestimonial',body).subscribe(()=>

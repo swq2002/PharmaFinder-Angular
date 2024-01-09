@@ -9,7 +9,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { RouterModule } from '@angular/router';
 import { MatDialogModule} from '@angular/material/dialog';
-
 import { HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
@@ -20,7 +19,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MapComponent } from '../map/map.component';
 import { NearestPharmacyMapComponent } from '../nearest-pharmacy-map/nearest-pharmacy-map.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 @NgModule({
   declarations: [
     FooterComponent,
@@ -62,6 +60,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatDialogModule,
     HttpClientModule,
     FontAwesomeModule
+    
 
   ]
 })

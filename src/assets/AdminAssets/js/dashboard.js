@@ -168,77 +168,77 @@
 			});
     }
     
-		if ($("#total-profit-dark").length) {
-			var graphGradient = document.getElementById("total-profit-dark").getContext('2d');;
-			var saleGradientBg = graphGradient.createLinearGradient(15, 0, 15, 190);
-			saleGradientBg.addColorStop(0, 'rgba(0, 98, 255, .3)');
-			saleGradientBg.addColorStop(1, 'rgba(0, 0, 0, .2)');
-			var totalProfitDarkData = {
-				labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"],
-				datasets: [{
-					label: 'Margin',
-					data: [5, 4, 6, 4.5, 5.5, 4, 5, 4.2, 5.5],
-					backgroundColor: saleGradientBg,
-					borderColor: [
-						'#0062ff'
-					],
-					borderWidth: 3,
-					fill: true,
-				}],
-			};
-			var totalProfitDarkOptions = {
-				scales: {
-					yAxes: [{
-						display: false,
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false,
-							zeroLineColor: 'rgba(90, 113, 208, 0)',
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10,
-						}
-					}],
-					xAxes: [{
-						display: false,
-						position: 'bottom',
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false,
-							zeroLineColor: 'rgba(90, 113, 208, 0)',
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10,
-						}
-					}],
-				},
-				legend: {
-					display: false,
-				},
-				elements: {
-					point: {
-						radius: 0
-					},
-					line: {
-						tension: 0
-					}
-				},
-				tooltips: {
-					backgroundColor: 'rgba(2, 171, 254, 1)',
-				},
-			};
-			var barChartCanvas = $("#total-profit-dark").get(0).getContext("2d");
-			// This will get the first returned node in the jQuery collection.
-			var barChart = new Chart(barChartCanvas, {
-				type: 'line',
-				data: totalProfitDarkData,
-				options: totalProfitDarkOptions,
-			});
-		}
+		// if ($("#total-profit-dark").length) {
+		// 	var graphGradient = document.getElementById("total-profit-dark").getContext('2d');;
+		// 	var saleGradientBg = graphGradient.createLinearGradient(15, 0, 15, 190);
+		// 	saleGradientBg.addColorStop(0, 'rgba(0, 98, 255, .3)');
+		// 	saleGradientBg.addColorStop(1, 'rgba(0, 0, 0, .2)');
+		// 	var totalProfitDarkData = {
+		// 		labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"],
+		// 		datasets: [{
+		// 			label: 'Margin',
+		// 			data: [5, 4, 6, 4.5, 5.5, 4, 5, 4.2, 5.5],
+		// 			backgroundColor: saleGradientBg,
+		// 			borderColor: [
+		// 				'#0062ff'
+		// 			],
+		// 			borderWidth: 3,
+		// 			fill: true,
+		// 		}],
+		// 	};
+		// 	var totalProfitDarkOptions = {
+		// 		scales: {
+		// 			yAxes: [{
+		// 				display: false,
+		// 				gridLines: {
+		// 					drawBorder: false,
+		// 					display: false,
+		// 					drawTicks: false,
+		// 					zeroLineColor: 'rgba(90, 113, 208, 0)',
+		// 				},
+		// 				ticks: {
+		// 					beginAtZero: true,
+		// 					stepSize: 10,
+		// 				}
+		// 			}],
+		// 			xAxes: [{
+		// 				display: false,
+		// 				position: 'bottom',
+		// 				gridLines: {
+		// 					drawBorder: false,
+		// 					display: false,
+		// 					drawTicks: false,
+		// 					zeroLineColor: 'rgba(90, 113, 208, 0)',
+		// 				},
+		// 				ticks: {
+		// 					beginAtZero: true,
+		// 					stepSize: 10,
+		// 				}
+		// 			}],
+		// 		},
+		// 		legend: {
+		// 			display: false,
+		// 		},
+		// 		elements: {
+		// 			point: {
+		// 				radius: 0
+		// 			},
+		// 			line: {
+		// 				tension: 0
+		// 			}
+		// 		},
+		// 		tooltips: {
+		// 			backgroundColor: 'rgba(2, 171, 254, 1)',
+		// 		},
+		// 	};
+		// 	var barChartCanvas = $("#total-profit-dark").get(0).getContext("2d");
+		// 	// This will get the first returned node in the jQuery collection.
+		// 	var barChart = new Chart(barChartCanvas, {
+		// 		type: 'line',
+		// 		data: totalProfitDarkData,
+		// 		options: totalProfitDarkOptions,
+		// 	});
+		// }
 
 		if ($("#total-expences").length) {
 			var totalExpencesData = {
