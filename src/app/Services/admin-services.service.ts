@@ -563,10 +563,12 @@ export class AdminServicesService {
     this.http.put('https://localhost:7274/api/User/UpdateUser', body).subscribe(
       (resp: any) => {
         this.toaster.success('User Info Updated successfully');
+        window.location.reload();
         this.spinner.hide();
       },
       (err) => {
           this.toaster.error('Something went wrong!');
+          window.location.reload();
           this.spinner.hide();
           console.error('Error during user update:', err);
       }
