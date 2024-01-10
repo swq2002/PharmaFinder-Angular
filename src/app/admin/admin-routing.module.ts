@@ -10,6 +10,7 @@ import { PharmacyComponent } from './pharmacy/pharmacy.component';
 import { OrderComponent } from './order/order.component';
 import { MedicinesInOrderComponent } from './medicines-in-order/medicines-in-order.component';
 import { TestComponent } from './test/test.component';
+import { ReportComponent } from './report/report.component';
 
 const routes: Routes = [
 
@@ -60,6 +61,10 @@ const routes: Routes = [
   {
     path:'userAccount',
     component:UserComponent
+  },
+  {
+    path:'report',
+    component:ReportComponent
   }
  
  

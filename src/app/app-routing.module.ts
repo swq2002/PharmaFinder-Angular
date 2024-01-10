@@ -11,11 +11,10 @@ import { MapComponent } from './map/map.component';
 import { ProductResultComponent } from './product-result/product-result.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
-import { authorizationGuard } from './authorization.guard';
 import { ShopComponent } from './shop/shop.component';
-import { AccountDashboardComponent } from './account-dashboard/account-dashboard.component';
 import { PaymentComponent } from './payment/payment.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { authorizationGuard } from './authorization.guard';
 
 const routes: Routes = [
   {
@@ -39,10 +38,7 @@ const routes: Routes = [
 
   {
     path:'security',
-    // loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
-    //,canActivate:[authorizationGuard]
-    
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)    
   },
   {
     path:'contact',
@@ -54,15 +50,16 @@ const routes: Routes = [
   },  {
     path:'upload-prescription',
     component:OrderByPrescriptionComponent
-  },
-  {
-    path:'account',
-    component:AccountDashboardComponent
-  },
-  {
-    path:"security",
-    loadChildren:() => AuthModule
-  },
+  }
+  ,
+  // {
+  //   path:'account',
+  //   component:AccountDashboardComponent
+  // },
+  // {
+  //   path:"security",
+  //   loadChildren:() => AuthModule
+  // },
   {
     path:"map",
     component:MapComponent
@@ -83,6 +80,14 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
     ,canActivate:[authorizationGuard]
    
+  },
+    path:'admin', 
+    loadChildren:()=>import('./admin/admin.module').then((m)=>m.AdminModule)
+    ,canActivate:[authorizationGuard]
+  }, 
+  {
+    path:'userdashboard', 
+    loadChildren:()=>import('./user-dashboard/user-dashboard.module').then((m)=>m.UserDashboardModule)
   },
 
   {

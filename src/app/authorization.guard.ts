@@ -26,7 +26,7 @@ const router = new Router();
       }
      return true;
   }
- else //not user in the system 
+ else
  {
   toastr.warning('Please sign up');
   router.navigate(['security/register']);

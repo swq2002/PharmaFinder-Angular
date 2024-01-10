@@ -10,7 +10,6 @@ import { HomeComponent } from './home/home.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { SharedModule } from './shared/shared.module';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TestimonialComponent } from './testimonial/testimonial.component';
 import { FormsModule } from '@angular/forms'; 
 import { ProductResultComponent } from './product-result/product-result.component';
@@ -20,10 +19,11 @@ import { CartComponent } from './cart/cart.component';
 import { FiltarByPharmacyNamePipe } from './pipes/filtar-by-pharmacy-name.pipe';
 import { FiltarByMedcineNamePipe } from './pipes/filtar-by-medcine-name.pipe';
 import { ShopComponent } from './shop/shop.component';
-import { AccountDashboardComponent } from './account-dashboard/account-dashboard.component';
 import { PaymentComponent } from './payment/payment.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 
+import { DataTablesModule } from "angular-datatables";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,6 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
     CheckoutComponent,
     CartComponent,
     ShopComponent,
-    AccountDashboardComponent,
     PaymentComponent,
     ConfirmationComponent,
 
@@ -48,15 +47,16 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
     BrowserAnimationsModule,
     NgbModule,
     SharedModule,
-    NgxSpinnerModule
-  ],
+    NgxSpinnerModule,
+    DataTablesModule
+    ],
   
   
   providers: [{
     provide:HTTP_INTERCEPTORS, 
     useClass:TokenInterceptor, 
     multi:true
-  }],
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

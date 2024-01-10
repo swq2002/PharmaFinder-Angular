@@ -31,6 +31,7 @@ import { TestComponent } from './test/test.component';
 import { FiltarByPharmacyNamePipe } from '../pipes/filtar-by-pharmacy-name.pipe';
 
 import { FiltarByMedcineNamePipe } from '../pipes/filtar-by-medcine-name.pipe';
+import { ReportComponent } from './report/report.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { FiltarByMedcineNamePipe } from '../pipes/filtar-by-medcine-name.pipe';
     MedicinesInOrderComponent,
     TestComponent,
     FiltarByPharmacyNamePipe,
-    FiltarByMedcineNamePipe
+    FiltarByMedcineNamePipe,
+    ReportComponent
     
 
     
