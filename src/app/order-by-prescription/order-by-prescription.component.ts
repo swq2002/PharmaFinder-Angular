@@ -85,7 +85,10 @@ export class OrderByPrescriptionComponent implements OnInit {
       if (this.medicines) {
         this.nearestMedicines = this.mapService.findNearestPharmacies(this.userLoc, this.medicines);
         this.spinner.hide();
-        this.router.navigate(['/product-result']);
+        const encodedData = encodeURIComponent(JSON.stringify(this.nearestMedicines));
+        this.router.navigate(['/product-result'], {
+          queryParams: { medicines: encodedData }
+        });
 
       } else if (this.txtInput.value) {
         debugger;
@@ -96,8 +99,10 @@ export class OrderByPrescriptionComponent implements OnInit {
             if (this.medicines) {
               this.nearestMedicines = await this.mapService.findNearestPharmacies(this.userLoc, this.medicines);
               this.spinner.hide();
-              this.router.navigate(['/product-result']);
-
+              const encodedData = encodeURIComponent(JSON.stringify(this.nearestMedicines));
+              this.router.navigate(['/product-result'], {
+                queryParams: { medicines: encodedData }
+              });
             } else {
               this.router.navigate(['']);
             }

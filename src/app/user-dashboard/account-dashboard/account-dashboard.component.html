@@ -42,7 +42,7 @@
                                                 </thead>
                                                 <tbody>
                                                   <tr *ngFor="let obj of home.orders" style="height: 70px;">
-                                                    <ng-container *ngIf="obj.username == 'Sami'">
+                                                    <ng-container>
                                                         <td>
                                                             {{obj.orderdate | date}}
                                                         </td>

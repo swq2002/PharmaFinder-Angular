@@ -12,7 +12,7 @@ import { PrescriptionService } from '../Services/prescription.service';
   templateUrl: './product-result.component.html',
   styleUrls: ['./product-result.component.css']
 })
-export class ProductResultComponent implements AfterViewInit{
+export class ProductResultComponent implements OnInit{
   medicines: any;
   pharmacy: any[] = [];
   map: any;
@@ -20,17 +20,19 @@ export class ProductResultComponent implements AfterViewInit{
   @ViewChild('callItemDailog') callItemDailog!: TemplateRef<any>
 
   constructor(private adminService: AdminServicesService,private mapService: MapService,private route: ActivatedRoute ,public dialog:MatDialog,private toaster:ToastrService,private prescriptionService: PrescriptionService) {
-    this.route.queryParams.subscribe(params => {
-      // if (params['medicines']) {
-      //   this.medicines = JSON.parse(params['medicines']);
-      // }
-      this.medicines=prescriptionService.nearestMedicines;
-    });
+
+   
   }
 
-  async ngAfterViewInit() {
+  async ngOnInit() {
     try {
-      this.position = await this.mapService.getCurrentLocation();
+      this.route.queryParams.subscribe(params => {
+        if (params['medicines']) {
+          const encodedData = params['medicines'];
+          const decodedData = JSON.parse(decodeURIComponent(encodedData));
+          this.medicines = decodedData;
+        }
+      });      this.position = await this.mapService.getCurrentLocation();
       console.log(this.position);
 
       this.map = await this.mapService.createMap(this.position.lat, this.position.lng);

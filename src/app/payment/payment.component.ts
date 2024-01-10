@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminServicesService } from '../Services/admin-services.service';
 import { PaymentService } from '../Services/payment.service';
+import { AuthService } from '../Services/auth.service';
 
 declare var paypal: any; // Declare PayPal variable
 
@@ -11,24 +12,22 @@ declare var paypal: any; // Declare PayPal variable
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
-  amount = 0;
   cartItems: any[] = [];
+  order: any;
+  user:any;
 
   @ViewChild('paymentRef', { static: true }) paymentRef!: ElementRef;
 
-  constructor(private router: Router, public adminService: AdminServicesService, public payment:PaymentService) { }
+  constructor(private router: Router, public adminService: AdminServicesService, public payment: PaymentService,private auth:AuthService) { }
+  async ngOnInit() {
+    debugger;
+    this.order =  await this.payment.GetAllInformationOrder();
+    this.user = this.auth.getCurrentUser();
 
-   ngOnInit() {
+    await this.renderPaypalButtons();
 
-     const storedAmount = localStorage.getItem('OrderTotal');
- 
-   this.cartItems = JSON.parse(localStorage.getItem('cart') || '[]');
-
-      if (storedAmount) {
-      this.amount = parseFloat(storedAmount); 
-    } else {
-      this.amount = 0;
-    }
+  }
+  renderPaypalButtons() {
 
     paypal.Buttons({
       style: {
@@ -41,7 +40,7 @@ export class PaymentComponent implements OnInit {
         return actions.order.create({
           purchase_units: [{
             amount: {
-              value: this.amount.toString(),
+              value: this.order.orderprice.toString(),
               currency_code: 'USD'
             }
           }]
@@ -49,15 +48,14 @@ export class PaymentComponent implements OnInit {
       },
       onApprove: async (data: any, actions: any) => {
         return actions.order.capture().then(async (details: any) => {
-          // Handle successful payment
           console.log('Payment completed:', details);
-          
-          // Redirect or perform actions after successful payment
-          if (details.status === 'COMPLETED') {
-            this.payment.transactionID = details.id; // Accessing transaction ID from PayPal response
-            console.log('Transaction ID:', this.payment.transactionID );
-       
 
+          if (details.status === 'COMPLETED') {
+            this.payment.transactionID = await details.id;
+            console.log('Transaction ID:', this.payment.transactionID);
+
+             await this.SendInvoice();
+             await this.adminService.AcceptOrders({orderid:this.order.orderid,approval:"Paid"})
             this.router.navigate(['confirm']);
           }
         });
@@ -67,13 +65,27 @@ export class PaymentComponent implements OnInit {
       onCancel: (data: any) => {
         // Handle cancelled payment
         console.log('Payment cancelled:', data);
-        // Redirect or perform actions after cancelled payment
-        // Example: this.router.navigate(['cancelled']);
+        this.router.navigate(['cancelled']);
       }
     }).render(this.paymentRef.nativeElement);
   }
 
+  async SendInvoice() {
+
+    const order = {
+      orderprice: this.order.orderprice,
+      userid: this.user.userid
+    };
+    const emailDto = { to: this.user.email, subject: "Payment Successfully Processed", plaintext:`Dear ${this.user.name}, <br> <br> Your payment has been successfully sent.<br><br> Thank you for your purchase!`}
+
+    const InvoiceDto = {  orderdate:this.order.orderdate, orderid: this.order.orderid, orderprice: this.order.orderprice, username: this.user.name, email: this.user.email };
+
+    await this.payment.SendInvoice(emailDto, this.cartItems, InvoiceDto);
+
+
+
+  }
   cancel() {
-    this.router.navigate(['cart']);
+    this.router.navigate(['userdashboard/userOrders']);
   }
 }

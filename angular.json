@@ -42,8 +42,8 @@
               "src/assets/AdminAssets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css",
               "src/assets/AdminAssets/scss/style2.scss",
               "node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css",
-              "node_modules/datatables.net-dt/css/jquery.dataTables.css"
-
+              "node_modules/datatables.net-dt/css/jquery.dataTables.css",
+              "node_modules/datatables.net-dt/css/jquery.dataTables.min.css"
             ],
             "scripts": [
               "src/assets/HomeAssets/js/plugins.js",

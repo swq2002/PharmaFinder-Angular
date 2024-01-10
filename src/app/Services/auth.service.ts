@@ -61,7 +61,7 @@ export class AuthService {
         this.router.navigate(['admin/dashboard']);
       }
       else
-      this.router.navigate([''])
+      this.router.navigate(['services'])
       this.toastr.success('Welcome');
       this.spinner.hide();
     },err=>{

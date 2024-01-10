@@ -20,18 +20,21 @@ const routes: Routes = [
   {
     path: 'product-result', 
     component: ProductResultComponent,
+    canActivate: [authorizationGuard]
 
 
   },
   {
     path: 'about', 
     component: AboutusComponent,
+    
 
 
   },
   {
     path: 'services', 
     component: ShopComponent,
+    canActivate: [authorizationGuard]
 
 
   },
@@ -49,39 +52,36 @@ const routes: Routes = [
     component:HomeComponent
   },  {
     path:'upload-prescription',
-    component:OrderByPrescriptionComponent
+    component:OrderByPrescriptionComponent,
+    canActivate: [authorizationGuard]
   }
   ,
-  // {
-  //   path:'account',
-  //   component:AccountDashboardComponent
-  // },
-  // {
-  //   path:"security",
-  //   loadChildren:() => AuthModule
-  // },
+ 
   {
     path:"map",
-    component:MapComponent
+    component:MapComponent,
+    canActivate: [authorizationGuard]
   },
   
   {
     path:"cart",
-    component:CartComponent
+    component:CartComponent,
+    canActivate: [authorizationGuard]
   },
   
   {
     path:"checkout",
-    component:CheckoutComponent
+    component:CheckoutComponent,
+    canActivate: [authorizationGuard]
   },
 
   {
     path:'security',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
     ,canActivate:[authorizationGuard]
-   
+
   },
-    path:'admin', 
+   { path:'admin', 
     loadChildren:()=>import('./admin/admin.module').then((m)=>m.AdminModule)
     ,canActivate:[authorizationGuard]
   }, 

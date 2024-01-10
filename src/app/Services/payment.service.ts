@@ -13,6 +13,16 @@ export class PaymentService {
   constructor(private http: HttpClient,private toaster:ToastrService,private spinner:NgxSpinnerService) { 
 
   }
+  private orderIdPay: number=0;
+
+  setOrderId(orderId: number) {
+    this.orderIdPay = orderId;
+  }
+ 
+
+  getOrderId(): number {
+    return this.orderIdPay;
+  }
   CreateOrder(order: any): Promise<number> {
     return new Promise((resolve, reject) => {
       this.http.post('https://localhost:7274/api/Orders/CreateOrder', order).subscribe(
@@ -59,6 +69,22 @@ const data={
       errOrderMed => {
         console.error(errOrderMed);
         reject(errOrderMed);
+      }
+    );
+  });
+
+  
+}
+GetAllInformationOrder(): Promise<any> {
+  return new Promise((resolve, reject) => {
+    this.http.get(`https://localhost:7274/api/Orders/GetOrderById/${this.orderIdPay}`).subscribe(
+      (resp) => {
+        resolve(resp); 
+      },
+      (err) => {
+        console.error(err.message);
+        console.error(err.status);
+        reject(err); 
       }
     );
   });

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 export class HomeService {
   private apiUrl = 'https://localhost:7274/api/Orders'; // Replace with your actual API URL
 
-  constructor(private http: HttpClient,private spinner:NgxSpinnerService,private toastr: ToastrService) { }
+  constructor(private auth:AuthService ,private http: HttpClient,private spinner:NgxSpinnerService,private toastr: ToastrService) { }
   GetHome() {
     return this.http.get('https://localhost:7274/api/Home/GetHomeById/' + 1);
   }
@@ -83,7 +84,10 @@ export class HomeService {
 
     orders:any=[{}];
     GetAllInformationOrders(){
-      this.http.get('https://localhost:7274/api/Orders/GetAllInformationOrders').subscribe((resp)=>{
+      const user = this.auth.getCurrentUser();
+
+      
+      this.http.get(`https://localhost:7274/api/Orders/GetOrdersByUserId/${user.userid}`).subscribe((resp)=>{
         this.orders=resp;
       },err=>{
         console.log(err.message);

@@ -2,19 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../Services/home.service';
 import { PaymentService } from '../Services/payment.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../Services/auth.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
+
 export class CartComponent implements OnInit {
   cartItems: any;
-  cartTotalPrice:number=0;
-  constructor(public home:HomeService, public payment:PaymentService,private router: Router){}
+  cartTotalPrice: number = 0;
+  user: any;
+
+  constructor(public home: HomeService, private spinner:NgxSpinnerService,public payment: PaymentService, private router: Router, private auth: AuthService) { }
   ngOnInit(): void {
     this.loadCart();
-
+    this.user = this.auth.getCurrentUser();
   }
 
   loadCart(): void {
@@ -54,83 +59,42 @@ export class CartComponent implements OnInit {
 
   }
   calculateTotalPrice() {
-    this.cartTotalPrice = this.cartItems.reduce((total:number, item:any) => {
+    this.cartTotalPrice = this.cartItems.reduce((total: number, item: any) => {
       return total + (item.medicineprice * item.quantity);
-    }, 0); 
+    }, 0);
   }
 
 
- 
-//   proceedToCheckout(): void {
-//     const orderData = {
-//       items: this.cartItems,
-//       totalPrice: this.cartTotalPrice
-//     };
-
-//     this.home.createOrder(orderData).subscribe(
-//       (response) => {
-//         console.log('Order created:', response);
-//         localStorage.removeItem('cart');
-//         this.cartItems = [];
-//         this.cartTotalPrice = 0;
-//       },
-//       (error) => {
-//         console.error('Failed to create order:', error);
-//       }
-//     );
 
 
-// }
+  clearCart(): void {
+    localStorage.removeItem('cart');
+    this.cartItems = [];
+    this.cartTotalPrice = 0;
+  }
+  async SendOrder() {
+    this.spinner.show();
 
-// proceedToCheckout(): void {
-//   this.loadCart(); 
+    const order = {
+      orderprice: this.cartTotalPrice,
+      userid: this.user.userid
+    };
+    const now = new Date();
 
-//   if (this.cartItems && this.cartItems.length > 0) {
-//     const orderData = {
-//       items: this.cartItems,
-//       totalPrice: this.cartTotalPrice
-//     };
+    const emailDto = { to: this.user.email, subject: "Invoice", plaintext:`Dear ${this.user.name}, <br> Your order has been sent successfully and is under review.` }
 
-//     this.home.createOrder(orderData).subscribe(
-//       (response) => {
-//         console.log('Order created:', response);
-//         localStorage.removeItem('cart');
-//         this.cartItems = [];
-//         this.cartTotalPrice = 0;
-//       },
-//       (error) => {
-//         console.error('Failed to create order:', error);
-//       }
-//     );
-//   } else {
-//     console.error('Cart is empty. Cannot proceed with checkout.');
-//   }
-// }
-clearCart(): void {
-  localStorage.removeItem('cart');
-  this.cartItems = [];
-  this.cartTotalPrice = 0;
-}
-async SendOrder(){
-  debugger;
+    const orderId = await this.payment.CreateOrder(order);
+    const InvoiceDto = { orderid: orderId, orderdate:now.toLocaleDateString ,orderprice: this.cartTotalPrice, username: this.user.name, email: this.user.email };
 
-  const order = {
-    orderprice: this.cartTotalPrice,
-    userid: 3
-};
-
-const emailDto={to:"ahmadalzoubi099@gmail.com",subject:"Invoice",}
-
-const orderId = await this.payment.CreateOrder(order);
-const InvoiceDto={orderid:orderId,orderprice:this.cartTotalPrice,username:"saif",email:"swq@email.com"};
-
-await this.payment.CreateOrderMed(orderId, this.cartItems);
-await this.payment.SendInvoice(emailDto, this.cartItems,InvoiceDto);
+    await this.payment.CreateOrderMed(orderId, this.cartItems);
+    await this.payment.SendInvoice(emailDto, this.cartItems, InvoiceDto);
 
 
-this.clearCart();
-this.router.navigate(['checkout']);
+    this.clearCart();
+    this.spinner.hide();
 
-}
+    this.router.navigate(['checkout']);
+
+  }
 
 }

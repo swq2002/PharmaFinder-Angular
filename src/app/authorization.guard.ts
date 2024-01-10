@@ -8,7 +8,9 @@ const router = new Router();
   const token = localStorage.getItem('token');
   console.log(state);
   if(token){
+    debugger;
       if(state.url.indexOf('admin')>0) {
+
 
           let user :any = localStorage.getItem('user'); //string 
           user = JSON.parse(user);
@@ -17,20 +19,21 @@ const router = new Router();
      toastr.success('Welcome in Admin dashboard');
             return true; 
           }
-          else //roleid != 1 
+          else 
           {
             toastr.warning('This page for admin module');
            router.navigate(['security/login']);
              return false ; 
           }
       }
+     
      return true;
   }
  else
  {
-  toastr.warning('Please sign up');
-  router.navigate(['security/register']);
-return false;
+  toastr.warning('Please sign in');
+  router.navigate(['security/login']);
+  return false;
  }
 
 
