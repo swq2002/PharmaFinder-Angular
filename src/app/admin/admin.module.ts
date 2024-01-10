@@ -31,6 +31,9 @@ import { TestComponent } from './test/test.component';
 import { FiltarByPharmacyNamePipe } from '../pipes/filtar-by-pharmacy-name.pipe';
 
 import { FiltarByMedcineNamePipe } from '../pipes/filtar-by-medcine-name.pipe';
+import { ManageHomePageComponent } from './manage-home-page/manage-home-page.component';
+import { ManageAboutPageComponent } from './manage-about-page/manage-about-page.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,11 @@ import { FiltarByMedcineNamePipe } from '../pipes/filtar-by-medcine-name.pipe';
     MedicinesInOrderComponent,
     TestComponent,
     FiltarByPharmacyNamePipe,
-    FiltarByMedcineNamePipe
+    FiltarByMedcineNamePipe,
+    ManageHomePageComponent,
+    ManageAboutPageComponent,
+    EditProfileComponent,
+
     
 
     

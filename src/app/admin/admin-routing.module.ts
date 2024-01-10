@@ -10,6 +10,10 @@ import { PharmacyComponent } from './pharmacy/pharmacy.component';
 import { OrderComponent } from './order/order.component';
 import { MedicinesInOrderComponent } from './medicines-in-order/medicines-in-order.component';
 import { TestComponent } from './test/test.component';
+import { ManageHomePageComponent } from './manage-home-page/manage-home-page.component';
+import { ManageAboutPageComponent } from './manage-about-page/manage-about-page.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+
 
 const routes: Routes = [
 
@@ -60,6 +64,18 @@ const routes: Routes = [
   {
     path:'userAccount',
     component:UserComponent
+  },
+  {
+    path:'ManageHomePage',
+    component:ManageHomePageComponent
+  },
+  {
+    path:'ManageAboutPage',
+    component:ManageAboutPageComponent
+  },
+  {
+    path:'EditProfile',
+    component:EditProfileComponent
   }
  
  
