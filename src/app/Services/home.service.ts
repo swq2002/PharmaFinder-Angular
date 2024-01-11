@@ -54,6 +54,20 @@ export class HomeService{
       );
     }
       
+    DeleteUser(id:number){
+      this.spinner.show();
+      this.http.delete('https://localhost:7274//api/User/DeleteUser/'+id).subscribe((resp)=>{
+        this.toastr.success('Your account has been deleted successfully');
+        this.spinner.hide();
+      },
+      (err)=>{
+        this.toastr.error('something want wrong !!');
+        this.spinner.hide();
+        console.log(err.message);
+        console.log(err.status);
+      });
+    }
+
       display_image: any;
       uploadAttachment(file: FormData){
         debugger;

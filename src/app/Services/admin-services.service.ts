@@ -32,6 +32,10 @@ export class AdminServicesService {
   CalculateProfitForPaidOrders(){
     return this.http.get('https://localhost:7274/api/Orders/CalculateProfitForPaidOrders')
   }
+
+  CalculateAnnualProfitForPaidOrders(){
+    return this.http.get('https://localhost:7274/api/Orders/CalculateAnnualProfitForPaidOrders')
+  }
   
   GetPharmacyCount(){
     debugger;

@@ -34,7 +34,7 @@ export class ReportComponent implements OnInit{
     //this.getSalesByMonthReport(this.selectedMonth, this.selectedYear);
     this.getSalesByYearReport(this.selectedYear);
 
-    this.admin.CalculateProfitForPaidOrders().subscribe((resp: any)=>{
+    this.admin.CalculateAnnualProfitForPaidOrders().subscribe((resp: any)=>{
       const label = resp.map((item: any) => item.year);
       const data = resp.map((item:any) => item.value)
       console.log(resp);
