@@ -28,6 +28,11 @@ export class AdminServicesService {
   PharmacyCount:any=[{}];
   constructor(private http: HttpClient,private toaster:ToastrService,private spinner:NgxSpinnerService,private router:Router) {}
   
+
+  CalculateProfitForPaidOrders(){
+    return this.http.get('https://localhost:7274/api/Orders/CalculateProfitForPaidOrders')
+  }
+  
   GetPharmacyCount(){
     debugger;
      this.http.get('https://localhost:7274/api/Pharmacy/GetPharmacyCount').subscribe((resp)=>{

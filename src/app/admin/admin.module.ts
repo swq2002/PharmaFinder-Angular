@@ -12,8 +12,8 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
  import { SharedModule } from '../shared/shared.module';
  import { MatSelectModule } from '@angular/material/select'; // Import MatSelectModule
-
-import { share } from 'rxjs';
+ import { NgChartsModule } from 'ng2-charts'; // Import NgChartsModule
+ import { share } from 'rxjs';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
@@ -69,6 +69,7 @@ import { ReportComponent } from './report/report.component';
     ReactiveFormsModule,
     FormsModule,
     MatSelectModule,
+    NgChartsModule
 
     
     

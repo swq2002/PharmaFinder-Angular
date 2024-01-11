@@ -4,7 +4,7 @@ import { Subject } from "rxjs";
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import * as XLSX from 'xlsx';
-
+import Chart, { ChartType } from 'chart.js/auto';
 @Component({
   selector: 'app-report',
   templateUrl: './report.component.html',
@@ -34,8 +34,112 @@ export class ReportComponent implements OnInit{
     //this.getSalesByMonthReport(this.selectedMonth, this.selectedYear);
     this.getSalesByYearReport(this.selectedYear);
 
+    this.admin.CalculateProfitForPaidOrders().subscribe((resp: any)=>{
+      const label = resp.map((item: any) => item.year);
+      const data = resp.map((item:any) => item.value)
+      console.log(resp);
+     this.GenerateChartAnnualReport(label, data)
+      
+    },(err: { message: any; status: any; })=>{
+      console.log(err.message);
+      console.log(err.status);
+    });
+
+    this.admin.CalculateProfitForPaidOrders().subscribe((resp: any)=>{
+      const label = resp.map((item: any) => item.month);
+      const data = resp.map((item:any) => item.value)
+      console.log(resp);
+     //  console.log(data);
+     this.GenerateChartMonthlyReport(label, data)
+      
+    },err=>{
+      console.log(err.message);
+      console.log(err.status);
+    });
+
   }
   
+  GenerateChartMonthlyReport(labels: any, values: any) {
+
+    const data = {
+      labels: labels,
+      datasets: [{
+        label: 'Monthly Report',
+        data: values,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 205, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(201, 203, 207, 0.2)'
+        ],
+        borderColor: [
+          'rgb(255, 99, 132)',
+          'rgb(255, 159, 64)',
+          'rgb(255, 205, 86)',
+          'rgb(75, 192, 192)',
+          'rgb(54, 162, 235)',
+          'rgb(153, 102, 255)',
+          'rgb(201, 203, 207)'
+        ],
+        borderWidth: 1
+      }]
+    };
+    const ctx = document.getElementById('MonthlyReport') as HTMLCanvasElement;
+    const config = {
+      type: 'bar',
+      data: data,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      },
+    };
+
+    const myChart = new Chart(ctx, {
+      type: 'bar',
+      data: data,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      },
+    });
+
+  }
+
+  GenerateChartAnnualReport(labels: any, values: any) {
+
+    const data = {
+      labels: labels,
+
+      datasets: [{
+        label: 'Annual Report',
+        data: values,
+        backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)'
+        ],
+        hoverOffset: 4
+      }]
+    };
+    const ctx = document.getElementById('AnnualReport') as HTMLCanvasElement;
+
+
+    const myChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: data,
+      
+    });
+
+  }
   getSalesByMonthReport(month: number, year: number): void {
     this.admin.getAllSalesByMonthReport(month, year)
       .subscribe(response => {

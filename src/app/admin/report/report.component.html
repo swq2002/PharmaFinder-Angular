@@ -142,7 +142,7 @@
 </div>
 
 
-<div *ngIf="searchResults.length == 0 && annualReport.length == 0 && monthlyReport.length == 0" class="col-8">
+<div *ngIf="(isSearchResults && searchResults.length == 0 ) || (isAnnualReport && annualReport.length == 0) || (isMonthlyReport && monthlyReport.length == 0)" class="col-8">
   <table class="table text-wrap mb-0 align-middle" id="table-data">
     <thead>
     <tr>
@@ -190,14 +190,24 @@
   </div>
 </div>
 
-
-
-
-
 </div>
 
 
 </div>
+
+<div class="row">
+  <div class="col-5 m-3">
+<canvas id="AnnualReport">
+
+</canvas>
+</div>
+<div class="col-5 m-3">
+<canvas id="MonthlyReport">
+
+</canvas>
+</div>
+</div>
+
 <app-footer></app-footer>
 
 </div>
