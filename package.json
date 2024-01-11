@@ -36,12 +36,14 @@
     "datatables.net-buttons": "^2.4.2",
     "datatables.net-dt": "^1.13.8",
     "jquery": "^3.7.1",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.8.1",
     "jwt-decode": "^4.0.0",
     "ngx-spinner": "^16.0.2",
-    "ngx-toaster": "^1.0.1",
     "ngx-toastr": "^18.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "xlsx": "^0.18.5",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {

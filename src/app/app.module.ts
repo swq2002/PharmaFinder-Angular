@@ -52,7 +52,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     provide:HTTP_INTERCEPTORS, 
     useClass:TokenInterceptor, 
     multi:true
-    }],
+    },
+  ],
+    
   bootstrap: [AppComponent]
 })
 export class AppModule { }

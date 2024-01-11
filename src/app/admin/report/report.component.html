@@ -12,70 +12,70 @@
 
 
 
-<div class="container mb-9 col-7" style="margin-top: 10%;">
-    <div class="p-3 mb-2 bg-dark text-white text-center font-weight-bold">Sales Report</div>
+<div class="container col-9" style="margin-top: 5%;">
+    <div class="p-2 bg-light text-white text-center font-weight-bold" style="font-size: 40px;">Sales Reports</div>
 
-    <div class="row" style="margin: 100px 0px 100px 0px;">
-        <div class="col-4">
-            <div class="card border-success mb-1" style="max-width: 9rem; max-height: 9rem;background-color: rgba(155, 223, 193, 0.489);">
-                <div class="card-header fw-bold">Total Sales/ Monthly</div>
-                    <h5 class="card-title" style="align-items: center; text-align: center; margin-top: 10px;">{{MonthlySalesCount}}</h5>
-           </div>
+    <div class="row" id="total">
+        <div class="col-3 m-5">
+            <div class="card border-success" style="min-width: 9rem;background-color: rgba(49, 195, 136, 0.542);">
+              <div class="card-header fw-bold">
+                <h2><i class="fas fa-chart-bar"></i> Total Sales</h2><h3>Monthly</h3>
+                    <h5 class="card-title" style="align-items: center; text-align: center; margin-top: 25px;">{{MonthlySalesCount}}</h5>
+                </div>
+            </div>
         </div>
-        <div class="col-4">
-            <div class="card border-success mb-1" style="max-width: 9rem; max-height: 9rem;background-color: rgba(155, 223, 193, 0.489);">
-                <div class="card-header fw-bold">Total Sales/ Annual</div>
-                    <h5 class="card-title" style="align-items: center; text-align: center; margin-top: 10px;">{{AnnualSalesCount}}</h5>
-           </div>
+        <div class="col-3 m-5">
+            <div class="card border-success mb-1" style="min-width: 9rem;background-color: rgba(49, 195, 136, 0.542);">
+                <div class="card-header fw-bold">
+                  <h2><i class="fas fa-chart-bar"></i> Total Sales</h2><h3>Annual</h3>
+                    <h5 class="card-title" style="align-items: center; text-align: center; margin-top: 25px;">{{AnnualSalesCount}}</h5>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="mb-5">
-        <div class="col mb-5">
-            <div class="row-6">
-                <label for="dateFrom" class="m-1">From:</label>
-                <input type="date" id="dateFrom" [(ngModel)]="dateFrom" />
-            </div>
-            <div class="row-6">
-                <label for="dateTo" class="m-3">To:</label>
-                <input type="date" id="dateTo" [(ngModel)]="dateTo" />
-            </div>
-            <div class="row-6">
-                <button (click)="searchSales(dateFrom, dateTo)" style="background-color: rgb(39, 182, 120); color: white; margin-left: 10px; border-radius: 5px; font-size: 15px; padding: 5px 15px 5px 15px;">Search</button>
-            </div>
-       </div>
+<div class="mb-5 col">
+        
+<div class="row">
+    <div class="col-8">
       <form (ngSubmit)="getSalesByMonthReport(selectedMonth, selectedYear)">
-        <h2>Monthly Report</h2>  
+        <h2>Monthly Report:</h2> 
         <div class="row">
-        <div class="col">
-            <label for="month" class="m-2">Month:</label>
+        <div class="col-4">
+            <label for="month" class="m-2">Month:</label><br>
             <input type="number" id="month" name="month" placeholder="month" [(ngModel)]="selectedMonth" required />    
         </div>
-        <div class="col">
-            <label for="year" class="m-2">Year:</label>
+        <div class="col-4">
+            <label for="year" class="m-2">Year:</label><br>
             <input type="number" id="year" name="year" placeholder="year" [(ngModel)]="selectedYear" required />    
         </div>
-        <div class="col">
-            <button type="submit" (click)="getSalesByMonthReport(selectedMonth, selectedYear)" style="background-color: rgb(39, 182, 120); color: white; margin-left: 10px; border-radius: 5px; font-size: 15px; padding: 5px 15px 5px 15px;">Filter</button>
-        </div>
+      </div> 
+        <div class="col mt-3">
+            <button id="button" type="submit" (click)="getSalesByMonthReport(selectedMonth, selectedYear)" style="background-color: rgb(39, 182, 120); color: white; margin-left: 10px; border-radius: 5px; font-size: 15px; padding: 5px 15px 5px 15px;">Filter</button>
         </div>
       </form>
-
+    </div>
+    <div class="col">
       <form (ngSubmit)="getSalesByYearReport(selectedYear)">
-        <h2>Annual Report</h2>  
-        <div class="row">
-        <div class="col-4">
-            <label for="year" class="m-2">Year:</label>
+        <h2>Annual Report:</h2>  
+        <div class="row-4">
+            <label for="year" class="m-2">Year:</label><br>
             <input type="number" id="year" name="year" placeholder="year" [(ngModel)]="selectedYear" required />    
         </div>
-        <div class="col-4">
-            <button type="submit" (click)="getSalesByYearReport(selectedYear)" style="background-color: rgb(39, 182, 120); color: white; margin-left: 10px; border-radius: 5px; font-size: 15px; padding: 5px 15px 5px 15px;">Filter</button>
-        </div>
+        <div class="row-4 mt-3">
+            <button id="button" type="submit" (click)="getSalesByYearReport(selectedYear)" style="background-color: rgb(39, 182, 120); color: white; margin-left: 10px; border-radius: 5px; font-size: 15px; padding: 5px 15px 5px 15px;">Filter</button>
         </div>
       </form>
+    </div>
+</div>
 
-    <div *ngIf="monthlyReport.length > 0" class="col-8">
-        <h2>Monthly Report</h2>
+
+      <div class="container mt-5" *ngIf="isMonthlyReport || isAnnualReport || isSearchResults">
+
+        <div class="row">
+
+        <div *ngIf="isMonthlyReport && monthlyReport.length > 0" class="col-8 mt-3">
+          <!-- <h2>Monthly Report</h2> -->
       <table class="table text-wrap mb-0 align-middle" id="table-data">
         <thead>
           <tr>
@@ -95,13 +95,9 @@
         </tbody>
       </table>
     </div>
-  
-    <div *ngIf="annualReport.length === 0">
-      No data available for the selected month and year.
-    </div>
-  
-    <div *ngIf="annualReport.length > 0" class="col-8">
-        <h2>Annual Report</h2>
+
+    <div *ngIf="isAnnualReport && annualReport.length > 0" class="col-8 mt-3">
+        <!-- <h2>Annual Report</h2> -->
         <table class="table text-wrap mb-0 align-middle" id="table-data">
           <thead>
             <tr>
@@ -123,8 +119,8 @@
       </div>
 
 
-<div *ngIf="searchResults.length > 0" class="col-8">
-    <h2>Search Results</h2>
+      <div *ngIf="isSearchResults && searchResults.length > 0" class="col-8 mt-3">
+        <!-- <h2>Search Results</h2> -->
       <table class="table text-wrap mb-0 align-middle" id="table-data">
     <thead>
       <tr>
@@ -144,15 +140,72 @@
     </tbody>
   </table>
 </div>
+
+
+<div *ngIf="searchResults.length == 0 && annualReport.length == 0 && monthlyReport.length == 0" class="col-8">
+  <table class="table text-wrap mb-0 align-middle" id="table-data">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Order Date</th>
+      <th>Order Value</th>
+      <th>Quantity</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td colspan="4" style="align-content: center; text-align: center;">
+        No data available for the selected month and year.
+      </td>
+    </tr>
+    </tbody>
+    </table>
+</div>
+
+
+
+<div class="col mt-4" style="margin-left: 30px;">
+  <div class="row-6">
+      <label for="dateFrom" class="m-1">From:</label>
+      <input type="date" id="dateFrom" [(ngModel)]="dateFrom" />
+  </div>
+  <div class="row-6">
+      <label for="dateTo" class="m-3">To:</label>
+      <input type="date" id="dateTo" [(ngModel)]="dateTo" />
+  </div>
+  <div class="row-6 mt-2">
+      <button id="button" (click)="searchSales(dateFrom, dateTo)" style="background-color: rgb(39, 182, 120); color: white; margin-left: 10px; border-radius: 5px; font-size: 15px; padding: 5px 15px 5px 15px;">Search</button>
+  </div>
 </div>
 
 </div>
-</div>
+
+
+<div class="row mt-5">
+  <div class="col-2" >
+    <button id="button" (click)="exportToPDF()">Download as PDF <i class="fas fa-file-pdf"></i></button>
+  </div>
+  <div class="col-2" >
+    <button id="button" (click)="exportToExcel()">Download as Excel <i class="fas fa-file-excel"></i></button>
+  </div>
 </div>
 
+
+
+
+
+</div>
+
+
+</div>
 <app-footer></app-footer>
 
-<br /><br /><br />
+</div>
+
+</div>
+</div>
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js" defer></script>
 <script src="https://cdn.datatables.net/buttons/2.0.0/js/dataTables.buttons.min.js" defer></script>

@@ -8,22 +8,22 @@ const router = new Router();
   const token = localStorage.getItem('token');
   console.log(state);
   if(token){
-      if(state.url.indexOf('admin')>0) {
+    //   if(state.url.indexOf('admin')>0) {
 
-          let user :any = localStorage.getItem('user'); //string 
-          user = JSON.parse(user);
-          if(user.roleid=='1')
-          {
-     toastr.success('Welcome in Admin dashboard');
-            return true; 
-          }
-          else //roleid != 1 
-          {
-            toastr.warning('This page for admin module');
-           router.navigate(['security/login']);
-             return false ; 
-          }
-      }
+    //       let user :any = localStorage.getItem('user'); //string 
+    //       user = JSON.parse(user);
+    //       if(user.roleid=='1')
+    //       {
+    //  toastr.success('Welcome in Admin dashboard');
+    //         return true; 
+    //       }
+    //       else //roleid != 1 
+    //       {
+    //         toastr.warning('This page for admin module');
+    //        router.navigate(['security/login']);
+    //          return false ; 
+    //       }
+    //   }
      return true;
   }
  else
