@@ -11,25 +11,17 @@ declare var $: any;
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  // @ViewChild('totalProfitCanvas') totalProfitCanvas!: ElementRef<HTMLCanvasElement>;
 
   numberOfMedicine: number = 0;
   salesOfOrder: any = [];
   pharmacy: any;
   totalProfitCanvas: any;
   pieChartData: any;
-  pieChartType: ChartType = 'doughnut';
-  pieChartLabels: unknown[] | undefined;
   router: any;
-  // pieChartLabels: Label[] = ['Total Profit'];
   constructor(public adminService: AdminServicesService, private http: HttpClient, private elementRef: ElementRef) { }
 
-  // public pieChartType: ChartType = 'line';
-  public pieChartType2: ChartType = 'bar';
 
   numberOfMed() {
-    // this.adminService.GetAllMedicine();
-    // console.log(this.numberOfMedicine);
     this.NumberOfUsersRegistered();
   }
 
@@ -40,7 +32,7 @@ export class DashboardComponent implements OnInit {
     this.http.get('https://localhost:7274/api/User/GetUserCount').subscribe(
       (resp) => {
         debugger;
-        this.numberOfUsersRegistered = resp; // Assign the value to adminService
+        this.numberOfUsersRegistered = resp;
       },
       (err) => {
         console.log(err.message);
@@ -51,60 +43,36 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.numberOfMed();
-    // this.adminService.getSalesByYearReport(2024).subscribe(res => {
-    //   console.log(res);
-    //   const labels = [2005, 2006];
-    //   const values = [70, 80]
-    //   this.GenerateChartReport(labels, values)
-    // }
 
-
-    // )
-    this.adminService.CalculateProfitForPaidOrders().subscribe((resp: any)=>{
+    this.adminService.CalculateProfitForPaidOrders().subscribe((resp: any) => {
       const label = resp.map((item: any) => item.month);
-      const data = resp.map((item:any) => item.value)
+      const data = resp.map((item: any) => item.value)
       console.log(resp);
-     //  console.log(data);
-     this.GenerateChartMonthlyReport(label, data)
-      
-    },err=>{
+      this.GenerateChartMonthlyReport(label, data)
+
+    }, err => {
       console.log(err.message);
       console.log(err.status);
     });
-   
 
 
-    this.adminService.CalculateProfitForPaidOrders().subscribe((resp: any)=>{
+
+    this.adminService.CalculateProfitForPaidOrders().subscribe((resp: any) => {
       const label = resp.map((item: any) => item.year);
-      const data = resp.map((item:any) => item.value)
+      const data = resp.map((item: any) => item.value)
       console.log(resp);
-     //  console.log(data);
-     this.GenerateChartAnnualReport(label, data)
-      
-    },err=>{
+      this.GenerateChartAnnualReport(label, data)
+
+    }, err => {
       console.log(err.message);
       console.log(err.status);
     });
-   
-    // this.fetchAndRenderChart();
 
 
 
 
 
 
-    setTimeout(() => {
-
-      let catarr = ["Frontend", "Backend", "Database"]
-      this.pieChartData = {
-        labels: catarr,
-        datasets: [
-          {
-            data: [1, 5, 3],
-          },
-        ],
-      };
-    }, 1000);
 
 
 
@@ -112,13 +80,9 @@ export class DashboardComponent implements OnInit {
     this.adminService.CalculateTotalOrderPrice();
     this.adminService.GetPharmacyCount();
     const dashboardProgress1 = this.elementRef.nativeElement.querySelector('.dashboard-progress-1') as HTMLElement;
-    const dashboardProgress1Dark = this.elementRef.nativeElement.querySelector('.dashboard-progress-1-dark');
     const dashboardProgress2 = this.elementRef.nativeElement.querySelector('.dashboard-progress-2');
-    const dashboardProgress2Dark = this.elementRef.nativeElement.querySelector('.dashboard-progress-2-dark');
     const dashboardProgress3 = this.elementRef.nativeElement.querySelector('.dashboard-progress-3');
-    const dashboardProgress3Dark = this.elementRef.nativeElement.querySelector('.dashboard-progress-3-dark');
-    const dashboardProgress4 = this.elementRef.nativeElement.querySelector('.dashboard-progress-4');
-    const dashboardProgress4Dark = this.elementRef.nativeElement.querySelector('.dashboard-progress-4-dark');
+
 
 
     if (dashboardProgress1) {
@@ -190,7 +154,7 @@ export class DashboardComponent implements OnInit {
     const myChart = new Chart(ctx, {
       type: 'doughnut',
       data: data,
-      
+
     });
 
   }
@@ -275,10 +239,8 @@ export class DashboardComponent implements OnInit {
     console.log(data);
   }
 
-  
+
 
 }
-function CalculateTotalOrderPrice() {
-  throw new Error('Function not implemented.');
-}
+
 
