@@ -4,6 +4,7 @@ import { HomeService } from 'src/app/Services/home.service';
 import { HttpClient } from '@angular/common/http';
 import { formatDate } from '@angular/common';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -29,7 +30,9 @@ export class RegisterComponent {
     email:'ex@example.com',
     password:'********'
   }
-constructor(public home:HomeService ,private fb: FormBuilder, private http: HttpClient, private el: ElementRef, private renderer: Renderer2, private router:Router) {
+
+
+constructor(public home:HomeService ,private fb: FormBuilder, private http: HttpClient, private el: ElementRef, private renderer: Renderer2, private router:Router, private toastr: ToastrService) {
 }
 
 goToLogin(){
@@ -45,7 +48,6 @@ goToLogin(){
     else
   
     this.registerForm.controls['confirmPassword'].setErrors({misMatch:true})
-  
   }
   clearInput(controlName: string): void {
     this.registerForm.get(controlName)?.setValue('');
@@ -66,10 +68,34 @@ goToLogin(){
   
 }
 
-async Submit(){
- await this.home.createUser(this.registerForm.value);
- this.goToLogin();
+Submit() {
+  debugger;
+  const userEmail = this.registerForm.controls['email'].value;
+
+  this.home.isEmailAlreadyRegistered(userEmail).subscribe(isRegistered => {
+    if (isRegistered) {
+      this.notifyUser();
+      this.goToLogin();
+    } else {
+      this.home.createUser(this.registerForm.value).subscribe(
+        resp => {
+          console.log('User created successfully!', resp);
+        },
+        error => {
+          console.error('Error creating user:', error);
+        }
+      );
+    }
+  });
 }
+
+private notifyUser() {
+  this.toastr.error('You already have account')
+  console.log('You already have an account!');
+}
+
+
+
 UploadImage(file:any){
   debugger;
   if(file.length==0) return;
@@ -78,4 +104,5 @@ UploadImage(file:any){
   formData.append('file',fileToUpload,fileToUpload.name);
   this.home.uploadAttachment(formData);
 }
+
 }

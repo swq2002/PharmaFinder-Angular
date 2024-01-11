@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HomeService } from 'src/app/Services/home.service';
 import { FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/Services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ loginError: boolean = false;
   rememberMe: boolean = false;
   users: any = []
 
-  constructor(public home:HomeService, private auth: AuthService) {
+  constructor(public home:HomeService, private auth: AuthService, private router: Router) {
 
     const usersFromLocalStorage = localStorage.getItem('users');
     const savedUsers = usersFromLocalStorage ? JSON.parse(usersFromLocalStorage) : [];
@@ -47,6 +48,7 @@ loginError: boolean = false;
       debugger;
       if (this.email.valid && this.password.valid) {
         this.auth.login(this.email.value, this.password.value);
+        this.router.navigate(['']);
       }
       else{
         this.loginError=true;

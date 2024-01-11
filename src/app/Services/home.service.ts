@@ -1,17 +1,22 @@
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, catchError, of } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from './auth.service';
+import { map, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class HomeService {
+export class HomeService{
   private apiUrl = 'https://localhost:7274/api/Orders'; // Replace with your actual API URL
 
-  constructor(private auth:AuthService ,private http: HttpClient,private spinner:NgxSpinnerService,private toastr: ToastrService) { }
+  registeredEmails: any = [];
+  private notifyUserSubject = new Subject<string>();
+
+  constructor(private http: HttpClient,private spinner:NgxSpinnerService, private toastr: ToastrService, private auth:AuthService){ }
+
   GetHome() {
     return this.http.get('https://localhost:7274/api/Home/GetHomeById/' + 1);
   }
@@ -25,18 +30,51 @@ export class HomeService {
   }
 
 
-    createUser(body: any){
-      debugger;
-      body.Profileimage=this.display_image;
-       this.http.post('https://localhost:7274/api/User/CreateUser', body).subscribe(
-              resp => {
-                console.log('User created successfully!', resp);
-              },
-              error => {
-                console.error('Error creating user:', error.message);
-              }
+   
+    GetAllUsersEmail(): Observable<any[]> {
+      return this.http.get<any[]>('https://localhost:7274/api/User/GetAllUsersEmail');
+    }
+    
+    isEmailAlreadyRegistered(email: string): Observable<boolean> {
+      return this.GetAllUsersEmail().pipe(
+        map(allUserEmails => allUserEmails.some(user => user.email === email))
+      );
+    }
+    
+    createUser(body: any): Observable<any> {
+      const userEmail = body.email;
+  
+      return this.isEmailAlreadyRegistered(userEmail).pipe(
+        switchMap(isRegistered => {
+          if (isRegistered) {
+            this.notifyUserSubject.next('You already have an account!');
+            return of({ error: 'Email already registered' });
+          } else {
+            body.Profileimage = this.display_image;
+            return this.http.post('https://localhost:7274/api/User/CreateUser', body).pipe(
+              catchError(error => {
+                console.error('Error creating user:', error);
+                return of({ error: 'Error creating user' });
+              })
             );
-      }
+          }
+        })
+      );
+    }
+      
+    DeleteUser(id:number){
+      this.spinner.show();
+      this.http.delete('https://localhost:7274//api/User/DeleteUser/'+id).subscribe((resp)=>{
+        this.toastr.success('Your account has been deleted successfully');
+        this.spinner.hide();
+      },
+      (err)=>{
+        this.toastr.error('something want wrong !!');
+        this.spinner.hide();
+        console.log(err.message);
+        console.log(err.status);
+      });
+    }
 
       display_image: any;
       uploadAttachment(file: FormData){

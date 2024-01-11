@@ -56,7 +56,9 @@ import { NgChartsModule } from 'ng2-charts';
     provide:HTTP_INTERCEPTORS, 
     useClass:TokenInterceptor, 
     multi:true
-    }],
+    },
+  ],
+    
   bootstrap: [AppComponent]
 })
 export class AppModule { }
