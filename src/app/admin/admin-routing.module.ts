@@ -9,6 +9,10 @@ import { UserComponent } from './user/user.component';
 import { PharmacyComponent } from './pharmacy/pharmacy.component';
 import { OrderComponent } from './order/order.component';
 import { MedicinesInOrderComponent } from './medicines-in-order/medicines-in-order.component';
+import { ManageHomePageComponent } from './manage-home-page/manage-home-page.component';
+import { ManageAboutPageComponent } from './manage-about-page/manage-about-page.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+
 import { ReportComponent } from './report/report.component';
 import { SearchsalesComponent } from './searchsales/searchsales.component';
 import { PharmacydetailsComponent } from './pharmacydetails/pharmacydetails.component';
@@ -73,6 +77,19 @@ const routes: Routes = [
     component:UserComponent
   },
   {
+    path:'ManageHomePage',
+    component:ManageHomePageComponent
+  },
+  {
+    path:'ManageAboutPage',
+    component:ManageAboutPageComponent
+  },
+  {
+    path:'EditProfile',
+    component:EditProfileComponent
+
+   
+  },{
     path:'report',
     component:ReportComponent
   }

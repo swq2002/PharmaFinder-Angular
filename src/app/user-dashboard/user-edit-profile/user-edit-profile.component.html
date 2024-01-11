@@ -1,0 +1,207 @@
+<div class="pb-50">
+    <app-navbar2></app-navbar2>
+    </div>
+    
+
+    <div class="container">
+        <div class="row">
+            <!-- First Column (col-lg-4) for the menu -->
+            <div class="col-lg-4 my-10">
+                <div class="ltn__tab-menu-list mb-50">
+                    <div class="nav">
+                        <a class="active show" href="userdashboard/account">Dashboard <i class="fas fa-home"></i></a>
+                        <a data-bs-toggle="tab" href="#liton_tab_1_2">Orders <i class="fas fa-file-alt"></i></a>
+                        <a data-bs-toggle="tab" href="#liton_tab_1_3">Downloads <i class="fas fa-arrow-down"></i></a>
+                        <a data-bs-toggle="tab" href="#liton_tab_1_4">Address <i class="fas fa-map-marker-alt"></i></a>
+                        <a data-bs-toggle="tab" routerLink="/userdashboard/EditProfile">Account Details <i class="fas fa-user"></i></a>
+                        <a href="userdashboard/userTestimonial">Testimonial <i class="fas fa-user"></i></a>
+                        <a href="login.html" (click)="logout()">Logout <i class="fas fa-sign-out-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="content-wrapper">
+                    <div class="page-header"></div>
+                    <div class="container">
+                        <div class="row gutters justify-content-center align-items-center">
+                            <div class="col-xl-8 col-lg-8 col-md-10 col-sm-12 col-12">
+                                <div class="card h-200">
+                                    <div class="card-body">
+                                        <div class="account-settings">
+                                            <div class="user-profile">
+                                                <div class="user-avatar">
+                                                  <img
+                                                  src="assets\Images\{{userdata.profileimage }}"
+                                                  alt="Maxwell Admin"
+                                                />
+                                                </div>
+                                  <div class="user-details">
+                                    <h4 class="user-name">
+                                      <p><strong>User Name:</strong> {{userdata.username }}</p>
+                                    </h4>
+                                    <br>
+                                    <div class="user-label">
+                                      <div class="user-label-item">
+                                        <p><strong>Email:</strong> <span class="info">{{userdata.email}}</span></p>
+                                      </div>
+                                      <div class="user-label-item">
+                                        <p><strong>Registration Date:</strong> <span class="info">{{userdata.registrationdate | date}}</span></p>
+                                      </div>
+                                    </div>
+                                    <div class="account-settings">
+                                      <hr>
+                                      <div class="additional-info">
+                                        <label>User Information:</label>
+                                       <br>
+                                      </div>
+                                    
+                                    <div class="user-label">
+                                      <div class="user-label-item">
+                                        <p><strong>Date of Birth:</strong> <span class="info">{{userdata.dateofbirth | date}}</span></p>
+                                      </div>
+                                      <div class="user-label-item">
+                                        <p><strong>Gender:</strong> <span class="info">{{userdata.gender}}</span></p>
+                                      </div>
+                                      <div class="user-label-item">
+                                        <p><strong>Address:</strong> <span class="info">{{userdata.address}}</span></p>
+                                      </div>
+                                      <div class="user-label-item">
+                                        <p><strong>Phone Number:</strong> <span class="info">{{userdata.phonenumber}}</span></p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <br>
+                                  <br>
+                                </div>
+                                <button class="btn btn-primary btn-bottom-right" (click)="openUpdateUserDailog(userdata)">Update</button>
+                                        </div>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+    </div>
+    <div class="pb-50">
+        <app-footer></app-footer>
+        </div>
+
+    <!-- Footer -->
+    
+       
+
+<ng-template #callUserUpdateDailog>
+    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 dialog-container">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="row gutters">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+              <h6 class="mb-2 text-primary dialog-title">Personal Details</h6>
+            </div>
+            <form class="forms-sample" [formGroup]="updateUserForm">
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="fullName">User name</label>
+                  <input
+                    type="name"
+                    class="form-control"
+                    id="fullName"
+                    placeholder="Enter user name"
+                    formControlName="username"
+                    [(ngModel)]="previousData.username"
+                  />
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="eMail">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="eMail"
+                    placeholder="Enter email"
+                    formControlName="email"
+                    [(ngModel)]="previousData.email"
+                  />
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="phone">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Enter Password"
+                    formControlName="password"
+                    [(ngModel)]="previousData.password"
+                  />
+                </div>
+              </div>
+  
+              <div class="row gutters">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="Street">Address</label>
+                    <input
+                      type="name"
+                      class="form-control"
+                      id="Street"
+                      placeholder="Enter Address"
+                      formControlName="address"
+                      [(ngModel)]="previousData.address"
+                    />
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="Street">Phone</label>
+                    <input
+                      type="name"
+                      class="form-control"
+                      id="phone"
+                      placeholder="Enter phone number"
+                      formControlName="phonenumber"
+                      [(ngModel)]="previousData.phonenumber"
+                    />
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="profileimage">Profile picture</label>
+                    <input
+                      type="file"
+                      class="form-control"
+                      id="profileimage"
+                      placeholder="Enter profile picture URL"
+                      formControlName="profileimage"
+                      #file
+                      (change)="UploadImage(file.files)"
+                    />
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="text-right dialog-button">
+                    <button
+                      type="button"
+                      id="submit"
+                      name="submit"
+                      class="btn btn-primary"
+                      (click)="updateUser()"
+                    >
+                      Update
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+

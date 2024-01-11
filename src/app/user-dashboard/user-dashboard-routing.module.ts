@@ -4,6 +4,7 @@ import { CreateTestimonialComponent } from './create-testimonial/create-testimon
 import { AccountDashboardComponent } from './account-dashboard/account-dashboard.component';
 import { UserTestimonialsComponent } from './user-testimonials/user-testimonials.component';
 import { UserOrdersComponent } from './user-orders/user-orders.component';
+import { UserEditProfileComponent } from './user-edit-profile/user-edit-profile.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,9 @@ const routes: Routes = [
   {
     path:'userOrders',
     component:UserOrdersComponent
+  },{
+    path:'EditProfile',
+    component:UserEditProfileComponent
   }
 ];
 
