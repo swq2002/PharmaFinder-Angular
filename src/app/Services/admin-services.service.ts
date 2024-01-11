@@ -531,7 +531,7 @@ export class AdminServicesService {
       .subscribe(
         (resp: any) => {
           console.log('Resp Upload function', resp);
-          this.display_image = resp.imagename;
+          this.my_image = resp.imagename;
         },
         (err) => {
           alert('Something wont wrong');
@@ -560,6 +560,8 @@ export class AdminServicesService {
   }
 
   updateUser(body: any) {
+    debugger
+    body.profileimage = this.my_image;
     this.spinner.show();
     this.http.put('https://localhost:7274/api/User/UpdateUser', body).subscribe(
       (resp: any) => {

@@ -1,23 +1,25 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { AdminServicesService } from 'src/app/Services/admin-services.service';
 import { AuthService } from 'src/app/Services/auth.service';
 import { HomeService } from 'src/app/Services/home.service';
 
 @Component({
-  selector: 'app-edit-profile',
-  templateUrl: './edit-profile.component.html',
-  styleUrls: ['./edit-profile.component.css'],
+  selector: 'app-user-edit-profile',
+  templateUrl: './user-edit-profile.component.html',
+  styleUrls: ['./user-edit-profile.component.css']
 })
-export class EditProfileComponent implements OnInit {
+export class UserEditProfileComponent implements OnInit {
   userdata: any;
   token:any;
   constructor(
     public admin: AdminServicesService,
     public dialog: MatDialog,
     public home: HomeService,
-    public auth:AuthService
+    public auth:AuthService,
+    private router: Router
   ) {}
   @ViewChild('callUserUpdateDailog') callUserUpdateDailog!: TemplateRef<any>;
   ngOnInit(): void {
@@ -88,5 +90,9 @@ export class EditProfileComponent implements OnInit {
       formDate.append('file',fileToUpload,fileToUpload.name);
       this.admin.uploadImageAttachment(formDate);
   }
-  
+
+  logout(){
+    localStorage.clear();
+    this.router.navigate(['security/login']);
+  }
 }

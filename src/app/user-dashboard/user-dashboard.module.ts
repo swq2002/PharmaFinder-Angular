@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { UserOrdersComponent } from './user-orders/user-orders.component';
 import { AccountDashboardComponent } from './account-dashboard/account-dashboard.component';
+import { UserEditProfileComponent } from './user-edit-profile/user-edit-profile.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { AccountDashboardComponent } from './account-dashboard/account-dashboard
     CreateTestimonialComponent,
     UserTestimonialsComponent,
     UserOrdersComponent,
-    AccountDashboardComponent
+    AccountDashboardComponent,
+    UserEditProfileComponent
   ],
   imports: [
     CommonModule,
