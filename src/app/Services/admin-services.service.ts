@@ -410,7 +410,7 @@ this.http.post('https://localhost:7274/api/Medicine/uploadImages',file).subscrib
 sendEmailContact(obj:any){
   debugger;
   this.spinner.show();  
-this.http.post('https://localhost:7274/api/Email',obj).subscribe((resp)=>{
+this.http.post('https://localhost:7274/api/Email/SendEmail',obj).subscribe((resp)=>{
   this.toaster.success('sending successfully');
   this.spinner.hide();
 
