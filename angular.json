@@ -26,6 +26,8 @@
               "src/assets/AdminAssets/images/favicon.png"
             ],
             "styles": [
+              "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.css",
+              "node_modules/datatables.net-dt/css/jquery.dataTables.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css",
@@ -46,10 +48,20 @@
               "node_modules/datatables.net-dt/css/jquery.dataTables.min.css"
             ],
             "scripts": [
-              "src/assets/HomeAssets/js/plugins.js",
+          
+          
+             "src/assets/HomeAssets/js/plugins.js",
               "src/assets/HomeAssets/js/main.js",
-              "src/assets/AdminAssets/vendors/js/vendor.bundle.base.js",
+              "src/assets/AdminAssets/vendors/js/vendor.bundle.base.js",          
               "src/assets/AdminAssets/vendors/chart.js/Chart.min.js",
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/datatables.net/js/jquery.dataTables.js",
+              "node_modules/jszip/dist/jszip.js",
+              "node_modules/datatables.net-buttons/js/dataTables.buttons.js",
+              "node_modules/datatables.net-buttons/js/buttons.colVis.js",
+              "node_modules/datatables.net-buttons/js/buttons.flash.js",
+              "node_modules/datatables.net-buttons/js/buttons.html5.js",
+              "node_modules/datatables.net-buttons/js/buttons.print.js",
               "src/assets/AdminAssets/vendors/jquery-circle-progress/js/circle-progress.min.js",
               "src/assets/AdminAssets/js/off-canvas.js",
               "src/assets/AdminAssets/js/hoverable-collapse.js",
@@ -123,7 +135,9 @@
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js"
+            ]
           }
         }
       }

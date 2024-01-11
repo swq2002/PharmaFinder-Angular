@@ -52,17 +52,20 @@ export class MedicinesInOrderComponent {
   }
   Id:number=0;
 
+  dtOptions: DataTables.Settings = {};
   
   medinInOrder:any=this.data;
   
-  //  ngOnInit() {
-  //   debugger;
-    
-  //   //  this.route.queryParams.subscribe(params => {this.Id = params['id'] } );
-  //   //  this.adminService.MedicineInOrder(this.Id);
-  //   //  this.medinInOrder=await this.adminService.medicineInOrder;
+   ngOnInit() {
+    debugger;
+    this.dtOptions = {
+      pagingType: 'full_numbers'
+    };
+    //  this.route.queryParams.subscribe(params => {this.Id = params['id'] } );
+    //  this.adminService.MedicineInOrder(this.Id);
+    //  this.medinInOrder=await this.adminService.medicineInOrder;
      
-  // }
+  }
   
 
 

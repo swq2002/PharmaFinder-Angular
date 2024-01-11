@@ -11,7 +11,6 @@ export class PaymentService {
   transactionID = "";
    orderId:number=0;
   constructor(private http: HttpClient,private toaster:ToastrService,private spinner:NgxSpinnerService) { 
-
   }
   private orderIdPay: number=0;
 

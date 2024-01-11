@@ -39,10 +39,7 @@ const routes: Routes = [
 
   },
 
-  {
-    path:'security',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)    
-  },
+
   {
     path:'contact',
     component:ContactusComponent
@@ -78,7 +75,7 @@ const routes: Routes = [
   {
     path:'security',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
-    ,canActivate:[authorizationGuard]
+   
 
   },
    { path:'admin', 
@@ -94,10 +91,15 @@ const routes: Routes = [
     path:"payment",
     component:PaymentComponent
   },
-  {
-    path:"confirm",
-    component:ConfirmationComponent
-  }
+
+  // {
+  //   path:"payment",
+  //   component:PaymentComponent
+  // },
+  // {
+  //   path:"confirm",
+  //   component:ConfirmationComponent
+  // }
 ];
 
 @NgModule({

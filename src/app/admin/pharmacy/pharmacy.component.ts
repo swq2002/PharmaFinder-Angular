@@ -38,59 +38,64 @@ table {
 `]
 })
 export class PharmacyComponent implements OnInit {
-  @ViewChild ('callDeletesDailog') callDelete!:TemplateRef<any>
-@ViewChild('createPharmacDailog') createPharmacDailog!:TemplateRef<any>
-@ViewChild('up') updatePharmacDailog!:TemplateRef<any>
-@Output() pharmacyDetals =new EventEmitter
+  @ViewChild('callDeletesDailog') callDelete!: TemplateRef<any>
+  @ViewChild('createPharmacDailog') createPharmacDailog!: TemplateRef<any>
+  @ViewChild('up') updatePharmacDailog!: TemplateRef<any>
+  @Output() pharmacyDetals = new EventEmitter
 
-pharmacyName:string='';
-PharmacyDetails:any=[{}];
-pharmacyId:number=1;
-
-
-openMedicineDialog(obj: any): void {
-  debugger;
-  this.pharmacyId = obj.pharmacyid; // Store the obj.orderid
-   this.adminService.GetAllMedcineInPharmmacy(this.pharmacyId);
-  debugger
-  this.PharmacyDetails=this.adminService.medicineInPharmacy;
-  console.log()
-  const dialogRef = this.dialog.open(GetAllMedcineInPharmacyComponent, {
-    width: '1000px',
-    
-    data: {PharmacyDetails:this.PharmacyDetails}
-    
-  });
-debugger;
-  dialogRef.afterClosed().subscribe(result => {
-    console.log('The dialog was closed');
-  });
-}
+  pharmacyName: string = '';
+  PharmacyDetails: any = [{}];
+  pharmacyId: number = 1;
 
 
+  openMedicineDialog(obj: any): void {
+    debugger;
+    this.pharmacyId = obj.pharmacyid; // Store the obj.orderid
+    //  this.adminService.GetAllMedcineInPharmmacy(this.pharmacyId);
+    debugger
+    // this.PharmacyDetails=this.adminService.medicineInPharmacy;
+    console.log()
+    const dialogRef = this.dialog.open(GetAllMedcineInPharmacyComponent, {
+      width: '1000px',
 
+      data: { PharmacyDetails: this.PharmacyDetails }
 
-numberOfPharmac:number|undefined
-constructor(public adminService:AdminServicesService,public dialog: MatDialog,private router:Router){
-console.log(adminService.str);
+    });
+    debugger;
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
+
+
+
+
+  numberOfPharmac: number | undefined
+  constructor(public adminService: AdminServicesService, public dialog: MatDialog, private router: Router) {
+    console.log(adminService.str);
+  }
+  dtOptions: DataTables.Settings = {};
+
   ngOnInit(): void {
+    this.dtOptions = {
+      pagingType: 'full_numbers'
+    };
     this.adminService.GetAllPharmacy();
     this.numberOfPharmac;
   }
 
-  DeletePharmcy(id:number){
-   debugger;
-   const dialogRef=this.dialog.open(this.callDelete);
-   dialogRef.afterClosed().subscribe((result)=>{
-    if(result=="yes"){
-      this.adminService.DeletePharmacyByID(id);
-    }
-    else{
-      console.log('consele delete');
-    }
-   })
+  DeletePharmcy(id: number) {
+    debugger;
+    const dialogRef = this.dialog.open(this.callDelete);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result == "yes") {
+        this.adminService.DeletePharmacyByID(id);
       }
+      else {
+        console.log('consele delete');
+      }
+    })
+  }
 
 
       CreatePharmacy:FormGroup=new FormGroup({
@@ -139,22 +144,21 @@ console.log(adminService.str);
        update(){
         debugger;
 
-          this.adminService.updatePharmacy(this.updatePharmacy.value);
-       }
+    this.adminService.updatePharmacy(this.updatePharmacy.value);
+  }
 
 
-       pharmacydetlis(id:number)
-       {
-        debugger;
-          this.router.navigate(['admin/pharmacydetails'], { queryParams: { id }} )
+  pharmacydetlis(id: number) {
+    debugger;
+    this.router.navigate(['admin/pharmacydetails'], { queryParams: { id } })
 
-          // this.pharmacyDetals.emit();
-       }
-
+    // this.pharmacyDetals.emit();
+  }
 
 
-       MedicineinOrder(id:number){
-        debugger;
-        this.router.navigate(['admin/medicineInOrder'], { queryParams: { id } });  
-      }
+
+  MedicineinOrder(id: number) {
+    debugger;
+    this.router.navigate(['admin/medicineInOrder'], { queryParams: { id } });
+  }
 }

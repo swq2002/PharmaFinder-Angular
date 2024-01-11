@@ -6,10 +6,9 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { Navbar2Component } from './navbar2/navbar2.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { FilterMapPipe } from '../pipes/filter-map.pipe';
 import { RouterModule } from '@angular/router';
 import { MatDialogModule} from '@angular/material/dialog';
-
 import { HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
@@ -29,7 +28,8 @@ import {MatInputModule} from '@angular/material/input';
     NavbarComponent,
     Navbar2Component,
     MapComponent,
-    NearestPharmacyMapComponent
+    NearestPharmacyMapComponent,
+    FilterMapPipe
     
   ],
   imports: [

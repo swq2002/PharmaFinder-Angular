@@ -1,17 +1,22 @@
 import { state } from '@angular/animations';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable,ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DataTableDirective } from 'angular-datatables';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { Observable, catchError, of, throwError } from 'rxjs';
+import { Observable, Subject, catchError, of, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminServicesService {
-
+  @ViewChild(DataTableDirective)
+  dtElement !: DataTableDirective ;
+  dtOptions: DataTables.Settings|any = {};
+  dtTrigger: Subject<any> = new Subject();
+  
   pharmacy: any = [{}];
   medicine: any = [{}];
   contact: any = [{}];
@@ -28,70 +33,63 @@ export class AdminServicesService {
   str: string = "message";
   salesOfOrder:any=[{}];
   PharmacyCount:any=[{}];
-  constructor(private http: HttpClient,private toaster:ToastrService,private spinner:NgxSpinnerService,private router:Router,private fb: FormBuilder) {}
-  
-
   display_image: any;
   ihome:any;
   iabout:any;
   iuser:any;
   user: any = [{}];
   HC:any=[{}];
+  constructor(private http: HttpClient,private toaster:ToastrService,private spinner:NgxSpinnerService,private router:Router,private fb: FormBuilder) {}
+  
+
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      // Destroy the table first
+      dtInstance.destroy();
+      // Call the dtTrigger to rerender again
+      this.dtTrigger.next(0);
+    });
+   }
 
 
-  GetPharmacyCount() {
-    debugger;
-    this.http
-      .get('https://localhost:7274/api/Pharmacy/GetPharmacyCount')
-      .subscribe(
-        (resp) => {
-          this.PharmacyCount = resp;
-        },
-        (err) => {
-          console.log(err.message);
-          console.log(err.status);
-        }
-      );
+   CalculateProfitForPaidOrders(){
+    return this.http.get('https://localhost:7274/api/Orders/CalculateProfitForPaidOrders')
   }
-  CalculateTotalOrderPrice() {
-    debugger;
-    this.http
-      .get('https://localhost:7274/api/Orders/CalculateTotalOrderPrice')
-      .subscribe(
-        (resp) => {
-          this.salesOfOrder = resp;
-        },
-        (err) => {
-          console.log(err.message);
-          console.log(err.status);
-        }
-      );
+  
+
+  GetPharmacyCount(){
+     this.http.get('https://localhost:7274/api/Pharmacy/GetPharmacyCount').subscribe((resp)=>{
+      this.PharmacyCount=resp;
+    },err=>{
+      console.log(err.message);
+      console.log(err.status);
+    });
   }
-  GetAllInformationOrders() {
-    debugger;
-    this.http
-      .get('https://localhost:7274/api/Orders/GetAllInformationOrders')
-      .subscribe(
-        (resp) => {
-          this.allIformationOrder = resp;
-        },
-        (err) => {
-          console.log(err.message);
-          console.log(err.status);
-        }
-      );
+  CalculateTotalOrderPrice(){
+     this.http.get('https://localhost:7274/api/Orders/CalculateTotalOrderPrice').subscribe((resp)=>{
+      this.salesOfOrder=resp;
+    },err=>{
+      console.log(err.message);
+      console.log(err.status);
+    });
   }
-  GetAllOrders() {
-    this.http.get('https://localhost:7274/api/Orders/GetAllOrders').subscribe(
-      (resp) => {
-        this.order = resp;
-      },
-      (err) => {
-        console.log(err.message);
-        console.log(err.status);
-      }
-    );
+  GetAllInformationOrders(){
+    this.http.get('https://localhost:7274/api/Orders/GetAllInformationOrders').subscribe((resp)=>{
+      this.allIformationOrder=resp;
+    },err=>{
+      console.log(err.message);
+      console.log(err.status);
+    });
   }
+  GetAllOrders(){
+    this.http.get('https://localhost:7274/api/Orders/GetAllOrders').subscribe((resp)=>{
+      this.order=resp;
+    },err=>{
+      console.log(err.message);
+      console.log(err.status);
+    });
+  }
+ 
   GetAllUserAccount() {
     debugger;
     this.http.get('https://localhost:7274/api/User/GetAllUsers').subscribe(
@@ -125,13 +123,17 @@ export class AdminServicesService {
         this.medicine = resp;
         debugger;
         this.numberOfMedicine=this.medicine.length;
+        this.dtTrigger.next(0);
       },
       (err) => {
         console.log(err.message);
         console.log(err.status);
       }
     );
+
   }
+
+  
 
   GetAllContactUs() {
     this.http
@@ -249,7 +251,6 @@ export class AdminServicesService {
   }
 
   CreateAdminAccount(obj:any){
-    debugger;
     this.spinner.show();
     obj.imagename=this.display_image;
   this.http.post('https://localhost:7274/api/User/CreateUser',obj).subscribe((resp)=>{
@@ -266,7 +267,6 @@ export class AdminServicesService {
 medcineId:number=0;
 pharmcyId:number=0;
   CreateMedine(obj:any){
-    debugger;
     this.spinner.show();
     obj.imagename=this.display_image;
     this.medcineId=obj.medicineid
@@ -645,6 +645,8 @@ getSalesByYearReport(year: number): Observable<any> {
     'Content-Type': 'application/json',
   });
 
+
+  
   return this.http.post(urlWithParams, null, { headers })
     .pipe(
       catchError(error => {
