@@ -12,7 +12,7 @@ import { ProductResultComponent } from './product-result/product-result.componen
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ShopComponent } from './shop/shop.component';
-import { authorizationGuard } from './authorization.guard';
+// import { authorizationGuard } from './authorization.guard';
 
 const routes: Routes = [
   {
@@ -76,21 +76,21 @@ const routes: Routes = [
   {
     path:'admin', 
     loadChildren:()=>import('./admin/admin.module').then((m)=>m.AdminModule)
-    ,canActivate:[authorizationGuard]
+    // ,canActivate:[authorizationGuard]
   }, 
   {
     path:'userdashboard', 
     loadChildren:()=>import('./user-dashboard/user-dashboard.module').then((m)=>m.UserDashboardModule)
   },
 
-  {
-    path:"payment",
-    component:PaymentComponent
-  },
-  {
-    path:"confirm",
-    component:ConfirmationComponent
-  }
+  // {
+  //   path:"payment",
+  //   component:PaymentComponent
+  // },
+  // {
+  //   path:"confirm",
+  //   component:ConfirmationComponent
+  // }
 ];
 
 @NgModule({

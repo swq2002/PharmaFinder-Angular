@@ -1,16 +1,21 @@
 import { state } from '@angular/animations';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataTableDirective } from 'angular-datatables';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { Observable, catchError, of, throwError } from 'rxjs';
+import { Observable, Subject, catchError, of, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminServicesService {
-
+  @ViewChild(DataTableDirective)
+  dtElement !: DataTableDirective ;
+  dtOptions: DataTables.Settings|any = {};
+  dtTrigger: Subject<any> = new Subject();
+  
   pharmacy: any = [{}];
   medicine: any = [{}];
   contact: any = [{}];
@@ -29,6 +34,22 @@ export class AdminServicesService {
   PharmacyCount:any=[{}];
   constructor(private http: HttpClient,private toaster:ToastrService,private spinner:NgxSpinnerService,private router:Router) {}
   
+
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      // Destroy the table first
+      dtInstance.destroy();
+      // Call the dtTrigger to rerender again
+      this.dtTrigger.next(0);
+    });
+   }
+
+
+   CalculateProfitForPaidOrders(){
+    return this.http.get('https://localhost:7274/api/Orders/CalculateProfitForPaidOrders')
+  }
+  
+
   GetPharmacyCount(){
      this.http.get('https://localhost:7274/api/Pharmacy/GetPharmacyCount').subscribe((resp)=>{
       this.PharmacyCount=resp;
@@ -92,13 +113,17 @@ export class AdminServicesService {
         this.medicine = resp;
         debugger;
         this.numberOfMedicine=this.medicine.length;
+        this.dtTrigger.next(0);
       },
       (err) => {
         console.log(err.message);
         console.log(err.status);
       }
     );
+
   }
+
+  
 
   GetAllContactUs() {
     this.http.get('https://localhost:7274/api/ContactUs/GetAllContactUs').subscribe(
@@ -405,6 +430,8 @@ getSalesByYearReport(year: number): Observable<any> {
     'Content-Type': 'application/json',
   });
 
+
+  
   return this.http.post(urlWithParams, null, { headers })
     .pipe(
       catchError(error => {

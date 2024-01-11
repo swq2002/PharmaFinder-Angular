@@ -43,8 +43,13 @@ export class ContactUsComponent {
   constructor(public adminService:AdminServicesService, public dialog: MatDialog){
     console.log(adminService.str);
       }
+      dtOptions: DataTables.Settings = {};
+
       ngOnInit(): void {
         this.adminService.GetAllContactUs();
+        this.dtOptions = {
+          pagingType: 'full_numbers'
+        };
       }
       DeleteContact(id:number){
 

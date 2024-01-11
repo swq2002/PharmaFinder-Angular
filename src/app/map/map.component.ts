@@ -1,6 +1,6 @@
 
 
-  
+
 import { Component, OnInit } from '@angular/core';
 import { AdminServicesService } from 'src/app/Services/admin-services.service';
 import { MapService } from '../Services/map.service';
@@ -14,42 +14,28 @@ declare const L: any;
 })
 export class MapComponent implements OnInit {
 
-  constructor(private adminService: AdminServicesService ,private mapService: MapService, private toaster: ToastrService,
-    ) { }
-  pharmacy: any[] = []; 
-  map:any;
+  constructor(private adminService: AdminServicesService, private mapService: MapService, private toaster: ToastrService,
+  ) { }
+  pharmacies: any[] = [];
+  map: any;
   searchValue: string = ''
-  nearestPharmacies:any;
+  nearestPharmacies: any;
+  position: any = {};
   async ngOnInit() {
 
-    const position: any = await this.mapService.getCurrentLocation();
-    
-    console.log(position);
+    this.position = await this.mapService.getCurrentLocation();
 
 
-  
-   this.map = L.map('map').setView([position.lat,position.lng], 12);
-   const marker = L.marker([position.lat,position.lng]).addTo(this.map);
-   const circle = L.circle([position.lat,position.lng],{color:"blue",fillColor:"black",fillOpacity:0.5,radius:700}).addTo(this.map);
 
-   
-    
-    // let lat
-    // let lng
-    // try {
-    //   const position: any = await this.mapService.getCurrentLocation();
-    //   lat = position.lat
-    //   lng = position.lng
-    // }
 
-    // catch (err) {
-    //   lat = 502412121;
-    //   lng = 41545451;
-    // }
+    this.map = L.map('map').setView([this.position.lat, this.position.lng], 12);
+    const marker = L.marker([this.position.lat, this.position.lng]).addTo(this.map);
+    const circle = L.circle([this.position.lat, this.position.lng], { color: "blue", fillColor: "black", fillOpacity: 0.5, radius: 700 }).addTo(this.map);
 
-    
-    //  this.map = L.map('map').setView([lat,lng], 13);
-    
+
+
+
+
     L.tileLayer(
       'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYXlhaGhheW1vdXIiLCJhIjoiY2xxZ2M3MGdlMDhvbzJqbzBzcmdzZTBhZiJ9.C8yY6rsw2ZNOTq3LuxO6fQ',
       {
@@ -63,9 +49,18 @@ export class MapComponent implements OnInit {
       }
     ).addTo(this.map);
 
+    this.GetAllPharmacies(this.position)
+
+
+
+  }
+
+
+
+  GetAllPharmacies(position: any) {
     this.adminService.GetAllPharmacyformap().subscribe(resp => {
-      this.pharmacy = resp;
-      this.nearestPharmacies=this.mapService.findNearestPharmacies(position,this.pharmacy)
+      this.pharmacies = resp;
+      this.nearestPharmacies = this.mapService.findNearestPharmacies(position, this.pharmacies)
       resp?.forEach((pharmacy: any) => {
         const pharmacyLatLng = [pharmacy.lat, pharmacy.lng];
 
@@ -77,43 +72,40 @@ export class MapComponent implements OnInit {
           shadowAnchor: [4, 62],
           popupAnchor: [-3, -76]
         });
-    
+
         const marker = L.marker(pharmacyLatLng, { icon: LeafIcon }).addTo(this.map);
         marker.bindPopup(`<b>${pharmacy.pharmacyname}</b><br>${pharmacy.address}`);
-   
+
 
       });
     });
-
-
-
-}
-
-search() {
-  const foundPharmacy = this.pharmacy.find(pharmacy =>
-    pharmacy.pharmacyname.toLowerCase() === this.searchValue.toLowerCase()
- 
-    
-  );
-
-console.log(this.searchValue);
-
-console.log(foundPharmacy);
-
-  if (foundPharmacy) {
-    console.log('Found pharmacy:', foundPharmacy);
-
-    const pharmacyLatLng = [foundPharmacy.lat, foundPharmacy.lng];
-
-   
-    this.map.flyTo(pharmacyLatLng,13); 
-  } else {
-
-    this.toaster.warning("There is no pharmacy with this name");
   }
 
+  search() {
+    const foundPharmacy = this.pharmacies.find(pharmacy =>
+      pharmacy.pharmacyname.toLowerCase() === this.searchValue.toLowerCase()
 
-}
+
+    );
+
+
+
+    if (foundPharmacy) {
+
+      const pharmacyLatLng = [foundPharmacy.lat, foundPharmacy.lng];
+      this.pharmacies = [foundPharmacy]
+
+      this.map.flyTo(pharmacyLatLng, 13);
+
+    }
+
+    else {
+      this.GetAllPharmacies(this.position)
+      this.toaster.warning("There is no pharmacy with this name");
+    }
+
+
+  }
 
 
 };

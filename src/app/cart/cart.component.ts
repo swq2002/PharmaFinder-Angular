@@ -90,17 +90,17 @@ proceedToCheckout(): void {
       totalPrice: this.cartTotalPrice
     };
 
-    this.home.createOrder(orderData).subscribe(
-      (response) => {
-        console.log('Order created:', response);
-        localStorage.removeItem('cart');
-        this.cartItems = [];
-        this.cartTotalPrice = 0;
-      },
-      (error) => {
-        console.error('Failed to create order:', error);
-      }
-    );
+    // this.home.createOrder(orderData).subscribe(
+    //   (response) => {
+    //     console.log('Order created:', response);
+    //     localStorage.removeItem('cart');
+    //     this.cartItems = [];
+    //     this.cartTotalPrice = 0;
+    //   },
+    //   (error) => {
+    //     console.error('Failed to create order:', error);
+    //   }
+    // );
   } else {
     console.error('Cart is empty. Cannot proceed with checkout.');
   }

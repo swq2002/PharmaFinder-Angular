@@ -13,14 +13,14 @@ import { ReportComponent } from './report/report.component';
 
 const routes: Routes = [
 
-{
-  path:'pharmacydetails',
-  component:PharmacydetailsComponent
-},
-  {
-    path:'SearchInOrder',
-    component:SearchsalesComponent
-  },
+// {
+//   path:'pharmacydetails',
+//   component:PharmacydetailsComponent
+// },
+//   {
+//     path:'SearchInOrder',
+//     component:SearchsalesComponent
+//   },
 
   {
     path:'medicineInOrder/:id',

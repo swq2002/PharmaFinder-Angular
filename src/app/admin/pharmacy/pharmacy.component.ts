@@ -38,121 +38,125 @@ table {
 `]
 })
 export class PharmacyComponent implements OnInit {
-  @ViewChild ('callDeletesDailog') callDelete!:TemplateRef<any>
-@ViewChild('createPharmacDailog') createPharmacDailog!:TemplateRef<any>
-@ViewChild('up') updatePharmacDailog!:TemplateRef<any>
-@Output() pharmacyDetals =new EventEmitter
+  @ViewChild('callDeletesDailog') callDelete!: TemplateRef<any>
+  @ViewChild('createPharmacDailog') createPharmacDailog!: TemplateRef<any>
+  @ViewChild('up') updatePharmacDailog!: TemplateRef<any>
+  @Output() pharmacyDetals = new EventEmitter
 
-pharmacyName:string='';
-PharmacyDetails:any=[{}];
-pharmacyId:number=1;
-
-
-openMedicineDialog(obj: any): void {
-  debugger;
-  this.pharmacyId = obj.pharmacyid; // Store the obj.orderid
-   this.adminService.GetAllMedcineInPharmmacy(this.pharmacyId);
-  debugger
-  this.PharmacyDetails=this.adminService.medicineInPharmacy;
-  console.log()
-  const dialogRef = this.dialog.open(GetAllMedcineInPharmacyComponent, {
-    width: '1000px',
-    
-    data: {PharmacyDetails:this.PharmacyDetails}
-    
-  });
-debugger;
-  dialogRef.afterClosed().subscribe(result => {
-    console.log('The dialog was closed');
-  });
-}
+  pharmacyName: string = '';
+  PharmacyDetails: any = [{}];
+  pharmacyId: number = 1;
 
 
+  openMedicineDialog(obj: any): void {
+    debugger;
+    this.pharmacyId = obj.pharmacyid; // Store the obj.orderid
+    //  this.adminService.GetAllMedcineInPharmmacy(this.pharmacyId);
+    debugger
+    // this.PharmacyDetails=this.adminService.medicineInPharmacy;
+    console.log()
+    const dialogRef = this.dialog.open(GetAllMedcineInPharmacyComponent, {
+      width: '1000px',
 
+      data: { PharmacyDetails: this.PharmacyDetails }
 
-numberOfPharmac:number|undefined
-constructor(public adminService:AdminServicesService,public dialog: MatDialog,private router:Router){
-console.log(adminService.str);
+    });
+    debugger;
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
+
+
+
+
+  numberOfPharmac: number | undefined
+  constructor(public adminService: AdminServicesService, public dialog: MatDialog, private router: Router) {
+    console.log(adminService.str);
+  }
+  dtOptions: DataTables.Settings = {};
+
   ngOnInit(): void {
+    this.dtOptions = {
+      pagingType: 'full_numbers'
+    };
     this.adminService.GetAllPharmacy();
     this.numberOfPharmac;
   }
 
-  DeletePharmcy(id:number){
-   debugger;
-   const dialogRef=this.dialog.open(this.callDelete);
-   dialogRef.afterClosed().subscribe((result)=>{
-    if(result=="yes"){
-      this.adminService.DeletePharmacyByID(id);
-    }
-    else{
-      console.log('consele delete');
-    }
-   })
+  DeletePharmcy(id: number) {
+    debugger;
+    const dialogRef = this.dialog.open(this.callDelete);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result == "yes") {
+        this.adminService.DeletePharmacyByID(id);
       }
-
-
-      CreatePharmacy:FormGroup=new FormGroup({
-        pharmacyname:new FormControl('',Validators.required),
-        location:new FormControl('',Validators.required),
-        address:new FormControl('',Validators.required),
-        lng:new FormControl('',Validators.required),
-        lat:new FormControl('',Validators.required),
-        email :new FormControl('',Validators.required),
-        phonenumber :new FormControl('',Validators.required)     
-      })
-      updatePharmacy:FormGroup=new FormGroup({
-        pharmacyid:new FormControl('',Validators.required),
-        pharmacyname:new FormControl('',Validators.required),
-        location:new FormControl('',Validators.required),
-        address:new FormControl('',Validators.required),
-        lng:new FormControl('',Validators.required),
-        lat:new FormControl('',Validators.required),
-        email :new FormControl('',Validators.required),
-        phonenumber :new FormControl('',Validators.required)     
-      })
-      OpenCreateDialog (){
-        const dialogRef=this.dialog.open(this.createPharmacDailog);
+      else {
+        console.log('consele delete');
       }
-      CreatePharm(){
-        debugger;
-        this.adminService.CreatedPharmicy(this.CreatePharmacy.value);
-       }
-       Cancel(){
-        console.log('consal');
-       }
+    })
+  }
 
 
-          
-       openUpdateDailog(obj:any){
-        debugger;
-        this.pData=obj;
+  CreatePharmacy: FormGroup = new FormGroup({
+    pharmacyname: new FormControl('', Validators.required),
+    location: new FormControl('', Validators.required),
+    address: new FormControl('', Validators.required),
+    lng: new FormControl('', Validators.required),
+    lat: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
+    phonenumber: new FormControl('', Validators.required)
+  })
+  updatePharmacy: FormGroup = new FormGroup({
+    pharmacyid: new FormControl('', Validators.required),
+    pharmacyname: new FormControl('', Validators.required),
+    location: new FormControl('', Validators.required),
+    address: new FormControl('', Validators.required),
+    lng: new FormControl('', Validators.required),
+    lat: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
+    phonenumber: new FormControl('', Validators.required)
+  })
+  OpenCreateDialog() {
+    const dialogRef = this.dialog.open(this.createPharmacDailog);
+  }
+  CreatePharm() {
+    debugger;
+    this.adminService.CreatedPharmicy(this.CreatePharmacy.value);
+  }
+  Cancel() {
+    console.log('consal');
+  }
 
-        this.updatePharmacy.controls['pharmacyid'].setValue(this.pData.pharmacyid);
-        console.log(this.pData);
-        const dialogRef=this.dialog.open(this.updatePharmacDailog)
-       }
-       pData:any;
-       update(){
-        debugger;
-
-          this.adminService.updatePharmacy(this.updatePharmacy.value);
-       }
 
 
-       pharmacydetlis(id:number)
-       {
-        debugger;
-          this.router.navigate(['admin/pharmacydetails'], { queryParams: { id }} )
+  openUpdateDailog(obj: any) {
+    debugger;
+    this.pData = obj;
 
-          // this.pharmacyDetals.emit();
-       }
+    this.updatePharmacy.controls['pharmacyid'].setValue(this.pData.pharmacyid);
+    console.log(this.pData);
+    const dialogRef = this.dialog.open(this.updatePharmacDailog)
+  }
+  pData: any;
+  update() {
+    debugger;
+
+    this.adminService.updatePharmacy(this.updatePharmacy.value);
+  }
+
+
+  pharmacydetlis(id: number) {
+    debugger;
+    this.router.navigate(['admin/pharmacydetails'], { queryParams: { id } })
+
+    // this.pharmacyDetals.emit();
+  }
 
 
 
-       MedicineinOrder(id:number){
-        debugger;
-        this.router.navigate(['admin/medicineInOrder'], { queryParams: { id } });  
-      }
+  MedicineinOrder(id: number) {
+    debugger;
+    this.router.navigate(['admin/medicineInOrder'], { queryParams: { id } });
+  }
 }

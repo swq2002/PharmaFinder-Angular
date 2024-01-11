@@ -1,6 +1,8 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { DataTableDirective } from 'angular-datatables';
+import { Subject } from 'rxjs';
 import { AdminServicesService } from 'src/app/Services/admin-services.service';
 
 @Component({
@@ -36,93 +38,109 @@ table {
   }
 `]
 })
-export class MedicineComponent implements OnInit{
-  @ViewChild ('callDeleteDailog') callDelete!:TemplateRef<any>
-  @ViewChild('CreateMedicineDailog') createMedicine!:TemplateRef<any>
-  @ViewChild('updateMedicineDailog') updateMedicine!:TemplateRef<any>
-  filterMedicineName:string='';
-   numberOfMedicine:number|undefined;
-  constructor(public adminService:AdminServicesService,public dialog: MatDialog){
+export class MedicineComponent implements OnInit {
+  @ViewChild('callDeleteDailog') callDelete!: TemplateRef<any>
+  @ViewChild('CreateMedicineDailog') createMedicine!: TemplateRef<any>
+  @ViewChild('updateMedicineDailog') updateMedicine!: TemplateRef<any>
+  @ViewChild(DataTableDirective)
+  dtElement !: DataTableDirective ;
+  dtOptions: DataTables.Settings|any = {};
+  filterMedicineName: string = '';
+  numberOfMedicine: number | undefined;
+  dtTrigger: Subject<any> = new Subject();
+  constructor(public adminService: AdminServicesService, public dialog: MatDialog) {
     console.log(adminService.str);
+  }
+
+  ngOnInit(): void {
+    this.adminService.dtOptions = {
+
+      // Declare the use of the extension in the dom parameter
+      dom: 'Bfrtip',
+      // Configure the buttons
+      buttons: [
+        'columnsToggle',
+        'colvis',
+        'copy',
+        'print',
+        'excel',
+        'csv',
+        'pdf'
+
+      ]
+    };
+    this.adminService.GetAllMedicine();
+    this.numberOfMedicine;
+    this.dtTrigger.next(0);
+  }
+
+  DeleteMedicine(id: number) {
+    debugger;
+    const dialogRef = this.dialog.open(this.callDelete);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result == "yes") {
+        this.adminService.DeleteMedicineByID(id);
       }
-
-      dtOptions: DataTables.Settings = {};
-      ngOnInit(): void {
-        debugger;
-        this.adminService.GetAllMedicine();
-        this.numberOfMedicine;
-        this.dtOptions = {
-          pagingType: 'full_numbers'
-        };
+      else {
+        console.log('cansele delete');
       }
+    })
 
-      DeleteMedicine(id:number){
-        debugger;
-        const dialogRef=this.dialog.open(this.callDelete);
-        dialogRef.afterClosed().subscribe((result)=>{
-         if(result=="yes"){
-           this.adminService.DeleteMedicineByID(id);
-         }
-         else{
-           console.log('cansele delete');
-         }
-        })
-         
-       }
-       CreateMedicne:FormGroup=new FormGroup({
-        medicinename:new FormControl('',Validators.required),
-        medicineprice:new FormControl('',Validators.required),
-        imagename:new FormControl(),
-        medicinetype:new FormControl('',Validators.required),
-        medicinedescription:new FormControl('',Validators.required),
-        expiredate:new FormControl('',Validators.required),
-        activesubstance:new FormControl('',Validators.required)
-       })
-       
-       UpdateMedicne:FormGroup=new FormGroup({
-        medicineid:new FormControl(),
-        medicinename:new FormControl('',Validators.required),
-        medicineprice:new FormControl('',Validators.required),
-        medicinetype:new FormControl('',Validators.required),
-        medicinedescription:new FormControl('',Validators.required),
-        expiredate:new FormControl('',Validators.required),
-        imagename:new FormControl('',Validators.required),
-        activesubstance:new FormControl('',Validators.required)
-       })
-       OpenCreateDialog (){
-          const dialogRef=this.dialog.open(this.createMedicine);
-       }
-       Create(){
-        debugger;
-        this.adminService.CreateMedine(this.CreateMedicne.value);
-       }
-       Cancel(){
-        console.log('consal');
-       }
+  }
+  CreateMedicne: FormGroup = new FormGroup({
+    medicinename: new FormControl('', Validators.required),
+    medicineprice: new FormControl('', Validators.required),
+    imagename: new FormControl(),
+    medicinetype: new FormControl('', Validators.required),
+    medicinedescription: new FormControl('', Validators.required),
+    expiredate: new FormControl('', Validators.required),
+    activesubstance: new FormControl('', Validators.required)
+  })
 
-       pData:any;
+  UpdateMedicne: FormGroup = new FormGroup({
+    medicineid: new FormControl(),
+    medicinename: new FormControl('', Validators.required),
+    medicineprice: new FormControl('', Validators.required),
+    medicinetype: new FormControl('', Validators.required),
+    medicinedescription: new FormControl('', Validators.required),
+    expiredate: new FormControl('', Validators.required),
+    imagename: new FormControl('', Validators.required),
+    activesubstance: new FormControl('', Validators.required)
+  })
+  OpenCreateDialog() {
+    const dialogRef = this.dialog.open(this.createMedicine);
+  }
+  Create() {
+    debugger;
+    this.adminService.CreateMedine(this.CreateMedicne.value);
+  }
+  Cancel() {
+    console.log('consal');
+  }
 
-       openUpdateDailog(obj:any){
-        debugger;
-        this.pData=obj;
+  pData: any;
 
-        this.UpdateMedicne.controls['medicineid'].setValue(this.pData.medicineid);
-        this.adminService.display_image=this.pData.imagename
-        console.log(this.pData);
-        this.dialog.open(this.updateMedicine)
-       }
-       updated(){
-        debugger;
-        console.log(this.pData);
-          this.adminService.updateMedicine(this.UpdateMedicne.value);
-       }
-       upleadImage(file:any){
-        if(file.length==0)return;
-        let fileToUpload=<File> file[0];
-        const formData=new FormData();
-        formData.append('file',fileToUpload,fileToUpload.name);
-        this.adminService.uploadAttachment(formData)
-       }
+  openUpdateDailog(obj: any) {
+    debugger;
+    this.pData = obj;
+
+    this.UpdateMedicne.controls['medicineid'].setValue(this.pData.medicineid);
+    this.adminService.display_image = this.pData.imagename
+    console.log(this.pData);
+    this.dialog.open(this.updateMedicine)
+  }
+  updated() {
+    debugger;
+    console.log(this.pData);
+    this.adminService.updateMedicine(this.UpdateMedicne.value);
+  }
+  upleadImage(file: any) {
+    if (file.length == 0) return;
+    let fileToUpload = <File>file[0];
+    const formData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+    this.adminService.uploadAttachment(formData)
+  }
 
 
 
