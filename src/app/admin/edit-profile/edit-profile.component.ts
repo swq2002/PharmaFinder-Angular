@@ -86,7 +86,7 @@ export class EditProfileComponent implements OnInit {
      let fileToUpload=<File>file[0];
      const formDate=new FormData();
       formDate.append('file',fileToUpload,fileToUpload.name);
-      this.admin.uploadImageAttachment(formDate);
+      this.admin.uploadImageUserAttachment(formDate);
   }
   
 }

@@ -33,7 +33,7 @@
             <thead>
             <tr>
                 <th>name</th>
-                <!-- <th>picture</th> -->
+                <th>Profile picture</th>
                 <th>email</th>
                 <th>gender</th>
                 <th>registrationdate</th>
@@ -47,9 +47,7 @@
           <tbody>
             <tr *ngFor="let obj of  adminService.userAccount ">
                 <td>{{obj.username}}</td>
-                <!-- <td>{{obj.profileimage}}</td>
-
-                <td><img src="../../../assets//Images/{{obj.profileimage}}"></td> -->
+                <td><img src="assets//Images/{{obj.profileimage}}"></td> 
                 <td>{{obj.email}}</td>
                 <td>{{obj.gender}}</td>
                 <td>{{obj.registrationdate|date}}</td>

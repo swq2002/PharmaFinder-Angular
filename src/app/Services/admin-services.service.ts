@@ -26,7 +26,9 @@ export class AdminServicesService {
   salesOfOrder: any = [{}];
   PharmacyCount: any = [{}];
   display_image: any;
-  my_image:any;
+  ihome:any;
+  iabout:any;
+  iuser:any;
   user: any = [{}];
   HC:any=[{}];
   constructor(
@@ -487,7 +489,7 @@ export class AdminServicesService {
 
   updateHome(body: any) {
     debugger;
-    body.image1 = this.display_image;
+    body.image1 = this.ihome;
     this.spinner.show();
     this.http.put('https://localhost:7274/api/Home/UpdateHome', body).subscribe(
       (resp: any) => {
@@ -506,7 +508,7 @@ export class AdminServicesService {
 
   updateAbout(body: any) {
     debugger
-    body.image1 = this.my_image;
+    body.image1 = this.iabout;
     this.spinner.show();
     this.http
       .put('https://localhost:7274/api/About/UpdateAbout', body)
@@ -531,7 +533,7 @@ export class AdminServicesService {
       .subscribe(
         (resp: any) => {
           console.log('Resp Upload function', resp);
-          this.my_image = resp.imagename;
+          this.ihome = resp.image1;
         },
         (err) => {
           alert('Something wont wrong');
@@ -546,7 +548,7 @@ export class AdminServicesService {
       .subscribe(
         (resp: any) => {
           console.log('Resp Upload function', resp);
-          this.my_image = resp.imagename;
+          this.iabout = resp.image1;
         },
         (err) => {
           alert('Something wont wrong');
@@ -561,7 +563,7 @@ export class AdminServicesService {
 
   updateUser(body: any) {
     debugger
-    body.profileimage = this.my_image;
+    body.profileimage = this.iuser;
     this.spinner.show();
     this.http.put('https://localhost:7274/api/User/UpdateUser', body).subscribe(
       (resp: any) => {
@@ -576,6 +578,21 @@ export class AdminServicesService {
           console.error('Error during user update:', err);
       }
     );
+  }
+
+  uploadImageUserAttachment(file: FormData) {
+    this.http
+      .post('https://localhost:7274/api/User/UploadImage', file)
+      .subscribe(
+        (resp: any) => {
+          console.log('Resp Upload function', resp);
+          this.iuser = resp.profileimage;
+        },
+        (err) => {
+          alert('Something wont wrong');
+          console.log(err);
+        }
+      );
   }
 
   getHomebyId(id: number) {
