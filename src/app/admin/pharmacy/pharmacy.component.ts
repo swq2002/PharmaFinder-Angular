@@ -1,7 +1,9 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { AdminServicesService } from 'src/app/Services/admin-services.service';
+import { GetAllMedcineInPharmacyComponent } from '../get-all-medcine-in-pharmacy/get-all-medcine-in-pharmacy.component';
 
 @Component({
   selector: 'app-pharmacy',
@@ -39,11 +41,37 @@ export class PharmacyComponent implements OnInit {
   @ViewChild ('callDeletesDailog') callDelete!:TemplateRef<any>
 @ViewChild('createPharmacDailog') createPharmacDailog!:TemplateRef<any>
 @ViewChild('up') updatePharmacDailog!:TemplateRef<any>
+@Output() pharmacyDetals =new EventEmitter
+
 pharmacyName:string='';
+PharmacyDetails:any=[{}];
+pharmacyId:number=1;
+
+
+openMedicineDialog(obj: any): void {
+  debugger;
+  this.pharmacyId = obj.pharmacyid; // Store the obj.orderid
+   this.adminService.GetAllMedcineInPharmmacy(this.pharmacyId);
+  debugger
+  this.PharmacyDetails=this.adminService.medicineInPharmacy;
+  console.log()
+  const dialogRef = this.dialog.open(GetAllMedcineInPharmacyComponent, {
+    width: '1000px',
+    
+    data: {PharmacyDetails:this.PharmacyDetails}
+    
+  });
+debugger;
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+  });
+}
+
+
 
 
 numberOfPharmac:number|undefined
-constructor(public adminService:AdminServicesService,public dialog: MatDialog){
+constructor(public adminService:AdminServicesService,public dialog: MatDialog,private router:Router){
 console.log(adminService.str);
   }
   ngOnInit(): void {
@@ -67,7 +95,7 @@ console.log(adminService.str);
 
       CreatePharmacy:FormGroup=new FormGroup({
         pharmacyname:new FormControl('',Validators.required),
-        location:new FormControl('',Validators.required),
+        location:new FormControl(),
         address:new FormControl('',Validators.required),
         lng:new FormControl('',Validators.required),
         lat:new FormControl('',Validators.required),
@@ -77,14 +105,16 @@ console.log(adminService.str);
       updatePharmacy:FormGroup=new FormGroup({
         pharmacyid:new FormControl('',Validators.required),
         pharmacyname:new FormControl('',Validators.required),
-        location:new FormControl('',Validators.required),
+        location:new FormControl(),
         address:new FormControl('',Validators.required),
         lng:new FormControl('',Validators.required),
         lat:new FormControl('',Validators.required),
-        email :new FormControl('',Validators.required),
+        email :new FormControl('',[Validators.required,Validators.email]),
         phonenumber :new FormControl('',Validators.required)     
       })
       OpenCreateDialog (){
+        this.updatePharmacy.controls['location'].setValue("Jordan");
+
         const dialogRef=this.dialog.open(this.createPharmacDailog);
       }
       CreatePharm(){
@@ -100,7 +130,7 @@ console.log(adminService.str);
        openUpdateDailog(obj:any){
         debugger;
         this.pData=obj;
-
+        this.updatePharmacy.controls['location'].setValue("Jordan");
         this.updatePharmacy.controls['pharmacyid'].setValue(this.pData.pharmacyid);
         console.log(this.pData);
         const dialogRef=this.dialog.open(this.updatePharmacDailog)
@@ -113,5 +143,18 @@ console.log(adminService.str);
        }
 
 
+       pharmacydetlis(id:number)
+       {
+        debugger;
+          this.router.navigate(['admin/pharmacydetails'], { queryParams: { id }} )
 
+          // this.pharmacyDetals.emit();
+       }
+
+
+
+       MedicineinOrder(id:number){
+        debugger;
+        this.router.navigate(['admin/medicineInOrder'], { queryParams: { id } });  
+      }
 }

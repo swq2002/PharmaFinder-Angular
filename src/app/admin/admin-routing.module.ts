@@ -9,21 +9,31 @@ import { UserComponent } from './user/user.component';
 import { PharmacyComponent } from './pharmacy/pharmacy.component';
 import { OrderComponent } from './order/order.component';
 import { MedicinesInOrderComponent } from './medicines-in-order/medicines-in-order.component';
-import { TestComponent } from './test/test.component';
 import { ReportComponent } from './report/report.component';
+import { SearchsalesComponent } from './searchsales/searchsales.component';
+import { PharmacydetailsComponent } from './pharmacydetails/pharmacydetails.component';
 
 const routes: Routes = [
+  // {
+  //   path: 'admin/pharmacydetails/:pharmacyId',
+  //   component: PharmacydetailsComponent,
+  //   // other route configurations...
+  // },
+{
+  path:'pharmacydetails',
+  component:PharmacydetailsComponent
+},
 
-    
+
   {
-    path:'test',
-    component:TestComponent
+    path:'SearchInOrder',
+    component:SearchsalesComponent
   },
-    
-  {
-    path:'medicineInOrder/:id',
-    component:MedicinesInOrderComponent
-  },
+
+  // {
+  //   path:'medicineInOrder/:id',
+  //   component:MedicinesInOrderComponent
+  // },
     
   {
     path:'medicineInOrder',
