@@ -95,7 +95,7 @@ console.log(adminService.str);
 
       CreatePharmacy:FormGroup=new FormGroup({
         pharmacyname:new FormControl('',Validators.required),
-        location:new FormControl('',Validators.required),
+        location:new FormControl(),
         address:new FormControl('',Validators.required),
         lng:new FormControl('',Validators.required),
         lat:new FormControl('',Validators.required),
@@ -105,14 +105,16 @@ console.log(adminService.str);
       updatePharmacy:FormGroup=new FormGroup({
         pharmacyid:new FormControl('',Validators.required),
         pharmacyname:new FormControl('',Validators.required),
-        location:new FormControl('',Validators.required),
+        location:new FormControl(),
         address:new FormControl('',Validators.required),
         lng:new FormControl('',Validators.required),
         lat:new FormControl('',Validators.required),
-        email :new FormControl('',Validators.required),
+        email :new FormControl('',[Validators.required,Validators.email]),
         phonenumber :new FormControl('',Validators.required)     
       })
       OpenCreateDialog (){
+        this.updatePharmacy.controls['location'].setValue("Jordan");
+
         const dialogRef=this.dialog.open(this.createPharmacDailog);
       }
       CreatePharm(){
@@ -128,7 +130,7 @@ console.log(adminService.str);
        openUpdateDailog(obj:any){
         debugger;
         this.pData=obj;
-
+        this.updatePharmacy.controls['location'].setValue("Jordan");
         this.updatePharmacy.controls['pharmacyid'].setValue(this.pData.pharmacyid);
         console.log(this.pData);
         const dialogRef=this.dialog.open(this.updatePharmacDailog)

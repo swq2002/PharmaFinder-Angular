@@ -163,9 +163,9 @@
           <thead>
           <tr>
               <th>Pharmacy Name</th>
-              <th>Location_ </th>
+              <!-- <th>Location_ </th> -->
               <th>Address_ </th>
-              <th>Lng_</th>
+              <th>Lng</th>
               <th>Lat  </th>
               <th>Email </th>
               <th>Phone Number</th>
@@ -179,7 +179,7 @@
         <tbody>
           <tr *ngFor="let obj of  adminService.pharmacy  |filtarByPharmacyName:pharmacyName">
               <td>{{obj.pharmacyname}}</td>
-              <td>{{obj.location}}</td>
+              <!-- <td>{{obj.location}}</td> -->
               <td>{{obj.address}}</td>
               <td>{{obj.lng}}</td>
               <td>{{obj.lat}}</td>
@@ -261,14 +261,14 @@
         pharmacy name is <strong>required</strong>
       </mat-error>
     </mat-form-field>
-
+<!-- 
  <mat-form-field class="example-full-width">
       <mat-label>location </mat-label>
       <input type="text" matInput formControlName="location" >
       <mat-error *ngIf="updatePharmacy.controls['location'].hasError('required')">
         location is <strong>required</strong>
       </mat-error>
-    </mat-form-field>
+    </mat-form-field> -->
 
     <mat-form-field class="example-full-width">
       <mat-label>address</mat-label>
@@ -311,10 +311,13 @@
       <mat-error *ngIf="updatePharmacy.controls['email'].hasError('required')">
         email is <strong>required</strong>
       </mat-error>
+      <mat-error *ngIf="updatePharmacy.controls['email'].hasError('email')">
+        pleasc enter a valid email address 
+      </mat-error>
     </mat-form-field>
     <mat-form-field class="example-full-width">
       <mat-label>phone number</mat-label>
-      <input type="number" matInput formControlName="phonenumber"   >
+      <input type="text" matInput formControlName="phonenumber"   >
       <mat-error *ngIf="updatePharmacy.controls['phonenumber'].hasError('required')">
         phone numberis <strong>required</strong>
       </mat-error>
@@ -326,7 +329,7 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close (click)="Cancel()">Cancel</button>
-   <button mat-button [mat-dialog-close]="true" (click)="CreatePharm()"  mat-raised-button color="primary" [disabled]="!CreatePharmacy.valid" cdkFocusInitial>Create</button> 
+   <button mat-button [mat-dialog-close]="true" (click)="CreatePharm()"  mat-raised-button color="primary"  cdkFocusInitial>Create</button> 
 </mat-dialog-actions>
 </ng-template> 
  
@@ -347,14 +350,14 @@
         medicne name is <strong>required</strong>
       </mat-error>
     </mat-form-field>
-
+<!-- 
  <mat-form-field class="example-full-width">
       <mat-label>location </mat-label>
       <input type="text" matInput formControlName="location" [(ngModel)]="pData.location" >
       <mat-error *ngIf="updatePharmacy.controls['location'].hasError('required')">
         medicne name is <strong>required</strong>
       </mat-error>
-    </mat-form-field>
+    </mat-form-field> -->
     <mat-form-field class="example-full-width">
       <mat-label>address</mat-label>
       <mat-select formControlName="address"  [(ngModel)]="pData.address">
@@ -396,10 +399,13 @@
       <mat-error *ngIf="updatePharmacy.controls['email'].hasError('required')">
         medicne name is <strong>required</strong>
       </mat-error>
+      <mat-error *ngIf="updatePharmacy.controls['email'].hasError('email')">
+        pleasc enter a valid email address 
+      </mat-error>
     </mat-form-field>
     <mat-form-field class="example-full-width">
       <mat-label>phone number</mat-label>
-      <input type="number" matInput formControlName="phonenumber"  [(ngModel)]="pData.phonenumber" >
+      <input type="text" matInput formControlName="phonenumber"  [(ngModel)]="pData.phonenumber" >
       <mat-error *ngIf="updatePharmacy.controls['phonenumber'].hasError('required')">
         medicne name is <strong>required</strong>
       </mat-error>

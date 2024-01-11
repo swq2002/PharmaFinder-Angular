@@ -152,14 +152,12 @@
                 <th>dateofbirth</th>
                 <th>address</th>
                 <th>phonenumber</th>
-                <th>Action</th>
   
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let obj of  adminService.userAccount ">
                 <td>{{obj.username}}</td>
-                <td>{{obj.profileimage}}</td>
                 <td><img src="../../../assets//Images/{{obj.profileimage}}"></td> 
                 <td>{{obj.email}}</td>
                 <td>{{obj.gender}}</td>

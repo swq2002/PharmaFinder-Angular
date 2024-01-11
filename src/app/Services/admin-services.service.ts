@@ -262,13 +262,16 @@ pharmcyId:number=0;
     debugger;
     this.spinner.show();
     this.http.post('https://localhost:7274/api/Pharmacy/CreatePharmacy/',obj).subscribe((resp)=>{
+      debugger;
     this.toaster.success('Created')
+    debugger;
     this.spinner.hide();
-
 
   },err=>{
     this.toaster.error('something want wrong !!');
+    debugger;
     this.spinner.hide();
+
     })
   }
   GetAllPharmacyformap() {
@@ -298,6 +301,7 @@ pharmcyId:number=0;
     this.spinner.show();
     this.http.put('https://localhost:7274/api/Pharmacy/UpdatePharmacy',body).subscribe(()=>
     {
+
       this.toaster.success('updated')
       this.spinner.hide();
   window.location.reload();
@@ -393,8 +397,8 @@ display_image_user:any;
 uploadAttachmentUser(file:FormData){
   this.spinner.show();
 debugger;
-  this.http.post('https://localhost:7274/api/User/uploadImage',file).subscribe((resp:any)=>
-  {
+this.http.post('https://localhost:7274/api/Medicine/uploadImages',file).subscribe((resp:any)=>
+{
     debugger;
     this.display_image_user=resp.profileimage;
     this.spinner.hide()

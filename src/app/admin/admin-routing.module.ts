@@ -13,11 +13,11 @@ import { SearchsalesComponent } from './searchsales/searchsales.component';
 import { PharmacydetailsComponent } from './pharmacydetails/pharmacydetails.component';
 
 const routes: Routes = [
-  {
-    path: 'admin/pharmacydetails/:pharmacyId',
-    component: PharmacydetailsComponent,
-    // other route configurations...
-  },
+  // {
+  //   path: 'admin/pharmacydetails/:pharmacyId',
+  //   component: PharmacydetailsComponent,
+  //   // other route configurations...
+  // },
 {
   path:'pharmacydetails',
   component:PharmacydetailsComponent
@@ -29,10 +29,10 @@ const routes: Routes = [
     component:SearchsalesComponent
   },
 
-  {
-    path:'medicineInOrder/:id',
-    component:MedicinesInOrderComponent
-  },
+  // {
+  //   path:'medicineInOrder/:id',
+  //   component:MedicinesInOrderComponent
+  // },
     
   {
     path:'medicineInOrder',

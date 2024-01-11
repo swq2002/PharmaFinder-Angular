@@ -180,6 +180,7 @@
         <tbody>
           <tr *ngFor="let obj of  adminService.medicine |filtarByMedcineName:filterMedicineName">
               <td>{{obj.medicinename}}</td>
+        <td><img src="../../../assets/Images/{{obj.imagename}}"></td>
               <td>{{obj.medicineprice}}</td>
               <td>{{obj.medicinetype}}</td>
               <td>{{obj.medicinedescription}}</td>
@@ -188,8 +189,7 @@
               <td>{{obj.quantity}}</td>
               <td>{{obj.pharmacyname}}</td>
 
-              <!-- Assuming pharmacyid is a property of obj -->
-              <td><a [routerLink]="['/admin/pharmacydetails', obj.pharmacyid]" >{{obj.pharmacyname}}</a></td>
+              <!-- <td><a [routerLink]="['/admin/pharmacydetails', obj.pharmacyid]" >{{obj.pharmacyname}}</a></td> -->
 
               <td>
                 <!-- <button style="margin:5px ;" mat-raised-button color="primary"   (click)="openUpdateDailog(obj)" >update</button> -->
