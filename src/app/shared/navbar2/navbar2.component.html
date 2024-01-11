@@ -16,24 +16,9 @@
                 <div class="col header-contact-serarch-column d-none d-lg-block">
                     <div class="header-contact-search">
                         <!-- header-feature-item -->
-                        <div class="header-feature-item">
-                            <div class="header-feature-icon">
-                                <i class="icon-call"></i>
-                            </div>
-                            <div class="header-feature-info">
-                                <h6>Phone</h6>
-                                <p><a href="tel:0796217882">+962-79-6217882</a></p>
-                            </div>
-                        </div>
+                     
                         <!-- header-search-2 -->
-                        <div class="header-search-2">
-                            <form id="#123" method="get" action="#">
-                                <input type="text" name="search" value="" placeholder="Search here..." />
-                                <button type="submit">
-                                    <span><i class="icon-search"></i></span>
-                                </button>
-                            </form>
-                        </div>
+                       
                     </div>
                 </div>
                 <div class="col">
@@ -67,10 +52,10 @@
                                         <li>
                                             <a href="#"><i class="icon-user"></i></a>
                                             <ul>
-                                                <li><a href="security/login">Sign in</a></li>
-                                                <li><a href="security/register">Register</a></li>
-                                                <li><a href="userdashboard/account">My Account</a></li>
-                                                <li><a href="wishlist.html">Wishlist</a></li>
+                                                <li [hidden]="user != null"><a href="security/login">Sign in</a></li>
+                                                <li [hidden]="user != null"><a href="security/register">Register</a></li>
+                                                <li [hidden]="user == null"><a href="userdashboard/account">My Account</a></li>
+                                                <li [hidden]="user == null"><a (click)="Logout()" href="javascript:void(0);">Logout</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -116,10 +101,8 @@
                             <div class="ltn__main-menu">
                                 <ul>
                                     <li><a href="">Home</a></li>
-                                    <li><a routerLink="/about">About</a></li>
-                                    <li><a routerLink="/about">Testimonials</a></li>
+                                    <li><a href="services">Services</a></li>
 
-                                    <li><a href="contact.html">Contact</a></li>
                                 </ul>
                             </div>
                         </nav>
@@ -202,19 +185,11 @@
             </div>
             <button class="ltn__utilize-close">×</button>
         </div>
-        <div class="ltn__utilize-menu-search-form">
-            <form action="#">
-                <input type="text" placeholder="Search...">
-                <button><i class="fas fa-search"></i></button>
-            </form>
-        </div>
+      
         <div class="ltn__main-menu">
             <ul>
                 <li><a href="">Home</a></li>
-                <li><a routerLink="/about">About</a></li>
-                <li><a routerLink="/about">Testimonials</a></li>
-
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="services">Services</a></li>
             </ul>
         </div>
         <div class="ltn__utilize-buttons ltn__utilize-buttons-2">

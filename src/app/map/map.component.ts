@@ -28,7 +28,7 @@ export class MapComponent implements OnInit {
 
 
   
-   this.map = L.map('map').setView([position.lat,position.lng], 12);
+   this.map = L.map('map', { scrollWheelZoom: false }).setView([position.lat,position.lng], 12);
    const marker = L.marker([position.lat,position.lng]).addTo(this.map);
    const circle = L.circle([position.lat,position.lng],{color:"blue",fillColor:"black",fillOpacity:0.5,radius:700}).addTo(this.map);
 

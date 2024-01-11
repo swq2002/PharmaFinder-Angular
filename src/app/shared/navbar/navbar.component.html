@@ -26,44 +26,24 @@
                     </div>
                 </div>
                 <div class="col--- ltn__header-options ltn__header-options-2 mb-sm-20">
-                    <!-- header-search-1 -->
-                    <div class="header-search-wrap">
-                        <div class="header-search-1">
-                            <div class="search-icon">
-                                <i class="icon-search for-search-show"></i>
-                                <i class="icon-cancel  for-search-close"></i>
-                            </div>
-                        </div>
-                        <div class="header-search-1-form">
-                            <form id="#" method="get"  action="#">
-                                <input type="text" name="search" value="" placeholder="Search here..."/>
-                                <button type="submit">
-                                    <span><i class="icon-search"></i></span>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
+                   
                     <!-- user-menu -->
                     <div class="ltn__drop-menu user-menu">
                         <ul>
                             <li>
                                 <a href="#"><i class="icon-user"></i></a>
                                 <ul>
-                                    <li><a href="security/login">Sign in</a></li>
-                                    <li><a href="security/register">Register</a></li>
-                                    <li><a href="userdashboard/account">My Account</a></li>
-                                    <li><a href="wishlist.html">Wishlist</a></li>
+                                    <li [hidden]="user != null"><a href="security/login">Sign in</a></li>
+                                    <li [hidden]="user != null"><a href="security/register">Register</a></li>
+                                    <li [hidden]="user == null"><a href="userdashboard/account">My Account</a></li>
+                                    <li [hidden]="user == null"><a (click)="Logout()" href="javascript:void(0);">Logout</a></li>
+
                                 </ul>
                             </li>
                         </ul>
                     </div>
                     <!-- mini-cart -->
-                    <div class="mini-cart-icon">
-                        <a href="#ltn__utilize-cart-menu" class="ltn__utilize-toggle">
-                            <i class="icon-shopping-cart"></i>
-                            <sup>2</sup>
-                        </a>
-                    </div>
+                  
                     <!-- mini-cart -->
                     <!-- Mobile Menu Button -->
                     <div class="mobile-menu-toggle d-xl-none">

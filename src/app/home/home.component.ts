@@ -8,7 +8,7 @@ declare var $: any; // Declare jQuery to avoid TypeScript errors
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit {
   homeData: any;
 
 
@@ -23,6 +23,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
         console.error(err);
       }
     );
+   
+
 
     document.addEventListener('DOMContentLoaded', function () {
       const slider = document.querySelector('.ltn__slide-one-active') as HTMLElement;
@@ -42,8 +44,4 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   }
 
-  ngAfterViewInit(): void {
-   
-
-  }
 }

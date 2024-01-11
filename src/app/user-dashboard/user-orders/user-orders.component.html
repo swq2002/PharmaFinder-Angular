@@ -54,21 +54,21 @@
                                                             ${{obj.orderprice}}
                                                         </td>
                                                         <td >
-                                                           <ng-container *ngIf="obj.status=='Accepted'">
-                                                                <p class="badge bg-success rounded-3 fw-semibold" style="padding: 8px 10px 8px 10px;" >{{obj.status}}</p>
+                                                           <ng-container *ngIf="obj.approval=='Accepted'">
+                                                                <p class="badge bg-success rounded-3 fw-semibold" style="padding: 8px 10px 8px 10px;" >{{obj.approval}}</p>
                                                            </ng-container>
-                                                           <ng-container *ngIf="obj.status=='Pending'">
-                                                            <p class="badge bg-primary rounded-3 fw-semibold" style="padding: 8px 10px 8px 10px;" >{{obj.status}}</p>
+                                                           <ng-container *ngIf="obj.approval=='Pending'">
+                                                            <p class="badge bg-primary rounded-3 fw-semibold" style="padding: 8px 10px 8px 10px;" >{{obj.approval}}</p>
                                                        </ng-container>
-                                                       <ng-container *ngIf="obj.status=='Not Accepted'">
-                                                        <p class="badge bg-danger rounded-3 fw-semibold" style="padding: 8px 10px 8px 10px;" >{{obj.status}}</p>
+                                                       <ng-container *ngIf="obj.approval=='Not Accepted'">
+                                                        <p class="badge bg-danger rounded-3 fw-semibold" style="padding: 8px 10px 8px 10px;" >{{obj.approval}}</p>
                                                    </ng-container>
                                                             </td>
                                                         <td class="border-bottom-6" style=" font-size: 20px;">
-                                                                <ng-container *ngIf="obj.approval=='waiting for payment'">
-                                                                    <button   (click)="Pay(obj.orderid)"   class="badge bg-primary rounded-3 fw-semibold" style="padding: 8px 20px 8px 20px;" [disabled]="obj.status == 'Pending'||obj.status == 'Not Aceepted'" title="Pay your Order">Pay</button>
+                                                                <ng-container *ngIf="obj.status=='waiting for payment'">
+                                                                    <button (click)="Pay(obj.orderid)"   class="badge bg-primary rounded-3 fw-semibold" style="padding: 8px 20px 8px 20px;" [disabled]="obj.approval == 'Pending'||obj.approval == 'Rejected'" title="Pay your Order">Pay</button>
                                                                 </ng-container>
-                                                                <ng-container *ngIf="obj.approval=='Paid'">
+                                                                <ng-container *ngIf="obj.status=='Paid'">
                                                                       <p class="badge bg-success rounded-3 fw-semibold" style="padding: 8px 10px 8px 10px;" title="Order approval in progress">Paid</p>
                                                                   </ng-container>
                                                         </td>

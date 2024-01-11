@@ -57,7 +57,7 @@
                             </tbody>
                         </table>
                         <div class="btn-wrapper text-right">
-                            <a class="theme-btn-1 btn btn-effect-1"  (click)="SendOrder()" >Submit Order for Approval</a>
+                            <button class="theme-btn-1 btn btn-effect-1" [disabled]="cartTotalPrice==0" (click)="SendOrder()" >Submit Order for Approval</button>
                         </div>
                     </div>
                 </div>

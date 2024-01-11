@@ -348,6 +348,23 @@ export class AdminServicesService {
 
     })
   }
+  AcceptPayment(body:any){
+
+    this.http.put('https://localhost:7274/api/Orders/AcceptOrRejectPayment',body).subscribe(()=>
+    {
+      this.toaster.success('Accepted')
+      window.location.reload();
+      this.spinner.hide()
+
+    },err=>{
+      console.log(ErrorEvent) 
+      this.toaster.error('something want wrong !!')
+      this.spinner.hide()
+      window.location.reload();
+
+    })
+  }
+
   display_image:any;
 uploadAttachment(file:FormData){
   this.spinner.show();
@@ -369,7 +386,7 @@ debugger;
   this.http.post('https://localhost:7274/api/User/uploadImage',file).subscribe((resp:any)=>
   {
     debugger;
-    this.display_image=resp.profileimage;
+    this.display_image_user=resp.profileimage;
     this.spinner.hide()
   },err=>{
     this.toaster.error('something want wrong !!')

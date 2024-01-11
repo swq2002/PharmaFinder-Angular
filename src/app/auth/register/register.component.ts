@@ -66,9 +66,9 @@ goToLogin(){
   
 }
 
-Submit(){
-  debugger;
-  this.home.createUser(this.registerForm.value);
+async Submit(){
+ await this.home.createUser(this.registerForm.value);
+ this.goToLogin();
 }
 UploadImage(file:any){
   debugger;

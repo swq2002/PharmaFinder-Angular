@@ -55,7 +55,7 @@ export class PaymentComponent implements OnInit {
             console.log('Transaction ID:', this.payment.transactionID);
 
              await this.SendInvoice();
-             await this.adminService.AcceptOrders({orderid:this.order.orderid,approval:"Paid"})
+             await this.adminService.AcceptPayment({orderid:this.order.orderid,status:"Paid"})
             this.router.navigate(['confirm']);
           }
         });
@@ -65,6 +65,8 @@ export class PaymentComponent implements OnInit {
       onCancel: (data: any) => {
         // Handle cancelled payment
         console.log('Payment cancelled:', data);
+         this.adminService.AcceptPayment({orderid:this.order.orderid,status:"Waiting for payment"})
+
         this.router.navigate(['cancelled']);
       }
     }).render(this.paymentRef.nativeElement);
@@ -77,7 +79,6 @@ export class PaymentComponent implements OnInit {
       userid: this.user.userid
     };
     const emailDto = { to: this.user.email, subject: "Payment Successfully Processed", plaintext:`Dear ${this.user.name}, <br> <br> Your payment has been successfully sent.<br><br> Thank you for your purchase!`}
-
     const InvoiceDto = {  orderdate:this.order.orderdate, orderid: this.order.orderid, orderprice: this.order.orderprice, username: this.user.name, email: this.user.email };
 
     await this.payment.SendInvoice(emailDto, this.cartItems, InvoiceDto);

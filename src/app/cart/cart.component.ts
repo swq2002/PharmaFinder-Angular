@@ -84,7 +84,7 @@ export class CartComponent implements OnInit {
     const emailDto = { to: this.user.email, subject: "Invoice", plaintext:`Dear ${this.user.name}, <br> Your order has been sent successfully and is under review.` }
 
     const orderId = await this.payment.CreateOrder(order);
-    const InvoiceDto = { orderid: orderId, orderdate:now.toLocaleDateString ,orderprice: this.cartTotalPrice, username: this.user.name, email: this.user.email };
+    const InvoiceDto = { orderid: orderId, orderdate:now ,orderprice: this.cartTotalPrice, username: this.user.name, email: this.user.email };
 
     await this.payment.CreateOrderMed(orderId, this.cartItems);
     await this.payment.SendInvoice(emailDto, this.cartItems, InvoiceDto);

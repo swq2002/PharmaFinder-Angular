@@ -10,8 +10,8 @@ export class ConfirmationComponent implements OnInit {
   transcationid = "";
 
   constructor(private payment:PaymentService){}
-  ngOnInit(): void {
-    this.transcationid =this.payment.transactionID
+  async ngOnInit() {
+    this.transcationid = await this.payment.transactionID
   }
 
 }
