@@ -1,0 +1,18 @@
+<div class="container justify-content-center">
+    <div class="row justify-content-center">
+      <div class="col-md-6 ">
+        <div class="card mt-4">
+          <div class="card-body text-center">
+            <h4 class="card-title">Payment Details</h4>
+            <div class="total-amount mt-4">
+              <h5>Total amount to pay:</h5>
+              <h2 class="amount">${{ order.orderprice }}</h2>
+            </div>
+            <div #paymentRef class="mt-4"></div>
+            <button class="btn btn-danger mt-3" (click)="cancel()">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

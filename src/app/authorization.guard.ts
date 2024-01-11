@@ -3,34 +3,37 @@ import { CanActivateFn, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 export const authorizationGuard: CanActivateFn = (route, state) => {
-//const router = new Router(); 
- //let toastr:ToastrService= inject(ToastrService);
+const router = new Router(); 
+ let toastr:ToastrService= inject(ToastrService);
   const token = localStorage.getItem('token');
   console.log(state);
   if(token){
-    //   if(state.url.indexOf('admin')>0) {
+    debugger;
+      if(state.url.indexOf('admin')>0) {
 
-    //       let user :any = localStorage.getItem('user'); //string 
-    //       user = JSON.parse(user);
-    //       if(user.roleid=='1')
-    //       {
-    //  toastr.success('Welcome in Admin dashboard');
-    //         return true; 
-    //       }
-    //       else //roleid != 1 
-    //       {
-    //         toastr.warning('This page for admin module');
-    //        router.navigate(['security/login']);
-    //          return false ; 
-    //       }
-    //   }
+
+          let user :any = localStorage.getItem('user'); //string 
+          user = JSON.parse(user);
+          if(user.roleid=='1')
+          {
+     toastr.success('Welcome in Admin dashboard');
+            return true; 
+          }
+          else 
+          {
+            toastr.warning('This page for admin module');
+           router.navigate(['security/login']);
+             return false ; 
+          }
+      }
+     
      return true;
   }
- else //not user in the system 
+ else
  {
-  // toastr.warning('Please sign up');
-  // router.navigate(['security/register']);
-return false;
+  toastr.warning('Please sign in');
+  router.navigate(['security/login']);
+  return false;
  }
 
 

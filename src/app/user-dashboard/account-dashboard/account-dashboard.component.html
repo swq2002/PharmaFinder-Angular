@@ -1,0 +1,129 @@
+<div class="pb-50">
+    <app-navbar2></app-navbar2>
+    </div>
+
+<div class="liton__wishlist-area pb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- PRODUCT TAB AREA START -->
+                <div class="ltn__product-tab-area">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="ltn__tab-menu-list mb-50">
+                                    <div class="nav">
+                                        <a class="active show" href="userdashboard/account">Dashboard <i class="fas fa-home"></i></a>
+                                        <a data-bs-toggle="tab" href="#liton_tab_1_2">Orders <i class="fas fa-file-alt"></i></a>
+                                        <a data-bs-toggle="tab" href="#liton_tab_1_3">Downloads <i class="fas fa-arrow-down"></i></a>
+                                        <a data-bs-toggle="tab" href="#liton_tab_1_4">address <i class="fas fa-map-marker-alt"></i></a>
+                                        <a data-bs-toggle="tab" href="#liton_tab_1_5">Account Details <i class="fas fa-user"></i></a>
+                                        <a href="userdashboard/userTestimonial">Testimonial <i class="fas fa-user"></i></a>
+                                        <a href="login.html" (click)="logout()">Logout <i class="fas fa-sign-out-alt"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="tab-content">
+
+                                    <div class="col-lg-8 d-flex align-items-stretch" style="width: 110%; font-size: 15px;margin-left: 30px;overflow-x: hidden;">
+                                        <div class="card">
+                                          <div class="card-body p-4">
+                                            <h3 class="card-title fw-semibold mb-4" style="text-align: center; align-content: center; font-size: xx-large;">Your Orders History</h3>
+                                            <br>
+                                            <div class="table-responsive">
+                                              <table class="table text-wrap mb-0 align-middle" id="table-data">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Order Date</th>
+                                                        <th>Order Value</th>
+                                                        <th>Pharmacy Name</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                  <tr *ngFor="let obj of home.orders" style="height: 70px;">
+                                                    <ng-container>
+                                                        <td>
+                                                            {{obj.orderdate | date}}
+                                                        </td>
+                                                        <td>
+                                                            ${{obj.orderprice}}
+                                                        </td>
+                                                        <td>
+                                                            {{obj.pharmacyname}}
+                                                        </td>
+                                                  </ng-container>
+                                                </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                          </div>
+                                        </div>
+                                </div>
+
+
+
+
+
+                                <div class="row mt-5" style="width: 900px; margin-left: 30px;">
+                                    <div class="col-lg-8 d-flex align-items-stretch">
+                                      <div class="card w-100">
+                                        <div class="card-body p-4">
+                                            <h3 class="card-title fw-semibold mb-4" style="text-align: center; align-content: center; font-size: xx-large;">Your Payments History</h3>
+                                          <div class="table-responsive">
+                                            <table class="table text-nowrap mb-0 align-middle p-4">
+                                              <thead class="text-dark fs-4">
+                                                <tr>
+                                                  <th class="border-bottom-0">
+                                                    <h4 class="fw-semibold mb-0">Pharmacy Name</h4>
+                                                  </th>
+                                                  <th class="border-bottom-0">
+                                                    <h4 class="fw-semibold mb-0">Date</h4>
+                                                  </th>
+                                                  <th class="border-bottom-0">
+                                                    <h4 class="fw-semibold mb-0">Method</h4>
+                                                  </th>
+                                                  <th class="border-bottom-0">
+                                                    <h4 class="fw-semibold mb-0">Value</h4>
+                                                  </th>
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+                                                <tr *ngFor="let obj of home.orders" style="height: 70px;">
+                                                  <td class="border-bottom-0">
+                                                      <h5 class="fw-semibold mb-1">{{obj.pharmacyname}}</h5>
+                                                  </td>
+                                                  <td class="border-bottom-0">
+                                                    <p class="mb-0 fw-normal">{{obj.orderdate | date}}</p>
+                                                  </td>
+                                                  <td class="border-bottom-0">
+                                                    <div class="d-flex align-items-center gap-2">
+                                                      <span class="badge bg-primary rounded-3 fw-semibold">Paypal</span>
+                                                    </div>
+                                                  </td>
+                                                  <td class="border-bottom-0">
+                                                    <h6 class="fw-semibold mb-0 fs-4">${{obj.orderprice}}</h6>
+                                                  </td>
+                                                </tr> 
+                                                                     
+                                              </tbody>
+                                            </table>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- PRODUCT TAB AREA END -->
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

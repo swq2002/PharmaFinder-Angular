@@ -34,6 +34,7 @@ import { FiltarByMedcineNamePipe } from '../pipes/filtar-by-medcine-name.pipe';
 import { ManageHomePageComponent } from './manage-home-page/manage-home-page.component';
 import { ManageAboutPageComponent } from './manage-about-page/manage-about-page.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { ReportComponent } from './report/report.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     ManageHomePageComponent,
     ManageAboutPageComponent,
     EditProfileComponent,
-
+    ReportComponent
     
 
     

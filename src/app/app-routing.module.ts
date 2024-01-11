@@ -11,36 +11,37 @@ import { MapComponent } from './map/map.component';
 import { ProductResultComponent } from './product-result/product-result.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
-import { authorizationGuard } from './authorization.guard';
 import { ShopComponent } from './shop/shop.component';
-import { AccountDashboardComponent } from './account-dashboard/account-dashboard.component';
+import { PaymentComponent } from './payment/payment.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { authorizationGuard } from './authorization.guard';
 
 const routes: Routes = [
   {
     path: 'product-result', 
     component: ProductResultComponent,
+    canActivate: [authorizationGuard]
 
 
   },
   {
     path: 'about', 
     component: AboutusComponent,
+    
 
 
   },
   {
     path: 'services', 
     component: ShopComponent,
+    canActivate: [authorizationGuard]
 
 
   },
 
   {
     path:'security',
-    // loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
-    //,canActivate:[authorizationGuard]
-    
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)    
   },
   {
     path:'contact',
@@ -51,36 +52,52 @@ const routes: Routes = [
     component:HomeComponent
   },  {
     path:'upload-prescription',
-    component:OrderByPrescriptionComponent
-  },
-  {
-    path:'account',
-    component:AccountDashboardComponent
-  },
-  {
-    path:"security",
-    loadChildren:() => AuthModule
-  },
+    component:OrderByPrescriptionComponent,
+    canActivate: [authorizationGuard]
+  }
+  ,
+ 
   {
     path:"map",
-    component:MapComponent
+    component:MapComponent,
+    canActivate: [authorizationGuard]
   },
   
   {
     path:"cart",
-    component:CartComponent
+    component:CartComponent,
+    canActivate: [authorizationGuard]
   },
   
   {
     path:"checkout",
-    component:CheckoutComponent
+    component:CheckoutComponent,
+    canActivate: [authorizationGuard]
   },
 
   {
-    path:'admin', 
-    loadChildren:()=>import('./admin/admin.module').then((m)=>m.AdminModule)
-  }
+    path:'security',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    ,canActivate:[authorizationGuard]
 
+  },
+   { path:'admin', 
+    loadChildren:()=>import('./admin/admin.module').then((m)=>m.AdminModule)
+    ,canActivate:[authorizationGuard]
+  }, 
+  {
+    path:'userdashboard', 
+    loadChildren:()=>import('./user-dashboard/user-dashboard.module').then((m)=>m.UserDashboardModule)
+  },
+
+  {
+    path:"payment",
+    component:PaymentComponent
+  },
+  {
+    path:"confirm",
+    component:ConfirmationComponent
+  }
 ];
 
 @NgModule({

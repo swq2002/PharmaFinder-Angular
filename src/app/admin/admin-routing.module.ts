@@ -14,6 +14,7 @@ import { ManageHomePageComponent } from './manage-home-page/manage-home-page.com
 import { ManageAboutPageComponent } from './manage-about-page/manage-about-page.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
+import { ReportComponent } from './report/report.component';
 
 const routes: Routes = [
 
@@ -76,6 +77,11 @@ const routes: Routes = [
   {
     path:'EditProfile',
     component:EditProfileComponent
+
+   
+  },{
+    path:'report',
+    component:ReportComponent
   }
  
  

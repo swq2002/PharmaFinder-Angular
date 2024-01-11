@@ -1,24 +1,25 @@
 import { state } from '@angular/animations';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
+import { Observable, catchError, of, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminServicesService {
+
   pharmacy: any = [{}];
   medicine: any = [{}];
   contact: any = [{}];
   testimonial: any = [{}];
-  userAccount: any = [{}];
-  order: any = [{}];
-  medicineInOrder: any = [{}];
-  idNumber: any = [{}];
-  allIformationOrder: any = [{}];
+  userAccount:any=[{}];
+  order:any=[{}];
+  medicineInOrder:any=[{}];
+  idNumber:any=[{}];
+  allIformationOrder:any=[{}];
 
   numberOfMedicine: number = 0;
   str: string = 'message';
@@ -590,13 +591,39 @@ export class AdminServicesService {
   
 
 
-  // updateUser(body:any){
-  //   debugger
-  //   this.http.put('https://localhost:7274/api/User/UpdateUser', body).subscribe((resp:any)=>{
-  //     this.toaster.success('User Info Updated successfully');
-  //   },err=>{
-  //     this.toaster.error('Something went wrong!');
-  //         console.error('Error during user update:', err);
-  //   })
-  // }
+getAllSalesByMonthReport(month: number, year: number): Observable<any> {
+  const urlWithParams = `https://localhost:7274/api/Orders/AllSalesByMonthReport?month=${month}&year=${year}`;
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+  });
+
+  return this.http.post(urlWithParams, null, { headers })
+    .pipe(
+      catchError(error => {
+        console.error('API Error:', error);
+        return throwError(error);
+      })
+    );
+}
+
+getSalesByYearReport(year: number): Observable<any> {
+  const urlWithParams = `https://localhost:7274/api/Orders/AllSalesByYearReport?year=${year}`;
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+  });
+
+  return this.http.post(urlWithParams, null, { headers })
+    .pipe(
+      catchError(error => {
+        console.error('API Error:', error);
+        return throwError(error);
+      })
+    );
+}
+
+
+searchSales(search: { DateFrom: Date; DateTo: Date }): Observable<any[]> {
+  return this.http.post<any[]>('https://localhost:7274/api/Orders/SalesSearch', search);
+}
+
 }
