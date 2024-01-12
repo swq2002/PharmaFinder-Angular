@@ -112,11 +112,22 @@ export class HomeService{
     CreateTestimonial(body: any){
       //body.userid=2;
     this.http.post('https://localhost:7274/api/UserTestimonial/CreateUsertestimonial',body).subscribe((resp) =>{
-      alert('Created')
+     this.toastr.success("Thanks for rating")
+    window.location.reload();
+
     },
     err=>
     alert('something want wrong'))
-  window.location.reload();
+
+    }
+      SendContactMessage(body: any){
+        this.spinner.show();
+        this.http.post('https://localhost:7274/api/ContactUs/CreateContactUs',body).subscribe((resp) =>{
+      this.spinner.hide();
+
+    },
+    err=>
+    alert('something want wrong'))
 
     }
 
@@ -139,6 +150,7 @@ export class HomeService{
     }
     }
    
+
 }
 
 

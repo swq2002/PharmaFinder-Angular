@@ -7,20 +7,11 @@ import { HomeService } from '../Services/home.service';
   selector: 'app-testimonial',
   templateUrl: './testimonial.component.html',
   styleUrls: ['./testimonial.component.css'],
-  // animations: [
-  //   trigger('scroll', [
-  //     transition('* => *', [
-  //       style({ transform: '{{ from }}' }),
-  //       animate('50000ms ease-in-out', style({ transform: '{{ to }}' }))
-  //     ])
-  //   ])
-  // ]
+
 })
 export class TestimonialComponent implements OnInit {
  
-  // private intervalId: any;
-  // private readonly cardsPerPage = 3;
-  // private readonly scrollAmount = this.cardsPerPage; 
+
 
   
 
