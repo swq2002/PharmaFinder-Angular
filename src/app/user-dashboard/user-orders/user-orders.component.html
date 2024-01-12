@@ -1,7 +1,6 @@
-
 <div class="pb-50">
     <app-navbar2></app-navbar2>
-    </div>
+</div>
 
 <div class="liton__wishlist-area pb-70">
     <div class="container">
@@ -14,10 +13,12 @@
                             <div class="col-lg-4">
                                 <div class="ltn__tab-menu-list mb-50">
                                     <div class="nav">
-                                        <a class="active show" href="userdashboard/account">Dashboard <i class="fas fa-home"></i></a>
-                                        <a  href="userdashboard/userOrders">Orders <i class="fas fa-file-alt"></i></a>
-                                        <a  href="#liton_tab_1_5">Account Details <i class="fas fa-user"></i></a>
-                                        <a href="userdashboard/userTestimonial">Testimonial <i class="fas fa-user"></i></a>
+                                        <a class="active show" href="userdashboard/account">Dashboard <i
+                                                class="fas fa-home"></i></a>
+                                        <a href="userdashboard/userOrders">Orders <i class="fas fa-file-alt"></i></a>
+                                        <a href="#liton_tab_1_5">Account Details <i class="fas fa-user"></i></a>
+                                        <a href="userdashboard/userTestimonial">Testimonial <i
+                                                class="fas fa-user"></i></a>
 
                                         <a href="login.html">Logout <i class="fas fa-sign-out-alt"></i></a>
                                     </div>
@@ -25,62 +26,86 @@
                             </div>
                             <div class="col-lg-8">
                                 <div class="tab-content">
-                                    
 
-                                    <div class="col-lg-6 d-flex align-items-stretch" style="width: 100%; font-size: 15px;margin-left: 30px;overflow-x: hidden;">
+
+                                    <div class="col-lg-6 d-flex align-items-stretch"
+                                        style="width: 100%; font-size: 15px;margin-left: 30px;overflow-x: hidden;">
                                         <div class="card">
-                                          <div class="card-body p-4">
-                                            <h3 class="card-title fw-semibold mb-4" style="text-align: center; align-content: center; font-size: xx-large;">Your Orders History</h3>
-                                            <br>
-                                            <div class="table-responsive">
-                                              <table class="table text-wrap mb-0 align-middle" id="table-data">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Order Date</th>
-                                                        <th>Order Value</th>
-                                                        <th>Order Status</th>
-                                                        <th>Payment Status</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                  <tr *ngFor="let obj of home.orders">
-                                                    <ng-container>
-                                                        <td>
-                                                            {{obj.orderdate | date}}
-                                                        </td>
-                                                        <td>
-                                                            ${{obj.orderprice}}
-                                                        </td>
-                                                        <td >
-                                                           <ng-container *ngIf="obj.approval=='Accepted'">
-                                                                <p class="badge bg-success rounded-3 fw-semibold" style="padding: 8px 10px 8px 10px;" >{{obj.approval}}</p>
-                                                           </ng-container>
-                                                           <ng-container *ngIf="obj.approval=='Pending'">
-                                                            <p class="badge bg-primary rounded-3 fw-semibold" style="padding: 8px 10px 8px 10px;" >{{obj.approval}}</p>
-                                                       </ng-container>
-                                                       <ng-container *ngIf="obj.approval=='Not Accepted'">
-                                                        <p class="badge bg-danger rounded-3 fw-semibold" style="padding: 8px 10px 8px 10px;" >{{obj.approval}}</p>
-                                                   </ng-container>
-                                                            </td>
-                                                        <td class="border-bottom-6" style=" font-size: 20px;">
-                                                                <ng-container *ngIf="obj.status=='waiting for payment'">
-                                                                    <button (click)="Pay(obj.orderid)"   class="badge bg-primary rounded-3 fw-semibold" style="padding: 8px 20px 8px 20px;" [disabled]="obj.approval == 'Pending'||obj.approval == 'Rejected'" title="Pay your Order">Pay</button>
+                                            <div class="card-body p-4">
+                                                <h3 class="card-title fw-semibold mb-4"
+                                                    style="text-align: center; align-content: center; font-size: xx-large;">
+                                                    Your Orders History</h3>
+                                                <br>
+                                                <div class="table-responsive">
+                                                    <table class="table text-wrap mb-0 align-middle" id="table-data">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Order Date</th>
+                                                                <th>Order Value</th>
+                                                                <th>Order Status</th>
+                                                                <th>Payment Status</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let obj of home.orders">
+                                                                <ng-container>
+                                                                    <td>
+                                                                        {{obj.orderdate | date}}
+                                                                    </td>
+                                                                    <td>
+                                                                        ${{obj.orderprice}}
+                                                                    </td>
+                                                                    <td>
+                                                                        <ng-container *ngIf="obj.approval=='Accepted'">
+                                                                            <p class="badge bg-success rounded-3 fw-semibold"
+                                                                                style="padding: 8px 10px 8px 10px;">
+                                                                                {{obj.approval}}</p>
+                                                                        </ng-container>
+                                                                        <ng-container *ngIf="obj.approval=='Pending'">
+                                                                            <p class="badge bg-primary rounded-3 fw-semibold"
+                                                                                style="padding: 8px 10px 8px 10px;">
+                                                                                {{obj.approval}}</p>
+                                                                        </ng-container>
+                                                                        <ng-container
+                                                                            *ngIf="obj.approval=='Not Accepted'">
+                                                                            <p class="badge bg-danger rounded-3 fw-semibold"
+                                                                                style="padding: 8px 10px 8px 10px;">
+                                                                                {{obj.approval}}</p>
+                                                                        </ng-container>
+                                                                    </td>
+                                                                    <td class="border-bottom-6"
+                                                                        style=" font-size: 20px;">
+                                                                        <ng-container
+                                                                            *ngIf="obj.status=='waiting for payment'">
+                                                                            <button (click)="Pay(obj.orderid)"
+                                                                                class="badge bg-primary rounded-3 fw-semibold"
+                                                                                style="padding: 8px 20px 8px 20px;"
+                                                                                [disabled]="obj.approval == 'Pending'||obj.approval == 'Rejected'"
+                                                                                title="Pay your Order">Pay</button>
+                                                                        </ng-container>
+                                                                        <ng-container *ngIf="obj.status=='Paid'">
+                                                                            <p class="badge bg-success rounded-3 fw-semibold"
+                                                                                style="padding: 8px 10px 8px 10px;"
+                                                                                title="Order approval in progress">Paid
+                                                                            </p>
+                                                                        </ng-container>
+                                                                    </td>
                                                                 </ng-container>
-                                                                <ng-container *ngIf="obj.status=='Paid'">
-                                                                      <p class="badge bg-success rounded-3 fw-semibold" style="padding: 8px 10px 8px 10px;" title="Order approval in progress">Paid</p>
-                                                                  </ng-container>
-                                                        </td>
-                                                  </ng-container>
-                                                </tr>
-                                                </tbody>
-                                              </table>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
-                                          </div>
                                         </div>
-                                </div>
+                                    </div>
 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<app-footer></app-footer>
+                    </div>
+                    <app-footer></app-footer>

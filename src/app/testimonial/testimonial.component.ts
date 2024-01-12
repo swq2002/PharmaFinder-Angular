@@ -17,7 +17,10 @@ export class TestimonialComponent implements OnInit {
 
   constructor(public home:HomeService){}
   ngOnInit(): void {
+    debugger;
    this.home.GetAllUsertestimonials();
+   debugger;
+
    this.home.GetAllUsers();
    console.log(this.home.testimonials);
 

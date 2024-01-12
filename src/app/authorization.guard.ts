@@ -16,7 +16,6 @@ const router = new Router();
           user = JSON.parse(user);
           if(user.roleid=='1')
           {
-     toastr.success('Welcome in Admin dashboard');
             return true; 
           }
           else 

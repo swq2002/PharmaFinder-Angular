@@ -93,8 +93,12 @@ export class HomeService{
 
     testimonials:any=[{}];
     GetAllUsertestimonials():void{
+      debugger;
       this.http.get('https://localhost:7274/api/UserTestimonial/GetAllUsertestimonials').subscribe((resp)=>{
       this.testimonials = resp;
+      debugger;
+      console.log(resp);
+      
     },err=>{ 
       console.log(err.message);
       console.log(err.status);
