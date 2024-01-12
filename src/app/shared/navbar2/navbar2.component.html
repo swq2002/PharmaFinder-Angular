@@ -151,12 +151,13 @@
         <div class="mini-cart-product-area ltn__scrollbar">
             <div class="mini-cart-item clearfix" *ngFor="let item of cartItems; let i = index">
                 <div class="mini-cart-img">
-                    <a href="#"><img [src]="item.imagename" alt="Image"></a>
+                    <img src="assets/Images/{{item.imagename}}" alt="#">
                     <span class="mini-cart-item-delete" (click)="deleteCartItem(i)">
                         <i class="icon-cancel"></i>
                     </span>
                                 </div>
                 <div class="mini-cart-info">
+                    
                     <h6><a href="#">{{item.medicinename}}</a></h6>
                     <span class="mini-cart-quantity">{{item.quantity}} x ${{item.medicineprice}}</span>
                 </div>
