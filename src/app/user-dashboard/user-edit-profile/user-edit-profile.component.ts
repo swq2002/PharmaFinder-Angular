@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AdminServicesService } from 'src/app/Services/admin-services.service';
 import { AuthService } from 'src/app/Services/auth.service';
 import { HomeService } from 'src/app/Services/home.service';
@@ -19,7 +20,8 @@ export class UserEditProfileComponent implements OnInit {
     public dialog: MatDialog,
     public home: HomeService,
     public auth:AuthService,
-    private router: Router
+    private router: Router,
+    public toster:ToastrService
   ) {}
   @ViewChild('callUserUpdateDailog') callUserUpdateDailog!: TemplateRef<any>;
   ngOnInit(): void {
@@ -94,5 +96,13 @@ export class UserEditProfileComponent implements OnInit {
   logout(){
     localStorage.clear();
     this.router.navigate(['security/login']);
+  }
+
+  deleteUser(){
+    const user = this.auth.getCurrentUser();
+    this.admin.DeleteUserAccountByID(user.userid);
+    this.toster.success('Your account has been successfully deleted')
+    this.router.navigate(['security/register']);
+
   }
 }

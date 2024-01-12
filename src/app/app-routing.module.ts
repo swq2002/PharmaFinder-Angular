@@ -92,14 +92,10 @@ const routes: Routes = [
     component:PaymentComponent
   },
 
-  // {
-  //   path:"payment",
-  //   component:PaymentComponent
-  // },
-  // {
-  //   path:"confirm",
-  //   component:ConfirmationComponent
-  // }
+  {
+    path:"confirm",
+    component:ConfirmationComponent
+  }
 ];
 
 @NgModule({

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/Services/auth.service';
 import { HomeService } from 'src/app/Services/home.service';
 
 @Component({
@@ -8,14 +9,18 @@ import { HomeService } from 'src/app/Services/home.service';
   styleUrls: ['./create-testimonial.component.css']
 })
 export class CreateTestimonialComponent {
-  constructor(public home:HomeService){}
-  createTestimonial:FormGroup = new FormGroup({
-    testimonialtext:new FormControl('',Validators.required)
+  testmonial: any = {};
 
-  })
+  constructor(public home: HomeService, public auth: AuthService) { }
+  testimonialtext:FormControl= new FormControl('', Validators.required)
 
-  Save(){
+  
+
+   Save() {
     debugger
-    this.home.CreateTestimonial(this.createTestimonial.value)
+    const user =  this.auth.getCurrentUser();
+    this.testmonial =  { userid: user.userid, testimonialtext: this.testimonialtext.value }
+   
+     this.home.CreateTestimonial(this.testmonial);
   }
 }

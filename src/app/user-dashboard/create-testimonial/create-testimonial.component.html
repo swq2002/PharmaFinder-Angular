@@ -3,12 +3,12 @@
 
     <h2 mat-dialog-title>Write your feedback! </h2>
     <mat-dialog-content class="mat-typography">
-        <form class="example-form" [formGroup]="createTestimonial">
+        <form class="example-form">
             <mat-form-field class="example-full-width">
             <mat-label>Testimonial Text</mat-label>
-            <input type="text" matInput formControlName="testimonialtext" placeholder="Write...">
+            <input type="text"  matInput formControlName="testimonialtext" placeholder="Write..." [formControl]="testimonialtext">
             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-            <mat-error *ngIf="createTestimonial.controls['testimonialtext'].hasError('required')">
+            <mat-error *ngIf="testimonialtext.hasError('required')">
                  <strong>required</strong>
             </mat-error>
             </mat-form-field>

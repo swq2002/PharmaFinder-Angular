@@ -22,7 +22,9 @@ export class RegisterComponent {
     phoneNumber1: new FormControl('',Validators.pattern(/^[6-9]\d{9}$/)),
     gender: new FormControl('',Validators.required),
     address: new FormControl('',Validators.required),
-    Profileimage: new FormControl()
+    Profileimage: new FormControl(),
+    roleId: new FormControl(2)
+ 
   });
 
   regObj:any ={
@@ -30,6 +32,7 @@ export class RegisterComponent {
     email:'ex@example.com',
     password:'********'
   }
+  spinner: any;
 
 
 constructor(public home:HomeService ,private fb: FormBuilder, private http: HttpClient, private el: ElementRef, private renderer: Renderer2, private router:Router, private toastr: ToastrService) {
@@ -63,36 +66,49 @@ goToLogin(){
     phoneNumber: this.regObj.phoneNumber,
     gender: this.regObj.gender,
     address: this.regObj.adderss,
-    Profileimage: this.regObj.Profileimage
+    Profileimage: this.regObj.Profileimage,
+    roleid: 2
   };
-  
+ 
 }
+
 
 Submit() {
   debugger;
   const userEmail = this.registerForm.controls['email'].value;
-
+ 
+  if (this.registerForm.invalid) {
+    this.toastr.error('Please fill in all required fields', 'Error');
+    return;
+  }
+ 
   this.home.isEmailAlreadyRegistered(userEmail).subscribe(isRegistered => {
     if (isRegistered) {
       this.notifyUser();
       this.goToLogin();
     } else {
+      this.spinner.show();
       this.home.createUser(this.registerForm.value).subscribe(
         resp => {
           console.log('User created successfully!', resp);
+          this.toastr.success('Your account created successfully!');
+          this.spinner.hide();
+          this.router.navigate([''])
         },
         error => {
+          this.toastr.error('Fill the form please')
           console.error('Error creating user:', error);
         }
       );
     }
   });
 }
-
+ 
 private notifyUser() {
   this.toastr.error('You already have account')
   console.log('You already have an account!');
 }
+
 
 
 
