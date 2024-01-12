@@ -78,9 +78,12 @@ export class HomeService{
 
       display_image: any;
       uploadAttachment(file: FormData){
+        this.spinner.show();
         debugger;
         this.http.post('https://localhost:7274/api/User/UploadImage', file).subscribe((resp:any)=>{
-        this.display_image = resp.Profileimage;
+        this.display_image = resp.profileimage;
+        this.spinner.hide();
+
         },err=>{ 
           console.log(err.message);
           console.log(err.status);

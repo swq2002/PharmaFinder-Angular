@@ -23,15 +23,15 @@ export class MapComponent implements OnInit {
   position: any = {};
   async ngOnInit() {
 
-    const position: any = await this.mapService.getCurrentLocation();
+     this.position = await this.mapService.getCurrentLocation();
     
-    console.log(position);
+    console.log(this.position);
 
 
   
-   this.map = L.map('map', { scrollWheelZoom: false }).setView([position.lat,position.lng], 12);
-   const marker = L.marker([position.lat,position.lng]).addTo(this.map);
-   const circle = L.circle([position.lat,position.lng],{color:"blue",fillColor:"black",fillOpacity:0.5,radius:700}).addTo(this.map);
+   this.map = L.map('map', { scrollWheelZoom: false }).setView([this.position.lat,this.position.lng], 12);
+   const marker = L.marker([this.position.lat,this.position.lng]).addTo(this.map);
+   const circle = L.circle([this.position.lat,this.position.lng],{color:"blue",fillColor:"black",fillOpacity:0.5,radius:700}).addTo(this.map);
 
    
     
@@ -73,6 +73,7 @@ export class MapComponent implements OnInit {
 
 
   GetAllPharmacies(position: any) {
+    debugger
     this.adminService.GetAllPharmacyformap().subscribe(resp => {
       this.pharmacies = resp;
       this.nearestPharmacies = this.mapService.findNearestPharmacies(position, this.pharmacies)

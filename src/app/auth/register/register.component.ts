@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { formatDate } from '@angular/common';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService, Spinner } from 'ngx-spinner';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -32,10 +33,10 @@ export class RegisterComponent {
     email:'ex@example.com',
     password:'********'
   }
-  spinner: any;
 
 
-constructor(public home:HomeService ,private fb: FormBuilder, private http: HttpClient, private el: ElementRef, private renderer: Renderer2, private router:Router, private toastr: ToastrService) {
+constructor(public home:HomeService ,private fb: FormBuilder, private http: HttpClient, private el: ElementRef,
+   private renderer: Renderer2, private router:Router, private toastr: ToastrService,private spinner:NgxSpinnerService) {
 }
 
 goToLogin(){
@@ -73,8 +74,9 @@ goToLogin(){
 }
 
 
-Submit() {
+async Submit() {
   debugger;
+  this.spinner.show();
   const userEmail = this.registerForm.controls['email'].value;
  
   if (this.registerForm.invalid) {
@@ -82,7 +84,8 @@ Submit() {
     return;
   }
  
-  this.home.isEmailAlreadyRegistered(userEmail).subscribe(isRegistered => {
+  await this.home.isEmailAlreadyRegistered(userEmail).subscribe(isRegistered => {
+    debugger
     if (isRegistered) {
       this.notifyUser();
       this.goToLogin();
@@ -93,7 +96,7 @@ Submit() {
           console.log('User created successfully!', resp);
           this.toastr.success('Your account created successfully!');
           this.spinner.hide();
-          this.router.navigate([''])
+          this.goToLogin();
         },
         error => {
           this.toastr.error('Fill the form please')
@@ -102,6 +105,7 @@ Submit() {
       );
     }
   });
+
 }
  
 private notifyUser() {
