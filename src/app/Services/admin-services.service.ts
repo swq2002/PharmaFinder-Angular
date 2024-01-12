@@ -301,17 +301,14 @@ pharmcyId:number=0;
   }
 
   CreatedPharmicy(obj: any) {
-    debugger;
     this.spinner.show();
-    this.http.post('https://localhost:7274/api/Pharmacy/CreatePharmacy/',obj).subscribe((resp)=>{
-      debugger;
+    this.http.post('https://localhost:7274/api/Pharmacy/CreatePharmacy/',obj).subscribe((resp)=>{   
     this.toaster.success('Created')
-    debugger;
     this.spinner.hide();
+    window.location.reload();
 
   },err=>{
     this.toaster.error('something want wrong !!');
-    debugger;
     this.spinner.hide();
 
     })

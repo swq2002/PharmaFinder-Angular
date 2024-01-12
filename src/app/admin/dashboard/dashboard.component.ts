@@ -57,13 +57,13 @@ export class DashboardComponent implements OnInit {
 
 
 
-    this.adminService.CalculateProfitForPaidOrders().subscribe((resp: any) => {
+    this.adminService.CalculateAnnualProfitForPaidOrders().subscribe((resp: any)=>{
       const label = resp.map((item: any) => item.year);
-      const data = resp.map((item: any) => item.value)
+      const data = resp.map((item:any) => item.value)
       console.log(resp);
-      this.GenerateChartAnnualReport(label, data)
-
-    }, err => {
+     this.GenerateChartAnnualReport(label, data)
+      
+    },(err: { message: any; status: any; })=>{
       console.log(err.message);
       console.log(err.status);
     });
