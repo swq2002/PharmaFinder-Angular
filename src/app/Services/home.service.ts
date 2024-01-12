@@ -131,6 +131,7 @@ export class HomeService{
         this.spinner.show();
         this.http.post('https://localhost:7274/api/ContactUs/CreateContactUs',body).subscribe((resp) =>{
       this.spinner.hide();
+      this.toastr.success("Thank you for contacting us. Wait for an email")
 
     },
     err=>
