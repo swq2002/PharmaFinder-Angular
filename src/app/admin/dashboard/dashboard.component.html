@@ -10,61 +10,7 @@
 
 
 
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
-
-        <ul class="nav">
-          <li class="nav-item nav-category">Main</li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/admin/dashboard">
-              <span class="icon-bg"><i class="mdi mdi-cube menu-icon"></i></span>
-              <span class="menu-title">Dashboard</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" data-target="#ui-basic" aria-expanded="false"
-              aria-controls="ui-basic">
-              <span class="icon-bg"><i class="mdi mdi-contacts  menu-icon"></i></span>
-              <span class="menu-title">Manage</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" routerLink="/admin/user">UserAccount</a></li>
-                <li class="nav-item"> <a class="nav-link" routerLink="/admin/Medicine">Medicine</a></li>
-                <li class="nav-item"> <a class="nav-link" routerLink="/admin/pharmacy">Pharmacy</a></li>
-                <li class="nav-item"> <a class="nav-link" routerLink="/admin/order">order</a></li>
-                <li class="nav-item"> <a class="nav-link" routerLink="/admin/Contact">Contact Us</a></li>
-                <li class="nav-item"> <a class="nav-link" routerLink="/admin/Testimonial">testimonial</a></li>
-                <li class="nav-item"> <a class="nav-link" routerLink="/admin/SearchInOrder">Report</a></li>
-
-              </ul>
-            </div>
-          </li>
-
-
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-              <span class="icon-bg"><i class="mdi mdi-table-edit menu-icon"></i></span>
-              <span class="menu-title">Manage Pages</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="auth">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="../../pages/samples/blank-page.html"> Home Page </a>
-                </li>
-                <li class="nav-item"> <a class="nav-link" href="../../pages/samples/login.html"> Aboutus </a></li>
-              </ul>
-            </div>
-          </li>
-
-          <li class="nav-item sidebar-user-actions">
-            <div class="sidebar-user-menu">
-              <a href="#" class="nav-link"><i class="mdi mdi-logout menu-icon"></i>
-                <span class="menu-title">Log Out</span></a>
-            </div>
-          </li>
-        </ul>
-      </nav>
+    <app-sidebar></app-sidebar>
 
       <div class="main-panel">
         <div class="content-wrapper">
