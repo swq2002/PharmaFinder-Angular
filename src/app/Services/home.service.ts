@@ -5,10 +5,14 @@ import { BehaviorSubject, Observable, Subject, catchError, of } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from './auth.service';
 import { map, switchMap } from 'rxjs/operators';
-
+interface Order {
+  status: string;
+  // other properties...
+}
 @Injectable({
   providedIn: 'root'
 })
+
 export class HomeService{
   private apiUrl = 'https://localhost:7274/api/Orders'; // Replace with your actual API URL
 
@@ -16,6 +20,8 @@ export class HomeService{
   private notifyUserSubject = new Subject<string>();
 
   constructor(private http: HttpClient,private spinner:NgxSpinnerService, private toastr: ToastrService, private auth:AuthService){ }
+
+  user= this.auth.getCurrentUser();
 
   GetHome() {
     return this.http.get('https://localhost:7274/api/Home/GetHomeById/' + 1);
@@ -31,36 +37,6 @@ export class HomeService{
 
 
    
-    GetAllUsersEmail(): Observable<any[]> {
-      return this.http.get<any[]>('https://localhost:7274/api/User/GetAllUsersEmail');
-    }
-    
-    isEmailAlreadyRegistered(email: string): Observable<boolean> {
-      return this.GetAllUsersEmail().pipe(
-        map(allUserEmails => allUserEmails.some(user => user.email === email))
-      );
-    }
-    
-    createUser(body: any): Observable<any> {
-      const userEmail = body.email;
-  
-      return this.isEmailAlreadyRegistered(userEmail).pipe(
-        switchMap(isRegistered => {
-          if (isRegistered) {
-            this.notifyUserSubject.next('You already have an account!');
-            return of({ error: 'Email already registered' });
-          } else {
-            body.Profileimage = this.display_image;
-            return this.http.post('https://localhost:7274/api/User/CreateUser', body).pipe(
-              catchError(error => {
-                console.error('Error creating user:', error);
-                return of({ error: 'Error creating user' });
-              })
-            );
-          }
-        })
-      );
-    }
       
     DeleteUser(id:number){
       this.spinner.show();
@@ -117,7 +93,7 @@ export class HomeService{
     }
 
     CreateTestimonial(body: any){
-      //body.userid=2;
+    body.userid=this.user.userid;
     this.http.post('https://localhost:7274/api/UserTestimonial/CreateUsertestimonial',body).subscribe((resp) =>{
      this.toastr.success("Thanks for rating")
     window.location.reload();
@@ -139,7 +115,9 @@ export class HomeService{
 
     }
 
+   
     orders:any=[{}];
+
     GetAllInformationOrders(){
       const user = this.auth.getCurrentUser();
 
@@ -151,6 +129,30 @@ export class HomeService{
         console.log(err.status);
       });
     }
+
+
+ orders1: Order[] = [];
+paidOrderCount: number = 0;
+
+GetAllInformationOrders1() {
+  const user = this.auth.getCurrentUser();
+
+  this.http.get<Order[]>(`https://localhost:7274/api/Orders/GetOrdersByUserId/${user.userid}`).subscribe(
+    (resp: Order[]) => {
+      this.orders = resp;
+
+      const paidOrders = this.orders.filter((order: Order) => order.status === 'Paid');
+
+      this.paidOrderCount = paidOrders.length;
+    },
+    err => {
+      console.log(err.message);
+      console.log(err.status);
+    }
+  );
+}
+
+
     scrollToSection(sectionId: string) {
       const element = document.getElementById(sectionId);
     if (element) {

@@ -13,6 +13,7 @@ import { HomeService } from 'src/app/Services/home.service';
   styleUrls: ['./user-edit-profile.component.css']
 })
 export class UserEditProfileComponent implements OnInit {
+  @ViewChild('callDeleteDailog') callDelete!: TemplateRef<any>
   userdata: any;
   token:any;
   constructor(
@@ -93,16 +94,29 @@ export class UserEditProfileComponent implements OnInit {
       this.admin.uploadImageUserAttachment(formDate);
   }
 
-  logout(){
-    localStorage.clear();
+  deleteUser(id: number){
+    //const user = this.auth.getCurrentUser();
+    debugger
+    const dialogRef = this.dialog.open(this.callDelete);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result == "yes") {
+        this.admin.DeleteUserAccountByID(id);
+        this.toster.success('Your account has been successfully deleted')
+        this.router.navigate(['security/register']);
+      }
+      else {
+        console.log('error');
+      }
+    })
+
+  }
+
+  goToLogin(){
     this.router.navigate(['security/login']);
   }
-
-  deleteUser(){
-    const user = this.auth.getCurrentUser();
-    this.admin.DeleteUserAccountByID(user.userid);
-    this.toster.success('Your account has been successfully deleted')
-    this.router.navigate(['security/register']);
-
-  }
+  
+  logout(){
+    localStorage.clear();
+    this.goToLogin();
+    }
 }

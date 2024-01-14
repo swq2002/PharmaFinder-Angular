@@ -6,18 +6,16 @@
     <div class="container">
         <div class="row">
             <!-- First Column (col-lg-4) for the menu -->
-            <div class="col-lg-4 my-10">
-                <div class="ltn__tab-menu-list mb-50">
-                    <div class="nav">
-                        <a class="active show" href="userdashboard/account">Dashboard <i class="fas fa-home"></i></a>
-                        <a data-bs-toggle="tab" href="#liton_tab_1_2">Orders <i class="fas fa-file-alt"></i></a>
-                        <a data-bs-toggle="tab" href="#liton_tab_1_3">Downloads <i class="fas fa-arrow-down"></i></a>
-                        <a data-bs-toggle="tab" href="#liton_tab_1_4">Address <i class="fas fa-map-marker-alt"></i></a>
-                        <a data-bs-toggle="tab" routerLink="/userdashboard/EditProfile">Account Details <i class="fas fa-user"></i></a>
-                        <a href="userdashboard/userTestimonial">Testimonial <i class="fas fa-user"></i></a>
-                        <a href="login.html" (click)="logout()">Logout <i class="fas fa-sign-out-alt"></i></a>
-                    </div>
+            <div class="col-lg-4" style="margin-left: -155px;">
+              <div class="ltn__tab-menu-list mb-50">
+                <div class="nav">
+                  <a routerLink="/userdashboard/account" routerLinkActive="active">Dashboard <i class="fas fa-home"></i></a>
+                  <a routerLink="/userdashboard/EditProfile" routerLinkActive="active">Account Details <i class="fas fa-user"></i></a>
+                  <a routerLink="/userdashboard/userOrders" routerLinkActive="active">Orders <i class="fas fa-file-alt"></i></a>
+                  <a routerLink="/userdashboard/userTestimonial" routerLinkActive="active">Testimonial <i class="fas fa-quote-left"></i></a>
+                  <a (click)="logout()">Logout <i class="fas fa-sign-out-alt"></i></a>
                 </div>
+              </div>
             </div>
             <div class="col-lg-8">
                 <div class="content-wrapper">
@@ -75,7 +73,8 @@
                                 </div>
                                 <div class="row">
                                   <div class="col">
-                                    <button type="button" id="submit" class="btn btn-primary" (click)="deleteUser()">Delete your account</button>
+
+                                    <button type="button" id="submit" class="btn btn-danger" (click)="deleteUser(userdata.userid)">Delete your account</button>
                                   </div>
                                   <div class="col">
                                   <button type="button" id="submit" class="btn btn-primary" (click)="openUpdateUserDailog(userdata)">Update your account </button>
@@ -91,7 +90,7 @@
                 </div>
             </div>
         </div>
-       
+
     </div>
     </div>
     <div class="pb-50">

@@ -32,5 +32,13 @@ async Pay(orderid: number): Promise<void> {
   }
 }
 
+goToLogin(){
+  this.router.navigate(['security/login']);
+}
 
+logout(){
+  localStorage.clear();
+  this.goToLogin();
+  }
+  
 }

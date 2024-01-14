@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { HomeService } from '../Services/home.service';
+import { AuthService } from '../Services/auth.service';
 
 
+declare var $: any;
 @Component({
   selector: 'app-testimonial',
   templateUrl: './testimonial.component.html',
@@ -13,9 +15,10 @@ export class TestimonialComponent implements OnInit {
  
 
 
-  
+  @ViewChild('slickCarousel') slickCarousel!: ElementRef;
 
-  constructor(public home:HomeService){}
+
+  constructor(public home:HomeService, public auth:AuthService){}
   ngOnInit(): void {
     debugger;
    this.home.GetAllUsertestimonials();
@@ -23,45 +26,18 @@ export class TestimonialComponent implements OnInit {
 
    this.home.GetAllUsers();
    console.log(this.home.testimonials);
+////
+
+this.initSlickSlider();
 
 }
 
-      @ViewChild('testimonialContainer', { static: true }) testimonialContainer!: ElementRef;
-
-
-      // ngOnInit1() {
-      //   this.startAutoScroll();
-      // }
-    
-      // ngOnDestroy() {
-      //   this.stopAutoScroll();
-      // }
-    
-      // scroll(direction: number): void {
-      //   const container = this.testimonialContainer.nativeElement;
-      //   const currentScroll = container.scrollLeft;
-      //   const newScroll = currentScroll + direction * this.calculateCardWidth() * this.scrollAmount;
-    
-      //   container.scrollTo({
-      //     left: newScroll,
-      //     behavior: 'smooth'
-      //   });
-      // }
-    
-      // private startAutoScroll(): void {
-      //   this.intervalId = setInterval(() => {
-      //     this.scroll(1); 
-      //   }, 3000); 
-      // }
-    
-      // private stopAutoScroll(): void {
-      //   clearInterval(this.intervalId);
-      // }
-    
-      // private calculateCardWidth(): number {
-      //   return 370;
-      // }
-    
+private initSlickSlider(): void {
+  $('.ltn__testimonial-slider-active').slick({
+    arrows: true,
+    dots: true,
+  });
+}
       
 
     }

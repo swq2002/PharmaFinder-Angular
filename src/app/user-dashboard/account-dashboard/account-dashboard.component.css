@@ -1,3 +1,16 @@
 .card{
-    width: 80%;
+    width: 100%;
+}
+
+.icon-md {
+    top: 64%;
+}
+
+.stretch-card{
+    box-shadow: 4px 4px 8px 1px rgba(53, 52, 52, 0.159);
+    border: none;
+}
+
+#total{
+    border: none;
 }

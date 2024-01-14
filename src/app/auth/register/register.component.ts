@@ -6,6 +6,7 @@ import { formatDate } from '@angular/common';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService, Spinner } from 'ngx-spinner';
+import { AuthService } from 'src/app/Services/auth.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -36,7 +37,7 @@ export class RegisterComponent {
 
 
 constructor(public home:HomeService ,private fb: FormBuilder, private http: HttpClient, private el: ElementRef,
-   private renderer: Renderer2, private router:Router, private toastr: ToastrService,private spinner:NgxSpinnerService) {
+   private renderer: Renderer2, private router:Router, private toastr: ToastrService,private spinner:NgxSpinnerService, public auth: AuthService) {
 }
 
 goToLogin(){
@@ -53,8 +54,15 @@ goToLogin(){
   
     this.registerForm.controls['confirmPassword'].setErrors({misMatch:true})
   }
+ 
   clearInput(controlName: string): void {
-    this.registerForm.get(controlName)?.setValue('');
+    const control = this.registerForm.get(controlName);
+  
+    if (control && !(control as any)['_clearedOnce']) {
+      control.setValue('');
+      
+      (control as any)['_clearedOnce'] = true;
+    }
   }
 
   Register() {
@@ -84,19 +92,19 @@ async Submit() {
     return;
   }
  
-  await this.home.isEmailAlreadyRegistered(userEmail).subscribe(isRegistered => {
+  await this.auth.isEmailAlreadyRegistered(userEmail).subscribe(isRegistered => {
     debugger
     if (isRegistered) {
       this.notifyUser();
       this.goToLogin();
     } else {
       this.spinner.show();
-      this.home.createUser(this.registerForm.value).subscribe(
+      this.auth.createUser(this.registerForm.value).subscribe(
         resp => {
           console.log('User created successfully!', resp);
           this.toastr.success('Your account created successfully!');
           this.spinner.hide();
-          this.goToLogin();
+          this.router.navigate(['']);          
         },
         error => {
           this.toastr.error('Fill the form please')
