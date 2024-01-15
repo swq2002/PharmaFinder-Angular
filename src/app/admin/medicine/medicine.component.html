@@ -312,12 +312,11 @@
 
 
 <ng-template #callDeleteDailog>
-  <h1 mat-dialog-title>Delete Contact US</h1>
-<div mat-dialog-content>Are you sure want to delete this item ?</div>
-<div mat-dialog-actions>
-  <button type="button" mat-raised-button color="primary" mat-button mat-dialog-close="yes">yes</button>
-  <button  type="button" mat-button mat-dialog-close="no">no</button>
-
+  <h1 class="mat-h1">Delete Account</h1>
+<p class="mat-body-1">Are you sure you want to delete your account?</p>
+<div class="dialog-buttons">
+  <button mat-button mat-dialog-close color="primary">Cancel</button>
+  <button mat-button mat-dialog-close color="warn" [mat-dialog-close]="'yes'">Delete</button>
 </div>
 
 </ng-template>

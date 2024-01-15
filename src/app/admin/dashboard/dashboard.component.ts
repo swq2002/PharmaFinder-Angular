@@ -3,6 +3,7 @@ import { AdminServicesService } from 'src/app/Services/admin-services.service';
 import { AdminModule } from '../admin.module';
 import { HttpClient } from '@angular/common/http';
 import Chart, { ChartType } from 'chart.js/auto';
+import { AuthService } from 'src/app/Services/auth.service';
 
 declare var $: any;
 @Component({
@@ -11,14 +12,15 @@ declare var $: any;
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
+  userdata: any;
+  token:any;
   numberOfMedicine: number = 0;
   salesOfOrder: any = [];
   pharmacy: any;
   totalProfitCanvas: any;
   pieChartData: any;
   router: any;
-  constructor(public adminService: AdminServicesService, private http: HttpClient, private elementRef: ElementRef) { }
+  constructor(public adminService: AdminServicesService, private http: HttpClient, private elementRef: ElementRef, public auth:AuthService) { }
 
 
   numberOfMed() {
@@ -55,6 +57,17 @@ export class DashboardComponent implements OnInit {
       console.log(err.status);
     });
 
+
+    this.token = this.auth.getCurrentUser();
+   
+    this.adminService.getUserbyId(this.token.userid).subscribe(
+      (data: any) => {
+        this.userdata = data;
+      },
+      (err) => {
+        console.error(err);
+      }
+    );
 
 
     this.adminService.CalculateAnnualProfitForPaidOrders().subscribe((resp: any)=>{

@@ -14,3 +14,35 @@
 #total{
     border: none;
 }
+
+.user-section {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding: 16px;
+    background-color: #15131dee;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  
+  .user-name {
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+  }
+
+  .pb-70 {
+    margin-left: -5%;
+    left: 0;
+  }
+  .left-0{
+    margin-left: -11%;
+  }

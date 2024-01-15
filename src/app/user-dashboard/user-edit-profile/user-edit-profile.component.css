@@ -83,7 +83,7 @@ body {
   }
   
   .dialog-container {
-    width: 40%;
+    width: 100%;
     margin: 50px auto;
   }
   
@@ -96,6 +96,8 @@ body {
   
   .forms-sample .form-group {
     margin-bottom: 1.5rem;
+    
+    background-color: #2e323c;
   }
   
   .forms-sample label {
@@ -117,4 +119,30 @@ body {
   width: calc(100% - 1.5rem); 
   margin-bottom: 1rem;
 }
-  
+
+.dialog-buttons-d {
+  justify-content: space-between;
+  margin-top: 20px;
+  margin: 30px 30px 10px 30px;
+}
+  .d-dialog{
+    padding: 20px;
+    background-color: #2e323c;
+    color: #ffffff;
+  }
+
+  .pb-70 {
+    margin-left: -9%;
+    left: 0;
+  }
+  .left-0{
+    margin-left: -12.7%;
+  }
+
+  #inner-body{
+    margin-top: -5%;
+    background-color: white;
+    color: #2e323c;
+    width: 100%;
+  }
+

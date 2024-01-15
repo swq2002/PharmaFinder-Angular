@@ -28,8 +28,14 @@ export class ReportComponent implements OnInit{
   isMonthlyReport: boolean = false;
   isAnnualReport: boolean = false;
   isSearchResults: boolean = false;
+  dtOptions: DataTables.Settings = {};
 
   ngOnInit(): void {
+
+    this.dtOptions = {
+      pagingType: 'full_numbers'
+    };
+
     this.admin.GetAllInformationOrders();
     //this.getSalesByMonthReport(this.selectedMonth, this.selectedYear);
     this.getSalesByYearReport(this.selectedYear);
