@@ -95,7 +95,6 @@ export class UserEditProfileComponent implements OnInit {
   }
 
   deleteUser(id: number){
-    //const user = this.auth.getCurrentUser();
     debugger
     const dialogRef = this.dialog.open(this.callDelete);
     dialogRef.afterClosed().subscribe((result) => {
@@ -105,7 +104,7 @@ export class UserEditProfileComponent implements OnInit {
         this.router.navigate(['security/register']);
       }
       else {
-        console.log('error');
+        console.log('Delete canceled');
       }
     })
 

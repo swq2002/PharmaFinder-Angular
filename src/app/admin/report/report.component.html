@@ -7,78 +7,81 @@
   <app-sidebar></app-sidebar>
 
 
-<div class="container col-9" style="margin-top: 5%;">
+<div class="container col-10" style="margin-top: 5%;">
     <div class="p-2 bg-light text-white text-center font-weight-bold" style="font-size: 40px;">Sales Reports</div>
 
     <div class="row" id="total">
-        <div class="col-3 m-5">
-            <div class="card border-success" style="min-width: 9rem;background-color: rgba(49, 195, 129, 0.638);">
+      <div class="col-3 m-5">
+          <div class="card border-success" style="min-width: 9rem;background-color: rgba(49, 195, 129, 0.638);">
+            <div class="card-header fw-bold">
+              <h2><i class="fas fa-chart-bar"></i> Total Sales</h2><h3>Monthly</h3>
+                  <h5 class="card-title" style="align-items: center; text-align: center; margin-top: 25px;">{{MonthlySalesCount}}</h5>
+              </div>
+          </div>
+      </div>
+      <div class="col-3 m-5">
+          <div class="card border-success mb-1" style="min-width: 9rem;background-color: rgba(49, 195, 129, 0.638);">
               <div class="card-header fw-bold">
-                <h2><i class="fas fa-chart-bar"></i> Total Sales</h2><h3>Monthly</h3>
-                    <h5 class="card-title" style="align-items: center; text-align: center; margin-top: 25px;">{{MonthlySalesCount}}</h5>
-                </div>
-            </div>
-        </div>
-        <div class="col-3 m-5">
-            <div class="card border-success mb-1" style="min-width: 9rem;background-color: rgba(49, 195, 129, 0.638);">
-                <div class="card-header fw-bold">
-                  <h2><i class="fas fa-chart-bar"></i> Total Sales</h2><h3>Annual</h3>
-                    <h5 class="card-title" style="align-items: center; text-align: center; margin-top: 25px;">{{AnnualSalesCount}}</h5>
-                </div>
-            </div>
-        </div>
-    </div>
+                <h2><i class="fas fa-chart-bar"></i> Total Sales</h2><h3>Annual</h3>
+                  <h5 class="card-title" style="align-items: center; text-align: center; margin-top: 25px;">{{AnnualSalesCount}}</h5>
+              </div>
+          </div>
+      </div>
+  </div>
 
 <div class="mb-5 col">
         
-<div class="row" id="all-search-container">
-    <div class="col-6">
-      <form (ngSubmit)="getSalesByMonthReport(selectedMonth, selectedYear)">
-        <h2>Monthly / Annual Report:</h2> 
+  <div class="row" id="all-search-container">
+    <div class="col-md-6">
+        <form (ngSubmit)="getSalesByMonthReport(selectedMonth, selectedYear)">
+            <h2>Monthly / Annual Report:</h2>
+            <div class="search-container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="month">Month:</label><br>
+                        <input type="number" id="month" name="month" placeholder="month" [(ngModel)]="selectedMonth" required class="search-input" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="year">Year:</label><br>
+                        <input type="number" id="year" name="year" placeholder="year" [(ngModel)]="selectedYear" required class="search-input" />
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <ng-container *ngIf="selectedMonth!=null && selectedYear!=null">
+                            <button id="button" type="submit" (click)="getSalesByMonthReport(selectedMonth, selectedYear)" style="background-color: rgb(39, 182, 120); color: white; border-radius: 5px; font-size: 15px; padding: 5px 15px;">Filter</button>
+                        </ng-container>
+                        <ng-container *ngIf="selectedMonth==null && selectedYear!=null">
+                            <button id="button" type="submit" (click)="getSalesByYearReport(selectedYear)" style="background-color: rgb(39, 182, 120); color: white; margin-left: 10px; border-radius: 5px; font-size: 15px; padding: 5px 15px;">Filter</button>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-5 search-b-container">
+        <h2>Search:</h2>
         <div class="search-container">
-          <div class="row">
-            <div class="col">
-              <label for="month">Month:</label><br>
-              <input type="number" id="month" name="month" placeholder="month" [(ngModel)]="selectedMonth" required class="search-input" />
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="dateFrom">From:</label>
+                    <input type="date" id="dateFrom" [(ngModel)]="dateFrom" class="search-b-input" />
+                </div>
+                <div class="col-md-6">
+                    <label for="dateTo">To: </label><br>
+                    <input type="date" id="dateTo" [(ngModel)]="dateTo" class="search-b-input" />
+                </div>
             </div>
-            <div class="col">
-              <label for="year">Year:</label><br>
-              <input type="number" id="year" name="year" placeholder="year" [(ngModel)]="selectedYear" required class="search-input" />
+            <div class="row mt-4">
+                <div class="col">
+                    <button id="button" (click)="searchSales(dateFrom, dateTo)" style="background-color: rgb(39, 182, 120); color: white; border-radius: 5px; font-size: 15px; padding: 5px 15px;">Search</button>
+                </div>
             </div>
-          </div>
-          <div class="col mt-3">
-            <ng-container *ngIf="selectedMonth!=null && selectedYear!=null">
-            <button id="button" type="submit" (click)="getSalesByMonthReport(selectedMonth, selectedYear)" style="background-color: rgb(39, 182, 120); color: white; margin-left: 10px; border-radius: 5px; font-size: 15px; padding: 5px 15px 5px 15px;">Filter</button>
-          </ng-container>
-
-            <ng-container *ngIf="selectedMonth==null && selectedYear!=null">
-              <button id="button" type="submit" (click)="getSalesByYearReport(selectedYear)" style="background-color: rgb(39, 182, 120); color: white; margin-left: 10px; border-radius: 5px; font-size: 15px; padding: 5px 15px 5px 15px;">Filter</button>
-            </ng-container>
-          </div>
         </div>
-      </form>
     </div>
-
-    <div class="col-5 search-b-container">
-      <h2>Search:</h2> 
-      <div class="search-container">
-    <div class="row">
-      <div class="col">
-          <label for="dateFrom">From:</label>
-          <input type="date" id="dateFrom" [(ngModel)]="dateFrom" class="search-b-input"/>
-      </div>
-      <div class="col">
-          <label for="dateTo">To: </label><br>
-          <input type="date" id="dateTo" [(ngModel)]="dateTo"class="search-b-input" />
-      </div>
-      <div class="row-2 mt-4">
-          <button id="button" (click)="searchSales(dateFrom, dateTo)" style="background-color: rgb(39, 182, 120); color: white; margin-left: 10px; border-radius: 5px; font-size: 15px; padding: 5px 15px 5px 15px;">Search</button>
-      </div>
-    </div>
-  </div>
-    </div>
-
 </div>
+
 
 
       <div class="container mt-3" *ngIf="isMonthlyReport || isAnnualReport || isSearchResults">
@@ -87,8 +90,8 @@
 
         <div *ngIf="isMonthlyReport && monthlyReport.length > 0" class="col-9 mt-1">
           <!-- <h2>Monthly Report</h2> -->
-      <table class="table text-wrap mb-0 align-middle" id="table-data">
-        <thead>
+          <table datatable [dtOptions]="dtOptions" class="table table-hover">
+            <thead>
           <tr>
             <th>#</th>
             <th>Order Date</th>
@@ -109,7 +112,7 @@
 
     <div *ngIf="isAnnualReport && annualReport.length > 0" class="col-9 mt-1">
         <!-- <h2>Annual Report</h2> -->
-        <table class="table text-wrap mb-0 align-middle" id="table-data">
+        <table datatable [dtOptions]="dtOptions" class="table table-hover">
           <thead>
             <tr>
               <th>#</th>
@@ -132,8 +135,8 @@
 
       <div *ngIf="isSearchResults && searchResults.length > 0" class="col-9 mt-1">
         <!-- <h2>Search Results</h2> -->
-      <table class="table text-wrap mb-0 align-middle" id="table-data">
-    <thead>
+        <table datatable [dtOptions]="dtOptions" class="table table-hover">
+          <thead>
       <tr>
         <th>#</th>
         <th>Order Date</th>
@@ -207,11 +210,14 @@
 </div>
 </div>
 
-<app-footer></app-footer>
 
 </div>
 
 </div>
+
+</div>
+<div style="margin-left: -15%; width: 96.5%;">
+  <app-footer></app-footer>
 </div>
 
 

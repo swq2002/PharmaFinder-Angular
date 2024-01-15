@@ -1,3 +1,11 @@
 .card{
     width: 80%;
 }
+
+.pb-70 {
+    margin-left: -5%;
+    left: 0;
+  }
+  .left-0{
+    margin-left: -11%;
+  }

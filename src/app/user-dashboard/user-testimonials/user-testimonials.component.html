@@ -10,18 +10,19 @@
                 <!-- PRODUCT TAB AREA START -->
                 <div class="ltn__product-tab-area">
                     <div class="container">
-                        <div class="row">
-                          <div class="col-lg-4" style="margin-left: -155px;">
-                            <div class="ltn__tab-menu-list mb-50">
-                              <div class="nav">
-                                <a routerLink="/userdashboard/account" routerLinkActive="active">Dashboard <i class="fas fa-home"></i></a>
-                                <a routerLink="/userdashboard/EditProfile" routerLinkActive="active">Account Details <i class="fas fa-user"></i></a>
-                                <a routerLink="/userdashboard/userOrders" routerLinkActive="active">Orders <i class="fas fa-file-alt"></i></a>
-                                <a routerLink="/userdashboard/userTestimonial" routerLinkActive="active">Testimonial <i class="fas fa-quote-left"></i></a>
-                                <a (click)="logout()">Logout <i class="fas fa-sign-out-alt"></i></a>
-                              </div>
+                      <div class="row">
+                        <div class="col-lg-4 left-0">
+                          <div class="ltn__tab-menu-list mb-50 sticky-left">
+                            <div class="nav">
+                              <a routerLink="/userdashboard/account" routerLinkActive="active">Dashboard <i class="fas fa-home"></i></a>
+                              <a routerLink="/userdashboard/EditProfile" routerLinkActive="active">Account Details <i class="fas fa-user"></i></a>
+                              <a routerLink="/userdashboard/userOrders" routerLinkActive="active">Orders <i class="fas fa-file-alt"></i></a>
+                              <a routerLink="/userdashboard/userTestimonial" routerLinkActive="active">Testimonial <i class="fas fa-quote-left"></i></a>
+                              <a (click)="logout()">Logout <i class="fas fa-sign-out-alt"></i></a>
                             </div>
                           </div>
+                        </div>
+                          
                             <div class="col-lg-8">
                                 <div class="tab-content">
                                     
@@ -59,12 +60,13 @@
                                         </div>
                                       
                                         <!-- "Add Feedback" button centered at the top -->
-                                        <div class="mt-5">
-                                          <button class="p-4" mat-button (click)="OpenCreateDialog()" style="background-color: rgba(17, 171, 105, 0.652); color: white;">Add Feedback</button>
+                                        <div>
+                                          <button class="theme-btn-1 btn fs-5 p-4" mat-button (click)="OpenCreateDialog()"  style="background-color: rgba(17, 171, 105, 0.652); color: white;">Add Feedback</button>
                                         </div>
                                       </div>
                             </div>
                         </div>
+                      </div>
                     </div>
                 </div>
                 <!-- PRODUCT TAB AREA END -->
