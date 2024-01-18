@@ -566,7 +566,6 @@ pharmcyId:number=0;
   
 
 sendEmailContact(obj:any){
-  debugger;
   this.spinner.show();  
 this.http.post('https://localhost:7274/api/Email/SendEmail',obj).subscribe((resp)=>{
   this.toaster.success('sending successfully');
@@ -579,7 +578,7 @@ this.http.post('https://localhost:7274/api/Email/SendEmail',obj).subscribe((resp
 })
 }
   updateUser(body: any) {
-    debugger
+    
     body.profileimage = this.iuser;
     this.spinner.show();
     this.http.put('https://localhost:7274/api/User/UpdateUser', body).subscribe(
@@ -665,7 +664,6 @@ searchSales(search: { DateFrom: Date; DateTo: Date }): Observable<any[]> {
 }
 
 SearchSales(obj: any): Observable<any> {
-  debugger;
   return this.http.post('https://localhost:7274/api/Orders/SalesSearch2', obj);
 }
 // SearchSales(obj:any){
@@ -685,10 +683,8 @@ medicineInPharmacy:any=[{}];
 
  GetAllMedcineInPharmmacy(id:number){
   this.spinner.show();
-  debugger;
   this.http.get('https://localhost:7274/api/Pharmacy/GetAllMedcineInPharmmacy/'+id).subscribe((resp)=>{
     this.medicineInPharmacy=  resp;
-    debugger;
     // this.router.navigate(['admin/GetAllMedcineInPharmmacy'], { queryParams: { resp } });  
 
     this.spinner.hide();
@@ -704,7 +700,6 @@ medicineInPharmacy:any=[{}];
 OrderInPharmacy:any=[{}];
 GetAllOrdersInPharmmacy(id:number){
   this.spinner.show();
-  debugger;
   this.http.get('https://localhost:7274/api/Pharmacy/GetAllOrdersInPharmmacy/'+id).subscribe((resp)=>{
     this.OrderInPharmacy=resp;
     this.spinner.hide();
@@ -719,9 +714,7 @@ GetAllOrdersInPharmmacy(id:number){
 medicineNumberInPharamacy:any={};
 GetMedicineCountInPharmacy(id:number){
   this.spinner.show();
-  debugger;
   this.http.get('https://localhost:7274/api/Pharmacy/GetMedicineCountInPharmacy/'+id).subscribe((resp)=>{
-    debugger;
     this.medicineNumberInPharamacy=resp
     this.spinner.hide();
   },
