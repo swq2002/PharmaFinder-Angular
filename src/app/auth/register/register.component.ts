@@ -12,6 +12,7 @@ import {
   GoogleLoginProvider,
   SocialUser,
 } from '@abacritt/angularx-social-login';
+import { jwtDecode } from 'jwt-decode';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -61,9 +62,10 @@ export class RegisterComponent implements OnInit {
       this.loggedIn = (user != null);
       const token = user.idToken;
       localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify(user));
+      // localStorage.setItem('user', JSON.stringify(user));
       console.log(this.user)
-
+      // let data: any = jwtDecode(token);
+      // localStorage.setItem('user', JSON.stringify(data))
       this.auth.CreateUserGmail(user)
 
     })

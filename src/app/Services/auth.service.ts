@@ -129,61 +129,20 @@ export class AuthService {
   }
   CreateUserGmail(body: any) {
     debugger;
-    const user = this.getCurrentUser();
-    body.email = user.email
-    body.username = user.name
-    body.Profileimage = user.photoUrl
+    //  const user = {username:body.name, email:body.email,profileimage:body.photoUrl,roleid:2,password:123456789};
+    // const user = this.getCurrentUser();
+    body.email = body.email
+    body.username = body.name
+    body.Profileimage = body.photoUrl
     body.roleId = 2;
     body.password = "123456789";
-    const Email = body.email;
-    const Password = body.passwrd;
-    const subBody = {
-      Email: Email.toString(),
-      Password: Password.toString(),
-    };
-    debugger;
+    this.http.post('https://localhost:7274/api/User/CreateUser', body).subscribe(resp => {
+      this.login(body.email, body.password)
+    }, err => {
+      console.log(err.message);
+      console.log(err.status);
+    })
 
-    // return this.isEmailAlreadyRegistered(Email).pipe(
-    //   switchMap((isRegistered) => {
-    //     if (isRegistered) {
-    //       this.notifyUserSubject.next('You already have an account!');
-    //       return of({ error: 'Email already registered' });
-    //     }
-
-    const headerDir = {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-    };
-    const requestOptions = {
-      headers: new HttpHeaders(headerDir),
-    };
-
-    return this.http.post('https://localhost:7274/api/User/CreateUser', body, requestOptions).pipe(
-      catchError((error) => {
-        console.error('Error creating user:', error);
-        return of({ error: 'Error creating user' });
-      }),
-      switchMap((resp: any) => {
-        const tokenRequestOptions = {
-          headers: new HttpHeaders(headerDir),
-        };
-
-        return this.http.post('https://localhost:7274/api/JWT/', subBody, tokenRequestOptions).pipe(
-          catchError((error) => {
-            console.error('Error generating token for the registered user:', error);
-            return of({ error: 'Error generating token' });
-          }),
-          tap((tokenResp: any) => {
-            const responce = {
-              token: tokenResp.toString(),
-            };
-            localStorage.setItem('token', responce.token);
-            let data: any = jwtDecode(responce.token);
-            localStorage.setItem('user', JSON.stringify(data));
-          })
-        );
-      })
-    );
 
   }
 
