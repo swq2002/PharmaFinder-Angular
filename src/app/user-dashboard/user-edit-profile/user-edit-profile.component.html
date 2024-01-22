@@ -95,7 +95,7 @@
     </div>
     </div>
     <div class="pb-50">
-        <app-footer></app-footer>
+      <app-footer></app-footer>
         </div>
 
     <ng-template #callDeleteDailog>
@@ -120,19 +120,22 @@
                             <div class="form-group">
                                 <label for="fullName">User name</label>
                                 <input type="name" class="form-control" id="fullName" placeholder="Enter user name" formControlName="username" [(ngModel)]="previousData.username" />
+                                <span style="color: red;" *ngIf="updateUserForm.get('username')?.hasError('required') && updateUserForm.get('username')?.touched">Please Enter your full name</span>
                             </div>
                         </div>
                         <div class="col-12 mb-3">
                             <div class="form-group">
                                 <label for="eMail">Email</label>
                                 <input type="email" class="form-control" id="eMail" placeholder="Enter email" formControlName="email" [(ngModel)]="previousData.email" />
+                                <span style="color: red;" *ngIf="updateUserForm.get('email')?.hasError('required') && updateUserForm.get('email')?.touched">Please Enter your Email</span>
                             </div>
                         </div>
                         <div class="col-12 mb-3">
                             <div class="form-group">
                                 <label for="phone">Password</label>
                                 <input type="password" class="form-control" placeholder="Enter Password" formControlName="password" [(ngModel)]="previousData.password" />
-                            </div>
+                                <span style="color: red;" *ngIf="updateUserForm.get('password')?.hasError('required') && updateUserForm.get('password')?.touched">Please Enter your Password</span>
+                              </div>
                         </div>
 
                         <div class="col-12 mb-3">
@@ -336,12 +339,14 @@
                                     <option value="Zambia">Zambia</option>
                                     <option value="Zimbabwe">Zimbabwe</option>
                                   </select>
+                                  <span style="color: red;" *ngIf="updateUserForm.get('address')?.hasError('required') && updateUserForm.get('address')?.touched">Please Enter your Address</span>
                             </div>
                         </div>
                         <div class="col-12 mb-3">
                             <div class="form-group">
                                 <label for="Street">Phone</label>
                                 <input type="name" class="form-control" id="phone" placeholder="Enter phone number" formControlName="phonenumber" [(ngModel)]="previousData.phonenumber" />
+                                <span style="color: red;" *ngIf="updateUserForm.get('phonenumber')?.hasError('required') && updateUserForm.get('phonenumber')?.touched">Please Enter your Phone number</span>
                             </div>
                         </div>
                         <div class="col-12 mb-3">
@@ -352,7 +357,7 @@
                         </div>
                         <div class="col-12 mb-3">
                           <div class="text-center dialog-button">
-                              <button type="button" id="submit" name="submit" class="btn btn-primary" (click)="updateUser()">Update</button>
+                              <button type="button" id="submit" name="submit" class="btn btn-primary" (click)="updateUser()" [disabled]="!updateUserForm.valid">Update</button>
                           </div>
                       </div>
                   </form>

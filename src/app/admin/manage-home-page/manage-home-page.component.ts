@@ -40,6 +40,7 @@ previousData:any={} ;
   image1:home.image1 }
   console.log(this.previousData);
  this.updateForm.controls['homeid'].setValue(this.previousData.homeid);
+ this.admin.ihome=this.previousData.image1;
  this.dialog.open(this.callUpdateDailog);
  }
 

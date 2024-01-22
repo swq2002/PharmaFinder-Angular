@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -42,11 +42,11 @@ export class UserEditProfileComponent implements OnInit {
   updateUserForm: FormGroup = new FormGroup({
     userid: new FormControl(),
     roleid: new FormControl(),
-    username: new FormControl(''),
-    email: new FormControl(''),
-    password: new FormControl(''),
-    phonenumber: new FormControl(''),
-    address: new FormControl(''),
+    username: new FormControl('',[Validators.required]),
+    email: new FormControl('',[Validators.required]),
+    password: new FormControl('',[Validators.required]),
+    phonenumber: new FormControl('',[Validators.required]),
+    address: new FormControl('',[Validators.required]),
     profileimage: new FormControl(''),
     registrationdate: new FormControl(''),
     dateofbirth: new FormControl(''),
@@ -72,6 +72,7 @@ export class UserEditProfileComponent implements OnInit {
     console.log(this.previousData);
     this.updateUserForm.controls['userid'].setValue(this.previousData.userid);
     this.updateUserForm.controls['roleid'].setValue(this.previousData.roleid);
+    this.admin.iuser=this.previousData.profileimage;
     this.updateUserForm.controls['registrationdate'].setValue(
       this.previousData.registrationdate
     );
