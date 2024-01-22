@@ -12,9 +12,10 @@ import { Router } from '@angular/router';
 })
 export class UserTestimonialsComponent implements OnInit{
   currentUser: any;
+testimonials:any;
   constructor(public home:HomeService, public dialog: MatDialog, public auth:AuthService, public router: Router){}
-  ngOnInit(): void {
-    this.home.GetAllUsertestimonials();
+ async ngOnInit() {
+    this.testimonials=await this.home.GetAllUsertestimonials();
 
   }
 

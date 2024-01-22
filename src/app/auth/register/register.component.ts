@@ -104,6 +104,7 @@ async Submit() {
           console.log('User created successfully!', resp);
           this.toastr.success('Your account created successfully!');
           this.spinner.hide();
+          this.sendRegistrationEmail(this.registerForm.value.email);
           this.router.navigate(['']);          
         },
         error => {
@@ -115,7 +116,25 @@ async Submit() {
   });
 
 }
- 
+private sendRegistrationEmail(email: string) {
+const user = this.auth.getCurrentUser();
+
+
+  const emailDto = {
+    to: email,
+    Subject:"Welcome to PharmaFinder",
+    PlainText:`Dear ${user.name} ,<br> We are happy to welcome you to PharmaFinder`
+  };
+
+  this.http.post('https://localhost:7274/api/Email/SendEmail', emailDto).subscribe(
+    response => {
+      console.log('Email sent successfully:', response);
+    },
+    error => {
+      console.error('Error sending email:', error);
+    }
+  );
+}
 private notifyUser() {
   this.toastr.error('You already have account')
   console.log('You already have an account!');
