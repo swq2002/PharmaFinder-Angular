@@ -30,7 +30,6 @@
                 <thead>
                   <tr>
                     <th>order ID</th>
-                    <th>pharmacy name</th>
                     <th>user name</th>
                     <th>approval</th>
                    <th>orderdate</th>
@@ -44,7 +43,6 @@
                 <tbody>
                   <tr *ngFor="let obj of  adminService.allIformationOrder ">
                     <td>{{obj.orderid}}</td>
-                    <td>{{obj.pharmacyname}}</td>
                     <td>{{obj.username}}</td>
 
                     <td>
