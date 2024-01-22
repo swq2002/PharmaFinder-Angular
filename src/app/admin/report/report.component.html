@@ -90,7 +90,7 @@
 
         <div *ngIf="isMonthlyReport && monthlyReport.length > 0" class="col-9 mt-1">
           <!-- <h2>Monthly Report</h2> -->
-          <table datatable [dtOptions]="dtOptions" class="table table-hover">
+          <table datatable [dtOptions]="dtOptions" id="table-data" class="table table-hover">
             <thead>
           <tr>
             <th>#</th>
@@ -112,7 +112,7 @@
 
     <div *ngIf="isAnnualReport && annualReport.length > 0" class="col-9 mt-1">
         <!-- <h2>Annual Report</h2> -->
-        <table datatable [dtOptions]="dtOptions" class="table table-hover">
+        <table datatable [dtOptions]="dtOptions"  id="table-data"  class="table table-hover">
           <thead>
             <tr>
               <th>#</th>

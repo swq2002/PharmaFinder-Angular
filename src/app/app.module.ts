@@ -20,8 +20,6 @@ import { CartComponent } from './cart/cart.component';
 import { ShopComponent } from './shop/shop.component';
 import { PaymentComponent } from './payment/payment.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
-import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
-
 import { DataTablesModule } from "angular-datatables";
 import { NgChartsModule } from 'ng2-charts';
 
@@ -49,9 +47,7 @@ import { NgChartsModule } from 'ng2-charts';
     SharedModule,
     NgxSpinnerModule,
     DataTablesModule,
-    NgChartsModule,
-    MdbCarouselModule
-    ],
+    NgChartsModule    ],
   
   
   providers: [{
