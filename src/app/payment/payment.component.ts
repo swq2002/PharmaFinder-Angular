@@ -20,7 +20,7 @@ export class PaymentComponent implements OnInit {
 
   constructor(private router: Router, public adminService: AdminServicesService, public payment: PaymentService,private auth:AuthService) { }
   async ngOnInit() {
-    debugger;
+     
     this.order =  await this.payment.GetAllInformationOrder();
     this.user = this.auth.getCurrentUser();
 

@@ -45,7 +45,7 @@ loginError: boolean = false;
     }
 
     submit() {
-      debugger;
+       
       if (this.email.valid && this.password.valid) {
         this.auth.login(this.email.value, this.password.value);
         this.router.navigate(['']);

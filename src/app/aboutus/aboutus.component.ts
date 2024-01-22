@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../Services/home.service';
-import { faSearch, faSheetPlastic } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faSearch, faSheetPlastic } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-aboutus',
@@ -10,7 +10,8 @@ import { faSearch, faSheetPlastic } from '@fortawesome/free-solid-svg-icons';
 export class AboutusComponent implements OnInit {
   aboutData:any
   faSearch = faSearch;
-  faReport=faSheetPlastic
+  faReport=faSheetPlastic;
+  faTick=faCheck;
     constructor(public home:HomeService){}
     ngOnInit(): void {
       this.home.GetAbout().subscribe(

@@ -75,7 +75,7 @@ export class MedicineComponent implements OnInit {
   }
 
   DeleteMedicine(id: number) {
-    debugger;
+     
     const dialogRef = this.dialog.open(this.callDelete);
     dialogRef.afterClosed().subscribe((result) => {
       if (result == "yes") {
@@ -111,7 +111,7 @@ export class MedicineComponent implements OnInit {
     const dialogRef = this.dialog.open(this.createMedicine);
   }
   Create() {
-    debugger;
+     
     this.adminService.CreateMedine(this.CreateMedicne.value);
   }
   Cancel() {
@@ -121,7 +121,7 @@ export class MedicineComponent implements OnInit {
   pData: any;
 
   openUpdateDailog(obj: any) {
-    debugger;
+     
     this.pData = obj;
 
     this.UpdateMedicne.controls['medicineid'].setValue(this.pData.medicineid);
@@ -130,7 +130,7 @@ export class MedicineComponent implements OnInit {
     this.dialog.open(this.updateMedicine)
   }
   updated() {
-    debugger;
+     
     console.log(this.pData);
     this.adminService.updateMedicine(this.UpdateMedicne.value);
   }

@@ -49,10 +49,10 @@ export class UserComponent  implements OnInit{
       }
 
       DeleteUser(id:number){
-        debugger;
+         
         const dialogRef=this.dialog.open(this.callDelete);
         dialogRef.afterClosed().subscribe((res)=>{
-          debugger;
+           
           if(res=="yes"){
             this.adminService.DeleteUserAccountByID(id);
           }
@@ -79,7 +79,7 @@ export class UserComponent  implements OnInit{
           const dialogRef=this.dialog.open(this.createUser);
        }
        Create(){
-        debugger;
+         
         this.adminService.CreateAdminAccount(this.CreateAdminUser.value);
        }
        Cancel(){
@@ -102,9 +102,9 @@ export class UserComponent  implements OnInit{
         if(file.length==0)return;
         let fileToUpload=<File> file[0];
         const formData=new FormData();
-        debugger;
+         
         formData.append('file',fileToUpload,fileToUpload.name);
-        debugger;
+         
         this.adminService.uploadAttachmentUser(formData)
        }
 

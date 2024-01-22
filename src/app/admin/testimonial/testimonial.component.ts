@@ -55,7 +55,7 @@ export class TestimonialComponent implements OnInit {
   pData: any;
 
   Accept(obj: any) {
-    debugger;
+     
     this.pData = obj;
     this.AcceptTestimonial.controls['utestimonialid'].setValue(this.pData.utestimonialid);
 
@@ -64,17 +64,17 @@ export class TestimonialComponent implements OnInit {
     const dialogRef = this.dialog.open(this.OpenDailog);
     dialogRef.afterClosed().subscribe((result) => {
       if (result == "yes") {
-        debugger;
+         
         this.adminService.AcceptTestimonial(this.AcceptTestimonial.value);
       } else {
-        debugger;
+         
         console.log('cancel');
       }
     });
   }
 
   Reject(obj: any) {
-    debugger;
+     
     this.pData = obj;
     this.AcceptTestimonial.controls['utestimonialid'].setValue(this.pData.utestimonialid);
 
@@ -83,10 +83,10 @@ export class TestimonialComponent implements OnInit {
     const dialogRef = this.dialog.open(this.OpenDailog);
     dialogRef.afterClosed().subscribe((result) => {
       if (result == "yes") {
-        debugger;
+         
         this.adminService.RejectTestimonial(this.AcceptTestimonial.value);
       } else {
-        debugger;
+         
         console.log('cancel');
       }
     });

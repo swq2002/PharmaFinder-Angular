@@ -91,7 +91,7 @@ export class OrderByPrescriptionComponent implements OnInit {
         });
 
       } else if (this.txtInput.value) {
-        debugger;
+         
         await this.preService.prescriptionTxtSearch(this.txtInput.value)
           .then(async (resp: any) => {
             this.medicines = await resp;

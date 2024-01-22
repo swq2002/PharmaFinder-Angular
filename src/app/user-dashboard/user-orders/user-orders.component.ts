@@ -22,7 +22,7 @@ export class UserOrdersComponent implements OnInit{
 }
 
 async Pay(orderid: number): Promise<void> {
-  debugger;
+   
   try {
     await this.payment.setOrderId(orderid); 
 

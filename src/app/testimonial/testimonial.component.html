@@ -1,97 +1,23 @@
-<div class="container-fluid py-5 wow fadeInUp d-flex" data-wow-delay="0.1s">
-  <div class="container py-5">
-
-    <div class=" section-bg-1 pt-290 pb-70">
-      <div class="container-fluid">
-
-        <div class="col-lg-12">
-          <div class="section-title-area ltn__section-title-2 text-center">
-            <h1 class="fw-bold section-title">Clients Feedbacks<span>.</span></h1>
-          </div>
-        </div>
-
-        <!-- ... (your existing code) ... -->
-
-<div id="testimonial-carousel" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-    <ng-container *ngFor="let obj of home.testimonials; let i = index">
-      <ng-container *ngFor="let obj2 of home.Users">
-        <ng-container *ngIf="obj2.userid === obj.userid && obj.status === 'Accepted'">
-          <div class="carousel-item {{ i === 0 ? 'active' : '' }}">
-            <div class="row">
-              <div class="col-12">
-                <!-- <div class="ltn__testimonial-item ltn__testimonial-item-4"> -->
-                  <div class="testimoni-img">
-                    <!-- <img src="assets/Images/{{ obj2.profileimage }}" alt="#"> -->
-                  </div>
-                  <div class="testimoni-info">
-                    <h4>{{ obj2.username }}</h4>
-                    <p>{{ obj.testimonialtext }}</p>
-                    <h6>{{ obj.testimonialdate | date  }}</h6>
-                  </div>
-                  <div class="testimoni-bg-icon">
-                    <i class="far fa-comments"></i>
-                  </div>
-                <!-- </div> -->
-              </div>
-            </div>
-          </div>
-        </ng-container>
-      </ng-container>
-    </ng-container>
-  </div>
-  <a class="carousel-control-prev" href="#testimonial-carousel" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#testimonial-carousel" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-
-<!-- ... (rest of your code) ... -->
-
-
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <div class="container-fluid py-5 wow fadeInUp d-flex" data-wow-delay="0.1s">
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
   <div class="container py-5">
 
 
+<!-- TESTIMONIAL AREA START (testimonial-4) -->
 <div class="ltn__testimonial-area section-bg-1 pt-290 pb-70">
 <div class="container-fluid">
- 
+    <div class="row">
         <div class="col-lg-12">
             <div class="section-title-area ltn__section-title-2 text-center">
                 <h1 class="fw-bold section-title">Clients Feedbacks<span>.</span></h1>
             </div>
+        </div>
     </div>
-    <div class="row ltn__testimonial-slider-active slick-arrow-1 slick-arrow-1-inner " >
+    <div class="row ltn__testimonial-slider-3-active slick-arrow-1 slick-arrow-1-inner">
       <div class="row">
-        <ng-container *ngFor="let obj of home.testimonials">
-          <ng-container *ngFor="let obj2 of home.Users">
+        <ng-container *ngFor="let obj of testimonials">
+          <ng-container *ngFor="let obj2 of Users">
             <ng-container *ngIf="obj2.userid === obj.userid && obj.status === 'Accepted'">
-              <div class="col-4">
+              <div class="col-lg-12">
                 <div class="ltn__testimonial-item ltn__testimonial-item-4">
                   <div class="ltn__testimoni-img">
                     <img src="assets\Images{{ obj2.profileimage}}" alt="#">
@@ -110,123 +36,6 @@
           </ng-container>
         </ng-container>
       </div>
-</div>
-    </div>
-</div>
-
-  </div>
-</div>  -->
-
-
-
-<!-- Testimonial Start -->
- <!-- <div class="container-fluid py-5 wow fadeInUp d-flex" data-wow-delay="0.1s">
-    <div class="container py-5">
- 
-
-<div class="ltn__testimonial-area section-bg-1 pt-290 pb-70">
-  <div class="container-fluid">
-      <div class="row">
-          <div class="col-lg-12">
-              <div class="section-title-area ltn__section-title-2 text-center">
-                  <h1 class="fw-bold section-title">Clients Feedbacks<span>.</span></h1>
-              </div>
-          </div>
-      </div>
-      <div class="row ltn__testimonial-slider-active slick-arrow-1 slick-arrow-1-inner">
-        <div class="row">
-          <ng-container *ngFor="let obj of home.testimonials">
-            <ng-container *ngFor="let obj2 of home.Users">
-              <ng-container *ngIf="obj2.userid === obj.userid && obj.status === 'Accepted'">
-                <div class="col-4">
-                  <div class="ltn__testimonial-item ltn__testimonial-item-4">
-                    <div class="ltn__testimoni-img">
-                      <img src="assets\Images{{ obj2.profileimage}}" alt="#">
-                    </div>
-                    <div class="ltn__testimoni-info">
-                      <h4>{{ obj2.username }}</h4>
-                      <p>{{ obj.testimonialtext }}</p>
-                      <h6>{{ obj.testimonialdate | date  }}</h6>
-                    </div>
-                    <div class="ltn__testimoni-bg-icon">
-                      <i class="far fa-comments"></i>
-                    </div>
-                  </div>
-                </div>
-              </ng-container>
-            </ng-container>
-          </ng-container>
-        </div>
-  </div>
-      </div>
-  </div>
 
     </div>
-</div>  -->
-
-<!-- TESTIMONIAL AREA END -->
-
-
-<!-- Your Angular Component HTML -->
-<!-- <div class="container-fluid py-5 wow fadeInUp d-flex" data-wow-delay="0.1s">
-  <div class="container py-5">
-    <div class="ltn__testimonial-area section-bg-1 pt-290 pb-70">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="section-title-area ltn__section-title-2 text-center">
-              <h1 class="fw-bold section-title">Clients Feedbacks<span>.</span></h1>
-            </div>
-          </div>
-        </div>
-
-        <div id="testimonialCarousel" class="carousel slide ltn__testimonial-slider-active" data-ride="carousel">
-          <div class="carousel-inner">
-            <ng-container *ngFor="let obj of home.testimonials; let i = index">
-              <ng-container *ngFor="let obj2 of home.Users">
-                <ng-container *ngIf="obj2.userid === obj.userid && obj.status === 'Accepted'">
-                  <div class="carousel-item {{ i === 0 ? 'active' : '' }}">
-                    <div class="row">
-                      <div class="col-4">
-                        <div class="ltn__testimonial-item ltn__testimonial-item-4">
-                          <div class="ltn__testimoni-img">
-                            <img src="assets\Images{{ obj2.profileimage }}" alt="#">
-                          </div>
-                          <div class="ltn__testimoni-info">
-                            <h4>{{ obj2.username }}</h4>
-                            <p>{{ obj.testimonialtext }}</p>
-                            <h6>{{ obj.testimonialdate | date }}</h6>
-                          </div>
-                          <div class="ltn__testimoni-bg-icon">
-                            <i class="far fa-comments"></i>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </ng-container>
-              </ng-container>
-            </ng-container>
-          </div>
-          <a class="carousel-control-prev" href="#testimonialCarousel" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#testimonialCarousel" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-
-      </div>
-    </div>
-  </div>
 </div>
-
-<script>
-  $(document).ready(function () {
-  $('#testimonialCarousel').carousel();
-});
-</script> -->
-
-

@@ -79,7 +79,7 @@ export class ContactUsComponent {
                }
                
                sendEmailContact(){
-                  debugger;
+                   
                     this.adminService.sendEmailContact(this.sendEmail.value);
                   }
                Cancel(){

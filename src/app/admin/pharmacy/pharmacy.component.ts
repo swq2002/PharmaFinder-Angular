@@ -49,7 +49,7 @@ export class PharmacyComponent implements OnInit {
 
 
   openMedicineDialog(obj: any): void {
-    debugger;
+     
     this.pharmacyId = obj.pharmacyid; // Store the obj.orderid
     //  this.adminService.GetAllMedcineInPharmmacy(this.pharmacyId);
     debugger
@@ -61,7 +61,7 @@ export class PharmacyComponent implements OnInit {
       data: { PharmacyDetails: this.PharmacyDetails }
 
     });
-    debugger;
+     
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
@@ -85,7 +85,7 @@ export class PharmacyComponent implements OnInit {
   }
 
   DeletePharmcy(id: number) {
-    debugger;
+     
     const dialogRef = this.dialog.open(this.callDelete);
     dialogRef.afterClosed().subscribe((result) => {
       if (result == "yes") {
@@ -123,7 +123,7 @@ export class PharmacyComponent implements OnInit {
         const dialogRef=this.dialog.open(this.createPharmacDailog);
       }
       CreatePharm(){
-        debugger;
+         
         this.adminService.CreatedPharmicy(this.CreatePharmacy.value);
        }
        Cancel(){
@@ -133,7 +133,7 @@ export class PharmacyComponent implements OnInit {
 
           
        openUpdateDailog(obj:any){
-        debugger;
+         
         this.pData=obj;
         this.updatePharmacy.controls['location'].setValue("Jordan");
         this.updatePharmacy.controls['pharmacyid'].setValue(this.pData.pharmacyid);
@@ -142,14 +142,14 @@ export class PharmacyComponent implements OnInit {
        }
        pData:any;
        update(){
-        debugger;
+         
 
     this.adminService.updatePharmacy(this.updatePharmacy.value);
   }
 
 
   pharmacydetlis(id: number) {
-    debugger;
+     
     this.router.navigate(['admin/pharmacydetails'], { queryParams: { id } })
 
     // this.pharmacyDetals.emit();
@@ -158,7 +158,7 @@ export class PharmacyComponent implements OnInit {
 
 
   MedicineinOrder(id: number) {
-    debugger;
+     
     this.router.navigate(['admin/medicineInOrder'], { queryParams: { id } });
   }
 }

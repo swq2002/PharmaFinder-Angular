@@ -101,7 +101,7 @@ export class MapService {
   }
 
   findNearestPharmacies(userLocation: any, pharmacies: any[]): any[] {
-    debugger;
+     
     pharmacies.forEach((pharmacy) => {
       pharmacy.distance = this.calculateDistance(
         userLocation.lat,

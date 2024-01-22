@@ -83,7 +83,7 @@ goToLogin(){
 
 
 async Submit() {
-  debugger;
+   
   this.spinner.show();
   const userEmail = this.registerForm.controls['email'].value;
  
@@ -125,7 +125,7 @@ private notifyUser() {
 
 
 UploadImage(file:any){
-  debugger;
+   
   if(file.length==0) return;
   let fileToUpload=<File> file[0];
   const formData = new FormData();

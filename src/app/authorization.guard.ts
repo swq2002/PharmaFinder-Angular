@@ -8,7 +8,7 @@ const router = new Router();
   const token = localStorage.getItem('token');
   console.log(state);
   if(token){
-    debugger;
+     
       if(state.url.indexOf('admin')>0) {
 
 

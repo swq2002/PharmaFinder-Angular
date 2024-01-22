@@ -11,7 +11,7 @@
                 <div class="ltn__product-tab-area">
                     <div class="container">
                       <div class="row">
-                        <div class="col-lg-4 left-0">
+                        <div class="col-lg-4 col-md-4 col-sm-12 left-0">
                           <div class="ltn__tab-menu-list mb-50 sticky-left">
                             <div class="nav">
                               <a routerLink="/userdashboard/account" routerLinkActive="active">Dashboard <i class="fas fa-home"></i></a>
@@ -23,7 +23,7 @@
                           </div>
                         </div>
                           
-                            <div class="col-lg-8">
+                            <div class="col-lg-8 col-md-8 col-sm-12">
                                 <div class="tab-content">
                                     
 
@@ -44,7 +44,7 @@
                                           <div class="card w-100 mb-3 p-3">
                                             <div class="card-body p-4">
                                               <div class="row row-cols-1  g-4">
-                                                <ng-container *ngFor="let testimonials of home.testimonials">
+                                                <ng-container *ngFor="let testimonials of null">
                                                   <div *ngIf="home.user.userid == testimonials.userid" class="col">
                                                     <div class="card">
                                                       <div class="card-body">

@@ -55,7 +55,7 @@ export class HomeService{
       display_image: any;
       uploadAttachment(file: FormData){
         this.spinner.show();
-        debugger;
+         
         this.http.post('https://localhost:7274/api/User/UploadImage', file).subscribe((resp:any)=>{
         this.display_image = resp.profileimage;
         this.spinner.hide();
@@ -67,30 +67,39 @@ export class HomeService{
       }
      
 
-    testimonials:any=[{}];
-    GetAllUsertestimonials():void{
-      debugger
-      this.http.get('https://localhost:7274/api/UserTestimonial/GetAllUsertestimonials').subscribe((resp)=>{
-      this.testimonials = resp;
-      debugger;
-      console.log(resp);
-      
-    },err=>{ 
-      console.log(err.message);
-      console.log(err.status);
-    })
+    GetAllUsertestimonials(): Promise<any> {
+      return new Promise((resolve, reject) => {
+        this.http.get('https://localhost:7274/api/UserTestimonial/GetAllUsertestimonials')
+          .subscribe(
+            (resp: any) => {
+              resolve(resp);
+            },
+            (err) => {
+              console.log(err.message);
+              console.log(err.status);
+              reject(err);
+            }
+          );
+      });
     }
     
-    Users :any =[]; 
-    GetAllUsers()
-    {
-      this.http.get('https://localhost:7274/api/User/GetAllUsers').subscribe((resp)=>{
-        this.Users = resp; 
-      }, err=>{
-        console.log(err.message);
-        console.log(err.status);
-      })
+    
+    GetAllUsers(): Promise<any> {
+      return new Promise((resolve, reject) => {
+        this.http.get('https://localhost:7274/api/User/GetAllUsers')
+          .subscribe(
+            (resp: any) => {
+              resolve(resp);
+            },
+            (err) => {
+              console.log(err.message);
+              console.log(err.status);
+              reject(err);
+            }
+          );
+      });
     }
+    
 
     CreateTestimonial(body: any){
     body.userid=this.user.userid;

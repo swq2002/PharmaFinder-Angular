@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { HomeService } from '../Services/home.service';
+import { HttpClient } from '@angular/common/http';
 
 declare var $: any; // Declare jQuery to avoid TypeScript errors
 
@@ -12,7 +13,7 @@ export class HomeComponent implements OnInit {
   homeData: any;
 
 
-  constructor(public home: HomeService) {}
+  constructor(public home: HomeService, private http: HttpClient) {}
 
   ngOnInit(): void {
     this.home.GetHome().subscribe(
@@ -43,5 +44,19 @@ export class HomeComponent implements OnInit {
     });
 
   }
+  numberOfUsersRegistered: any = {};
 
+  NumberOfUsersRegistered() {
+     
+    this.http.get('https://localhost:7274/api/User/GetUserCount').subscribe(
+      (resp) => {
+         
+        this.numberOfUsersRegistered = resp;
+      },
+      (err) => {
+        console.log(err.message);
+        console.log(err.status);
+      }
+    );
+  }
 }

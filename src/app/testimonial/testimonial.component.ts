@@ -13,31 +13,23 @@ declare var $: any;
 })
 export class TestimonialComponent implements OnInit {
  
+  testimonials:any=[{}];
 
 
-  @ViewChild('slickCarousel') slickCarousel!: ElementRef;
+  Users :any =[{}]; 
 
 
   constructor(public home:HomeService, public auth:AuthService){}
-  ngOnInit(): void {
-    debugger;
-   this.home.GetAllUsertestimonials();
-   debugger;
+  async ngOnInit() {
+     debugger;
+     this.testimonials= await this.home.GetAllUsertestimonials();
+    
+   this.Users=await this.home.GetAllUsers();
 
-   this.home.GetAllUsers();
-   console.log(this.home.testimonials);
-////
-
-this.initSlickSlider();
 
 }
 
-private initSlickSlider(): void {
-  $('.ltn__testimonial-slider-active').slick({
-    arrows: true,
-    dots: true,
-  });
-}
+
       
 
     }

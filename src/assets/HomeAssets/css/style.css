@@ -1651,7 +1651,7 @@ ul {
 .bg-overlay-theme-30 {
   z-index: 9;
   position: relative;
-  background-image: url('../../Images/71.jpg'); /* Adjust the path as needed */
+ /* Adjust the path as needed */
   /* Additional properties for background image */
   background-size: cover; /* Adjust how the background image is sized */
   background-position: center; /* Adjust the position of the background image */

@@ -19,9 +19,9 @@
     min-height: 100px;
   }
   
-  /* .testimonial-card:hover {
+.testimonial-card:hover {
     transform: scale(1.05);
-  } */
+  } 
   
   .testimonial-text {
     font-size: 18px;

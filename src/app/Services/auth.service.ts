@@ -78,7 +78,7 @@ export class AuthService {
 
   
   getCurrentUser(): any {
-    debugger;
+     
     const userString = localStorage.getItem('user');
     if (userString) {
       return JSON.parse(userString);
@@ -154,7 +154,7 @@ export class AuthService {
   display_image: any;
   uploadAttachment(file: FormData){
     this.spinner.show();
-    debugger;
+     
     this.http.post('https://localhost:7274/api/User/UploadImage', file).subscribe((resp:any)=>{
     this.display_image = resp.profileimage;
     this.spinner.hide();

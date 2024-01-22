@@ -73,7 +73,7 @@ export class CartComponent implements OnInit {
     this.cartTotalPrice = 0;
   }
   async SendOrder() {
-    debugger;
+     
     this.spinner.show();
 
     const order = {

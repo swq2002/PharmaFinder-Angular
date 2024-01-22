@@ -93,7 +93,7 @@ a:string="aaa"
   pData: any;
 
   Accept(obj: any) {
-    debugger;
+     
     this.pData = obj;
     this.orders.controls['orderid'].setValue(this.pData.orderid);
     this.orders.controls['approval'].setValue("Accepted");
@@ -101,17 +101,17 @@ a:string="aaa"
     const dialogRef = this.dialog.open(this.callAcceptDialog);
     dialogRef.afterClosed().subscribe((result) => {
       if (result == "yes") {
-        debugger;
+         
         this.adminService.AcceptOrders(this.orders.value);
       } else {
-        debugger;
+         
         console.log('cancel');
       }
     });
   }
 
   Reject(obj: any) {
-    debugger;
+     
     this.pData = obj;
     this.orders.controls['orderid'].setValue(this.pData.orderid);
     this.orders.controls['approval'].setValue("Rejected");
@@ -119,16 +119,16 @@ a:string="aaa"
     const dialogRef = this.dialog.open(this.callRejectDialog);
     dialogRef.afterClosed().subscribe((result) => {
       if (result == "yes") {
-        debugger;
+         
         this.adminService.RejectOrders(this.orders.value);
       } else {
-        debugger;
+         
         console.log('cancel');
       }
     });
   }
   MedicineinOrder(id:number){
-    debugger;
+     
     this.router.navigate(['admin/medicineInOrder'], { queryParams: { id } });  }
   // this.route.queryParams.subscribe(params => {
   //   this.id = params['id'];}

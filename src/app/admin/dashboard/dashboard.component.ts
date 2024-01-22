@@ -30,10 +30,10 @@ export class DashboardComponent implements OnInit {
   numberOfUsersRegistered: any = {};
 
   NumberOfUsersRegistered() {
-    debugger;
+     
     this.http.get('https://localhost:7274/api/User/GetUserCount').subscribe(
       (resp) => {
-        debugger;
+         
         this.numberOfUsersRegistered = resp;
       },
       (err) => {
