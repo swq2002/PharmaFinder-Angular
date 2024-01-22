@@ -40,6 +40,7 @@ previousData:any={} ;
   image1:about.image1 }
   console.log(this.previousData);
  this.updateForm.controls['aboutid'].setValue(this.previousData.aboutid);
+ this.admin.iabout=this.previousData.image1;
  this.dialog.open(this.callAboutUpdateDailog);
  }
 

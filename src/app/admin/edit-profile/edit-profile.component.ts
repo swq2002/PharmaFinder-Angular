@@ -67,6 +67,7 @@ export class EditProfileComponent implements OnInit {
     console.log(this.previousData);
     this.updateUserForm.controls['userid'].setValue(this.previousData.userid);
     this.updateUserForm.controls['roleid'].setValue(this.previousData.roleid);
+    this.admin.iuser=this.previousData.profileimage;
     this.updateUserForm.controls['registrationdate'].setValue(
       this.previousData.registrationdate
     );
