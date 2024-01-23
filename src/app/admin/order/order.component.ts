@@ -72,7 +72,7 @@ a:string="aaa"
 
   ngOnInit(): void {
     debugger
-    this.adminService.GetAllOrders();
+    this.adminService.GetAllInformationOrders();
   }
 
 
