@@ -2,17 +2,14 @@
     <app-navbar></app-navbar>
     <div class="body-wrapper" id="homeSection">
         <div class="bg-overlay-theme-30 p-4 p-lg-5 text-center shadow-1-strong rounded mb-5 text-white"
-            style="background-image: url('assets/Images/{{homeData.image1}}'); position: relative; background-size: cover; background-position: center; height: 100vh; overflow: hidden;">
-            <div class="container-fluid d-flex flex-column align-items-start justify-content-center"
-                style="position: absolute; top: 50%; left: 0; transform: translate(0, -50%); width: 100%;">
+            style="background-image: url('assets/Images/{{homeData.image1}}'); position: relative; background-size: cover; background-position: center; height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-6 col-md-8 col-sm-12">
-                        <br>
-                        <br>
-                        <div class="animate__animated animate__fadeInUp">
-                            <div class="animate__animated animate__fadeInUp">
-                                <h1 class="animate__animated animate__fadeIn display-4 text-white">{{homeData.heading1}}</h1>
-                                <div class="animate__animated animate__fadeIn lead text-white">
+                        <div class="slide-item-info animate__animated animate__fadeInUp">
+                            <div class="slide-item-info-inner animate__animated animate__fadeInUp">
+                                <h1 class="slide-title animate__animated animate__fadeIn display-4 text-white">{{homeData.heading1}}</h1>
+                                <div class="slide-brief animate__animated animate__fadeIn lead text-white">
                                     <p>{{homeData.content1}}</p>
                                 </div>
                                 <div class="btn-wrapper animate__animated animate__fadeIn">
@@ -23,32 +20,16 @@
                     </div>
                 </div>
             </div>
-            
         </div>
-        
     </div>
     
     
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 col-md-8 col-sm-12">
+ 
+            <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="image-wrapper mt-4">
                     <a href="upload-prescription"><img src="assets/Images/ordernow.png" alt="Image" class="img-fluid rounded-4"></a>
                 </div>
             </div>
-            <div class="col-md-2 col-sm-6 align-self-center">
-                <div class="ltn__counterup-item text-center">
-                    <div class="counter-icon"> 
-                        <!-- <img src="img/icons/icon-img/2.png" alt="#">  -->
-                        <i class="flaticon-add-user-1"></i>
-                    </div>
-                    <h1><span class="counter">{{numberOfUsersRegistered}}</span><span class="counterUp-icon">+</span> </h1>
-                    <h6>Active Clients</h6>
-                </div>
-            </div>
-        </div>
-    </div>
-    
 
 
     <div id="aboutUsSection">

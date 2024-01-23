@@ -26,7 +26,8 @@
               "src/assets/AdminAssets/images/favicon.png"
             ],
             "styles": [
-         
+              "node_modules/slick-carousel/slick/slick.scss",
+              "node_modules/slick-carousel/slick/slick-theme.scss",
               "node_modules/animate.css/animate.min.css",
               "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.css",
               "node_modules/datatables.net-dt/css/jquery.dataTables.css",
@@ -50,7 +51,7 @@
             ],
             "scripts": [
           
-
+              "node_modules/slick-carousel/slick/slick.min.js",
              "src/assets/HomeAssets/js/plugins.js",
               "src/assets/HomeAssets/js/main.js",
               "src/assets/AdminAssets/vendors/js/vendor.bundle.base.js",          

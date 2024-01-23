@@ -21,7 +21,7 @@ import { ShopComponent } from './shop/shop.component';
 import { PaymentComponent } from './payment/payment.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
-
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { DataTablesModule } from "angular-datatables";
 import { NgChartsModule } from 'ng2-charts';
 
@@ -50,7 +50,8 @@ import { NgChartsModule } from 'ng2-charts';
     NgxSpinnerModule,
     DataTablesModule,
     NgChartsModule,
-    MdbCarouselModule
+    MdbCarouselModule,
+    SlickCarouselModule
     ],
   
   
