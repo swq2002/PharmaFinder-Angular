@@ -23,7 +23,7 @@ export class OrderByPrescriptionComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private toaster: ToastrService,
     private router: Router
-  ) {}
+  ) { }
 
   async ngOnInit() {
     try {
@@ -83,20 +83,26 @@ export class OrderByPrescriptionComponent implements OnInit {
       }
 
       if (this.medicines) {
+        if(this.medicines.length != 0){
         this.nearestMedicines = this.mapService.findNearestPharmacies(this.userLoc, this.medicines);
         this.spinner.hide();
         const encodedData = encodeURIComponent(JSON.stringify(this.nearestMedicines));
         this.router.navigate(['/product-result'], {
           queryParams: { medicines: encodedData }
         });
+      }
+      else {
+        this.spinner.hide();
 
+        this.toaster.error('medicine not available')
+      }
       } else if (this.txtInput.value) {
-         
+
         await this.preService.prescriptionTxtSearch(this.txtInput.value)
           .then(async (resp: any) => {
             this.medicines = await resp;
             this.spinner.hide();
-            if (this.medicines) {
+            if (this.medicines.length != 0) {
               this.nearestMedicines = await this.mapService.findNearestPharmacies(this.userLoc, this.medicines);
               this.spinner.hide();
               const encodedData = encodeURIComponent(JSON.stringify(this.nearestMedicines));
@@ -104,7 +110,9 @@ export class OrderByPrescriptionComponent implements OnInit {
                 queryParams: { medicines: encodedData }
               });
             } else {
-              this.router.navigate(['']);
+              this.spinner.hide();
+
+              this.toaster.error('medicine not available')
             }
             this.disableInputs(true);
           })
@@ -113,11 +121,15 @@ export class OrderByPrescriptionComponent implements OnInit {
             console.log(err);
             this.spinner.hide();
           });
-      } else {
-        this.router.navigate(['']);
+      }
+      else {
+        this.spinner.hide();
+
+        this.toaster.error('medicine not available')
       }
 
-    } catch (error) {
+    }
+     catch (error) {
       console.error('Error searching for nearest pharmacies:', error);
     }
   }

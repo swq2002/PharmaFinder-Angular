@@ -1,41 +1,61 @@
 <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
   <div class="container py-5">
 
-
-<!-- TESTIMONIAL AREA START (testimonial-4) -->
-<div class="ltn__testimonial-area section-bg-1 pt-290 pb-70">
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-12">
+    <div class="ltn__testimonial-area pt-290 pb-70">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12">
             <div class="section-title-area ltn__section-title-2 text-center">
-                <h1 class="fw-bold section-title">Clients Feedbacks<span>.</span></h1>
+              <h1 class="fw-bold section-title">Clients Feedbacks<span>.</span></h1>
             </div>
+          </div>
         </div>
-    </div>
-    <div class="row ltn__testimonial-slider-3-active slick-arrow-1 slick-arrow-1-inner">
-      <div class="row">
-        <ng-container *ngFor="let obj of testimonials">
-          <ng-container *ngFor="let obj2 of Users">
-            <ng-container *ngIf="obj2.userid === obj.userid && obj.status === 'Accepted'">
-              <div class="col-lg-12">
-                <div class="ltn__testimonial-item ltn__testimonial-item-4">
-                  <div class="ltn__testimoni-img">
-                    <img src="assets\Images{{ obj2.profileimage}}" alt="#">
+        <div class="row ltn__testimonial-slider-3-active slick-arrow-1 slick-arrow-1-inner">
+          <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+            <ng-container *ngFor="let obj of testimonials">
+              <ng-container *ngFor="let obj2 of Users">
+                <ng-container *ngIf="obj2.userid === obj.userid && obj.status === 'Accepted'">
+                  <div ngxSlickItem>
+                    <div class="ltn__testimonial-item ltn__testimonial-item-4">
+                      <div class="ltn__testimoni-img">
+                        <img src="assets\Images\{{ obj2.profileimage}}" alt="#">
+                      </div>
+                      <div class="ltn__testimoni-info">
+                        <h4>{{ obj2.username }}</h4>
+                        <p>{{ obj.testimonialtext }}</p>
+                        <h6>{{ obj.testimonialdate | date }}</h6>
+                      </div>
+                    </div>
                   </div>
-                  <div class="ltn__testimoni-info">
-                    <h4>{{ obj2.username }}</h4>
-                    <p>{{ obj.testimonialtext }}</p>
-                    <h6>{{ obj.testimonialdate | date  }}</h6>
-                  </div>
-                  <div class="ltn__testimoni-bg-icon">
-                    <i class="far fa-comments"></i>
-                  </div>
-                </div>
-              </div>
+                </ng-container>
+              </ng-container>
             </ng-container>
-          </ng-container>
-        </ng-container>
+          </ngx-slick-carousel>
+        </div>
       </div>
-
     </div>
+  </div>
 </div>
+
+<ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+  <div ngxSlickItem class="slide">
+    <div style="width:200px;height:200px;background:#f2f2f3">
+      1
+    </div>
+  </div>
+  <div ngxSlickItem class="slide">
+    <div style="width:200px;height:200px;background:#f2f2f3">
+      2
+    </div>
+  </div>
+  <div ngxSlickItem class="slide">
+    <div style="width:200px;height:200px;background:#f2f2f3">
+      3
+    </div>
+  </div>
+  <div ngxSlickItem class="slide">
+    <div style="width:200px;height:200px;background:#f2f2f3">
+      4
+    </div>
+  </div>
+</ngx-slick-carousel>
