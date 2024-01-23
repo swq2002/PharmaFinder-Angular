@@ -70,20 +70,15 @@ a:string="aaa"
   });
 }
 
-
-
-
-
   ngOnInit(): void {
     debugger
-    this.adminService.GetAllInformationOrders();
+    this.adminService.GetAllOrders();
   }
 
 
   orders: FormGroup = new FormGroup({
     orderid: new FormControl(),
     username: new FormControl(),
-    pharmacyname: new FormControl(),
     approval: new FormControl(),
     orderprice: new FormControl(),
     status: new FormControl(),
