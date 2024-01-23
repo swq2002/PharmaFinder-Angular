@@ -105,7 +105,7 @@ async Submit() {
           this.toastr.success('Your account created successfully!');
           this.spinner.hide();
           this.sendRegistrationEmail(this.registerForm.value.email);
-          this.router.navigate(['']);          
+          this.router.navigate(['security/login']);          
         },
         error => {
           this.toastr.error('Fill the form please')

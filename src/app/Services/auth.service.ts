@@ -98,58 +98,26 @@ export class AuthService {
   }
   
   createUser(body: any): Observable<any> {
-    const Email = body.email;
-    const Password = body.password;
-    const subBody = {
-      Email: Email.toString(),
-      Password: Password.toString(),
-    };
-  
-    return this.isEmailAlreadyRegistered(Email).pipe(
-      switchMap((isRegistered) => {
+    const userEmail = body.email;
+
+    return this.isEmailAlreadyRegistered(userEmail).pipe(
+      switchMap(isRegistered => {
         if (isRegistered) {
           this.notifyUserSubject.next('You already have an account!');
           return of({ error: 'Email already registered' });
         } else {
-          const headerDir = {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-          };
-          const requestOptions = {
-            headers: new HttpHeaders(headerDir),
-          };
-  
           body.Profileimage = this.display_image;
-          return this.http.post('https://localhost:7274/api/User/CreateUser', body, requestOptions).pipe(
-            catchError((error) => {
+          return this.http.post('https://localhost:7274/api/User/CreateUser', body).pipe(
+            catchError(error => {
               console.error('Error creating user:', error);
               return of({ error: 'Error creating user' });
-            }),
-            switchMap((resp: any) => {
-              const tokenRequestOptions = {
-                headers: new HttpHeaders(headerDir),
-              };
-  
-              return this.http.post('https://localhost:7274/api/JWT/', subBody, tokenRequestOptions).pipe(
-                catchError((error) => {
-                  console.error('Error generating token for the registered user:', error);
-                  return of({ error: 'Error generating token' });
-                }),
-                tap((tokenResp: any) => {
-                  const responce = {
-                    token: tokenResp.toString(),
-                  };
-                  localStorage.setItem('token', responce.token);
-                  let data: any = jwtDecode(responce.token);
-                  localStorage.setItem('user', JSON.stringify(data));
-                })
-              );
             })
           );
         }
       })
     );
   }
+
 
   display_image: any;
   uploadAttachment(file: FormData){
