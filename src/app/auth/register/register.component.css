@@ -25,3 +25,30 @@
     display: flex;
   }
 
+
+  .custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+.custom-file-input::before {
+    content: 'Choose';
+    display: inline-block;
+    background-color: #1ea878;
+    color: #ffffff;
+    border: 1px solid #078f66;
+    border-radius: 5px;
+    padding: 6px 12px;
+    outline: none;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.custom-file-input:hover::before {
+    border-color: #00b324;
+}
+
+.custom-file-input:active::before {
+    background-color: #0d7657;
+    border-color: #057c58;
+}
+

@@ -97,6 +97,7 @@ export class AuthService {
     );
   }
   
+  
   createUser(body: any): Observable<any> {
     const userEmail = body.email;
 
@@ -132,5 +133,6 @@ export class AuthService {
       console.log(err.status);
     })
   }
+
 
 }

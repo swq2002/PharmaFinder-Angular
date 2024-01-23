@@ -38,7 +38,8 @@ export class RegisterComponent {
 
 constructor(public home:HomeService ,private fb: FormBuilder, private http: HttpClient, private el: ElementRef,
    private renderer: Renderer2, private router:Router, private toastr: ToastrService,private spinner:NgxSpinnerService, public auth: AuthService) {
-}
+
+  }
 
 goToLogin(){
     this.router.navigate(['security/login']);
@@ -116,6 +117,7 @@ async Submit() {
   });
 
 }
+
 private sendRegistrationEmail(email: string) {
 const user = this.auth.getCurrentUser();
 
@@ -135,6 +137,7 @@ const user = this.auth.getCurrentUser();
     }
   );
 }
+
 private notifyUser() {
   this.toastr.error('You already have account')
   console.log('You already have an account!');
