@@ -33,7 +33,7 @@
                   <div class="card">
                     <div class="card-body text-center">
                       <h5 class="mb-2 text-dark font-weight-normal">Sales of Order</h5>
-                      <h2 class="mb-4 text-dark font-weight-bold">{{adminService.salesPharmacy}}</h2>
+                      <h2 class="mb-4 text-dark font-weight-bold"> ${{adminService.salesPharmacy}}</h2>
                       <!-- <div class="dashboard-progress dashboard-progress-2 d-flex align-items-center justify-content-center item-parent"><i class="mdi mdi-account-circle icon-md absolute-center text-dark"></i></div> -->
                       <!-- <p class="mt-4 mb-0">Increased since yesterday</p>
                       <h3 class="mb-0 font-weight-bold mt-2 text-dark">50%</h3> -->
@@ -46,7 +46,7 @@
           </div>
   <!-- table start -->
   
-
+<!-- 
 
   <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
@@ -103,7 +103,7 @@
   </div>
 
 
-
+ -->
 
   
   
@@ -153,7 +153,7 @@
       <tr *ngFor="let obj of adminService.medicineInPharmacy">
         <td id="medicineName">{{obj.medicinename}}</td>
         <td><img src="../../../assets/Images/{{obj.imagename}}"></td>
-        <td id="quantity">{{obj.medicineprice}}</td>
+        <td id="quantity">${{obj.medicineprice}}</td>
         <td id="medicinePrice">{{obj.medicinetype}} </td>
         <td id="medicineType">{{obj.medicinedescription}}</td>
         <td id="expireDate">{{obj.expiredate|date:'shortDate'}}</td>
