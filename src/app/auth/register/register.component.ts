@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService, Spinner } from 'ngx-spinner';
 import { AuthService } from 'src/app/Services/auth.service';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -103,8 +104,16 @@ async Submit() {
         resp => {
           console.log('User created successfully!', resp);
           this.toastr.success('Your account created successfully!');
-          this.sendRegistrationEmail(this.registerForm.value.email);
-         this.router.navigate(['security/login']);          
+          this.sendRegistrationEmail(this.registerForm.value.email).subscribe(
+            response => {
+              console.log('Email sent successfully:', response);
+              this.spinner.hide();
+              this.router.navigate(['security/login']);
+            },
+            error => {
+              console.error('Error sending email:', error);
+            }
+          );   
         }
         ,
         error => {
@@ -117,25 +126,15 @@ async Submit() {
 
 }
 
-private  sendRegistrationEmail(email: string) {
-const user = this.auth.getCurrentUser();
-
+private sendRegistrationEmail(email: string): Observable<any> {
 
   const emailDto = {
     to: email,
-    Subject:"Welcome to PharmaFinder",
-    PlainText:`Dear ${user.name} ,<br> We are happy to welcome you to PharmaFinder`
+    Subject: "Welcome to PharmaFinder",
+    PlainText: `Dear ${this.registerForm.value.userName} ,<br> We are happy to welcome you to PharmaFinder`
   };
 
-  this.http.post('https://localhost:7274/api/Email/SendEmail', emailDto).subscribe(
-    response => {
-      console.log('Email sent successfully:', response);
-      this.spinner.hide();
-    },
-    error => {
-      console.error('Error sending email:', error);
-    }
-  );
+  return this.http.post('https://localhost:7274/api/Email/SendEmail', emailDto);
 }
 
 private notifyUser() {
