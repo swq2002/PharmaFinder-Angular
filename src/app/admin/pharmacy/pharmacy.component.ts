@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { AdminServicesService } from 'src/app/Services/admin-services.service';
 import { GetAllMedcineInPharmacyComponent } from '../get-all-medcine-in-pharmacy/get-all-medcine-in-pharmacy.component';
 import { MapService } from 'src/app/Services/map.service';
-import { LeafletMouseEvent } from 'leaflet';
 
 @Component({
   selector: 'app-pharmacy',
@@ -13,30 +12,7 @@ import { LeafletMouseEvent } from 'leaflet';
   styleUrls: ['./pharmacy.component.css'],
   styles: [`
 
-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
 
-    th, td {
-      border: 1px solid #dddddd;
-      text-align: left;
-      padding: 8px;
-    }
-
-    th {
-      background-color: #f2f2f2;
-    }
-  h2 {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-  }
-
-  button {
-    background-color: #4285f4;
-    color: white;
-  }
 `]
 })
 
