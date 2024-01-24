@@ -75,7 +75,26 @@ export class AuthService {
     });
   }
 
-  
+  CreateUserGmail(body: any) {
+    debugger;
+    //  const user = {username:body.name, email:body.email,profileimage:body.photoUrl,roleid:2,password:123456789};
+    // const user = this.getCurrentUser();
+    body.email = body.email
+    body.username = body.name
+    body.Profileimage = body.photoUrl
+    body.roleId = 2;
+    body.password = "123456789";
+    this.http.post('https://localhost:7274/api/User/CreateUser', body).subscribe(resp => {
+      this.login(body.email, body.password)
+    }, err => {
+      console.log(err.message);
+      console.log(err.status);
+    })
+
+
+  }
+
+
   getCurrentUser(): any {
      
     const userString = localStorage.getItem('user');

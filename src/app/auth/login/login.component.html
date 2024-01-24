@@ -1,16 +1,17 @@
-
 <div class="pb-200">
     <app-navbar></app-navbar>
-    </div>
-  
-  <div class="ltn__login-area pb-65">
+</div>
+
+<div class="ltn__login-area pb-65">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-title-area text-center">
-                    <h1 class=" fw-bold text-success mt-5 text-xl" style="font-size: xx-large;">Sign In <br>To  Your Account</h1>
+                    <h1 class=" fw-bold text-success mt-5 text-xl" style="font-size: xx-large;">Sign In <br>To Your
+                        Account</h1>
                     <p>
-                        Pharma Finder is an innovative platform dedicated to simplifying the process of locating pharmaceutical products, services, and information.</p>
+                        Pharma Finder is an innovative platform dedicated to simplifying the process of locating
+                        pharmaceutical products, services, and information.</p>
                 </div>
             </div>
         </div>
@@ -20,31 +21,36 @@
                     <form action="#" class="ltn__form-box contact-form-box">
                         <div class="d-flex flex-row align-items-center mb-4">
                             <div class="form-outline flex-fill mb-0">
-                        <input type="text" name="email" id="email" placeholder="email*" class="form-control" value={{loginObj.email}} [(ngModel)]="loginObj.email" formControlName="email"  [formControl]="email">
-                        <!-- <span style="color: red;" *ngIf="username.hasError('required')"> user name is required</span> -->
-                           </div>
+                                <input type="text" name="email" id="email" placeholder="email*" class="form-control"
+                                    value={{loginObj.email}} [(ngModel)]="loginObj.email" formControlName="email"
+                                    [formControl]="email">
+                                <!-- <span style="color: red;" *ngIf="username.hasError('required')"> user name is required</span> -->
+                            </div>
                         </div>
                         <div class="d-flex flex-row align-items-center mb-4">
                             <div class="form-outline flex-fill mb-0">
-                        <input type="password" name="password" id="password" placeholder="Password*" class="form-control"  formControlName="password"  [formControl]="password">
-                        <!-- <span style="color: red;" *ngIf="password.hasError('required')">password is required</span> -->
+                                <input type="password" name="password" id="password" placeholder="Password*"
+                                    class="form-control" formControlName="password" [formControl]="password">
+                                <!-- <span style="color: red;" *ngIf="password.hasError('required')">password is required</span> -->
                             </div>
-                       </div>
-                       <div *ngIf="(loginError$ | async)" class="alert alert-danger" role="alert">
-                        Incorrect email or password. Please try again.
-                      </div>
+                        </div>
+                        <div *ngIf="(loginError$ | async)" class="alert alert-danger" role="alert">
+                            Incorrect email or password. Please try again.
+                        </div>
                         <div class="btn-wrapper mt-0">
                             <div class="row mb-3 justify-content-start">
                                 <div class="col-12">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck1" name="rememberMe" [(ngModel)]="rememberMe">
+                                        <input class="form-check-input" type="checkbox" id="gridCheck1"
+                                            name="rememberMe" [(ngModel)]="rememberMe">
                                         <label class="form-check-label" for="gridCheck1">
                                             Remember Me
                                         </label>
                                     </div>
                                 </div>
-                              </div>
-                            <button [disabled]="!email.valid || !password.valid" class="theme-btn-1 btn btn-block" (click)="submit()">SIGN IN</button>
+                            </div>
+                            <button [disabled]="!email.valid || !password.valid" class="theme-btn-1 btn btn-block"
+                                (click)="submit()">SIGN IN</button>
                         </div>
                         <div class="go-to-btn mt-20">
                         </div>
@@ -52,18 +58,22 @@
                 </div>
             </div>
             <div class="col-lg-6">
-  
+
                 <div class="account-create text-center pt-50">
                     <h4>DON'T HAVE AN ACCOUNT?</h4>
-                    
+
                     <div class="btn-wrapper">
                         <a href="security/register" class="theme-btn-1 btn black-btn">CREATE ACCOUNT</a>
+
                     </div>
+                    <div style="margin: 44px 187px">
+                        <asl-google-signin-button class="gmail" logo="center-alignment" type='standard' size='large'>Login with Gmail</asl-google-signin-button>
+                        </div>
                 </div>
             </div>
         </div>
     </div>
-  </div>
-  <!-- LOGIN AREA END -->
-  
-  <app-footer></app-footer>
+</div>
+<!-- LOGIN AREA END -->
+
+<app-footer></app-footer>

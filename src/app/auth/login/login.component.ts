@@ -1,16 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HomeService } from 'src/app/Services/home.service';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/Services/auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
 loginError: boolean = false;
   loginObj: any = {
@@ -19,8 +20,10 @@ loginError: boolean = false;
   };
   rememberMe: boolean = false;
   users: any = []
-
-  constructor(public home:HomeService, private auth: AuthService, private router: Router, public toastr: ToastrService) {
+  loginForm!: FormGroup;
+  socialUser!: SocialUser;
+  isLoggedin?: boolean;
+  constructor(public home:HomeService, private auth: AuthService, private router: Router, public toastr: ToastrService,    private socialAuthService: SocialAuthService) {
 
     const usersFromLocalStorage = localStorage.getItem('users');
     const savedUsers = usersFromLocalStorage ? JSON.parse(usersFromLocalStorage) : [];
@@ -30,6 +33,24 @@ loginError: boolean = false;
       this.loginObj.email = lastUser.email || '';
     }
   }
+  
+  
+  ngOnInit() {
+    this.socialAuthService.authState.subscribe((user) => {
+      this.users = user;
+      this.isLoggedin = (user != null);
+      const token = user.idToken;
+      localStorage.setItem('token', token);
+      // localStorage.setItem('user', JSON.stringify(user));
+      console.log(this.users)
+      // let data: any = jwtDecode(token);
+      // localStorage.setItem('user', JSON.stringify(data))
+      this.auth.CreateUserGmail(user)
+
+    })
+  }
+
+
   loginError$ = this.auth.loginError$; 
 
   email: FormControl = new FormControl('',Validators.required);
