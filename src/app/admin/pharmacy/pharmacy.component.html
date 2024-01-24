@@ -135,7 +135,17 @@
 </div>
 
 </ng-template>
+<ng-template #addPharmacy>
+  <h1 mat-dialog-title>Add Pharmacy</h1>
+<div mat-dialog-content><div id="map" (click)="addMarker($event)"></div>
+</div>
+<div mat-dialog-actions>
+  <button type="button" mat-raised-button color="primary" (click)="savePharmaLoc()" mat-button mat-dialog-close="yes">save</button>
+  <button  type="button" mat-button mat-dialog-close="no">cancel</button>
 
+</div>
+
+</ng-template>
 
 <ng-template #createPharmacDailog>
   <h2 mat-dialog-title>Create pharmacy</h2>
@@ -176,22 +186,11 @@
         address is <strong>required</strong>
       </mat-error>
     </mat-form-field>
-    
-    <mat-form-field class="example-full-width">
-      <mat-label>lng</mat-label>
-      <input type="number" matInput formControlName="lng"  >
-      <mat-error *ngIf="updatePharmacy.controls['lng'].hasError('required')">
-        lng is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
+    <button type="button" (click)="OpenAddPharLoc()" class="btn btn-outline-primary">Add Location</button>
 
-    <mat-form-field class="example-full-width">
-      <mat-label>lat</mat-label>
-      <input type="number" matInput formControlName="lat"  >
-      <mat-error *ngIf="updatePharmacy.controls['lat'].hasError('required')">
-        lat is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
+ 
+
+  
 
     <mat-form-field class="example-full-width">
       <mat-label>email</mat-label>
@@ -217,7 +216,7 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close (click)="Cancel()">Cancel</button>
-   <button mat-button [mat-dialog-close]="true" (click)="CreatePharm()"  mat-raised-button color="primary"  cdkFocusInitial>Create</button> 
+   <button mat-button [mat-dialog-close]="true" (click)="CreatePharm()"  mat-raised-button color="primary" [disabled]="!CreatePharmacy.valid" cdkFocusInitial>Create</button> 
 </mat-dialog-actions>
 </ng-template> 
  
@@ -249,6 +248,9 @@
     <mat-form-field class="example-full-width">
       <mat-label>address</mat-label>
       <mat-select formControlName="address"  [(ngModel)]="pData.address">
+        <mat-option value="FayoumUniversity">FayoumUniversity</mat-option>
+        <mat-option value="FayoumStadium">FayoumStadium</mat-option>
+        <mat-option value="Fayoum">Fayoum</mat-option>
         <mat-option value="Amman">Amman</mat-option>
         <mat-option value="Irbid">Irbid</mat-option>
         <mat-option value="Zarqa">Zarqa</mat-option>
@@ -264,22 +266,8 @@
         address is <strong>required</strong>
       </mat-error>
     </mat-form-field>
+    <button type="button" (click)="OpenAddPharLoc()" class="btn btn-outline-primary">Add Location</button>
 
-    <mat-form-field class="example-full-width">
-      <mat-label>lng</mat-label>
-      <input type="number" matInput formControlName="lng"  [(ngModel)]="pData.lng">
-      <mat-error *ngIf="updatePharmacy.controls['lng'].hasError('required')">
-        medicne name is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="example-full-width">
-      <mat-label>lat</mat-label>
-      <input type="number" matInput formControlName="lat"  [(ngModel)]="pData.lat" >
-      <mat-error *ngIf="updatePharmacy.controls['lat'].hasError('required')">
-        medicne name is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
 
     <mat-form-field class="example-full-width">
       <mat-label>email</mat-label>

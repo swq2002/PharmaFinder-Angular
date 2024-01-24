@@ -1,7 +1,6 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { HomeService } from '../Services/home.service';
 import { HttpClient } from '@angular/common/http';
-
 declare var $: any; // Declare jQuery to avoid TypeScript errors
 
 @Component({

@@ -50,13 +50,12 @@
               "node_modules/datatables.net-dt/css/jquery.dataTables.min.css"
             ],
             "scripts": [
-          
-              "node_modules/slick-carousel/slick/slick.min.js",
-             "src/assets/HomeAssets/js/plugins.js",
-              "src/assets/HomeAssets/js/main.js",
-              "src/assets/AdminAssets/vendors/js/vendor.bundle.base.js",          
-              "src/assets/AdminAssets/vendors/chart.js/Chart.min.js",
               "node_modules/jquery/dist/jquery.js",
+              "node_modules/slick-carousel/slick/slick.min.js",
+              "src/assets/HomeAssets/js/plugins.js",
+              "src/assets/HomeAssets/js/main.js",
+              "src/assets/AdminAssets/vendors/js/vendor.bundle.base.js",
+              "src/assets/AdminAssets/vendors/chart.js/Chart.min.js",
               "node_modules/datatables.net/js/jquery.dataTables.js",
               "node_modules/jszip/dist/jszip.js",
               "node_modules/datatables.net-buttons/js/dataTables.buttons.js",
@@ -69,13 +68,8 @@
               "src/assets/AdminAssets/js/hoverable-collapse.js",
               "src/assets/AdminAssets/js/misc.js",
               "src/assets/AdminAssets/js/dashboard.js",
-              "node_modules/jquery/dist/jquery.min.js",
               "node_modules/datatables.net/js/jquery.dataTables.min.js",
-              "node_modules/jquery/dist/jquery.js",
-              "node_modules/datatables.net/js/jquery.dataTables.js",
-              "node_modules/slick-carousel/slick/slick.min.js"
-
-
+              "node_modules/datatables.net/js/jquery.dataTables.js"
             ]
           },
           "configurations": {
