@@ -22,7 +22,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { DataTablesModule } from "angular-datatables";
 import { NgChartsModule } from 'ng2-charts';
-
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +48,7 @@ import { NgChartsModule } from 'ng2-charts';
     NgxSpinnerModule,
     DataTablesModule,
     NgChartsModule,
+    SlickCarouselModule
     ],
   
   

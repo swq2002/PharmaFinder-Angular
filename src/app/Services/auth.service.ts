@@ -117,13 +117,11 @@ export class AuthService {
   
   
   createUser(body: any): Observable<any> {
-    this.spinner.show();
     const userEmail = body.email;
 
     return this.isEmailAlreadyRegistered(userEmail).pipe(
       switchMap(isRegistered => {
         if (isRegistered) {
-          this.spinner.hide();         
           this.toastr.error("Email already registered")
           return of({ error: 'Email already registered' });
         } else {
