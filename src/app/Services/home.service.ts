@@ -74,7 +74,6 @@ export class HomeService{
           .subscribe(
             (resp: any) => {
               resolve(resp);
-              debugger;
             },
             (err) => {
               console.log(err.message);

@@ -1,6 +1,30 @@
-<div class="container-fluid py-5">
-  <div class="container py-5">
-   
+
+
+    <div class="section-title-area ltn__section-title-2 text-center mb-5">
+      <h1 class="fw-bold section-title">Clients Feedbacks<span>.</span></h1>
+    </div>
+
+
+<ng-container *ngFor="let obj of testimonials">
+  <ng-container *ngFor="let obj2 of Users">
+    <div class="" *ngIf="obj2.userid === obj.userid && obj.status === 'Accepted'">
+        <div class="ltn_testimonial-item ltn_testimonial-item-4">
+          <div class="ltn__testimoni-img">
+            <img  src="assets\Images\{{ obj2.profileimage}}" alt="#">
+          </div>
+          <div class="ltn__testimoni-info">
+            <h4>{{ obj2.username }}</h4>
+            <p>{{ obj.testimonialtext }}</p>
+            <h6>{{ obj.testimonialdate | date }}</h6>
+          </div>
+        </div>   
+    </div>
+  </ng-container>
+</ng-container>
+
+
+
+<!--    
     <div class="ltn__testimonial-area pt-290 pb-70">
       <div class="container-fluid">
         <div class="row">
@@ -10,8 +34,7 @@
             </div>
           </div>
         </div>
-        <div class="ltn__testimonial-slider-3-active slick-arrow-1 slick-arrow-1-inner">
-          <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+        <div class="ltn__testimonial-slider-3-active">
             <ng-container *ngFor="let obj of testimonials">
               <ng-container *ngFor="let obj2 of Users">
                 <ng-container *ngIf="obj2.userid === obj.userid && obj.status === 'Accepted'">
@@ -30,12 +53,9 @@
                 </ng-container>
               </ng-container>
             </ng-container>
-          </ngx-slick-carousel>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+    </div> -->
 
 
 
