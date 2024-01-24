@@ -1,6 +1,6 @@
-<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+<div class="container-fluid py-5">
   <div class="container py-5">
-
+    <!-- 
     <div class="ltn__testimonial-area pt-290 pb-70">
       <div class="container-fluid">
         <div class="row">
@@ -35,9 +35,9 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
-<ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+    <!-- <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
   <div ngxSlickItem class="slide">
     <div style="width:200px;height:200px;background:#f2f2f3">
       1
@@ -58,4 +58,66 @@
       4
     </div>
   </div>
-</ngx-slick-carousel>
+</ngx-slick-carousel> -->
+
+
+    <!-- <div class="testmonial-carasoul">
+
+
+      <div id="carouselExample" class="carousel slide">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="testimonial-box">
+
+              <div class="row">
+                <div class="col-auto">
+
+                </div>
+                <div class="col">
+                  <div class="text-meduim">
+                    fggfdgfdgfdgfd
+                  </div>
+                </div>
+              </div>
+            </div>
+                     
+          </div>
+        </div>
+        <div class="carousel-item" *ngFor="let obj of testimonials">
+          <div class="testimonial-box" *ngFor="let obj2 of Users">
+
+            <div class="row" *ngIf="obj2.userid === obj.userid && obj.status === 'Accepted'">
+              <div class="col-auto">
+                <img src="assets\Images\{{ obj2.profileimage}}" alt="#">
+              </div>
+              <div class="col">
+                <div class="text-meduim">
+                  <p>{{ obj.testimonialtext }}1</p>
+                </div>
+                <div class="user-ino">
+                  <h4>{{ obj2.username }}</h4><span class="text-gray">
+                    <h6>{{ obj.testimonialdate | date }}</h6>
+                  </span>
+                </div>
+              </div>
+            </div>
+                     
+          </div>
+
+
+
+
+
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div> -->
+  </div>
+</div>

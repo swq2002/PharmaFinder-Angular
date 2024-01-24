@@ -18,6 +18,7 @@ export class HomeService{
 
   registeredEmails: any = [];
   private notifyUserSubject = new Subject<string>();
+  testimonials:any=[{}];
 
   constructor(private http: HttpClient,private spinner:NgxSpinnerService, private toastr: ToastrService, private auth:AuthService){ }
 
@@ -83,7 +84,7 @@ export class HomeService{
       });
     }
     
-    
+    Users :any =[]; 
     GetAllUsers(): Promise<any> {
       return new Promise((resolve, reject) => {
         this.http.get('https://localhost:7274/api/User/GetAllUsers')
