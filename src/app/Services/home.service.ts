@@ -74,6 +74,7 @@ export class HomeService{
           .subscribe(
             (resp: any) => {
               resolve(resp);
+              debugger;
             },
             (err) => {
               console.log(err.message);
@@ -83,6 +84,7 @@ export class HomeService{
           );
       });
     }
+  
     
     Users :any =[]; 
     GetAllUsers(): Promise<any> {
