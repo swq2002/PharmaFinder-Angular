@@ -21,9 +21,9 @@
                                     <td class="cart-product-price">${{item.medicineprice}}</td>
                                     <td class="cart-product-quantity">
                                         <div class="">
-                                          <button class="dec qtybutton" (click)="decrement(item)">-</button>
+                                          <button (click)="decrement(item)">-</button>
                                           <input type="text" [value]="item.quantity" name="qtybutton" class="cart-plus-minus-box">
-                                          <button class="inc qtybutton" (click)="increment(item)">+</button>
+                                          <button  (click)="increment(item)">+</button>
                                         </div>
                                       </td>
                                     <td class="cart-product-subtotal">${{item.medicineprice*item.quantity}}</td>

@@ -38,7 +38,8 @@ export class RegisterComponent {
 
 constructor(public home:HomeService ,private fb: FormBuilder, private http: HttpClient, private el: ElementRef,
    private renderer: Renderer2, private router:Router, private toastr: ToastrService,private spinner:NgxSpinnerService, public auth: AuthService) {
-}
+
+  }
 
 goToLogin(){
     this.router.navigate(['security/login']);
@@ -84,7 +85,6 @@ goToLogin(){
 
 async Submit() {
    
-  this.spinner.show();
   const userEmail = this.registerForm.controls['email'].value;
  
   if (this.registerForm.invalid) {
@@ -103,10 +103,10 @@ async Submit() {
         resp => {
           console.log('User created successfully!', resp);
           this.toastr.success('Your account created successfully!');
-          this.spinner.hide();
           this.sendRegistrationEmail(this.registerForm.value.email);
-          this.router.navigate(['']);          
-        },
+         this.router.navigate(['security/login']);          
+        }
+        ,
         error => {
           this.toastr.error('Fill the form please')
           console.error('Error creating user:', error);
@@ -116,7 +116,8 @@ async Submit() {
   });
 
 }
-private sendRegistrationEmail(email: string) {
+
+private  sendRegistrationEmail(email: string) {
 const user = this.auth.getCurrentUser();
 
 
@@ -129,12 +130,14 @@ const user = this.auth.getCurrentUser();
   this.http.post('https://localhost:7274/api/Email/SendEmail', emailDto).subscribe(
     response => {
       console.log('Email sent successfully:', response);
+      this.spinner.hide();
     },
     error => {
       console.error('Error sending email:', error);
     }
   );
 }
+
 private notifyUser() {
   this.toastr.error('You already have account')
   console.log('You already have an account!');
@@ -149,7 +152,7 @@ UploadImage(file:any){
   let fileToUpload=<File> file[0];
   const formData = new FormData();
   formData.append('file',fileToUpload,fileToUpload.name);
-  this.home.uploadAttachment(formData);
+  this.auth.uploadAttachment(formData);
 }
 
 }

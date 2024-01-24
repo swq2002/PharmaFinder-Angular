@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 declare const L: any;
 
 @Injectable({
@@ -119,6 +120,32 @@ export class MapService {
   
     return pharmacies;
   }
+  addMarkerOnClick(map: any): Observable<{ lat: number, lng: number }> {
+    let currentMarker: any = null; 
+    return new Observable((observer) => {
+      const onClickHandler = (e: any) => {
+        const latlng = e.latlng;
+  
+        if (currentMarker) {
+          map.removeLayer(currentMarker);
+        }
+  
+        currentMarker = L.marker(latlng).addTo(map);
+  
+        observer.next({ lat: latlng.lat, lng: latlng.lng });
+        observer.complete();
+      };
+  
+      if (currentMarker) {
+        map.removeLayer(currentMarker);
+      }
+      map.off('click', onClickHandler);
+  
+      map.on('click', onClickHandler);
+    });
+  }
+  
+
   flyToPharmacyLocation(pharmacyLocation: { lat: number; lng: number }, map:any) {
    map.flyTo(pharmacyLocation,13); 
     }

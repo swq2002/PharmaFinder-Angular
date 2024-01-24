@@ -152,7 +152,7 @@ export class DashboardComponent implements OnInit {
 
       datasets: [{
         label: 'Annual Report',
-        data: values,
+        data:values,
         backgroundColor: [
           'rgb(255, 99, 132)',
           'rgb(54, 162, 235)',

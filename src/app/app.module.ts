@@ -47,7 +47,8 @@ import { NgChartsModule } from 'ng2-charts';
     SharedModule,
     NgxSpinnerModule,
     DataTablesModule,
-    NgChartsModule    ],
+    NgChartsModule,
+    ],
   
   
   providers: [{

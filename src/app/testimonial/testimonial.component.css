@@ -44,4 +44,10 @@
     flex: 0 0 auto;
   }
    
+  .testmonial-carasoul{
+    
+  }
 
+  .testmonial-carasoul .carousel-item {
+    padding: 20px;
+  }

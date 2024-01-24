@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/Services/auth.service';
 export class NavbarComponent implements OnInit{
   userdata: any;
   token:any;
+  router: any;
   constructor(public adminService: AdminServicesService, private http: HttpClient, public auth:AuthService) { }
   ngOnInit(): void {
 
@@ -25,4 +26,13 @@ export class NavbarComponent implements OnInit{
       }
     );
   }
+
+ goToLogin(){
+    this.router.navigate(['']);
+  }
+ 
+  logout(){
+    localStorage.clear();
+    this.goToLogin();
+    }
 }

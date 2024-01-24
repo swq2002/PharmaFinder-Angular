@@ -70,13 +70,31 @@ export class AuthService {
       this.toastr.success('Welcome');
       this.spinner.hide();
     },err=>{
-      this.toastr.error('Error');
       this.spinner.hide();
       console.log('Error');
     });
   }
 
-  
+  CreateUserGmail(body: any) {
+    debugger;
+    //  const user = {username:body.name, email:body.email,profileimage:body.photoUrl,roleid:2,password:123456789};
+    // const user = this.getCurrentUser();
+    body.email = body.email
+    body.username = body.name
+    body.Profileimage = body.photoUrl
+    body.roleId = 2;
+    body.password = "123456789";
+    this.http.post('https://localhost:7274/api/User/CreateUser', body).subscribe(resp => {
+      this.login(body.email, body.password)
+    }, err => {
+      console.log(err.message);
+      console.log(err.status);
+    })
+
+
+  }
+
+
   getCurrentUser(): any {
      
     const userString = localStorage.getItem('user');
@@ -97,59 +115,30 @@ export class AuthService {
     );
   }
   
-  createUser(body: any): Observable<any> {
-    const Email = body.email;
-    const Password = body.password;
-    const subBody = {
-      Email: Email.toString(),
-      Password: Password.toString(),
-    };
   
-    return this.isEmailAlreadyRegistered(Email).pipe(
-      switchMap((isRegistered) => {
+  createUser(body: any): Observable<any> {
+    this.spinner.show();
+    const userEmail = body.email;
+
+    return this.isEmailAlreadyRegistered(userEmail).pipe(
+      switchMap(isRegistered => {
         if (isRegistered) {
-          this.notifyUserSubject.next('You already have an account!');
+          this.spinner.hide();         
+          this.toastr.error("Email already registered")
           return of({ error: 'Email already registered' });
         } else {
-          const headerDir = {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-          };
-          const requestOptions = {
-            headers: new HttpHeaders(headerDir),
-          };
-  
           body.Profileimage = this.display_image;
-          return this.http.post('https://localhost:7274/api/User/CreateUser', body, requestOptions).pipe(
-            catchError((error) => {
+          return this.http.post('https://localhost:7274/api/User/CreateUser', body).pipe(
+            catchError(error => {
               console.error('Error creating user:', error);
               return of({ error: 'Error creating user' });
-            }),
-            switchMap((resp: any) => {
-              const tokenRequestOptions = {
-                headers: new HttpHeaders(headerDir),
-              };
-  
-              return this.http.post('https://localhost:7274/api/JWT/', subBody, tokenRequestOptions).pipe(
-                catchError((error) => {
-                  console.error('Error generating token for the registered user:', error);
-                  return of({ error: 'Error generating token' });
-                }),
-                tap((tokenResp: any) => {
-                  const responce = {
-                    token: tokenResp.toString(),
-                  };
-                  localStorage.setItem('token', responce.token);
-                  let data: any = jwtDecode(responce.token);
-                  localStorage.setItem('user', JSON.stringify(data));
-                })
-              );
             })
           );
         }
       })
     );
   }
+
 
   display_image: any;
   uploadAttachment(file: FormData){
@@ -164,5 +153,6 @@ export class AuthService {
       console.log(err.status);
     })
   }
+
 
 }

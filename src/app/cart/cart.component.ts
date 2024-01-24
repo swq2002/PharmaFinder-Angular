@@ -28,7 +28,7 @@ export class CartComponent implements OnInit {
   }
 
   increment(item: any): void {
-    item.quantity++;
+    ++item.quantity;
     this.updateCart();
     this.calculateTotalPrice();
 
@@ -36,7 +36,7 @@ export class CartComponent implements OnInit {
 
   decrement(item: any): void {
     if (item.quantity > 1) {
-      item.quantity--;
+      --item.quantity;
       this.updateCart();
       this.calculateTotalPrice();
 
