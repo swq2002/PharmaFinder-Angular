@@ -4,6 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AdminServicesService } from 'src/app/Services/admin-services.service';
 import { GetAllMedcineInPharmacyComponent } from '../get-all-medcine-in-pharmacy/get-all-medcine-in-pharmacy.component';
+import { MapService } from 'src/app/Services/map.service';
+import { LeafletMouseEvent } from 'leaflet';
 
 @Component({
   selector: 'app-pharmacy',
@@ -37,23 +39,25 @@ table {
   }
 `]
 })
+
 export class PharmacyComponent implements OnInit {
+  
   @ViewChild('callDeletesDailog') callDelete!: TemplateRef<any>
   @ViewChild('createPharmacDailog') createPharmacDailog!: TemplateRef<any>
+  @ViewChild('addPharmacy') addPharmacy!: TemplateRef<any>
+
   @ViewChild('up') updatePharmacDailog!: TemplateRef<any>
   @Output() pharmacyDetals = new EventEmitter
 
   pharmacyName: string = '';
   PharmacyDetails: any = [{}];
   pharmacyId: number = 1;
-
-
+  clickedLocation:any;
+  map: any;
   openMedicineDialog(obj: any): void {
-     
-    this.pharmacyId = obj.pharmacyid; // Store the obj.orderid
-    //  this.adminService.GetAllMedcineInPharmmacy(this.pharmacyId);
+
+    this.pharmacyId = obj.pharmacyid;
     debugger
-    // this.PharmacyDetails=this.adminService.medicineInPharmacy;
     console.log()
     const dialogRef = this.dialog.open(GetAllMedcineInPharmacyComponent, {
       width: '1000px',
@@ -61,7 +65,7 @@ export class PharmacyComponent implements OnInit {
       data: { PharmacyDetails: this.PharmacyDetails }
 
     });
-     
+
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
@@ -71,7 +75,7 @@ export class PharmacyComponent implements OnInit {
 
 
   numberOfPharmac: number | undefined
-  constructor(public adminService: AdminServicesService, public dialog: MatDialog, private router: Router) {
+  constructor(private mapService: MapService,public adminService: AdminServicesService, public dialog: MatDialog, private router: Router) {
     console.log(adminService.str);
   }
   dtOptions: DataTables.Settings = {};
@@ -85,7 +89,7 @@ export class PharmacyComponent implements OnInit {
   }
 
   DeletePharmcy(id: number) {
-     
+
     const dialogRef = this.dialog.open(this.callDelete);
     dialogRef.afterClosed().subscribe((result) => {
       if (result == "yes") {
@@ -98,58 +102,93 @@ export class PharmacyComponent implements OnInit {
   }
 
 
-      CreatePharmacy:FormGroup=new FormGroup({
-        pharmacyname:new FormControl('',Validators.required),
-        location:new FormControl(),
-        address:new FormControl('',Validators.required),
-        lng:new FormControl('',Validators.required),
-        lat:new FormControl('',Validators.required),
-        email :new FormControl('',Validators.required),
-        phonenumber :new FormControl('',Validators.required)     
-      })
-      updatePharmacy:FormGroup=new FormGroup({
-        pharmacyid:new FormControl('',Validators.required),
-        pharmacyname:new FormControl('',Validators.required),
-        location:new FormControl(),
-        address:new FormControl('',Validators.required),
-        lng:new FormControl('',Validators.required),
-        lat:new FormControl('',Validators.required),
-        email :new FormControl('',[Validators.required,Validators.email]),
-        phonenumber :new FormControl('',Validators.required)     
-      })
-      OpenCreateDialog (){
-        this.updatePharmacy.controls['location'].setValue("Jordan");
+  CreatePharmacy: FormGroup = new FormGroup({
+    pharmacyname: new FormControl('', Validators.required),
+    location: new FormControl(),
+    address: new FormControl('', Validators.required),
+    lng: new FormControl('', Validators.required),
+    lat: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
+    phonenumber: new FormControl('', Validators.required)
+  })
+  updatePharmacy: FormGroup = new FormGroup({
+    pharmacyid: new FormControl('', Validators.required),
+    pharmacyname: new FormControl('', Validators.required),
+    location: new FormControl(),
+    address: new FormControl('', Validators.required),
+    lng: new FormControl('', Validators.required),
+    lat: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    phonenumber: new FormControl('', Validators.required)
+  })
+  OpenCreateDialog() {
+    this.updatePharmacy.controls['location'].setValue("Jordan");
 
-        const dialogRef=this.dialog.open(this.createPharmacDailog);
-      }
-      CreatePharm(){
-         
-        this.adminService.CreatedPharmicy(this.CreatePharmacy.value);
-       }
-       Cancel(){
-        console.log('consal');
-       }
+    const dialogRef = this.dialog.open(this.createPharmacDailog);
+  }
+  CreatePharm() {
 
+    this.adminService.CreatedPharmicy(this.CreatePharmacy.value);
+  }
+  Cancel() {
+    console.log('consal');
+  }
+  OpenAddPharLoc() {
+    this.mapService.getCurrentLocation().then((location: any) => {
+      this.map = this.mapService.createMap(location.lat, location.lng);
+      this.map.on('click', (event: any) => {
+        this.addMarker(event);
+      });
+    });
+  
+    const dialogRef = this.dialog.open(this.addPharmacy,{
+      width: '700px',
+    });
+  }
+  addMarker(event: any): void { 
+     this.clickedLocation = {
+      lat: event.latlng.lat,
+      lng: event.latlng.lng
+    };
+  
+    console.log('Marker Location:', this.clickedLocation);
+  
+    this.mapService.addMarkerOnClick(this.map).subscribe((markerLocation) => {
+    });
+  } 
+  savePharmaLoc() {
+    const lngControl = this.updatePharmacy.get('lng');
+  console.log(lngControl?.value);
+    if (lngControl?.value == "") {
+      this.CreatePharmacy.controls['lng'].setValue(this.clickedLocation.lng);
+      this.CreatePharmacy.controls['lat'].setValue(this.clickedLocation.lat);
+    } else {
+      this.updatePharmacy.controls['lng'].setValue(this.clickedLocation.lng);
+      this.updatePharmacy.controls['lat'].setValue(this.clickedLocation.lat);
+    }
+  }
+  
 
-          
-       openUpdateDailog(obj:any){
-         
-        this.pData=obj;
-        this.updatePharmacy.controls['location'].setValue("Jordan");
-        this.updatePharmacy.controls['pharmacyid'].setValue(this.pData.pharmacyid);
-        console.log(this.pData);
-        const dialogRef=this.dialog.open(this.updatePharmacDailog)
-       }
-       pData:any;
-       update(){
-         
+  openUpdateDailog(obj: any) {
+
+    this.pData = obj;
+    this.updatePharmacy.controls['location'].setValue("Jordan");
+    this.updatePharmacy.controls['pharmacyid'].setValue(this.pData.pharmacyid);
+    this.updatePharmacy.controls['lat'].setValue(this.pData.lat);
+    this.updatePharmacy.controls['lng'].setValue(this.pData.lng);
+
+    const dialogRef = this.dialog.open(this.updatePharmacDailog)
+  }
+  pData: any;
+  update() {
+
 
     this.adminService.updatePharmacy(this.updatePharmacy.value);
   }
 
 
   pharmacydetlis(id: number) {
-     
+
     this.router.navigate(['admin/pharmacydetails'], { queryParams: { id } })
 
     // this.pharmacyDetals.emit();
@@ -158,7 +197,7 @@ export class PharmacyComponent implements OnInit {
 
 
   MedicineinOrder(id: number) {
-     
+
     this.router.navigate(['admin/medicineInOrder'], { queryParams: { id } });
   }
 }
