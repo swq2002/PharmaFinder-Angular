@@ -70,7 +70,6 @@ export class AuthService {
       this.toastr.success('Welcome');
       this.spinner.hide();
     },err=>{
-      this.toastr.error('Error');
       this.spinner.hide();
       console.log('Error');
     });
@@ -99,12 +98,14 @@ export class AuthService {
   
   
   createUser(body: any): Observable<any> {
+    this.spinner.show();
     const userEmail = body.email;
 
     return this.isEmailAlreadyRegistered(userEmail).pipe(
       switchMap(isRegistered => {
         if (isRegistered) {
-          this.notifyUserSubject.next('You already have an account!');
+          this.spinner.hide();         
+          this.toastr.error("Email already registered")
           return of({ error: 'Email already registered' });
         } else {
           body.Profileimage = this.display_image;

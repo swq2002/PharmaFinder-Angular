@@ -89,8 +89,8 @@
                   <div class="input-group">
                     <label for="inputGroupFile04" class="form-label">Profile Picture</label>                    
                     <div class="input-group">
-                        <input type="file" #file class="form-control custom-file-input" id="inputGroupFile04" formControlName="Profileimage"
-                               aria-describedby="inputGroupFileAddon04" aria-label="Upload" (change)="UploadImage(file.files)" accept="image/*">
+                      <input type="file" #file class="form-control custom-file-input" id="inputGroupFile04" formControlName="Profileimage"
+                                                    aria-describedby="inputGroupFileAddon04" (change)="UploadImage(file.files)">
                     </div>
                 </div>
             </div>
