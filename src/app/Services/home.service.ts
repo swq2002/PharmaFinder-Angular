@@ -14,7 +14,7 @@ interface Order {
 })
 
 export class HomeService{
-  private apiUrl = 'https://localhost:7274/api/Orders'; // Replace with your actual API URL
+  private apiUrl = ' http://20.203.96.69/api/Orders'; // Replace with your actual API URL
 
   registeredEmails: any = [];
   private notifyUserSubject = new Subject<string>();
@@ -25,10 +25,10 @@ export class HomeService{
   user= this.auth.getCurrentUser();
 
   GetHome() {
-    return this.http.get('https://localhost:7274/api/Home/GetHomeById/' + 1);
+    return this.http.get(' http://20.203.96.69/api/Home/GetHomeById/' + 1);
   }
   GetAbout() {
-    return this.http.get('https://localhost:7274/api/About/GetAboutById/' + 1);
+    return this.http.get(' http://20.203.96.69/api/About/GetAboutById/' + 1);
   }
 
 
@@ -41,7 +41,7 @@ export class HomeService{
       
     DeleteUser(id:number){
       this.spinner.show();
-      this.http.delete('https://localhost:7274//api/User/DeleteUser/'+id).subscribe((resp)=>{
+      this.http.delete(' http://20.203.96.69//api/User/DeleteUser/'+id).subscribe((resp)=>{
         this.toastr.success('Your account has been deleted successfully');
         this.spinner.hide();
       },
@@ -57,7 +57,7 @@ export class HomeService{
       uploadAttachment(file: FormData){
         this.spinner.show();
          
-        this.http.post('https://localhost:7274/api/User/UploadImage', file).subscribe((resp:any)=>{
+        this.http.post(' http://20.203.96.69/api/User/UploadImage', file).subscribe((resp:any)=>{
         this.display_image = resp.profileimage;
         this.spinner.hide();
 
@@ -70,7 +70,7 @@ export class HomeService{
 
     GetAllUsertestimonials(): Promise<any> {
       return new Promise((resolve, reject) => {
-        this.http.get('https://localhost:7274/api/UserTestimonial/GetAllUsertestimonials')
+        this.http.get(' http://20.203.96.69/api/UserTestimonial/GetAllUsertestimonials')
           .subscribe(
             (resp: any) => {
               resolve(resp);
@@ -87,7 +87,7 @@ export class HomeService{
     Users :any =[]; 
     GetAllUsers(): Promise<any> {
       return new Promise((resolve, reject) => {
-        this.http.get('https://localhost:7274/api/User/GetAllUsers')
+        this.http.get(' http://20.203.96.69/api/User/GetAllUsers')
           .subscribe(
             (resp: any) => {
               resolve(resp);
@@ -104,7 +104,7 @@ export class HomeService{
 
     CreateTestimonial(body: any){
     body.userid=this.user.userid;
-    this.http.post('https://localhost:7274/api/UserTestimonial/CreateUsertestimonial',body).subscribe((resp) =>{
+    this.http.post(' http://20.203.96.69/api/UserTestimonial/CreateUsertestimonial',body).subscribe((resp) =>{
      this.toastr.success("Thanks for rating")
     window.location.reload();
 
@@ -115,7 +115,7 @@ export class HomeService{
     }
       SendContactMessage(body: any){
         this.spinner.show();
-        this.http.post('https://localhost:7274/api/ContactUs/CreateContactUs',body).subscribe((resp) =>{
+        this.http.post(' http://20.203.96.69/api/ContactUs/CreateContactUs',body).subscribe((resp) =>{
       this.spinner.hide();
       this.toastr.success("Thank you for contacting us. Wait for an email")
 
@@ -132,7 +132,7 @@ export class HomeService{
       const user = this.auth.getCurrentUser();
 
       
-      this.http.get(`https://localhost:7274/api/Orders/GetOrdersByUserId/${user.userid}`).subscribe((resp)=>{
+      this.http.get(` http://20.203.96.69/api/Orders/GetOrdersByUserId/${user.userid}`).subscribe((resp)=>{
         this.orders=resp;
       },err=>{
         console.log(err.message);
@@ -147,7 +147,7 @@ paidOrderCount: number = 0;
 GetAllInformationOrders1() {
   const user = this.auth.getCurrentUser();
 
-  this.http.get<Order[]>(`https://localhost:7274/api/Orders/GetOrdersByUserId/${user.userid}`).subscribe(
+  this.http.get<Order[]>(` http://20.203.96.69/api/Orders/GetOrdersByUserId/${user.userid}`).subscribe(
     (resp: Order[]) => {
       this.orders = resp;
 

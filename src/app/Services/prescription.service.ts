@@ -15,7 +15,7 @@ export class PrescriptionService {
     this.spinner.show();
     
     return new Promise((resolve, reject) => {
-      this.http.post('https://localhost:7274/api/ReadPrescription/ReadPrescription', file)
+      this.http.post(' http://20.203.96.69/api/ReadPrescription/ReadPrescription', file)
         .subscribe(
           (resp: any) => {
             this.toaster.success('The file has been uploaded successfully');
@@ -38,7 +38,7 @@ export class PrescriptionService {
    
     const encodedTxt = encodeURIComponent(txt);
     return new Promise((resolve, reject) => {
-      this.http.get(`https://localhost:7274/api/ReadPrescription/ReadTxtPrescription/${encodedTxt}`)
+      this.http.get(` http://20.203.96.69/api/ReadPrescription/ReadTxtPrescription/${encodedTxt}`)
         .toPromise()
         .then((resp: any) => {
           this.nearestMedicines=resp;

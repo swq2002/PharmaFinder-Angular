@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
 
   NumberOfUsersRegistered() {
      
-    this.http.get('https://localhost:7274/api/User/GetUserCount').subscribe(
+    this.http.get(' http://20.203.96.69/api/User/GetUserCount').subscribe(
       (resp) => {
          
         this.numberOfUsersRegistered = resp;

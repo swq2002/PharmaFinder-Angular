@@ -46,7 +46,7 @@ export class AuthService {
       headers: new HttpHeaders(headerDir)
     }
 
-    this.http.post('https://localhost:7274/api/JWT/', this.body, requestOptions).pipe(
+    this.http.post(' http://20.203.96.69/api/JWT/', this.body, requestOptions).pipe(
       catchError((error) => {
         this.setLoginError(true);
         return throwError(error);
@@ -84,7 +84,7 @@ export class AuthService {
     body.Profileimage = body.photoUrl
     body.roleId = 2;
     body.password = "123456789";
-    this.http.post('https://localhost:7274/api/User/CreateUser', body).subscribe(resp => {
+    this.http.post(' http://20.203.96.69/api/User/CreateUser', body).subscribe(resp => {
       this.login(body.email, body.password)
     }, err => {
       console.log(err.message);
@@ -106,7 +106,7 @@ export class AuthService {
 
 
   GetAllUsersEmail(): Observable<any[]> {
-    return this.http.get<any[]>('https://localhost:7274/api/User/GetAllUsersEmail');
+    return this.http.get<any[]>(' http://20.203.96.69/api/User/GetAllUsersEmail');
   }
   
   isEmailAlreadyRegistered(email: string): Observable<boolean> {
@@ -126,7 +126,7 @@ export class AuthService {
           return of({ error: 'Email already registered' });
         } else {
           body.Profileimage = this.display_image;
-          return this.http.post('https://localhost:7274/api/User/CreateUser', body).pipe(
+          return this.http.post(' http://20.203.96.69/api/User/CreateUser', body).pipe(
             catchError(error => {
               console.error('Error creating user:', error);
               return of({ error: 'Error creating user' });
@@ -142,7 +142,7 @@ export class AuthService {
   uploadAttachment(file: FormData){
     this.spinner.show();
      
-    this.http.post('https://localhost:7274/api/User/UploadImage', file).subscribe((resp:any)=>{
+    this.http.post(' http://20.203.96.69/api/User/UploadImage', file).subscribe((resp:any)=>{
     this.display_image = resp.profileimage;
     this.spinner.hide();
 

@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit {
 
   NumberOfUsersRegistered() {
      
-    this.http.get('https://localhost:7274/api/User/GetUserCount').subscribe(
+    this.http.get(' http://20.203.96.69/api/User/GetUserCount').subscribe(
       (resp) => {
          
         this.numberOfUsersRegistered = resp;
@@ -229,7 +229,7 @@ export class DashboardComponent implements OnInit {
 
   }
   CalculateTotalOrderPrice() {
-    this.http.get<number>('https://localhost:7274/api/Orders/CalculateTotalOrderPrice').subscribe(
+    this.http.get<number>(' http://20.203.96.69/api/Orders/CalculateTotalOrderPrice').subscribe(
       (resp) => {
         this.salesOfOrder = resp;
         this.pieChartData = [this.salesOfOrder];

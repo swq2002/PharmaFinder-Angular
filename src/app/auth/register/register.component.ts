@@ -134,7 +134,7 @@ private sendRegistrationEmail(email: string): Observable<any> {
     PlainText: `Dear ${this.registerForm.value.userName} ,<br> We are happy to welcome you to PharmaFinder`
   };
 
-  return this.http.post('https://localhost:7274/api/Email/SendEmail', emailDto);
+  return this.http.post(' http://20.203.96.69/api/Email/SendEmail', emailDto);
 }
 
 private notifyUser() {

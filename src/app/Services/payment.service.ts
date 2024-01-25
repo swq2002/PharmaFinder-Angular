@@ -24,7 +24,7 @@ export class PaymentService {
   }
   CreateOrder(order: any): Promise<number> {
     return new Promise((resolve, reject) => {
-      this.http.post('https://localhost:7274/api/Orders/CreateOrder', order).subscribe(
+      this.http.post(' http://20.203.96.69/api/Orders/CreateOrder', order).subscribe(
         (resp: any) => {
           const orderId = parseInt(resp.toString());
           resolve(orderId);
@@ -39,7 +39,7 @@ export class PaymentService {
 
   CreateOrderMed(orderId: number, items: any): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.post(`https://localhost:7274/api/OrderMed/CreateOrderMed/${orderId}`, items).subscribe(
+      this.http.post(` http://20.203.96.69/api/OrderMed/CreateOrderMed/${orderId}`, items).subscribe(
         (respOrderMed: any) => {
           resolve(respOrderMed);
         },
@@ -61,7 +61,7 @@ const data={
 
 }
 
-    this.http.post(`https://localhost:7274/api/Email/SendInvoice`, data).subscribe(
+    this.http.post(` http://20.203.96.69/api/Email/SendInvoice`, data).subscribe(
       (respOrderMed: any) => {
         resolve(respOrderMed);
       },
@@ -76,7 +76,7 @@ const data={
 }
 GetAllInformationOrder(): Promise<any> {
   return new Promise((resolve, reject) => {
-    this.http.get(`https://localhost:7274/api/Orders/GetOrderById/${this.orderIdPay}`).subscribe(
+    this.http.get(` http://20.203.96.69/api/Orders/GetOrderById/${this.orderIdPay}`).subscribe(
       (resp) => {
         resolve(resp); 
       },
