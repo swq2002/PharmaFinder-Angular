@@ -59,7 +59,6 @@ export class TestimonialComponent implements OnInit {
 
   constructor(public home:HomeService, public auth:AuthService){}
   async ngOnInit() {
-     debugger;
      this.testimonials= await this.home.GetAllUsertestimonials();
     
    this.Users=await this.home.GetAllUsers();
