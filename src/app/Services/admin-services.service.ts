@@ -258,7 +258,7 @@ export class AdminServicesService {
 
   CreateAdminAccount(obj:any){
     this.spinner.show();
-    obj.imagename=this.display_image;
+    obj.profileimage=this.display_image;
   this.http.post('https://localhost:7274/api/User/CreateUser',obj).subscribe((resp)=>{
     this.toaster.success('Created');
     this.spinner.hide();

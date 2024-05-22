@@ -135,7 +135,7 @@
 
       <div *ngIf="isSearchResults && searchResults.length > 0" class="col-9 mt-1">
         <!-- <h2>Search Results</h2> -->
-        <table datatable [dtOptions]="dtOptions" class="table table-hover">
+        <table datatable [dtOptions]="dtOptions" id="table-data" class="table table-hover">
           <thead>
       <tr>
         <th>#</th>
@@ -198,8 +198,8 @@
 </div>
 
 <div class="row">
-  <div class="col-5 m-3">
-<canvas id="AnnualReport">
+  <div style="height: 300px;" class="col-5 m-3">
+<canvas class="annual" id="AnnualReport">
 
 </canvas>
 </div>
